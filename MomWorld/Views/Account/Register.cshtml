@@ -1,0 +1,116 @@
+﻿@model MomWorld.Models.RegisterViewModel
+@{
+    Layout = null;
+}
+
+<h2>@ViewBag.Title.</h2>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mom's World - Đăng kí</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+
+    <link rel="icon" type="image/ico" href="@Url.Content("~/Content/images/favicon.png")" />
+    <!-- Bootstrap -->
+    <link href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap.min.css")"
+          rel="stylesheet">
+    <link href="@Url.Content("~/Content/css/vendor/font-awesome-4.2.0/css/font-awesome.min.css")"
+          rel="stylesheet">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/bootstrap-checkbox.css")">
+    <link rel="stylesheet"
+          href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap-dropdown-multilevel.css")">
+
+    <link href="@Url.Content("~/Content/css/minimal.css")" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+</head>
+<body class="bg-1">
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+        <!-- Make page fluid -->
+        <div class="row">
+            <!-- Page content -->
+            <div id="content" class="col-md-12 full-page register">
+
+
+                <div class="inside-block">
+                    <img src="@Url.Content("~/Content/images/logo-big.png")" class="logo img-responsive">
+                    <h1>
+                        <strong>Đăng kí</strong>
+                    </h1>
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @id="form-register", @class="form-register", role = "form" })){
+    @Html.AntiForgeryToken()
+                        <section>
+                            <div class="input-group">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control",name="username",placeholder="Tài khoản" })
+                                <div class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control",name="password",placeholder="Mật khẩu" })
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-key"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control",name="re-password",placeholder="Nhập lại mật khẩu" })
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-key"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                @Html.TextBoxFor(m => m.Email, new {@class="form-control", name="email", placeholder="Địa chỉ email"})
+                                <div class="input-group-addon">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                            </div>
+
+
+
+                        </section>
+                        <section class="controls">
+                            <div class="checkbox check-transparent">
+                                <input type="checkbox" value="1" id="remember" checked>
+                                <label for="remember">
+                                    Đồng ý với các <a href="">ĐIỀU KHOẢN</a> và <a href="">QUY ĐỊNH</a> của chúng tôi!
+                                </label>
+                            </div>
+
+                        </section>
+                        <section class="log-in">
+                            <input type="submit" class="btn btn-orange btn-lg" value="Đăng ký" />
+                        </section>
+
+                        <section class="log-in text-right">
+                            <span>Đã có tài thoản</span>
+                            <input type="button" class="btn btn-greensea" title="Đăng nhập" value="Đăng nhập" onclick="location.href='@Url.Action("Login", "Account")'" />
+                        </section>
+}
+                </div>
+
+
+            </div>
+            <!-- /Page content -->
+        </div>
+    </div>
+    <!-- Wrap all page content end -->
+</body>
+</html>

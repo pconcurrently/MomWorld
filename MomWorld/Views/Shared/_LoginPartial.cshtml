@@ -1,0 +1,88 @@
+﻿@using Microsoft.AspNet.Identity
+<link href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap.min.css")"
+      rel="stylesheet">
+<link href="@Url.Content("~/Content/css/vendor/font-awesome-4.2.0/css/font-awesome.min.css")"
+      rel="stylesheet">
+<!-- CUSTOM STYLE -->
+<link rel="stylesheet" href="@Url.Content("~/Content/css/main.css")">
+<link rel="stylesheet" href="@Url.Content("~/Content/css/minimal.min.css")">
+@*@if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+        }
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }*@
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <li class="dropdown text-center user">
+            <a href="personal-page.html"
+               data-0="padding: 0px 5px 0px;border-bottom-width:0px;"
+               data-300="padding: 0px 5px 0px;border-bottom-width:0px;"
+               class="dropdown-toggle" data-toggle="dropdown">
+                <div class="profile-photo">
+                    <img class="img-circle" src="Content/images/profile-photo.jpg"
+                         data-0="padding: 0px;" data-300="padding: 3px;" />
+                </div> <span>@User.Identity.GetUserName()</span> <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu arrow settings">
+                <li>
+                    <a href="timeline.html#">
+                        <i class="fa fa-tachometer"></i>
+                        Quá trình mang thai
+                    </a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("Manage", "Account")">
+                        <i class="fa fa-user"></i>
+                        Trang cá nhân
+                    </a>
+                </li>
+
+                <li>
+                    <a href="personal-page.html#">
+                        <i class="fa fa-envelope"></i> Tin nhắn <span class="badge badge-red animated bounceIn">3</span>
+                    </a>
+                </li>
+
+                <li class="divider"></li>
+
+                <li>
+                    <a href="javascript:document.getElementById('logoutForm').submit()">
+                        <i class="fa fa-power-off"
+                           style="float: right"></i> Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </li>
+    }
+}
+else
+{
+    <li class="login">
+        <a href="@Url.Action("Login", "Account")"
+           data-0="padding: 30px 25px 22px;"
+           data-300="padding: 15px 25px 10px;">
+            <img class="icon-nav"
+                 src="@Url.Content("~/Content/images/icon-nav/login.png")"> Đăng nhập
+        </a>
+    </li>
+}

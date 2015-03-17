@@ -1,0 +1,5 @@
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\Articles.Entities.dll
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\Articles.Entities.pdb
+E:\VS Projects\MomWorld\Articles.Entities\obj\Debug\Articles.Entities.csprojResolveAssemblyReference.cache
+E:\VS Projects\MomWorld\Articles.Entities\obj\Debug\Articles.Entities.dll
+E:\VS Projects\MomWorld\Articles.Entities\obj\Debug\Articles.Entities.pdb

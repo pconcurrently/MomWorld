@@ -1,0 +1,435 @@
+.timelineLight {
+	display:none;
+}
+.timelineLoader {
+	width:100%;
+	text-align:center;
+	padding:150px 0;
+}
+
+
+/* fixed line holder */
+.timelineLight .timeline_line {
+	margin-top: 5px;
+	/* margin-bottom: 100px; */
+	width:900px;
+	background: url(../../../images/timeline/Arrow_Down.png) center no-repeat;
+}
+
+/* full (including months that are not shown) line holder */
+.timelineLight .t_line_holder {
+	height: 120px;
+	background:url('../../../images/timeline/timeline/light/line.jpg') repeat-x 0px 39px;
+}
+
+/* 2 months are stored in one view */
+.timelineLight .t_line_view {
+	height:20px;
+	width:900px;
+}
+
+
+
+/* holder for 1 month (constist of nodes and month caption) - we use borders to separate months thats why it has width 2px less then 50% */
+.timelineLight .t_line_m {
+	margin-top:35px;
+	height:10px;
+	border-left:1px solid #545454;
+	border-right:1px solid #545454;
+	width:448px;
+}
+
+/* month on the right side - has left set at 459 so border would overlap border from first element (to evade duplicated borders) */
+.timelineLight .t_line_m.right {
+	left:449px;
+	width:449px;
+}
+
+/* month caption */
+.timelineLight h4.t_line_month {
+	margin:-30px 0 0;
+	color:#545454;
+}
+
+
+/* node on the timeline */
+.timelineLight a.t_line_node {
+	text-decoration:none;
+	padding:38px 0 4px;
+	height:10px;
+	font-size:12px;
+	top: -23px;
+	position: relative;
+	color:#b7b6b6;
+}
+.timelineLight a.t_line_node:after {
+	content: "";
+	border-radius: 22px;
+	height: 10px;
+	width: 10px;
+	border: 2px solid #ffffff;
+	position: absolute;
+	top: 23px;
+	left: 50%;
+	margin: 0 0 0 -7px;
+	background:#dd5555;
+}
+.timelineLight a.t_line_node.active {
+	color:#dd5555;
+}
+
+.timelineLight a.t_line_node.active:after {
+	border: 2px solid #b7b6b6;
+}
+
+
+/* node description */
+.timelineLight .t_node_desc {
+	white-space: normal !important;
+	top:-50px;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	left: 50%;
+	color:#fff;
+	display: inline-block !important;
+	position: relative;
+	transition:top 200ms, opacity 500ms;
+	-webkit-transition:top 200ms, opacity 500ms;
+	-moz-transition:top 200ms, opacity 500ms;
+}
+
+.timelineLight a.t_line_node:hover .t_node_desc {
+	top:0;
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+
+.timelineLight .t_node_desc span {
+	white-space: nowrap;
+	margin-left: -50%;
+	margin-right: 50%;
+	margin-top: -16px;
+	display: block !important;
+	padding:8px;
+	border-radius: 3px;
+	background: #dd5555;
+	position: relative;
+}
+.timelineLight .t_node_desc span:after {
+	content: "";
+	width: 0;
+	height: 0;
+	display: block;
+	position: absolute;
+	bottom: -10px;
+	border:5px solid transparent;
+	border-top:5px solid #dd5555;
+	left:50%;
+	margin-left: -5px;
+}
+
+/* line arrow left */
+.timelineLight #t_line_left {
+	cursor:pointer;
+	left:-30px;
+	top:30px;
+	width:14px;
+	height:19px;
+	background:url('../../../images/timeline/timeline/light/arrow.png') no-repeat left top;
+}
+
+.timelineLight #t_line_left:hover {
+	background:url('../../../images/timeline/timeline/light/arrow.png') no-repeat left bottom;
+}
+
+/* line arrow right */
+.timelineLight #t_line_right {
+	cursor:pointer;
+	right:-30px;
+	top:30px;
+	width:14px;
+	height:19px;
+	background:url('../../../images/timeline/timeline/light/arrow.png') no-repeat right top;
+}
+
+.timelineLight #t_line_right:hover {
+	background:url('../../../images/timeline/timeline/light/arrow.png') no-repeat right bottom;
+}
+.timelineLight {
+	display:none;
+}
+
+/* items container */
+.timelineLight .timeline_items {
+	padding:10px 0;
+}
+
+/* single item (margines set from javascript) */
+.timelineLight .item {
+	height: 400px;
+	text-align:center;
+	background:url('../../../images/timeline/timeline/light/background-white.jpg') repeat; 
+	color:#545454;
+	-moz-box-shadow: -3px 1px 6px rgba(0,0,0,0.4);
+	-webkit-box-shadow: -3px 1px 6px rgba(0,0,0,0.4);
+	box-shadow: -3px 1px 6px rgba(0,0,0,0.4);
+	width:200px;
+}
+
+.timelineLight .item.item_node_hover:before {
+	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.9);
+	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.9);
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.9);
+	content: "";
+	position: absolute;
+	height: 4px;
+	background: #dd5555;
+	width: 100%;
+	z-index: 2;
+	top:0;
+	left:0;
+}
+.timelineLight .item.item_node_hover:after {
+	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.9);
+	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.9);
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.9);
+	content: "";
+	position: absolute;
+	height: 0;
+	width: 0;
+	z-index: 2;
+	top:0;
+	left:50%;
+	margin: 4px 0 0 -6px;
+	border: 6px solid transparent;
+	border-top: 6px solid #dd5555;
+	
+}
+
+
+
+/* ----- content - non-plugin elements ----- */
+.timelineLight .item img {
+	margin-top:0;
+	width:200px;
+	height: 125px;
+}
+
+.timelineLight .con_borderImage {
+	border-bottom:5px solid #1a86ac;
+	width: 100%;
+	height: 125px;
+}
+
+.timelineLight .item span{
+	display:block;
+	margin:0px 20px 10px;
+	height:150px;
+}
+.timelineLight .item .read_more {
+	padding:2px 8px 2px 10px;
+	font-size:20px;
+	float: right;
+	margin-right: 25%;
+	color:#ffffff;
+	background: rgba(108, 206, 0, 1);
+	cursor:pointer;
+	margin-top: 5px;
+}
+.timelineLight .item .read_more:hover {
+	background:rgba(0, 187, 255, 1);
+}
+/* ----------------------------------------- */
+
+/* item details (margines set from javascript) */
+.timelineLight .item_open {
+	height: 400px;
+	background:url('../../../images/timeline/timeline/light/background.jpg') repeat;
+	position:relative;
+	color:#545454;
+	z-index:2; 
+	-moz-box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
+	-webkit-box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
+	box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
+	width:490px;
+	
+}
+
+/* item details content wrapper (used for animation - shuld have same width as .item_open) */
+.timelineLight .item_open_cwrapper {
+	width:490px;
+	height:100%;
+	/* overflow: overlay; */
+}
+
+.timelineLight .item_open_content {
+	width:100%;
+	height:100%;
+	position:relative;
+}
+
+
+
+.timelineLight .item_open_content .ajaxloader {
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin:-10px 0 0 -100px;
+	
+}
+
+/* ----- content - non-plugin elements ----- */
+.timelineLight .timeline_open_content {
+	padding:20px;
+	height: 225px;
+	overflow: overlay;
+}
+
+.timelineLight .timeline_open_content::-webkit-scrollbar {
+	width: 0;
+}
+
+.timelineLight .item_open h2 {
+	margin-top:10px;
+	padding-top:0;
+	font-size:28px;
+}
+.timelineLight .item_open .t_close {
+	position:absolute;
+	/* position: fixed; */
+	/* top:10px; */
+	right: 0px;
+	padding:2px 8px 2px 10px;
+	font-size:20px;
+	color:#ffffff;
+	background: rgba(0,0,0,0.25);
+	cursor:pointer;
+	z-index:2;
+}
+.timelineLight .item_open .t_close:hover {
+	background:rgba(0, 187, 255, 1);
+}
+/* ----------------------------------------- */
+
+/* left/right controles */
+.timelineLight .t_controles {
+	margin:10px auto;
+	text-align:center;
+}
+.timelineLight .t_left,
+.timelineLight .t_right {
+	display:inline-block;
+	height:50px;
+	width:29px;
+	margin:10px;
+	cursor:pointer;
+}
+.timelineLight .t_left,  
+.timelineLight .t_left:hover:active {
+	background: url('../../../images/timeline/timeline/light/big-arrow.png') no-repeat left top;
+}
+.timelineLight .t_left:hover {
+	background: url('../../../images/timeline/timeline/light/big-arrow.png') no-repeat left bottom;
+}
+
+.timelineLight .t_right, 
+.timelineLight .t_right:hover:active{
+	background: url('../../../images/timeline/timeline/light/big-arrow.png') no-repeat right top;
+}
+
+.timelineLight .t_right:hover {
+	background: url('../../../images/timeline/timeline/light/big-arrow.png')
+		no-repeat right bottom;
+}
+
+/* -----------------------------------------------------------------------*/
+/* ------------------------------ RESPONSIVE -----------------------------*/
+/* -----------------------------------------------------------------------*/
+
+
+
+/* --- 768px --- */
+@media screen and (max-width:980px) {
+	
+	.timelineLight .timeline_line {
+		width:680px;
+	}
+	
+	.timelineLight .t_line_view {
+		width:680px;
+	}
+	
+	.timelineLight .t_line_m {
+		width: 338px;
+	}
+	.timelineLight .t_line_m.right {
+		left: 339px;
+		width: 339px;
+	}
+}
+
+
+/* --- 610px --- */
+@media screen and (max-width:767px) {
+	
+	.timelineLight .timeline_line {
+		width:530px;
+	}
+	
+	.timelineLight .t_line_view {
+		width:1060px;
+	}
+	
+	.timelineLight .t_line_m {
+		width: 528px;
+	}
+	.timelineLight .t_line_m.right {
+		left: 530px;
+		width: 528px;
+	}
+	
+	.timelineLight .t_line_node span {
+		
+	}
+	.timelineLight .t_node_desc {
+		font-size:8px;
+	}
+	.timelineLight .t_line_m.right .t_node_desc {
+		right:auto;
+		left:0;
+	}
+}
+
+
+/* --- 300px --- */
+@media screen and (max-width:609px) {
+	.timelineLight .timeline_line {
+		width:240px;
+	}
+	
+	.timelineLight .t_line_view {
+		width:480px;
+	}
+	
+	.timelineLight .t_line_m {
+		width: 238px;
+	}
+	.timelineLight .t_line_m.right {
+		left: 240px;
+		width: 238px;
+	}
+	
+	.timelineLight .item_open {
+		width:280px;
+		height:390px;
+	}
+	.timelineLight .item_open img {
+		max-width:280px;
+	} 
+	.timelineLight .item_open_cwrapper {
+		width:280px;
+	}
+}
+
+
+

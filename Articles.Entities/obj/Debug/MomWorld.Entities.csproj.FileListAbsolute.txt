@@ -1,0 +1,28 @@
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\Articles.Entities.dll
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\Articles.Entities.pdb
+E:\VS Projects\MomWorld\Articles.Entities\obj\Debug\Articles.Entities.dll
+E:\VS Projects\MomWorld\Articles.Entities\obj\Debug\Articles.Entities.pdb
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\Articles.Entities.dll.config
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\EntityFramework.dll
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\EntityFramework.SqlServer.dll
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\EntityFramework.xml
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\EntityFramework.SqlServer.xml
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\VS Projects\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\VS Projects\MomWorld\Articles.Entities\obj\Debug\MomWorld.Entities.csprojResolveAssemblyReference.cache
+E:\MomWorld\Articles.Entities\bin\Debug\Articles.Entities.dll.config
+E:\MomWorld\Articles.Entities\bin\Debug\Articles.Entities.dll
+E:\MomWorld\Articles.Entities\bin\Debug\Articles.Entities.pdb
+E:\MomWorld\Articles.Entities\bin\Debug\EntityFramework.dll
+E:\MomWorld\Articles.Entities\bin\Debug\EntityFramework.SqlServer.dll
+E:\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\MomWorld\Articles.Entities\bin\Debug\EntityFramework.xml
+E:\MomWorld\Articles.Entities\bin\Debug\EntityFramework.SqlServer.xml
+E:\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\MomWorld\Articles.Entities\obj\Debug\MomWorld.Entities.csprojResolveAssemblyReference.cache
+E:\MomWorld\Articles.Entities\obj\Debug\Articles.Entities.dll
+E:\MomWorld\Articles.Entities\obj\Debug\Articles.Entities.pdb

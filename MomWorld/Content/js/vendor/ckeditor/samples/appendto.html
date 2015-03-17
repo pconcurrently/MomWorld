@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>Append To Page Element Using JavaScript Code &mdash;
+	CKEditor Sample</title>
+<script src="../ckeditor.js"></script>
+<link rel="stylesheet" href="sample.css">
+</head>
+<body>
+	<div id="ckediter">
+		<script>
+			// This call can be placed at any point after the
+			// DOM element to append CKEditor to or inside the <head><script>
+			// in a window.onload event handler.
+
+			// Append a CKEditor instance using the default configuration and the
+			// provided content to the <div> element of ID "section1".
+			CKEDITOR
+					.appendTo(
+							'ckediter',
+							null,
+							'');
+		</script>
+	</div>
+	<br>
+</body>
+</html>

@@ -1,0 +1,138 @@
+E:\VS Projects\MomWorld\MomWorld\obj\Debug\MomWorld.csprojResolveAssemblyReference.cache
+E:\VS Projects\MomWorld\MomWorld\bin\MomWorld.dll.config
+E:\VS Projects\MomWorld\MomWorld\bin\MomWorld.dll
+E:\VS Projects\MomWorld\MomWorld\bin\MomWorld.pdb
+E:\VS Projects\MomWorld\MomWorld\bin\Antlr3.Runtime.dll
+E:\VS Projects\MomWorld\MomWorld\bin\EntityFramework.dll
+E:\VS Projects\MomWorld\MomWorld\bin\EntityFramework.SqlServer.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.Core.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Cookies.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Facebook.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Google.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.OAuth.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Twitter.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Web.Infrastructure.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Newtonsoft.Json.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Owin.dll
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Helpers.dll
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Mvc.dll
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Optimization.dll
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Razor.dll
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.WebPages.Deployment.dll
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.WebPages.dll
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.WebPages.Razor.dll
+E:\VS Projects\MomWorld\MomWorld\bin\WebGrease.dll
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Helpers.xml
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Mvc.xml
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Optimization.xml
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Razor.xml
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.WebPages.xml
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.WebPages.Deployment.xml
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.WebPages.Razor.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Antlr3.Runtime.pdb
+E:\VS Projects\MomWorld\MomWorld\bin\Newtonsoft.Json.xml
+E:\VS Projects\MomWorld\MomWorld\bin\EntityFramework.xml
+E:\VS Projects\MomWorld\MomWorld\bin\EntityFramework.SqlServer.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.Core.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Facebook.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Cookies.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.OAuth.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Google.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Twitter.xml
+E:\VS Projects\MomWorld\MomWorld\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\VS Projects\MomWorld\MomWorld\obj\Debug\MomWorld.dll
+E:\VS Projects\MomWorld\MomWorld\obj\Debug\MomWorld.pdb
+E:\VS Projects\MomWorld\MomWorld\bin\Articles.Entities.dll
+E:\VS Projects\MomWorld\MomWorld\bin\Articles.Entities.pdb
+E:\VS Projects\MomWorld\MomWorld\bin\System.Net.Http.Formatting.dll
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Http.dll
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Http.WebHost.dll
+E:\VS Projects\MomWorld\MomWorld\bin\System.Net.Http.Formatting.xml
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Http.xml
+E:\VS Projects\MomWorld\MomWorld\bin\System.Web.Http.WebHost.xml
+E:\VS Projects\MomWorld\MomWorld\obj\Debug\MomWorld.csproj.GenerateResource.Cache
+E:\VS Projects\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.IdentityMigrations.InitialCreate.resources
+E:\VS Projects\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.ImageMigrations.InitialCreate.resources
+E:\VS Projects\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.ArticleMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\bin\MomWorld.dll.config
+E:\MomWorld\MomWorld\bin\MomWorld.dll
+E:\MomWorld\MomWorld\bin\MomWorld.pdb
+E:\MomWorld\MomWorld\bin\Antlr3.Runtime.dll
+E:\MomWorld\MomWorld\bin\Articles.Entities.dll
+E:\MomWorld\MomWorld\bin\EntityFramework.dll
+E:\MomWorld\MomWorld\bin\EntityFramework.SqlServer.dll
+E:\MomWorld\MomWorld\bin\Facebook.dll
+E:\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.Core.dll
+E:\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.dll
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Cookies.dll
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.dll
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Facebook.dll
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Google.dll
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.OAuth.dll
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Twitter.dll
+E:\MomWorld\MomWorld\bin\Microsoft.Web.Infrastructure.dll
+E:\MomWorld\MomWorld\bin\Newtonsoft.Json.dll
+E:\MomWorld\MomWorld\bin\Owin.dll
+E:\MomWorld\MomWorld\bin\System.Net.Http.Formatting.dll
+E:\MomWorld\MomWorld\bin\System.Web.Helpers.dll
+E:\MomWorld\MomWorld\bin\System.Web.Http.dll
+E:\MomWorld\MomWorld\bin\System.Web.Http.WebHost.dll
+E:\MomWorld\MomWorld\bin\System.Web.Mvc.dll
+E:\MomWorld\MomWorld\bin\System.Web.Optimization.dll
+E:\MomWorld\MomWorld\bin\System.Web.Razor.dll
+E:\MomWorld\MomWorld\bin\System.Web.WebPages.Deployment.dll
+E:\MomWorld\MomWorld\bin\System.Web.WebPages.dll
+E:\MomWorld\MomWorld\bin\System.Web.WebPages.Razor.dll
+E:\MomWorld\MomWorld\bin\WebGrease.dll
+E:\MomWorld\MomWorld\bin\Articles.Entities.pdb
+E:\MomWorld\MomWorld\bin\Facebook.xml
+E:\MomWorld\MomWorld\bin\System.Net.Http.Formatting.xml
+E:\MomWorld\MomWorld\bin\System.Web.Http.xml
+E:\MomWorld\MomWorld\bin\System.Web.Http.WebHost.xml
+E:\MomWorld\MomWorld\bin\System.Web.Helpers.xml
+E:\MomWorld\MomWorld\bin\System.Web.Mvc.xml
+E:\MomWorld\MomWorld\bin\System.Web.Optimization.xml
+E:\MomWorld\MomWorld\bin\System.Web.Razor.xml
+E:\MomWorld\MomWorld\bin\System.Web.WebPages.xml
+E:\MomWorld\MomWorld\bin\System.Web.WebPages.Deployment.xml
+E:\MomWorld\MomWorld\bin\System.Web.WebPages.Razor.xml
+E:\MomWorld\MomWorld\bin\Antlr3.Runtime.pdb
+E:\MomWorld\MomWorld\bin\Newtonsoft.Json.xml
+E:\MomWorld\MomWorld\bin\EntityFramework.xml
+E:\MomWorld\MomWorld\bin\EntityFramework.SqlServer.xml
+E:\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.Core.xml
+E:\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\MomWorld\MomWorld\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.xml
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.xml
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Facebook.xml
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Cookies.xml
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.OAuth.xml
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Google.xml
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.Twitter.xml
+E:\MomWorld\MomWorld\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.csprojResolveAssemblyReference.cache
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.IdentityMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.ImageMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.csproj.GenerateResource.Cache
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.dll
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.pdb
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.ArticleMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.QuizMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.NineMonthArticleMigrations.InitialCreate.resources
