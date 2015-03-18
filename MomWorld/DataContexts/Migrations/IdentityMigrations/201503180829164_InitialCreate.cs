@@ -39,7 +39,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
                         Address = c.String(),
                         FullName = c.String(),
                         ProfilePicture = c.String(),
-                        DatePregnacy = c.DateTime(),
+                        DatePregnancy = c.DateTime(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),

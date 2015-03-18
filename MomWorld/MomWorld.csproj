@@ -187,15 +187,15 @@
     <Compile Include="DataContexts\CategoryDb.cs" />
     <Compile Include="DataContexts\IdentityDb.cs" />
     <Compile Include="DataContexts\ImageDb.cs" />
-    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503080426531_InitialCreate.cs" />
-    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503080426531_InitialCreate.Designer.cs">
-      <DependentUpon>201503080426531_InitialCreate.cs</DependentUpon>
+    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503180830085_InitialCreate.cs" />
+    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503180830085_InitialCreate.Designer.cs">
+      <DependentUpon>201503180830085_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DataContexts\Migrations\ArticleMigrations\Configuration.cs" />
     <Compile Include="DataContexts\Migrations\CategoryMigrations\Configuration.cs" />
-    <Compile Include="DataContexts\Migrations\IdentityMigrations\201502120738119_InitialCreate.cs" />
-    <Compile Include="DataContexts\Migrations\IdentityMigrations\201502120738119_InitialCreate.Designer.cs">
-      <DependentUpon>201502120738119_InitialCreate.cs</DependentUpon>
+    <Compile Include="DataContexts\Migrations\IdentityMigrations\201503180829164_InitialCreate.cs" />
+    <Compile Include="DataContexts\Migrations\IdentityMigrations\201503180829164_InitialCreate.Designer.cs">
+      <DependentUpon>201503180829164_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DataContexts\Migrations\IdentityMigrations\Configuration.cs" />
     <Compile Include="DataContexts\Migrations\ImageMigrations\201502120830532_InitialCreate.cs" />
@@ -1365,11 +1365,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DataContexts\Migrations\ArticleMigrations\201503080426531_InitialCreate.resx">
-      <DependentUpon>201503080426531_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="DataContexts\Migrations\ArticleMigrations\201503180830085_InitialCreate.resx">
+      <DependentUpon>201503180830085_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataContexts\Migrations\IdentityMigrations\201502120738119_InitialCreate.resx">
-      <DependentUpon>201502120738119_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="DataContexts\Migrations\IdentityMigrations\201503180829164_InitialCreate.resx">
+      <DependentUpon>201503180829164_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataContexts\Migrations\ImageMigrations\201502120830532_InitialCreate.resx">
       <DependentUpon>201502120830532_InitialCreate.cs</DependentUpon>

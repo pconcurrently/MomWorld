@@ -30,6 +30,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
@@ -43,12 +44,29 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
                 roleResult = RoleManager.Create(new IdentityRole(roleName));
             }
 
+            // Create Users Role
+            roleName = "Users";
+
+            // Check to see if Role Exists, if not create it
+            if (!RoleManager.RoleExists(roleName))
+            {
+                roleResult = RoleManager.Create(new IdentityRole(roleName));
+            }
+
             // Create user Admin
             if (UserManager.FindByName("admin") == null)
             {
                 var adminUser = new ApplicationUser { Email = "admin@momworld.com", UserName = "admin" };
                 UserManager.Create(adminUser, "12345678");
                 UserManager.AddToRole(adminUser.Id, "Admins");
+            }
+
+            // Create normal user
+            if (UserManager.FindByName("user1") == null)
+            {
+                var user1 = new ApplicationUser { Email = "user1@momworld.com", UserName = "user1", DatePregnancy = DateTime.Now };
+                UserManager.Create(user1, "12345678");
+                UserManager.AddToRole(user1.Id, "Users");
             }
         }
     }

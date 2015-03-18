@@ -12,6 +12,7 @@ using MomWorld.Models;
 
 namespace MomWorld.Controllers
 {
+    [Authorize]
     public class NineMonthArticlesController : Controller
     {
         private NineMonthArticleDb db = new NineMonthArticleDb();
@@ -39,6 +40,7 @@ namespace MomWorld.Controllers
         }
 
         // GET: NineMonthArticles/Create
+        [Authorize(Roles = "Admins")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +49,7 @@ namespace MomWorld.Controllers
         // POST: NineMonthArticles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles="Admins")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Date,Week,Content")] NineMonthArticle nineMonthArticle)
@@ -81,6 +84,7 @@ namespace MomWorld.Controllers
         // POST: NineMonthArticles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admins")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Date,Week,Content")] NineMonthArticle nineMonthArticle)
