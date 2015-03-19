@@ -182,6 +182,7 @@
     <Compile Include="Controllers\NineMonthArticlesController.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
+    <Compile Include="Controllers\QuizsController.cs" />
     <Compile Include="Controllers\QuizzesController.cs" />
     <Compile Include="DataContexts\ArticleDb.cs" />
     <Compile Include="DataContexts\CategoryDb.cs" />
@@ -208,9 +209,9 @@
       <DependentUpon>201503171052051_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DataContexts\Migrations\NineMonthArticleMigrations\Configuration.cs" />
-    <Compile Include="DataContexts\Migrations\QuizMigrations\201503170930584_InitialCreate.cs" />
-    <Compile Include="DataContexts\Migrations\QuizMigrations\201503170930584_InitialCreate.Designer.cs">
-      <DependentUpon>201503170930584_InitialCreate.cs</DependentUpon>
+    <Compile Include="DataContexts\Migrations\QuizMigrations\201503191630376_InitialCreate.cs" />
+    <Compile Include="DataContexts\Migrations\QuizMigrations\201503191630376_InitialCreate.Designer.cs">
+      <DependentUpon>201503191630376_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DataContexts\Migrations\QuizMigrations\Configuration.cs" />
     <Compile Include="DataContexts\NineMonthArticleDb.cs" />
@@ -424,12 +425,14 @@
     <Content Include="ckeditor\skins\moono\images\lock.png" />
     <Content Include="ckeditor\skins\moono\images\refresh.png" />
     <Content Include="ckeditor\styles.js" />
+    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\flat.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\minimal.css" />
     <Content Include="Content\css\minimal.min.css" />
     <Content Include="Content\css\quiz.css" />
     <Content Include="Content\css\stream.css" />
+    <Content Include="Content\css\style.css" />
     <Content Include="Content\css\vendor\animate\animate.css" />
     <Content Include="Content\css\vendor\animate\animate.min.css" />
     <Content Include="Content\css\vendor\bootstrap-checkbox.css" />
@@ -645,10 +648,23 @@
     <Content Include="Content\images\video-images\no-comment-img.png" />
     <Content Include="Content\images\video-images\overlay-logo.png" />
     <Content Include="Content\images\video-images\video-load.gif" />
+    <Content Include="Content\js\app.js" />
+    <Content Include="Content\js\createCtrl.js" />
+    <Content Include="Content\js\data\aspnet-answer.js" />
+    <Content Include="Content\js\data\aspnet.js" />
+    <Content Include="Content\js\data\csharp.js" />
+    <Content Include="Content\js\data\designPatterns.js" />
+    <Content Include="Content\js\data\dinhduong.js" />
+    <Content Include="Content\js\emptyQuiz.js" />
+    <Content Include="Content\js\helperService.js" />
     <Content Include="Content\js\jwplayer.js" />
     <Content Include="Content\js\minimal.js" />
     <Content Include="Content\js\minimal.min.js" />
     <Content Include="Content\js\quiz-init.js" />
+    <Content Include="Content\js\quizCtrl.js" />
+    <Content Include="Content\js\templates\create.html" />
+    <Content Include="Content\js\templates\quiz.html" />
+    <Content Include="Content\js\userCtrl.js" />
     <Content Include="Content\js\vendor\animate-numbers\jquery.animateNumbers.js" />
     <Content Include="Content\js\vendor\appear\jquery.appear.js" />
     <Content Include="Content\js\vendor\blockui\jquery.blockUI.js" />
@@ -1216,6 +1232,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular-md5.min.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular-ui\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ckeditor\CHANGES.md" />
@@ -1262,6 +1287,10 @@
     <Content Include="Content\js\vendor\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Content\js\vendor\ckeditor\samples\sample_posteddata.php" />
     <Content Include="Content\js\vendor\ckeditor\skins\moono\readme.md" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-md5.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1345,6 +1374,7 @@
     <Content Include="Views\NineMonthArticles\Index.cshtml" />
     <Content Include="Views\Shared\_UserLayout.cshtml" />
     <Content Include="Views\NineMonthArticles\Timeline.cshtml" />
+    <Content Include="Views\Quizzes\DoQuiz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1377,8 +1407,8 @@
     <EmbeddedResource Include="DataContexts\Migrations\NineMonthArticleMigrations\201503171052051_InitialCreate.resx">
       <DependentUpon>201503171052051_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataContexts\Migrations\QuizMigrations\201503170930584_InitialCreate.resx">
-      <DependentUpon>201503170930584_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="DataContexts\Migrations\QuizMigrations\201503191630376_InitialCreate.resx">
+      <DependentUpon>201503191630376_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

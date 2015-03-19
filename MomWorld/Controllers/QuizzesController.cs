@@ -37,6 +37,17 @@ namespace MomWorld.Controllers
             return View(quiz);
         }
 
+        // GET: Quizzes/DoQuiz/5
+        public ActionResult DoQuiz(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            return View();
+        }
+
         // GET: Quizzes/Create
         public ActionResult Create()
         {
