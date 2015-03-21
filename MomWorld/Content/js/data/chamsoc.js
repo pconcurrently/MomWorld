@@ -1,7 +1,7 @@
 {
     "quiz": {
-        "Id": 3,
-        "name": "Design Patterns",
+        "Id": 2,
+        "name": "Cham Soc",
         "description": "Design Patterns Quiz including solid principles."
     },
     "questions": [{

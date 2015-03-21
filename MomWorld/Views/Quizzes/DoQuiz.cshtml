@@ -2,11 +2,13 @@
 
 @{
     Layout = null;
+    var quizId = ViewData["QuizId"] as string;
+    var currentUserName = ViewData["UserName"] as string;
 }
 
 <!DOCTYPE html>
 
-<html class="no-js">
+<html class="no-js" ng-app="quizApp">
 <!--<![endif]-->
 <head>
 
@@ -59,18 +61,15 @@
     <script src="@Url.Content("~/Scripts/angular-ui/ui-bootstrap-tpls.min.js")"></script>
     <script src="@Url.Content("~/Scripts/angular-md5.min.js")"></script>
 
-    <script src="@Url.Content("~/Content/js/app.js")"></script>
-    <script src="@Url.Content("~/Content/js/helperService.js")"></script>
-    <script src="@Url.Content("~/Content/js/quizCtrl.js")"></script>
-    <script src="@Url.Content("~/Content/js/createCtrl.js")"></script>
+
 
 
 </head>
 
-<body ng-app="quizApp" ng-controller="quizCtrl" ng-init="initQuizDo(Model.Id)">
+<body ng-controller="quizCtrl" ng-init="initQuizDo(@quizId, 'user1')">
 
 
-    <<!-- Preloader -->
+    <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
     </div>
@@ -249,6 +248,7 @@
                             </a>
                         </div>
                     </div>
+
                     <div class="col-xs-12 col-sm-9 col-lg-9">
                         <div class="main">
                             <div ui-view></div>
@@ -307,15 +307,11 @@
 
     <script src="@Url.Content("~/Content/js/minimal.min.js")"></script>
 
-    <script src="@Url.Content("~/Content/js/quiz-init.js")"></script>
+    <script src="@Url.Content("~/Content/js/app.js")"></script>
+    <script src="@Url.Content("~/Content/js/helperService.js")"></script>
+    <script src="@Url.Content("~/Content/js/quizCtrl.js")"></script>
+    <script src="@Url.Content("~/Content/js/createCtrl.js")"></script>
 
-    <script>
-        $('#quiz-container').jquizzy({
-            questions: init.questions,
-            resultComments: init.resultComments,
-
-        });
-    </script>
 
 </body>
 </html>

@@ -1,35 +1,41 @@
 ﻿app.controller('quizCtrl', ['$scope', '$http', 'helperService', '$location', function ($scope, $http, helper, $location) {
-    $scope.quizName = 'http://localhost:61754/Content/js/data/dinhduong.js';
+
+    $scope.quizName = '';
 
     $scope.quizData = [
     {
         "id": "0",
         "name": "Dinh Dưỡng",
+        "quizData": "../../content/js/data/dinhduong.js",
         "image": "http://localhost:61754/Content/images/badge/dinhduong.png",
         "status": "done"
     },
     {
         "id": "1",
         "name": "sinh con",
+        "quizData": "../../content/js/data/sinhcon.js",
         "image": "http://localhost:61754/Content/images/badge/default.png",
         "status": "new"
     },
     {
         "id": "2",
         "name": "Chăm sóc",
+        "quizData": "../../content/js/data/chamsoc.js",
         "image": "http://localhost:61754/Content/images/badge/default.png",
         "status": "new"
     },
     {
         "id": "3",
         "name": "Y Tế",
+        "quizData": "../../content/js/data/yte.js",
         "image": "http://localhost:61754/Content/images/badge/default.png",
         "status": "new"
     },
     {
         "id": "4",
         "name": "Giới Tính",
-        "image":"http://localhost:8000/content/images/default.png",
+        "quizData": "../../content/js/data/gioitinh.js",
+        "image": "http://localhost:61754/Content/images/badge/default.png",
         "status": "new"
     }];
 
@@ -49,9 +55,12 @@
         'theme': 'none'
     }
 
-    $scope.initQuizDo = function(quizId){
-        alert(quizId);
-        $scope.quizName = "data/aspnet.js";
+    $scope.initQuizDo = function (quizId, username) {
+        $scope.quizName = $scope.quizData[quizId].quizData;
+        $scope.currentUserName = username;
+
+        $scope.loadQuiz($scope.quizName);
+
     }
 
     $scope.goTo = function (index) {
@@ -78,6 +87,7 @@
     $scope.onSubmit = function () {
         var answers = [];
         var correctAns = 0;
+
         $scope.questions.forEach(function (q, index) {
             
             if ($scope.isCorrect(q) == 'correct'){
@@ -94,16 +104,25 @@
 
         // TODO: Code Huan Chuong
         if (correctAns / answers.length >= 0.75){
-            alert('Huan Chuong');
-        } else {
-            alert('Fail vcc');
-        }
+            alert('Huan Chuong cho ' + $scope.currentUserName);
+            // Post Data to the server to give Badge to User 
+            var badge = {
+                "UserName": $scope.currentUserName,
+                "badge": $scope.quizName
+            }
 
-        // Post your data to the server here. answers contains the questionId and the users' answer.
-        //$http.post('api/Quiz/Submit', answers).success(function (data, status) {
-        //    alert(data);
-        //});
-        //console.log(answers);
+            $http.post('api/Quiz/setBagde', badge).success(function (data, status) {
+                alert(data);
+                // TODO: Code Display Badge for User;
+
+                
+            });
+
+        } else {
+            alert('Fail vcc ' + $scope.currentUserName);
+        }
+        
+        // Display Result Mode
         $scope.mode = 'result';
     }
 
@@ -111,7 +130,7 @@
         return Math.ceil($scope.questions.length / $scope.itemsPerPage);
     };
 
-    
+    /* Load quiz base on URL parameters */
     $scope.loadQuiz = function (file) {
         $http.get(file)
          .then(function (res) {
@@ -131,8 +150,6 @@
              });
          });
     }
-
-    $scope.loadQuiz($scope.quizName);
 
     $scope.isAnswered = function (index) {
         var answered = 'Not Answered';

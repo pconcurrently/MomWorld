@@ -1,23 +1,4 @@
-﻿
-<div class="header">
-    <div class="row">
-        <div class="col-md-8">
-            
-        </div>
-        <div class="col-md-4 header-right">
-            <!-- In actual application, you may wish to load the quiz List using angular service. -->
-            Select Quiz: 
-            <select id="quizList" ng-model="quizName" ng-change="loadQuiz(quizName)">
-                <option value="data/aspnet.js">Asp.Net</option>
-                <option value="data/csharp.js">C Sharp</option>
-                <option value="data/designPatterns.js">Design Patterns</option>
-                <option value="data/dinhduong.js">Dinh Duong</option>
-            </select>
-        </div>
-    </div>
-    <hr />
-</div>
-<div id="quiz">
+﻿<div id="quiz">
     <h1 class="center">{{quiz.name}}</h1>
     <hr />
     <div ng-show="mode=='quiz'">

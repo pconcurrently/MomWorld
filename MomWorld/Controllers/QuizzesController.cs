@@ -8,12 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using MomWorld.DataContexts;
 using MomWorld.Entities;
+using MomWorld.Models;
 
 namespace MomWorld.Controllers
 {
     public class QuizzesController : Controller
     {
         private QuizDb db = new QuizDb();
+        private IdentityDb identityDb = new IdentityDb();
 
         // GET: Quizzes
         public ActionResult Index()
@@ -44,8 +46,13 @@ namespace MomWorld.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
+            ApplicationUser CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+
+            ViewData["QuizId"] = id;
+            ViewData["UserName"] = CurrentUser.UserName;
             return View();
+
         }
 
         // GET: Quizzes/Create

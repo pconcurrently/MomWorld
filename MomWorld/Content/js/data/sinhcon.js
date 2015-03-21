@@ -1,7 +1,7 @@
 {
     "quiz": {
-        "Id": 0,
-        "name": "Dinh Duong",
+        "Id": 1,
+        "name": "Sinh Con",
         "description": "YOlooooo"
     },
     "questions": [{

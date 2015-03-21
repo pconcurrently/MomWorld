@@ -1,7 +1,7 @@
 {
     "quiz": {
-        "Id": 1,
-        "name": "Asp.Net Quiz",
+        "Id": 4,
+        "name": "Gioi Tinh",
         "description": "Asp.Net Quiz (contains webform, mvc, web API, etc.)"
     },
     "questions": [{

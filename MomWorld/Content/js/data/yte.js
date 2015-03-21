@@ -1,7 +1,7 @@
 {
     "quiz": {
-        "Id": 2,
-        "name": "C# and .Net Framework",
+        "Id": 3,
+        "name": "Y TE",
         "description": "C# and .Net Quiz (contains C#, .Net Framework, Linq, etc.)"
     },
     "config":{
