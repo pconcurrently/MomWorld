@@ -67,211 +67,211 @@
 
 </head>
 
-<body ng-app="quizApp" ng-controller="quizCtrl" ng-init="initQuizDo()">
+<body ng-app="quizApp" ng-controller="quizCtrl" ng-init="initQuizDo(Model.Id)">
 
 
     <<!-- Preloader -->
-<div class="mask">
-    <div id="loader"></div>
-</div>
-<!--/Preloader -->
-<!-- BEGIN NAVBAR -->
-<div class="navbar navbar-fixed-top" role="navigation"
-     data-0="line-height:80px; height:80px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);"
-     data-300="line-height:40px; height:52px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
+    <div class="mask">
+        <div id="loader"></div>
+    </div>
+    <!--/Preloader -->
+    <!-- BEGIN NAVBAR -->
+    <div class="navbar navbar-fixed-top" role="navigation"
+         data-0="line-height:80px; height:80px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);"
+         data-300="line-height:40px; height:52px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
 
-    <div class="container">
-
-
+        <div class="container">
 
 
 
 
-        <!-- Branding -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.html"
-               data-0="padding-top:23px;padding-left: 55px;background-position: 0 20px;background-size: 44px 44px;font-size: 24px;height: 80px;"
-               data-300="padding-top: 10px;padding-left: 40px;background-position: 0 7px;background-size: 34px 34px;font-size: 16px; height: 50px;margin-top:0;">
-                <strong>W</strong>ORLD <span class="subheading"
-                                             data-0="font-size: 11px;line-height: 13px;"
-                                             data-300="font-size: 9px;line-height: 8px;">Thế giới của mẹ</span>
-            </a>
-            <div class="navbar-toggle" data-toggle="collapse"
-                 data-target=".navbar-collapse">
-                <a href="quizz.html#">
-                    <i class="fa fa-bars"></i>
+
+
+            <!-- Branding -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html"
+                   data-0="padding-top:23px;padding-left: 55px;background-position: 0 20px;background-size: 44px 44px;font-size: 24px;height: 80px;"
+                   data-300="padding-top: 10px;padding-left: 40px;background-position: 0 7px;background-size: 34px 34px;font-size: 16px; height: 50px;margin-top:0;">
+                    <strong>W</strong>ORLD <span class="subheading"
+                                                 data-0="font-size: 11px;line-height: 13px;"
+                                                 data-300="font-size: 9px;line-height: 8px;">Thế giới của mẹ</span>
                 </a>
+                <div class="navbar-toggle" data-toggle="collapse"
+                     data-target=".navbar-collapse">
+                    <a href="quizz.html#">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
             </div>
-        </div>
-        <!-- Branding end -->
-        <!--.navbar-collapse -->
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <!-- Branding end -->
+            <!--.navbar-collapse -->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
 
-                <li class="active">
-                    <a href="index.html"
-                       data-0="padding: 30px 25px 22px;"
-                       data-300="padding: 15px 25px 10px;">
-                        <img class="icon-nav"
-                             src="@Url.Content("~/Content/images/icon-nav/home.png")"> Trang chủ
-                    </a>
-                </li>
-
-                <li>
-                    <a href="pre-pregnancy.html"
-                       data-0="padding: 30px 25px 22px;"
-                       data-300="padding: 15px 25px 10px;">
-                        <img class="icon-nav"
-                             src="@Url.Content("~/Content/images/icon-nav/motherhood.png")"> Làm mẹ
-                    </a>
-                </li>
-
-
-
-                <li>
-                    <a href="advisory.html" data-0="padding: 30px 25px 22px;"
-                       data-300="padding: 15px 25px 10px;">
-                        <img class="icon-nav"
-                             src="@Url.Content("~/Content/images/icon-nav/advisory.png")"> Tư vấn
-                    </a>
-                </li>
-
-                <li>
-                    <a href="video.html" data-0="padding: 30px 25px 22px;"
-                       data-300="padding: 15px 25px 10px;">
-                        <img class="icon-nav"
-                             src="@Url.Content("~/Content/images/icon-nav/video.png")"> Video
-                    </a>
-                </li>
-
-                <li class="dropdown text-center user" data-init="onHover">
-                    <a href="personal-page.html"
-                       data-0="padding: 0px 5px 0px;border-bottom-width:0px;"
-                       data-300="padding: 0px 5px 0px;border-bottom-width:0px;"
-                       class="dropdown-toggle" data-toggle="dropdown">
-                        <div class="profile-photo">
-                            <img class="img-circle" src="@Url.Content("~/Content/images/profile-photo.jpg")"
-                                 data-0="padding: 0px;" data-300="padding: 3px;" />
-                        </div> <span>Khoahn</span> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu arrow settings">
-                        <li>
-                            <a href="timeline.html#">
-                                <i class="fa fa-tachometer"></i> Quá trình mang thai
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="personal-page.html#">
-                                <i class="fa fa-user"></i>
-                                Trang cá nhân
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="personal-page.html#">
-                                <i class="fa fa-envelope"></i>
-                                Tin nhắn <span class="badge badge-red animated bounceIn">3</span>
-                            </a>
-                        </li>
-
-                        <li class="divider"></li>
-
-                        <li>
-                            <a href="index.html#">
-                                <i class="fa fa-power-off"
-                                   style="float: right"></i> Đăng xuất
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="search">
-                    <input type="text" placeholder="&#61442;"
-                           data-0="margin-top:23px" data-300="margin-top:10px">
-                </li>
-            </ul>
-        </div>
-        <!--/.navbar-collapse -->
-
-
-
-
-    </div>
-
-</div>
-<!-- END NAVBAR -->
-<!-- BEGIN BREADCRUMBS -->
-<div id="breadcrumbs" class="breadcrumbs bg-1">
-    <div class="container">
-
-        <ol class="breadcrumb">
-            <li><a href="index.html">Trang chủ</a></li>
-            <li class="active">Kiểm tra kiến thức</li>
-        </ol>
-
-        <h2>
-            <strong>Kiểm tra kiến thức</strong>
-        </h2>
-
-    </div>
-</div>
-<!-- END BREADCRUMBS -->
-<!-- QUIZZ -->
-<section class="section">
-
-    <!-- content main container -->
-    <div class="container main">
-
-
-
-        <!-- row -->
-        <div class="row">
-
-
-
-
-            <!-- col 12 -->
-            <div class="col-md-12">
-                <div class="col-xs-12 col-sm-3 col-lg-3">
-                    <div class="list-group">
-                        <a class="list-group-item list-group-item-heading active" href="">
-                            Tất
-                            cả
-                        </a> <a class="list-group-item" href="">
-                            <span class="badge pull-right badge-success">0</span> Mong con
-                        </a> <a class="list-group-item" href="">
-                            <span class="badge pull-right badge-success">0</span> Mang thai
-                        </a> <a class="list-group-item" href="">
-                            <span class="badge pull-right badge-success">0</span> Trẻ sơ sinh
-                        </a> <a class="list-group-item" href="">
-                            <span class="badge pull-right badge-warning">1</span> Nuôi dạy trẻ
+                    <li class="active">
+                        <a href="index.html"
+                           data-0="padding: 30px 25px 22px;"
+                           data-300="padding: 15px 25px 10px;">
+                            <img class="icon-nav"
+                                 src="@Url.Content("~/Content/images/icon-nav/home.png")"> Trang chủ
                         </a>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-9 col-lg-9">
-                    <div class="main">
-                        <div ui-view></div>
-                    </div>
-                    
-                   
-                </div>
+                    </li>
 
+                    <li>
+                        <a href="pre-pregnancy.html"
+                           data-0="padding: 30px 25px 22px;"
+                           data-300="padding: 15px 25px 10px;">
+                            <img class="icon-nav"
+                                 src="@Url.Content("~/Content/images/icon-nav/motherhood.png")"> Làm mẹ
+                        </a>
+                    </li>
+
+
+
+                    <li>
+                        <a href="advisory.html" data-0="padding: 30px 25px 22px;"
+                           data-300="padding: 15px 25px 10px;">
+                            <img class="icon-nav"
+                                 src="@Url.Content("~/Content/images/icon-nav/advisory.png")"> Tư vấn
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="video.html" data-0="padding: 30px 25px 22px;"
+                           data-300="padding: 15px 25px 10px;">
+                            <img class="icon-nav"
+                                 src="@Url.Content("~/Content/images/icon-nav/video.png")"> Video
+                        </a>
+                    </li>
+
+                    <li class="dropdown text-center user" data-init="onHover">
+                        <a href="personal-page.html"
+                           data-0="padding: 0px 5px 0px;border-bottom-width:0px;"
+                           data-300="padding: 0px 5px 0px;border-bottom-width:0px;"
+                           class="dropdown-toggle" data-toggle="dropdown">
+                            <div class="profile-photo">
+                                <img class="img-circle" src="@Url.Content("~/Content/images/profile-photo.jpg")"
+                                     data-0="padding: 0px;" data-300="padding: 3px;" />
+                            </div> <span>Khoahn</span> <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu arrow settings">
+                            <li>
+                                <a href="timeline.html#">
+                                    <i class="fa fa-tachometer"></i> Quá trình mang thai
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="personal-page.html#">
+                                    <i class="fa fa-user"></i>
+                                    Trang cá nhân
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="personal-page.html#">
+                                    <i class="fa fa-envelope"></i>
+                                    Tin nhắn <span class="badge badge-red animated bounceIn">3</span>
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="index.html#">
+                                    <i class="fa fa-power-off"
+                                       style="float: right"></i> Đăng xuất
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="search">
+                        <input type="text" placeholder="&#61442;"
+                               data-0="margin-top:23px" data-300="margin-top:10px">
+                    </li>
+                </ul>
             </div>
-            <!-- /col 12 -->
+            <!--/.navbar-collapse -->
+
 
 
 
         </div>
-        <!-- /row -->
 
     </div>
-    <!-- /content container -->
+    <!-- END NAVBAR -->
+    <!-- BEGIN BREADCRUMBS -->
+    <div id="breadcrumbs" class="breadcrumbs bg-1">
+        <div class="container">
 
-</section>
-<!-- QUIZZ -->
+            <ol class="breadcrumb">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li class="active">Kiểm tra kiến thức</li>
+            </ol>
 
-  
+            <h2>
+                <strong>Kiểm tra kiến thức</strong>
+            </h2>
+
+        </div>
+    </div>
+    <!-- END BREADCRUMBS -->
+    <!-- QUIZZ -->
+    <section class="section">
+
+        <!-- content main container -->
+        <div class="container main">
+
+
+
+            <!-- row -->
+            <div class="row">
+
+
+
+
+                <!-- col 12 -->
+                <div class="col-md-12">
+                    <div class="col-xs-12 col-sm-3 col-lg-3">
+                        <div class="list-group">
+                            <a class="list-group-item list-group-item-heading active" href="">
+                                Tất
+                                cả
+                            </a> <a class="list-group-item" href="">
+                                <span class="badge pull-right badge-success">0</span> Mong con
+                            </a> <a class="list-group-item" href="">
+                                <span class="badge pull-right badge-success">0</span> Mang thai
+                            </a> <a class="list-group-item" href="">
+                                <span class="badge pull-right badge-success">0</span> Trẻ sơ sinh
+                            </a> <a class="list-group-item" href="">
+                                <span class="badge pull-right badge-warning">1</span> Nuôi dạy trẻ
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-9 col-lg-9">
+                        <div class="main">
+                            <div ui-view></div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <!-- /col 12 -->
+
+
+
+            </div>
+            <!-- /row -->
+
+        </div>
+        <!-- /content container -->
+
+    </section>
+    <!-- QUIZZ -->
+
+
 
 
     <script src="@Url.Content("~/Content/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js")"></script>
@@ -310,11 +310,11 @@
     <script src="@Url.Content("~/Content/js/quiz-init.js")"></script>
 
     <script>
-		$('#quiz-container').jquizzy({
-			questions : init.questions,
-			resultComments : init.resultComments,
+        $('#quiz-container').jquizzy({
+            questions: init.questions,
+            resultComments: init.resultComments,
 
-		});
+        });
     </script>
 
 </body>

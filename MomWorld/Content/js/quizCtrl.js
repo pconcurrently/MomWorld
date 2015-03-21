@@ -3,37 +3,37 @@
 
     $scope.quizData = [
     {
-        "id": "00",
+        "id": "0",
         "name": "Dinh Dưỡng",
-        "image":"http://localhost:8000/content/images/dinhduong.png",
+        "image": "http://localhost:61754/Content/images/badge/dinhduong.png",
         "status": "done"
     },
     {
-        "id": "01",
+        "id": "1",
         "name": "sinh con",
-        "image":"http://localhost:8000/content/images/default.png",
+        "image": "http://localhost:61754/Content/images/badge/default.png",
         "status": "new"
     },
     {
-        "id": "02",
+        "id": "2",
         "name": "Chăm sóc",
-        "image":"http://localhost:8000/content/images/default.png",
+        "image": "http://localhost:61754/Content/images/badge/default.png",
         "status": "new"
     },
     {
-        "id": "03",
+        "id": "3",
         "name": "Y Tế",
-        "image":"http://localhost:8000/content/images/default.png",
+        "image": "http://localhost:61754/Content/images/badge/default.png",
         "status": "new"
     },
     {
-        "id": "04",
+        "id": "4",
         "name": "Giới Tính",
         "image":"http://localhost:8000/content/images/default.png",
         "status": "new"
     }];
-    //Note: Only those configs are functional which is documented at: http://www.codeproject.com/Articles/860024/Quiz-Application-in-AngularJs
-    // Others are work in progress.
+
+
     $scope.defaultConfig = {
         'allowBack': true,
         'allowReview': true,
@@ -49,7 +49,8 @@
         'theme': 'none'
     }
 
-    $scope.initQuizDo = function(){
+    $scope.initQuizDo = function(quizId){
+        alert(quizId);
         $scope.quizName = "data/aspnet.js";
     }
 
@@ -61,7 +62,7 @@
     }
 
     $scope.onSelect = function (question, option) {
-        if (question.QuestionTypeId == 1) { //
+        if (question.QuestionTypeId == 1) { 
             question.Options.forEach(function (element, index, array) {
                 if (element.Id != option.Id) {
                     element.Selected = false;
@@ -110,7 +111,7 @@
         return Math.ceil($scope.questions.length / $scope.itemsPerPage);
     };
 
-    //If you wish, you may create a separate factory or service to call loadQuiz. To keep things simple, i have kept it within controller.
+    
     $scope.loadQuiz = function (file) {
         $http.get(file)
          .then(function (res) {
