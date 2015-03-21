@@ -7,3 +7,8 @@ MomWorld/DataContexts/Migrations/QuizMigrations/201503191630376_InitialCreate.re
 MomWorld/obj/Debug/MomWorld.DataContexts.Migrations.QuizMigrations.InitialCreate.resources
 MomWorld/DataContexts/Migrations/QuizMigrations/201503191630376_InitialCreate.Designer.cs
 MomWorld.v12.suo
+*.cache
+MomWorld.v12.suo
+*.cache
+*.cache
+*.suo

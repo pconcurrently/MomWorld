@@ -119,7 +119,7 @@
             });
 
         } else {
-            alert('Fail vcc ' + $scope.currentUserName);
+            alert('Fail vcc test 1' + $scope.currentUserName);
         }
         
         // Display Result Mode

@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -487,6 +488,11 @@
     <Content Include="Content\images\backgrounds\thumbs\4.jpg" />
     <Content Include="Content\images\backgrounds\thumbs\5.jpg" />
     <Content Include="Content\images\backgrounds\thumbs\6.jpg" />
+    <Content Include="Content\images\badge\default.png" />
+    <Content Include="Content\images\badge\dinhduong.png" />
+    <Content Include="Content\images\badge\gioitinh.png" />
+    <Content Include="Content\images\badge\sinhcon.png" />
+    <Content Include="Content\images\badge\yte.png" />
     <Content Include="Content\images\chosen-sprite-transparent.png" />
     <Content Include="Content\images\clients\random-avatar1.jpg" />
     <Content Include="Content\images\clients\random-avatar2.jpg" />
