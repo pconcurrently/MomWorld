@@ -45,9 +45,16 @@
                     <h1>
                         <strong>Đăng nhập</strong>
                     </h1>
-@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", id = "form-signin", role = "form" }))
-{
-    @Html.AntiForgeryToken()
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", id = "form-signin", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <!-- Thông báo lỗi -->
+                        <section>
+                            <div class="form-group">
+                                @Html.ValidationSummary(true, "", new { @class = "color-red" })
+                            </div>
+                        </section>
+						<!-- Thông báo lỗi -->
                         <section>
                             <div class="input-group">
                                 @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", name = "username", placeholder = "Tên đăng nhập" })
@@ -63,8 +70,8 @@
                             </div>
                         </section>
                         <section class="controls">
-                                
-                                @Html.CheckBoxFor(m => m.RememberMe)
+
+                            @Html.CheckBoxFor(m => m.RememberMe)
                             Ghi nhớ
 
                             <a href="password-recovery.html#">Quên mật khẩu ?</a>
@@ -86,10 +93,10 @@
 
                         <section class="log-in text-right">
                             <span>Chưa có tài khoản</span>
-                            
+
                             <input type="button" class="btn btn-orange" title="Đăng kí" value="Đăng kí" onclick="location.href='@Url.Action("Register", "Account")'" />
                         </section>
-}
+                    }
                 </div>
 
 

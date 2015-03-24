@@ -28,8 +28,6 @@ namespace MomWorld.Entities
         [Required]
         public string CategoryId { get; set; }
 
-        public virtual Category Category { get; set; }
-
         [Required]
         public string Title { get; set; }
 
@@ -42,7 +40,9 @@ namespace MomWorld.Entities
 
         public int? ViewNumber { get; set; }
 
-        public int? LastSeenUserId { get; set; }
+        public string LastSeenUserId { get; set; }
+
+        public string Description { get; set; }
     }
 
     //public class ApplicationUser : IdentityUser

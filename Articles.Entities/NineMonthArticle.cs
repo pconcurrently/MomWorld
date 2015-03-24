@@ -19,6 +19,8 @@ namespace MomWorld.Entities
         [Required]
         public string Content { get; set; }
 
+        public string Description { get; set; }
+
         #region Constructor
         public NineMonthArticle()
         {

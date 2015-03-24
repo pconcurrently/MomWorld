@@ -18,12 +18,15 @@ namespace MomWorld.Controllers
     public class ArticlesController : Controller
     {
         private ArticleDb db = new ArticleDb();
+        private IdentityDb identityDb = new IdentityDb();
+        private CategoryDb categoryDb = new CategoryDb();
+        private CommentDb commentDb = new CommentDb();
 
         // GET: Articles
         public ActionResult Index()
         {
-            var articles = db.Articles.Include(a => a.Category);
-            return View(articles.ToList());
+            var articles = db.Articles.ToList();
+            return View(articles);
         }
 
         // GET: Articles/Details/5
@@ -38,7 +41,18 @@ namespace MomWorld.Controllers
             {
                 return HttpNotFound();
             }
-            return View(article);
+            article.ViewNumber += 1;
+            db.SaveChanges();
+            ApplicationUser postedUser = identityDb.Users.FirstOrDefault(x => x.Id.Equals(article.UserId));
+            Category category = categoryDb.Categories.FirstOrDefault(c => c.Id.Equals(article.CategoryId));
+            var comments = commentDb.Comments.ToList().FindAll(cmt => cmt.ArticleId.Equals(article.Id));
+            comments.OrderBy(cmt=>cmt.Date);
+
+            ViewData["PostedUser"] = postedUser;
+            ViewData["Article"] = article;
+            ViewData["Category"] = category;
+            ViewData["Comments"] = comments;
+            return View();
         }
 
         // GET: Articles/Create
@@ -61,12 +75,16 @@ namespace MomWorld.Controllers
             var user = userManager.FindByNameAsync(User.Identity.Name).Result;
 
             article.UserId = user.Id;
+            article.LastSeenUserId = user.Id;
+            article.PostedDate = DateTime.Now;
+            article.LastModifiedDate = DateTime.Now;
+            article.ViewNumber = 0;
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
                 db.Articles.Add(article);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Articles",routeValues: new { id = article.Id});
             }
 
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", article.CategoryId);
@@ -97,11 +115,14 @@ namespace MomWorld.Controllers
         [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,UserId,CategoryId,Title,Content,PostedDate,LastModifiedDate,ViewNumber,LastSeenUserId")] Article article)
         {
+            article.LastModifiedDate = DateTime.Now;
+            ApplicationUser currentUser = identityDb.Users.FirstOrDefault(x => x.UserName.Equals(User.Identity.Name));
+            article.LastSeenUserId = currentUser.Id;
             if (ModelState.IsValid)
             {
                 db.Entry(article).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", routeValues: new {id=article.Id });
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", article.CategoryId);
             return View(article);
@@ -140,6 +161,20 @@ namespace MomWorld.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public JsonResult GetArticles(string id)
+        {
+            var articlesDb = db.Articles.ToList();
+            List<Article> returnArticles = articlesDb;
+            foreach (var art in articlesDb.ToList())
+            {
+                if (!art.CategoryId.Equals(id))
+                {
+                    returnArticles.Remove(art);
+                }
+            }
+            return Json(returnArticles, JsonRequestBehavior.AllowGet);
         }
     }
 }

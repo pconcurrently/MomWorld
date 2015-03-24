@@ -19,9 +19,12 @@ namespace MomWorld.Entities
 
         public string Description { get; set; }
 
+        public virtual List<Article> Articles { get; set; }
+
         public Category()
         {
             Id = Guid.NewGuid().ToString();
         }
+
     }
 }

@@ -19,7 +19,7 @@ namespace MomWorld.DataContexts.Migrations.ArticleMigrations
                         PostedDate = c.DateTime(),
                         LastModifiedDate = c.DateTime(),
                         ViewNumber = c.Int(),
-                        LastSeenUserId = c.Int(),
+                        LastSeenUserId = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)

@@ -132,7 +132,10 @@ E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.ImageMigrations.
 E:\MomWorld\MomWorld\obj\Debug\MomWorld.csproj.GenerateResource.Cache
 E:\MomWorld\MomWorld\obj\Debug\MomWorld.dll
 E:\MomWorld\MomWorld\obj\Debug\MomWorld.pdb
-E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.QuizMigrations.InitialCreate.resources
-E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.NineMonthArticleMigrations.InitialCreate.resources
 E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.IdentityMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.CategoryMigrations.InitialCreate.resources
 E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.ArticleMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.QuizMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.CommentMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.NineMonthArticleMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.ArticleMigrations.InitialCreate1.resources
