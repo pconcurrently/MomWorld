@@ -14,11 +14,15 @@ namespace MomWorld.Controllers
     public class CategoriesController : Controller
     {
         private CategoryDb db = new CategoryDb();
+        private ArticleDb articleDb = new ArticleDb();
 
         // GET: Categories
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            ViewData["Categories"] = db.Categories.ToList();
+            ViewData["Articles"] = articleDb.Articles.ToList();
+
+            return View();
         }
 
         // GET: Categories/Details/5
@@ -123,6 +127,12 @@ namespace MomWorld.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public JsonResult GetArticles()
+        {
+            var categoriesDb = db.Categories.ToList();
+            return Json(categoriesDb, JsonRequestBehavior.AllowGet);
         }
     }
 }

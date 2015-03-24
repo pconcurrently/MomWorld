@@ -14,6 +14,7 @@ namespace MomWorld.DataContexts.Migrations.NineMonthArticleMigrations
                         Id = c.String(nullable: false, maxLength: 128),
                         Date = c.Int(nullable: false),
                         Content = c.String(nullable: false),
+                        Description = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             

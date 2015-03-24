@@ -47,11 +47,19 @@
                     <h1>
                         <strong>Đăng kí</strong>
                     </h1>
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @id="form-register", @class="form-register", role = "form" })){
-    @Html.AntiForgeryToken()
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @id = "form-register", @class = "form-register", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                       <!-- Thông báo lỗi -->
+                        <section>
+                            <div class="form-group">
+                                @Html.ValidationSummary("", new { @class = "color-red" })
+                            </div>
+                        </section>
+						<!-- Thông báo lỗi -->
                         <section>
                             <div class="input-group">
-                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control",name="username",placeholder="Tài khoản" })
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", name = "username", placeholder = "Tài khoản" })
                                 <div class="input-group-addon">
                                     <i class="fa fa-user"></i>
                                 </div>
@@ -60,7 +68,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group">
-                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control",name="password",placeholder="Mật khẩu" })
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", name = "password", placeholder = "Mật khẩu" })
                                         <div class="input-group-addon">
                                             <i class="fa fa-key"></i>
                                         </div>
@@ -68,7 +76,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group">
-                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control",name="re-password",placeholder="Nhập lại mật khẩu" })
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", name = "re-password", placeholder = "Nhập lại mật khẩu" })
                                         <div class="input-group-addon">
                                             <i class="fa fa-key"></i>
                                         </div>
@@ -77,7 +85,7 @@
                             </div>
 
                             <div class="input-group">
-                                @Html.TextBoxFor(m => m.Email, new {@class="form-control", name="email", placeholder="Địa chỉ email"})
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", name = "email", placeholder = "Địa chỉ email" })
                                 <div class="input-group-addon">
                                     <i class="fa fa-envelope"></i>
                                 </div>
@@ -103,7 +111,7 @@
                             <span>Đã có tài thoản</span>
                             <input type="button" class="btn btn-greensea" title="Đăng nhập" value="Đăng nhập" onclick="location.href='@Url.Action("Login", "Account")'" />
                         </section>
-}
+                    }
                 </div>
 
 

@@ -12,3 +12,9 @@ MomWorld.v12.suo
 *.cache
 *.cache
 *.suo
+*.dll
+MomWorld/bin/MomWorld.dll
+*.pdb
+*.cache
+MomWorld/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.Cache

@@ -179,6 +179,7 @@
     <Compile Include="Controllers\AnwsersController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NineMonthArticlesController.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
@@ -187,14 +188,28 @@
     <Compile Include="Controllers\QuizzesController.cs" />
     <Compile Include="DataContexts\ArticleDb.cs" />
     <Compile Include="DataContexts\CategoryDb.cs" />
+    <Compile Include="DataContexts\CommentDb.cs" />
     <Compile Include="DataContexts\IdentityDb.cs" />
     <Compile Include="DataContexts\ImageDb.cs" />
-    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503180830085_InitialCreate.cs" />
-    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503180830085_InitialCreate.Designer.cs">
-      <DependentUpon>201503180830085_InitialCreate.cs</DependentUpon>
+    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503192124259_InitialCreate.cs" />
+    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503192124259_InitialCreate.Designer.cs">
+      <DependentUpon>201503192124259_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503230649255_InitialCreate1.cs" />
+    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503230649255_InitialCreate1.Designer.cs">
+      <DependentUpon>201503230649255_InitialCreate1.cs</DependentUpon>
     </Compile>
     <Compile Include="DataContexts\Migrations\ArticleMigrations\Configuration.cs" />
+    <Compile Include="DataContexts\Migrations\CategoryMigrations\201503191952070_InitialCreate.cs" />
+    <Compile Include="DataContexts\Migrations\CategoryMigrations\201503191952070_InitialCreate.Designer.cs">
+      <DependentUpon>201503191952070_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataContexts\Migrations\CategoryMigrations\Configuration.cs" />
+    <Compile Include="DataContexts\Migrations\CommentMigrations\201503221953391_InitialCreate.cs" />
+    <Compile Include="DataContexts\Migrations\CommentMigrations\201503221953391_InitialCreate.Designer.cs">
+      <DependentUpon>201503221953391_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataContexts\Migrations\CommentMigrations\Configuration.cs" />
     <Compile Include="DataContexts\Migrations\IdentityMigrations\201503180829164_InitialCreate.cs" />
     <Compile Include="DataContexts\Migrations\IdentityMigrations\201503180829164_InitialCreate.Designer.cs">
       <DependentUpon>201503180829164_InitialCreate.cs</DependentUpon>
@@ -205,14 +220,14 @@
       <DependentUpon>201502120830532_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DataContexts\Migrations\ImageMigrations\Configuration.cs" />
-    <Compile Include="DataContexts\Migrations\NineMonthArticleMigrations\201503171052051_InitialCreate.cs" />
-    <Compile Include="DataContexts\Migrations\NineMonthArticleMigrations\201503171052051_InitialCreate.Designer.cs">
-      <DependentUpon>201503171052051_InitialCreate.cs</DependentUpon>
+    <Compile Include="DataContexts\Migrations\NineMonthArticleMigrations\201503230630363_InitialCreate.cs" />
+    <Compile Include="DataContexts\Migrations\NineMonthArticleMigrations\201503230630363_InitialCreate.Designer.cs">
+      <DependentUpon>201503230630363_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DataContexts\Migrations\NineMonthArticleMigrations\Configuration.cs" />
-    <Compile Include="DataContexts\Migrations\QuizMigrations\201503191630376_InitialCreate.cs" />
-    <Compile Include="DataContexts\Migrations\QuizMigrations\201503191630376_InitialCreate.Designer.cs">
-      <DependentUpon>201503191630376_InitialCreate.cs</DependentUpon>
+    <Compile Include="DataContexts\Migrations\QuizMigrations\201503192126204_InitialCreate.cs" />
+    <Compile Include="DataContexts\Migrations\QuizMigrations\201503192126204_InitialCreate.Designer.cs">
+      <DependentUpon>201503192126204_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="DataContexts\Migrations\QuizMigrations\Configuration.cs" />
     <Compile Include="DataContexts\NineMonthArticleDb.cs" />
@@ -1381,11 +1396,14 @@
     <Content Include="Views\Shared\_UserLayout.cshtml" />
     <Content Include="Views\NineMonthArticles\Timeline.cshtml" />
     <Content Include="Views\Quizzes\DoQuiz.cshtml" />
+    <Content Include="Views\Shared\_CategoryScriptPartialView.cshtml" />
+    <Content Include="Views\Articles\_AddCommentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\css\vendor\royalslider\" />
     <Folder Include="fonts\Images\Uploads\" />
+    <Folder Include="Views\Comments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1401,8 +1419,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DataContexts\Migrations\ArticleMigrations\201503180830085_InitialCreate.resx">
-      <DependentUpon>201503180830085_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="DataContexts\Migrations\ArticleMigrations\201503192124259_InitialCreate.resx">
+      <DependentUpon>201503192124259_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataContexts\Migrations\ArticleMigrations\201503230649255_InitialCreate1.resx">
+      <DependentUpon>201503230649255_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataContexts\Migrations\CategoryMigrations\201503191952070_InitialCreate.resx">
+      <DependentUpon>201503191952070_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataContexts\Migrations\CommentMigrations\201503221953391_InitialCreate.resx">
+      <DependentUpon>201503221953391_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataContexts\Migrations\IdentityMigrations\201503180829164_InitialCreate.resx">
       <DependentUpon>201503180829164_InitialCreate.cs</DependentUpon>
@@ -1410,11 +1437,11 @@
     <EmbeddedResource Include="DataContexts\Migrations\ImageMigrations\201502120830532_InitialCreate.resx">
       <DependentUpon>201502120830532_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataContexts\Migrations\NineMonthArticleMigrations\201503171052051_InitialCreate.resx">
-      <DependentUpon>201503171052051_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="DataContexts\Migrations\NineMonthArticleMigrations\201503230630363_InitialCreate.resx">
+      <DependentUpon>201503230630363_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataContexts\Migrations\QuizMigrations\201503191630376_InitialCreate.resx">
-      <DependentUpon>201503191630376_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="DataContexts\Migrations\QuizMigrations\201503192126204_InitialCreate.resx">
+      <DependentUpon>201503192126204_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -1435,7 +1462,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>23406</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61754/</IISUrl>
+          <IISUrl>http://localhost:4444/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

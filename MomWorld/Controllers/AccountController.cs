@@ -66,7 +66,7 @@ namespace MomWorld.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    ModelState.AddModelError("", "Sai tên đăng nhập hoặc mật khẩu");
                 }
             }
 

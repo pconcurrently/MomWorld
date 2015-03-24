@@ -55,7 +55,6 @@ namespace MomWorld.Controllers
         public ActionResult Create([Bind(Include = "Id,Date,Week,Content")] NineMonthArticle nineMonthArticle)
         {
             var errors = ModelState.Values.SelectMany(v => v.Errors);
-            nineMonthArticle.Content = "asdad";
             if (ModelState.IsValid)
             {
                 db.NineMonthArticles.Add(nineMonthArticle);
@@ -135,7 +134,7 @@ namespace MomWorld.Controllers
 
         public ActionResult Timeline()
         {
-            ViewData["NineMonthArticles"] = db.NineMonthArticles.ToList();
+            ViewData["NineMonthArticles"] = db.NineMonthArticles.OrderBy(o => o.Date).ToList();
             ApplicationUser currentUser = identityDb.Users.FirstOrDefault(x => x.UserName.Equals(User.Identity.Name));
             ViewData["CurrentUser"] = currentUser;
             return View();

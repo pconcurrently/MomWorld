@@ -1,4 +1,4 @@
-namespace MomWorld.DataContexts.Migrations.NineMonthArticleMigrations
+namespace MomWorld.DataContexts.Migrations.NineMonthMigrations
 {
     using System;
     using System.Data.Entity;

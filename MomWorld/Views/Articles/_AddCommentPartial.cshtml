@@ -1,0 +1,18 @@
+﻿@using MomWorld.Entities
+@model CommentViewModel
+
+@using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "feed-form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="post-toolbar">
+        @Html.TextAreaFor(Model => Model.Content, new { @class = "form-control",id="addCommentForm", @placeholder = "Nội dung ...", rows = "5" })
+        @*<textarea class="form-control" placeholder="Nội dung ..." rows="5"></textarea>*@
+        @Html.HiddenFor(Model => Model.ArticleId)
+        @{Model.UserName = User.Identity.Name;}
+        <button href="javascript:document.getElementById('addCommentForm').submit()" class=" pull-right" data-toggle="tooltip"
+                data-placement="top" title="Đăng!">
+            <i class="fa fa-share"></i>
+        </button>
+        
+    </div>
+}
