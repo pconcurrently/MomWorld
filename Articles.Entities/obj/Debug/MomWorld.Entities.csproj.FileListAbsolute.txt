@@ -26,3 +26,17 @@ E:\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.EntityFramewor
 E:\MomWorld\Articles.Entities\obj\Debug\MomWorld.Entities.csprojResolveAssemblyReference.cache
 E:\MomWorld\Articles.Entities\obj\Debug\Articles.Entities.dll
 E:\MomWorld\Articles.Entities\obj\Debug\Articles.Entities.pdb
+D:\MomWorld\Articles.Entities\bin\Debug\Articles.Entities.dll.config
+D:\MomWorld\Articles.Entities\bin\Debug\Articles.Entities.dll
+D:\MomWorld\Articles.Entities\bin\Debug\Articles.Entities.pdb
+D:\MomWorld\Articles.Entities\bin\Debug\EntityFramework.dll
+D:\MomWorld\Articles.Entities\bin\Debug\EntityFramework.SqlServer.dll
+D:\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\MomWorld\Articles.Entities\bin\Debug\EntityFramework.xml
+D:\MomWorld\Articles.Entities\bin\Debug\EntityFramework.SqlServer.xml
+D:\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\MomWorld\Articles.Entities\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\MomWorld\Articles.Entities\obj\Debug\MomWorld.Entities.csprojResolveAssemblyReference.cache
+D:\MomWorld\Articles.Entities\obj\Debug\Articles.Entities.dll
+D:\MomWorld\Articles.Entities\obj\Debug\Articles.Entities.pdb

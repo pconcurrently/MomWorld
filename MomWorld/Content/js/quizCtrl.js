@@ -108,7 +108,7 @@
             // Post Data to the server to give Badge to User 
             var badge = {
                 "UserName": $scope.currentUserName,
-                "Badge": $scope.quizName
+                "badge": $scope.quizName
             }
 
             $http.post('api/Quiz/setBagde', badge).success(function (data, status) {
