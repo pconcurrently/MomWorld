@@ -11,14 +11,9 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', function ($scope
     }
 
     $scope.loadProfile = function () {
-        $http.get(gravatar).
+        $http.get("http://localhost:4444/api/User/user1").
               success(function (data, status, headers, config) {
-                  $scope.user = data.entry[0];
-                    
-                  /* Get More Detail about User profile */
-                  $scope.user.email = "trungnm0512@gmail.com";
-                  $scope.user.phone = "+(84)1655757445";
-
+                  $scope.user = data;
               }).
               error(function (data, status, headers, config) {
                   
@@ -29,14 +24,9 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', function ($scope
     /* Update Profile  */
     $scope.updateProfile = function () {
 
-        $http.post("http://localhost:4444/Account/Manage", { msg: 'hello word!' }).
+        $http.put("http://localhost:4444/api/User/user1", { firstName: "Nam", lastName: "Thai Hoang" }).
               success(function (data, status, headers, config) {
-                  $scope.user = data.entry[0];
-
-                  /* Get More Detail about User profile */
-                  $scope.user.email = "trungnm0512@gmail.com";
-                  $scope.user.phone = "+(84)1655757445";
-
+                  alert("Update Ok");
               }).
               error(function (data, status, headers, config) {
 

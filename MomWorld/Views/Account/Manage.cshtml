@@ -437,11 +437,11 @@
 
                                     <div class="user-card">
                                         <h3>
-                                            <strong>{{user.name.formatted}}</strong> 
+                                            <strong>{{user.lastName + " " + user.firstName}}</strong> 
                                         </h3>
                                         <ul class="profile-controls inline">                                          
                                             <li class="avatar">
-                                                <img ng-src="{{user.thumbnailUrl}}" alt
+                                                <img ng-src="{{user.avatar}}" alt
                                                      class="img-circle profile-photo">
                                             </li>                                            
                                         </ul>
@@ -449,7 +449,7 @@
                                         <div class="social-networks">
                                             <a href="personal-page.html#">
                                                 <i class="fa fa-facebook-square"></i>
-                                            </a> <a href="personal-page.html#">
+                                            </a> <a ng-href="{{user.social.facebook}}">
                                                 <i class="fa fa-google-plus-square"></i>
                                             </a> <a href="personal-page.html#"><i class="fa fa-twitter"></i></a>
                                             <a href="personal-page.html#">
@@ -503,7 +503,7 @@
                                 <!-- tile body -->
                                 <div class="tile-body padding-top-0">
                                     <p class="about-me">
-                                        {{user.aboutMe}}
+                                        {{user.description}}
                                     </p>
                                 </div>
                                 <!-- /tile body -->
@@ -776,12 +776,12 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="first-name">Họ</label> <input type="text"
-                                                                                              class="form-control" id="first-name" value="{{user.name.givenName}}">
+                                                                                              class="form-control" id="first-name" value="{{user.lastName}}">
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="last-name">Tên</label> <input type="text"
-                                                                                              class="form-control" id="last-name" value="{{user.name.familyName}}">
+                                                                                              class="form-control" id="last-name" value="{{user.firstName}}">
                                                 </div>
 
                                             </div>
@@ -848,12 +848,12 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="facebook">Facebook</label> <input type="text"
-                                                                                                  class="form-control" id="facebook">
+                                                                                                  class="form-control" id="facebook" value="{{user.social.facebook}}">
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="google-plus">Google+</label> <input type="text"
-                                                                                                    class="form-control" id="google-plus">
+                                                                                                    class="form-control" id="google-plus" value="{{user.social.google}}">
                                                 </div>
 
                                             </div>
@@ -940,7 +940,7 @@
                                             <div class="row">
 
                                                 <div class="form-group col-md-12 text-right">
-                                                    <button class="btn btn-cyan start btn-md">
+                                                    <button class="btn btn-cyan start btn-md" ng-click="updateProfile()">
                                                         <i class="fa fa-refresh"></i> <span> Cập nhật</span>
                                                     </button>
 
@@ -988,40 +988,18 @@
                                             <div class="tile-body">
                                                 <div class="panel-heading"></div>
                                                 <div class="panel-body">
-                                                    <div class="row"
+                                                    <div class="row" ng-repeat="badge in user.badges"
                                                          style="border: 3px solid rgba(0, 0, 0, 0.5);">
                                                         <div class="col-xs-6 col-md-2">
-                                                            <img alt="" src="Content/images/armorial/1.png"
+                                                            <img alt="" ng-src="{{badge.image}}"
                                                                  style="height: 80px; width: 80px;">
                                                         </div>
                                                         <div class="col-xs-6 col-md-10">
-                                                            <h4>Number One</h4>
+                                                            <h4>{{badge.name}}</h4>
                                                             Chúc mừng, bạn là một người tuyệt vời
                                                         </div>
                                                     </div>
-                                                    <div class="row"
-                                                         style="border: 3px solid rgba(0, 0, 0, 0.5);">
-                                                        <div class="col-xs-6 col-md-2">
-                                                            <img alt="" src="Content/images/armorial/1.png"
-                                                                 style="height: 80px; width: 80px;">
-                                                        </div>
-                                                        <div class="col-xs-6 col-md-10">
-                                                            <h4>Number One</h4>
-                                                            Chúc mừng, bạn là một người tuyệt vời
-                                                        </div>
-                                                    </div>
-                                                    <div class="row"
-                                                         style="border: 3px solid rgba(0, 0, 0, 0.5);">
-                                                        <div class="col-xs-6 col-md-2">
-                                                            <img alt="" src="Content/images/armorial/1.png"
-                                                                 style="height: 80px; width: 80px;">
-                                                        </div>
-                                                        <div class="col-xs-6 col-md-10">
-                                                            <h4>Number One</h4>
-                                                            Chúc mừng, bạn là một người tuyệt vời
-                                                        </div>
-                                                    </div>
-
+      
                                                 </div>
                                             </div>
                                             <!-- /tile body -->
