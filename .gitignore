@@ -18,3 +18,4 @@ MomWorld/bin/MomWorld.dll
 *.cache
 MomWorld/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 *.Cache
+*.dll

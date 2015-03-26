@@ -12,6 +12,7 @@ using MomWorld.Models;
 
 namespace MomWorld.Controllers
 {
+    [Authorize]
     public class QuizzesController : Controller
     {
         private QuizDb db = new QuizDb();

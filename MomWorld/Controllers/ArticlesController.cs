@@ -30,6 +30,7 @@ namespace MomWorld.Controllers
         }
 
         // GET: Articles/Details/5
+        [AllowAnonymous]
         public ActionResult Details(string id)
         {
             if (id == null)

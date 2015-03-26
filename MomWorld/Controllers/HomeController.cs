@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MomWorld.DataContexts;
+using MomWorld.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +10,12 @@ namespace MomWorld.Controllers
 {
     public class HomeController : Controller
     {
+
+        private ArticleDb articleDb = new ArticleDb();
         public ActionResult Index()
         {
+            List<Article> articles = articleDb.Articles.OrderBy(art=>art.PostedDate).Take(5).ToList();
+            ViewData["Top5Articles"] = articles;
             return View();
         }
 
