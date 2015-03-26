@@ -12,6 +12,7 @@ using Microsoft.Owin.Security;
 using Owin;
 using MomWorld.Models;
 using MomWorld.Entities;
+using System.Web.Helpers;
 
 namespace MomWorld.Controllers
 {
@@ -465,6 +466,11 @@ namespace MomWorld.Controllers
                 UserManager = null;
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult GetDetail(string id)
+        {
+            return Json(UserManager.FindByName(id), JsonRequestBehavior.AllowGet);
         }
 
         #region Helpers

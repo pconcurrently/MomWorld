@@ -207,3 +207,6 @@ D:\MomWorld\MomWorld\obj\Debug\MomWorld.csproj.GenerateResource.Cache
 D:\MomWorld\MomWorld\obj\Debug\MomWorld.dll
 D:\MomWorld\MomWorld\obj\Debug\MomWorld.pdb
 D:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.QuizMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.ArticleMigrations.InitialCreate1.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.CategoryMigrations.InitialCreate.resources
+E:\MomWorld\MomWorld\obj\Debug\MomWorld.DataContexts.Migrations.CommentMigrations.InitialCreate.resources
