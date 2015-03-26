@@ -37,11 +37,16 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js")"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js")"></script>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js")")"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js")")"></script>
         <![endif]-->
+
+    <!-- Logic dependences -->
+    <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-md5.min.js")"></script>
+
 </head>
-<body class="bg-1">
+<body class="bg-1" ng-app="profileApp" ng-controller="profileCtrl" ng-init="loadProfile()">
 
     <!-- Preloader -->
     <div class="mask">
@@ -73,7 +78,7 @@
                         <strong>Mom's</strong>World
                     </a>
                     <div class="sidebar-collapse">
-                        <a href="#">
+                        <a href="mail-horizontal.html#">
                             <i class="fa fa-bars"></i>
                         </a>
                     </div>
@@ -103,7 +108,7 @@
 
                         <li class="dropdown divided">
                             <a class="dropdown-toggle button" data-toggle="dropdown"
-                               href="#">
+                               href="mail-horizontal.html#">
                                 <i class="fa fa-envelope"></i>
                                 <span class="label label-transparent-black">1</span>
                             </a>
@@ -115,9 +120,9 @@
                                     </h1>
                                 </li>
                                 <li>
-                                    <a class="cyan" href="#">
+                                    <a class="cyan" href="mail-horizontal.html#">
                                         <div class="profile-photo">
-                                            <img src="@Url.Content("~/Content/images/ici-avatar.jpg")"/>
+                                            <img src="Content/images/ici-avatar.jpg" alt />
                                         </div>
                                         <div class="message-info">
                                             <span class="sender">Ing. Imrich Kamarel</span> <span class="time">12 mins</span>
@@ -130,9 +135,9 @@
                                 </li>
 
                                 <li>
-                                    <a class="green" href="#">
+                                    <a class="green" href="mail-horizontal.html#">
                                         <div class="profile-photo">
-                                            <img src="@Url.Content("~/Content/images/arnold-avatar.jpg")"/>
+                                            <img src="Content/images/arnold-avatar.jpg" alt />
                                         </div>
                                         <div class="message-info">
                                             <span class="sender">Arnold Karlsberg</span> <span class="time">1 hour</span>
@@ -145,9 +150,9 @@
                                 </li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="mail-horizontal.html#">
                                         <div class="profile-photo">
-                                            <img src="@Url.Content("~/Content/images/profile-photo.jpg")"/>
+                                            <img src="Content/images/profile-photo.jpg" alt />
                                         </div>
                                         <div class="message-info">
                                             <span class="sender">KhoaHN</span> <span class="time">
@@ -163,9 +168,9 @@
                                 </li>
 
                                 <li>
-                                    <a class="red" href="#">
+                                    <a class="red" href="mail-horizontal.html#">
                                         <div class="profile-photo">
-                                            <img src="@Url.Content("~/Content/images/peter-avatar.jpg")"/>
+                                            <img src="Content/images/peter-avatar.jpg" alt />
                                         </div>
                                         <div class="message-info">
                                             <span class="sender">Peter Kay</span> <span class="time">
@@ -181,9 +186,9 @@
                                 </li>
 
                                 <li>
-                                    <a class="orange" href="#">
+                                    <a class="orange" href="mail-horizontal.html#">
                                         <div class="profile-photo">
-                                            <img src="@Url.Content("~/Content/images/george-avatar.jpg")"/>
+                                            <img src="Content/images/george-avatar.jpg" alt />
                                         </div>
                                         <div class="message-info">
                                             <span class="sender">George McCain</span> <span class="time">
@@ -200,7 +205,7 @@
 
 
                                 <li class="topborder">
-                                    <a href="#">
+                                    <a href="mail-horizontal.html#">
                                         Check
                                         all messages <i class="fa fa-angle-right"></i>
                                     </a>
@@ -210,7 +215,7 @@
 
                         <li class="dropdown divided">
                             <a class="dropdown-toggle button" data-toggle="dropdown"
-                               href="#">
+                               href="mail-horizontal.html#">
                                 <i class="fa fa-bell"></i> <span class="label label-transparent-black">3</span>
                             </a>
 
@@ -222,42 +227,42 @@
                                 </li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="mail-horizontal.html#">
                                         <span class="label label-green"><i class="fa fa-user"></i></span>
                                         New user registered. <span class="small">18 mins</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="mail-horizontal.html#">
                                         <span class="label label-red"><i class="fa fa-power-off"></i></span>
                                         Server down. <span class="small">27 mins</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="mail-horizontal.html#">
                                         <span class="label label-orange"><i class="fa fa-plus"></i></span>
                                         New order. <span class="small">36 mins</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="mail-horizontal.html#">
                                         <span class="label label-cyan"><i class="fa fa-power-off"></i></span>
                                         Server restared. <span class="small">45 mins</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="mail-horizontal.html#">
                                         <span class="label label-amethyst"><i class="fa fa-power-off"></i></span>
                                         Server started. <span class="small">50 mins</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="mail-horizontal.html#">
                                         Check all
                                         notifications <i class="fa fa-angle-right"></i>
                                     </a>
@@ -267,9 +272,9 @@
 
                         <li class="dropdown divided user" id="current-user">
                             <div class="profile-photo">
-                                <img src="@Url.Content("~/Content/images/profile-photo.jpg")"/>
+                                <img src="Content/images/profile-photo.jpg" alt />
                             </div> <a class="dropdown-toggle options" data-toggle="dropdown"
-                                      href="#">
+                                      href="mail-horizontal.html#">
                                 KhoaHN <i class="fa fa-caret-down"></i>
                             </a>
 
@@ -279,19 +284,19 @@
 
                                     <h3>Ảnh nền:</h3>
                                     <ul id="color-schemes">
-                                        <li><a href="#" class="bg-1"></a></li>
-                                        <li><a href="#" class="bg-2"></a></li>
-                                        <li><a href="#" class="bg-3"></a></li>
-                                        <li><a href="#" class="bg-4"></a></li>
-                                        <li><a href="#" class="bg-5"></a></li>
-                                        <li><a href="#" class="bg-6"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="bg-1"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="bg-2"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="bg-3"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="bg-4"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="bg-5"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="bg-6"></a></li>
                                         <li class="title">Màu nền:</li>
-                                        <li><a href="#" class="solid-bg-1"></a></li>
-                                        <li><a href="#" class="solid-bg-2"></a></li>
-                                        <li><a href="#" class="solid-bg-3"></a></li>
-                                        <li><a href="#" class="solid-bg-4"></a></li>
-                                        <li><a href="#" class="solid-bg-5"></a></li>
-                                        <li><a href="#" class="solid-bg-6"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="solid-bg-1"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="solid-bg-2"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="solid-bg-3"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="solid-bg-4"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="solid-bg-5"></a></li>
+                                        <li><a href="mail-horizontal.html#" class="solid-bg-6"></a></li>
                                     </ul>
 
 
@@ -301,13 +306,13 @@
 
 
                                 <li>
-                                    <a href="#">
+                                    <a href="mail-horizontal.html#">
                                         <i class="fa fa-user"></i> Thông tin cá nhân
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="mail-horizontal.html#">
                                         <i class="fa fa-envelope"></i> Tin nhắn <span class="badge badge-red" id="user-inbox">3</span>
                                     </a>
                                 </li>
@@ -315,7 +320,7 @@
                                 <li class="divider"></li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="mail-horizontal.html#">
                                         <i class="fa fa-power-off"></i> Đăng xuất
                                     </a>
                                 </li>
@@ -373,7 +378,7 @@
             </div>
             <!-- Fixed navbar end -->
             <!-- Page content -->
-            <div id="Content" class="col-md-12">
+            <div id="content" class="col-md-12">
 
 
 
@@ -432,30 +437,15 @@
 
                                     <div class="user-card">
                                         <h3>
-                                            <strong>Khoa</strong> HN
+                                            <strong>{{user.name.formatted}}</strong> 
                                         </h3>
-                                        <ul class="profile-controls inline">
-                                            <li class="mailto">
-                                                <a href="personal-page.html#">
-                                                    <i class="fa fa-envelope"></i> Gửi thư
-                                                </a>
-                                            </li>
+                                        <ul class="profile-controls inline">                                          
                                             <li class="avatar">
-                                                <img src="@Url.Content("~/Content/images/profile-photo.jpg")"
+                                                <img ng-src="{{user.thumbnailUrl}}" alt
                                                      class="img-circle profile-photo">
-                                            </li>
-                                            <li class="callto" id="make-call">
-                                                <a href="personal-page.html#">
-                                                    <span class="call">
-                                                        Gọi
-                                                        <i class="fa fa-phone"></i>
-                                                    </span> <span class="calling">
-                                                        Đang gọi... <i class="fa fa-microphone"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
+                                            </li>                                            
                                         </ul>
-                                        <h5>Huỳnh Ngọc Khoa</h5>
+                                        <h5>{{user.name.formatted}}</h5>
                                         <div class="social-networks">
                                             <a href="personal-page.html#">
                                                 <i class="fa fa-facebook-square"></i>
@@ -476,7 +466,7 @@
 
                                         <li style="display: inline-block; width: 100%; font-size: 20px;">
                                             <h4>
-                                                <img alt="" src="@Url.Content("~/Content/images/armorial/1.png")"
+                                                <img alt="" src="Content/images/armorial/1.png"
                                                      style="height: 50px; width: 50px;">
                                             </h4> Number One
                                         </li>
@@ -513,14 +503,7 @@
                                 <!-- tile body -->
                                 <div class="tile-body padding-top-0">
                                     <p class="about-me">
-                                        But I must explain to you how all this
-                                        mistaken idea of denouncing pleasure and praising pain was
-                                        born and I will give you a complete account of the system, and
-                                        expound the actual teachings of the great explorer of the
-                                        truth, the master-builder of human happiness. No one rejects,
-                                        dislikes, or avoids pleasure itself, because it is pleasure,
-                                        but because those who do not know how to pursue pleasure
-                                        rationally encounter consequences that are extremely painful.
+                                        {{user.aboutMe}}
                                     </p>
                                 </div>
                                 <!-- /tile body -->
@@ -585,7 +568,7 @@
 
                                                 <aside class="profile-photo">
                                                     <a href="personal-page.html#">
-                                                        <img src="@Url.Content("~/Content/images/profile-photo.jpg")" alt=""
+                                                        <img src="Content/images/profile-photo.jpg" alt=""
                                                              class="img-circle">
                                                     </a>
                                                 </aside>
@@ -619,7 +602,7 @@
 
                                                             <li>
                                                                 <div class="profile-photo">
-                                                                    <img src="@Url.Content("~/Content/images/peter-avatar.jpg")" alt=""
+                                                                    <img src="Content/images/peter-avatar.jpg" alt=""
                                                                          class="img-circle">
                                                                 </div>
 
@@ -646,7 +629,7 @@
 
                                                             <li>
                                                                 <div class="profile-photo">
-                                                                    <img src="@Url.Content("~/Content/images/ici-avatar.jpg")" alt=""
+                                                                    <img src="Content/images/ici-avatar.jpg" alt=""
                                                                          class="img-circle">
                                                                 </div>
 
@@ -670,7 +653,7 @@
 
                                                             <li>
                                                                 <div class="profile-photo">
-                                                                    <img src="@Url.Content("~/Content/images/arnold-avatar.jpg")" alt=""
+                                                                    <img src="Content/images/arnold-avatar.jpg" alt=""
                                                                          class="img-circle">
                                                                 </div>
 
@@ -697,7 +680,7 @@
 
                                                             <li class="comment-form">
                                                                 <div class="profile-photo">
-                                                                    <img src="@Url.Content("~/Content/images/profile-photo.jpg")" alt=""
+                                                                    <img src="Content/images/profile-photo.jpg" alt=""
                                                                          class="img-circle">
                                                                 </div>
 
@@ -726,7 +709,7 @@
 
                                                 <aside class="profile-photo">
                                                     <a href="personal-page.html#">
-                                                        <img src="@Url.Content("~/Content/images/george-avatar.jpg")" alt=""
+                                                        <img src="Content/images/george-avatar.jpg" alt=""
                                                              class="img-circle">
                                                     </a>
                                                 </aside>
@@ -744,7 +727,7 @@
 
                                                     <div class="feed-content">
                                                         <div class="feed-image">
-                                                            <img src="@Url.Content("~/Content/images/placeholder/img01.jpg")" alt"">
+                                                            <img src="Content/images/placeholder/img01.jpg" alt"">
                                                         </div>
                                                         <p>Làm bài kìa</p>
                                                     </div>
@@ -793,12 +776,12 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="first-name">Họ</label> <input type="text"
-                                                                                              class="form-control" id="first-name" value="Huỳnh">
+                                                                                              class="form-control" id="first-name" value="{{user.name.givenName}}">
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="last-name">Tên</label> <input type="text"
-                                                                                              class="form-control" id="last-name" value="Ngọc Khoa">
+                                                                                              class="form-control" id="last-name" value="{{user.name.familyName}}">
                                                 </div>
 
                                             </div>
@@ -809,7 +792,7 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="email">E-mail</label> <input type="email"
-                                                                                             class="form-control" id="email" value="johny.d@tattek.com"
+                                                                                             class="form-control" id="email" value="{{user.email}}"
                                                                                              readonly>
                                                 </div>
 
@@ -829,7 +812,7 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="phone">Số điện thoại</label> <input type="text"
-                                                                                                    class="form-control" id="phone" value="+(84)1655757445">
+                                                                                                    class="form-control" id="phone" value="{{user.phone}}">
                                                     <span class="help-block">+(84)1655757445</span>
                                                 </div>
 
@@ -982,7 +965,7 @@
 
                                                 <div class="text-center">
 
-                                                    <img alt="" src="@Url.Content("~/Content/images/armorial/1.png")"
+                                                    <img alt="" src="Content/images/armorial/1.png"
                                                          style="height: 200px; width: 200px;">
                                                     <h1>Number One</h1>
                                                     <p>Chúc mừng, bạn là một người tuyệt vời</p>
@@ -1008,7 +991,7 @@
                                                     <div class="row"
                                                          style="border: 3px solid rgba(0, 0, 0, 0.5);">
                                                         <div class="col-xs-6 col-md-2">
-                                                            <img alt="" src="@Url.Content("~/Content/images/armorial/1.png")"
+                                                            <img alt="" src="Content/images/armorial/1.png"
                                                                  style="height: 80px; width: 80px;">
                                                         </div>
                                                         <div class="col-xs-6 col-md-10">
@@ -1019,7 +1002,7 @@
                                                     <div class="row"
                                                          style="border: 3px solid rgba(0, 0, 0, 0.5);">
                                                         <div class="col-xs-6 col-md-2">
-                                                            <img alt="" src="@Url.Content("~/Content/images/armorial/1.png")"
+                                                            <img alt="" src="Content/images/armorial/1.png"
                                                                  style="height: 80px; width: 80px;">
                                                         </div>
                                                         <div class="col-xs-6 col-md-10">
@@ -1030,7 +1013,7 @@
                                                     <div class="row"
                                                          style="border: 3px solid rgba(0, 0, 0, 0.5);">
                                                         <div class="col-xs-6 col-md-2">
-                                                            <img alt="" src="@Url.Content("~/Content/images/armorial/1.png")"
+                                                            <img alt="" src="Content/images/armorial/1.png"
                                                                  style="height: 80px; width: 80px;">
                                                         </div>
                                                         <div class="col-xs-6 col-md-10">
@@ -1127,73 +1110,75 @@
 
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
 
+    <script src="@Url.Content("~/Content/js/profileCtrl.js")"></script>
+
     <script>
-		//initialize file upload button function
-		$(document).on(
+        //initialize file upload button function
+        $(document).on(
 				'change',
 				'.btn-file :file',
-				function() {
-					var input = $(this), numFiles = input.get(0).files ? input
+				function () {
+				    var input = $(this), numFiles = input.get(0).files ? input
 							.get(0).files.length : 1, label = input.val()
 							.replace(/\\/g, '/').replace(/.*\//, '');
-					input.trigger('fileselect', [ numFiles, label ]);
+				    input.trigger('fileselect', [numFiles, label]);
 				});
 
-		$(function() {
+        $(function () {
 
-			$('#make-call a').click(function() {
-				$(this).toggleClass('active');
-			});
+            $('#make-call a').click(function () {
+                $(this).toggleClass('active');
+            });
 
-			$('.post-toolbar a').tooltip({
-				placement : 'top',
-				trigger : 'hover',
-				html : true,
-				container : 'body'
-			});
+            $('.post-toolbar a').tooltip({
+                placement: 'top',
+                trigger: 'hover',
+                html: true,
+                container: 'body'
+            });
 
-			$('.task-controls .mark').click(function() {
-				$(this).toggleClass('marked');
-			});
+            $('.task-controls .mark').click(function () {
+                $(this).toggleClass('marked');
+            });
 
-			//accordion class active toggling
-			$('.task-list .panel-heading .task-toggle').click(function() {
+            //accordion class active toggling
+            $('.task-list .panel-heading .task-toggle').click(function () {
 
-				var $previous = $('.task-list .panel.active');
+                var $previous = $('.task-list .panel.active');
 
-				$previous.removeClass('active');
-				$(this).parent().parent().stop().addClass('active');
+                $previous.removeClass('active');
+                $(this).parent().parent().stop().addClass('active');
 
-				if ($(this).parent().parent().hasClass('active')) {
-					$previous.removeClass('active');
-				}
-			});
+                if ($(this).parent().parent().hasClass('active')) {
+                    $previous.removeClass('active');
+                }
+            });
 
-			//chosen select input
-			$(".chosen-select").chosen({
-				disable_search_threshold : 10
-			});
+            //chosen select input
+            $(".chosen-select").chosen({
+                disable_search_threshold: 10
+            });
 
-			//initialize file upload button
-			$('.btn-file :file').on(
+            //initialize file upload button
+            $('.btn-file :file').on(
 					'fileselect',
-					function(event, numFiles, label) {
+					function (event, numFiles, label) {
 
-						var input = $(this).parents('.input-group').find(
+					    var input = $(this).parents('.input-group').find(
 								':text'), log = numFiles > 1 ? numFiles
 								+ ' files selected' : label;
 
-						console.log(log);
+					    console.log(log);
 
-						if (input.length) {
-							input.val(log);
-						} else {
-							if (log)
-								alert(log);
-						}
+					    if (input.length) {
+					        input.val(log);
+					    } else {
+					        if (log)
+					            alert(log);
+					    }
 					});
 
-		})
+        })
     </script>
 </body>
 </html>

@@ -7,35 +7,35 @@
         "id": "0",
         "name": "Dinh Dưỡng",
         "quizData": "../../content/js/data/dinhduong.js",
-        "image": "http://localhost:61754/Content/images/badge/dinhduong.png",
+        "image": "http://localhost:4444/Content/images/badge/dinhduong.png",
         "status": "done"
     },
     {
         "id": "1",
         "name": "sinh con",
         "quizData": "../../content/js/data/sinhcon.js",
-        "image": "http://localhost:61754/Content/images/badge/default.png",
+        "image": "http://localhost:4444/Content/images/badge/default.png",
         "status": "new"
     },
     {
         "id": "2",
         "name": "Chăm sóc",
         "quizData": "../../content/js/data/chamsoc.js",
-        "image": "http://localhost:61754/Content/images/badge/default.png",
+        "image": "http://localhost:4444/Content/images/badge/default.png",
         "status": "new"
     },
     {
         "id": "3",
         "name": "Y Tế",
         "quizData": "../../content/js/data/yte.js",
-        "image": "http://localhost:61754/Content/images/badge/default.png",
+        "image": "http://localhost:4444/Content/images/badge/default.png",
         "status": "new"
     },
     {
         "id": "4",
         "name": "Giới Tính",
         "quizData": "../../content/js/data/gioitinh.js",
-        "image": "http://localhost:61754/Content/images/badge/default.png",
+        "image": "http://localhost:4444/Content/images/badge/default.png",
         "status": "new"
     }];
 
