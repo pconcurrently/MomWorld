@@ -1,26 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
 
-@*@if (Request.IsAuthenticated)
-    {
-        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-        {
-        @Html.AntiForgeryToken()
-
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        </ul>
-        }
-    }
-    else
-    {
-        <ul class="nav navbar-nav navbar-right">
-            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-        </ul>
-    }*@
 @if (Request.IsAuthenticated)
 {
 
@@ -28,18 +7,18 @@
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
         {
             @Html.AntiForgeryToken()
-            <a href="personal-page.html"
+            <a href="#"
                data-0="padding: 0px 5px 0px;border-bottom-width:0px;"
                data-300="padding: 0px 5px 0px;border-bottom-width:0px;"
                class="dropdown-toggle" data-toggle="dropdown">
                 <div class="profile-photo">
                     <img class="img-circle" src="@Url.Content("~/Content/images/profile-photo.jpg")"
                          data-0="padding: 0px;" data-300="padding: 3px;" />
-                </div> <span>@User.Identity.GetUserName()</span> <i class="fa fa-caret-down"></i>
+                </div> <span>@User.Identity.Name</span> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu arrow settings">
                 <li>
-                    <a href="timeline.html#">
+                    <a href="@Url.Action("Timeline","NineMonthArticles")">
                         <i class="fa fa-tachometer"></i>
                         Quá trình mang thai
                     </a>
@@ -53,7 +32,7 @@
                 </li>
 
                 <li>
-                    <a href="personal-page.html#">
+                    <a href="#">
                         <i class="fa fa-envelope"></i> Tin nhắn <span class="badge badge-red animated bounceIn">3</span>
                     </a>
                 </li>

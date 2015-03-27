@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNet.Identity
+
+<li class="dropdown divided user" id="current-user">
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="profile-photo">
+            <img src="@Url.Content("~/Content/images/profile-photo.jpg")" />
+        </div> <a class="dropdown-toggle options" data-toggle="dropdown"
+                  href="mail-horizontal.html#">
+            @User.Identity.Name <i class="fa fa-caret-down"></i>
+        </a>
+
+        <ul class="dropdown-menu arrow settings">
+
+            <li>
+
+                <h3>Ảnh nền:</h3>
+                <ul id="color-schemes">
+                    <li><a href="mail-horizontal.html#" class="bg-1"></a></li>
+                    <li><a href="mail-horizontal.html#" class="bg-2"></a></li>
+                    <li><a href="mail-horizontal.html#" class="bg-3"></a></li>
+                    <li><a href="mail-horizontal.html#" class="bg-4"></a></li>
+                    <li><a href="mail-horizontal.html#" class="bg-5"></a></li>
+                    <li><a href="mail-horizontal.html#" class="bg-6"></a></li>
+                    <li class="title">Màu nền:</li>
+                    <li><a href="mail-horizontal.html#" class="solid-bg-1"></a></li>
+                    <li><a href="mail-horizontal.html#" class="solid-bg-2"></a></li>
+                    <li><a href="mail-horizontal.html#" class="solid-bg-3"></a></li>
+                    <li><a href="mail-horizontal.html#" class="solid-bg-4"></a></li>
+                    <li><a href="mail-horizontal.html#" class="solid-bg-5"></a></li>
+                    <li><a href="mail-horizontal.html#" class="solid-bg-6"></a></li>
+                </ul>
+
+
+            </li>
+
+            <li class="divider"></li>
+
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-user"></i> Thông tin cá nhân
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-envelope"></i> Tin nhắn <span class="badge badge-red" id="user-inbox">3</span>
+                </a>
+            </li>
+
+            <li class="divider"></li>
+
+            <li>
+                <a href="javascript:document.getElementById('logoutForm').submit()">
+                    <i class="fa fa-power-off"></i> Đăng xuất
+                </a>
+            </li>
+        </ul>
+    }
+</li>
