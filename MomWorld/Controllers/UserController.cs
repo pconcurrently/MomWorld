@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web.Helpers;
 using System.Web.Http;
 
 namespace MomWorld.Controllers
@@ -53,12 +54,15 @@ namespace MomWorld.Controllers
         {
         }
 
-        // PUT: api/User/5
-        public void Put(string id, [FromBody]string value)
+        // PUT: api/User/{{UserName}}
+        public void Put(string id, object userPro)
         {
-            /* Update User profile */
-            Console.WriteLine("I am here !");
-            Console.WriteLine(value);
+            
+            var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(id));
+            user.FirstName = "Trung";
+            user.LastName = "Minh";
+            
+            
         }
 
         // DELETE: api/User/5
