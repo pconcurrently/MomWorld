@@ -10,6 +10,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<MomWorld.DataContexts.IdentityDb>
     {
+        // TrungNM
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;

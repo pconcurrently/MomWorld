@@ -564,11 +564,11 @@
 
                                         <div class="feed-list">
 
-                                            <article class="feed-post">
+                                            <article ng-repeat="status in statuses" class="feed-post">
 
                                                 <aside class="profile-photo">
                                                     <a href="personal-page.html#">
-                                                        <img src="Content/images/profile-photo.jpg" alt=""
+                                                        <img src="{{status.ProfilePicture}}" alt=""
                                                              class="img-circle">
                                                     </a>
                                                 </aside>
@@ -578,14 +578,14 @@
                                                     <header>
 
                                                         <div class="author">
-                                                            <a href="personal-page.html#">KhoaHN</a> đã cập nhật một
-                                                            trạng thái mới <small>1 Giờ trước</small>
+                                                            <a href="personal-page.html#">{{status.CreatorName}}</a> đã cập nhật một
+                                                            trạng thái mới <small>{{status.CreatedDate}}</small>
                                                         </div>
 
                                                     </header>
 
                                                     <div class="feed-content">
-                                                        <p>Hôm nay trời đẹp quá ...</p>
+                                                        <p>{{status.Content}}</p>
                                                     </div>
 
                                                     <footer>
@@ -705,47 +705,7 @@
 
                                             </article>
 
-                                            <article class="feed-post">
-
-                                                <aside class="profile-photo">
-                                                    <a href="personal-page.html#">
-                                                        <img src="Content/images/george-avatar.jpg" alt=""
-                                                             class="img-circle">
-                                                    </a>
-                                                </aside>
-
-                                                <div class="feed-container">
-
-                                                    <header>
-
-                                                        <div class="author">
-                                                            <a href="personal-page.html#">KhoaPC</a> thêm một
-                                                            ảnh mới <small>3 Giờ trước</small>
-                                                        </div>
-
-                                                    </header>
-
-                                                    <div class="feed-content">
-                                                        <div class="feed-image">
-                                                            <img src="Content/images/placeholder/img01.jpg" alt"">
-                                                        </div>
-                                                        <p>Làm bài kìa</p>
-                                                    </div>
-
-                                                    <footer>
-                                                        <a href="personal-page.html#" class="liked">
-                                                            <i class="fa fa-heart"></i> Thích <span>(10)</span>
-                                                        </a> <a href="personal-page.html#">
-                                                            <i class="fa fa-comment"></i> Bình luận <span>(12)</span>
-                                                        </a> <a href="personal-page.html#">
-                                                            <i class="fa fa-close"></i> Xóa
-                                                        </a>
-
-                                                    </footer>
-
-                                                </div>
-
-                                            </article>
+                                            
 
 
                                             <div class="text-center">
@@ -1088,7 +1048,7 @@
 
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
 
-    <script src="@Url.Content("~/Content/js/profileCtrl.js")"></script>
+    <script src="@Url.Content("~/App/js/profileCtrl.js")"></script>
 
     <script>
         //initialize file upload button function

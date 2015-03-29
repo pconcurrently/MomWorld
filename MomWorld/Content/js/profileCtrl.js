@@ -25,11 +25,15 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', function ($scope
     /* Update Profile  */
     $scope.updateProfile = function () {
         
-        //$http.post("http://postcatcher.in/catchers/55179cecdcfd5a0300000a69", { firstName: "Nam", lastName: "Thai Hoang" }).
-        //$http.post("http://localhost:4444/api/User/user1", { firstName: "Nam", lastName: "Thai Hoang" }).
-        var data = $scope.user;
-        console.log(JSON.stringify(data));
-        $http.put("http://localhost:4444/api/User/user1", data).
+
+        var sentData = {
+            FirstName: $scope.user.FirstName,
+            LastName: $scope.user.LastName
+        }
+
+        console.log(JSON.stringify(sentData));
+
+        $http.put("http://localhost:4444/api/User/user1", sentData).
               success(function (data, status, headers, config) {
                   alert("Update Ok");
                   console.log(JSON.stringify(data));

@@ -14,6 +14,7 @@ namespace MomWorld.Controllers
         private ArticleDb articleDb = new ArticleDb();
         public ActionResult Index()
         {
+            
             List<Article> articles = articleDb.Articles.OrderBy(art=>art.PostedDate).Take(5).ToList();
             ViewData["Top5Articles"] = articles;
             return View();

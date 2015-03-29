@@ -1,4 +1,5 @@
 ﻿using MomWorld.DataContexts;
+using MomWorld.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,12 +56,14 @@ namespace MomWorld.Controllers
         }
 
         // PUT: api/User/{{UserName}}
-        public void Put(string id, object userPro)
+        public void Put(string id, UpdateProfileViewModel userPro)
         {
-            
             var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(id));
-            user.FirstName = "Trung";
-            user.LastName = "Minh";
+            user.FirstName = userPro.FirstName;
+            user.LastName = userPro.LastName;
+            
+
+            identityDb.SaveChanges();
             
             
         }

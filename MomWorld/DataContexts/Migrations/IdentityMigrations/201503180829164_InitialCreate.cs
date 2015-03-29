@@ -7,6 +7,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
     {
         public override void Up()
         {
+            // TrungNM
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new

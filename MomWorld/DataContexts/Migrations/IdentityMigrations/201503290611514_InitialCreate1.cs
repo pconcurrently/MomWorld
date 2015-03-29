@@ -5,6 +5,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
     
     public partial class InitialCreate1 : DbMigration
     {
+        // TrungNM
         public override void Up()
         {
             AddColumn("dbo.AspNetUsers", "FirstName", c => c.String());
