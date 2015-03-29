@@ -11,6 +11,7 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', function ($scope
     }
 
     $scope.loadProfile = function () {
+        /* Get user Profile from User API */
         $http.get("http://localhost:4444/api/User/user1").
               success(function (data, status, headers, config) {
                   $scope.user = data;

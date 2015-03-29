@@ -437,15 +437,15 @@
 
                                     <div class="user-card">
                                         <h3>
-                                            <strong>{{user.lastName + " " + user.firstName}}</strong> 
+                                            <strong>{{user.LastName + " " + user.FirstName}}</strong> 
                                         </h3>
                                         <ul class="profile-controls inline">                                          
                                             <li class="avatar">
-                                                <img ng-src="{{user.avatar}}" alt
+                                                <img ng-src="{{user.ProfilePicture}}" alt
                                                      class="img-circle profile-photo">
                                             </li>                                            
                                         </ul>
-                                        <h5>{{user.name.formatted}}</h5>
+                                        <h5>{{user.LastName + " " + user.FirstName}}</h5>
                                         <div class="social-networks">
                                             <a href="personal-page.html#">
                                                 <i class="fa fa-facebook-square"></i>
@@ -503,7 +503,7 @@
                                 <!-- tile body -->
                                 <div class="tile-body padding-top-0">
                                     <p class="about-me">
-                                        {{user.description}}
+                                        {{user.Description}}
                                     </p>
                                 </div>
                                 <!-- /tile body -->
@@ -776,12 +776,12 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="first-name">Họ</label> <input type="text"
-                                                                                              class="form-control" id="first-name" value="{{user.lastName}}">
+                                                                                              class="form-control" id="first-name" value="{{user.LastName}}">
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="last-name">Tên</label> <input type="text"
-                                                                                              class="form-control" id="last-name" value="{{user.firstName}}">
+                                                                                              class="form-control" id="last-name" value="{{user.FirstName}}">
                                                 </div>
 
                                             </div>
@@ -792,7 +792,7 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="email">E-mail</label> <input type="email"
-                                                                                             class="form-control" id="email" value="{{user.email}}"
+                                                                                             class="form-control" id="email" value="{{user.Email}}"
                                                                                              readonly>
                                                 </div>
 
@@ -812,7 +812,7 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="phone">Số điện thoại</label> <input type="text"
-                                                                                                    class="form-control" id="phone" value="{{user.phone}}">
+                                                                                                    class="form-control" id="phone" value="{{user.PhoneNumber}}">
                                                     <span class="help-block">+(84)1655757445</span>
                                                 </div>
 
@@ -848,12 +848,12 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="facebook">Facebook</label> <input type="text"
-                                                                                                  class="form-control" id="facebook" value="{{user.social.facebook}}">
+                                                                                                  class="form-control" id="facebook" value="{{user.Social.Facebook}}">
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="google-plus">Google+</label> <input type="text"
-                                                                                                    class="form-control" id="google-plus" value="{{user.social.google}}">
+                                                                                                    class="form-control" id="google-plus" value="{{user.Social.Google}}">
                                                 </div>
 
                                             </div>

@@ -18,6 +18,17 @@ namespace MomWorld.Models
             return userIdentity;
         }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Phone { get; set; }
+
+        public string Description { get; set; }
+        
+        // TODO: Create Social Profile
+        // public object Social { get; set; }
+
         public DateTime? DOB { get; set; }
 
         public string Address { get; set; }
