@@ -221,8 +221,11 @@
                         <i class="fa fa-pencil-square-o"></i> <strong> Bài viết </strong>
                         Mới
                     </h1>
-                    @using (Html.BeginForm("Edit", "Articles", new { @class = "form-horizontal", role = "form" }))
-                    {
+                    <form class="form-horizontal" role="form" method="post" action="@Url.Action("Edit", "Articles")">
+
+
+
+
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(model => model.UserId)
                         @Html.HiddenFor(model => model.PostedDate)
@@ -265,8 +268,8 @@
                             <button type="reset" class="btn">Hủy</button>
 
                         </div>
-                    }
 
+                    </form>
                 </div>
                 <!-- END post POSTS -->
                 <!-- post SIDEBAR -->
