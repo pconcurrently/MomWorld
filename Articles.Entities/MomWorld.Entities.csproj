@@ -56,6 +56,7 @@
     <Compile Include="Category.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="CommentViewModel.cs" />
+    <Compile Include="Diary.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="NineMonthArticle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
