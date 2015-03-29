@@ -482,35 +482,36 @@
                 <div class="col-md-9">
 
                     <div class="owl-carousel owl-theme">
-                        @foreach (var item in top5Articles) { 
-                        <div class="item appear-el" data-animation="fadeIn">
-                            <figure>
+                        @foreach (var item in top5Articles)
+                        {
+                            <div class="item appear-el" data-animation="fadeIn">
+                                <figure>
 
-                                <div class="img-view">
+                                    <div class="img-view">
 
-                                    <img src="@Url.Content("~/Content/images/post/1.jpg")"
-                                         alt="Place description here">
+                                        <img src="@Url.Content("~/Content/images/post/1.jpg")"
+                                             alt="Place description here">
 
-                                    <div class="overlay">
+                                        <div class="overlay">
 
-                                        <div class="overlay-controls">
-                                            <a href="@Url.Content("~/Content/images/post/1.jpg")" data-nivobox="true"
-                                               data-lightbox-gallery="gallery1">
-                                                <i class="fa fa-arrows-alt"></i>
-                                            </a> <a href="@Url.Action("Details", "Articles", new {id = item.Id })"><i class="fa fa-chain"></i></a>
+                                            <div class="overlay-controls">
+                                                <a href="@Url.Content("~/Content/images/post/1.jpg")" data-nivobox="true"
+                                                   data-lightbox-gallery="gallery1">
+                                                    <i class="fa fa-arrows-alt"></i>
+                                                </a> <a href="@Url.Action("Details", "Articles", new {id = item.Id })"><i class="fa fa-chain"></i></a>
+                                            </div>
+
                                         </div>
 
                                     </div>
 
-                                </div>
+                                    <figcaption>
+                                        <h5>@item.Title</h5>
+                                        <span>@item.Description</span>
+                                    </figcaption>
 
-                                <figcaption>
-                                    <h5>@item.Title</h5>
-                                    <span>@item.Description</span>
-                                </figcaption>
-
-                            </figure>
-                        </div>
+                                </figure>
+                            </div>
                         }
                     </div>
 
@@ -805,114 +806,7 @@
 
 
 
-<script src="@Url.Content("~/Content/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js")"></script>
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="@Url.Content("~/Content/js/vendor/jquery/jquery.js")"></script>
-
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="@Url.Content("~/Content/js/vendor/bootstrap/bootstrap.min.js")"></script>
-
-<script src="@Url.Content("~/Content/js/vendor/skrollr/skrollr.min.js")"></script>
-
-<script src="@Url.Content("~/Content/js/vendor/jquery-flexslider/jquery.flexslider.js")"></script>
-
-<script src="@Url.Content("~/Content/js/vendor/text-rotator/jquery.simple-text-rotator.js")"></script>
-
-<script src="@Url.Content("~/Content/js/vendor/owl-carousel/owl.carousel.min.js")"></script>
-
-<script src="@Url.Content("~/Content/js/vendor/nivo-lightbox/nivo-lightbox.min.js")"></script>
-
-<script src="@Url.Content("~/Content/js/vendor/tweet-js/jquery.tweet.min.js")"></script>
-
-<script src="@Url.Content("~/Content/js/vendor/vticker/jquery.vticker.min.js")"></script>
-
-<script src="@Url.Content("~/Content/js/vendor/jflickrfeed/jflickrfeed.min.js")"></script>
-
-<script src="@Url.Content("~/Content/js/vendor/appear/jquery.appear.js")"></script>
-
-<script src="@Url.Content("~/Content/js/vendor/parallax/jquery.parallax-1.1.3.js")"></script>
-
-<script src="http://maps.google.com/maps/api/js?sensor=false"
-        type="text/javascript"></script>
-
-<script src="@Url.Content("~/Content/js/minimal.min.js")"></script>
-
-<script>
-    $(window)
-            .load(
-                    function () {
-
-                        //Google Map
-                        var latlng = new google.maps.LatLng(16.075581,
-                                108.1696834);
-                        var settings = {
-                            zoom: 17,
-                            center: new google.maps.LatLng(16.075581,
-                                    108.1696834),
-                            mapTypeId: google.maps.MapTypeId.ROADMAP,
-                            mapTypeControl: false,
-                            scrollwheel: false,
-                            draggable: true,
-                            mapTypeControlOptions: {
-                                style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-                            },
-                            navigationControl: false,
-                            navigationControlOptions: {
-                                style: google.maps.NavigationControlStyle.SMALL
-                            },
-                            mapTypeId: google.maps.MapTypeId.ROADMAP
-                        };
-
-                        var map = new google.maps.Map(document
-                                .getElementById("map-canvas"), settings);
-
-                        google.maps.event.addDomListener(window, "resize",
-                                function () {
-                                    var center = map.getCenter();
-                                    google.maps.event
-                                            .trigger(map, "resize");
-                                    map.setCenter(center);
-                                });
-
-                        var contentString = '<div id="Content">'
-                                + '<div id="siteNotice">'
-                                + '</div>'
-                                + '<h3 id="firstHeading" class="no-top-margin"><strong>Office</strong></h3>'
-                                + '<div id="bodyContent">'
-                                + '<p>Here you can find us!</p>' + '</div>'
-                                + '</div>';
-                        var infowindow = new google.maps.InfoWindow({
-                            content: contentString
-                        });
-
-                        var companyPos = new google.maps.LatLng(16.075581,
-                                108.1696834);
-
-                        var companyMarker = new google.maps.Marker({
-                            position: companyPos,
-                            map: map,
-                            title: "Our Office",
-                            zIndex: 3
-                        });
-
-                        google.maps.event.addListener(companyMarker,
-                                'click', function () {
-                                    infowindow.open(map, companyMarker);
-                                });
-
-                    });
-</script>
 
 
-<script type="text/javascript">
-    $(window).load(function () {
-        $('.flexslider').flexslider({
-            animation: "slide",
-            start: function (slider) {
-                $('body').removeClass('loading');
-            }
-        });
-    });
-</script>
+
 
