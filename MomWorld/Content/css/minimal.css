@@ -1182,6 +1182,7 @@ color: rgba(255, 0, 0, 1);
 #content.full-page .inside-block img {
   margin-top: 50px;
   display: inline-block;
+  width: initial;
 }
 #content.full-page .inside-block .user-photo img {
   margin: 0 0 20px 0;
@@ -5062,12 +5063,13 @@ body .mask {
 }
 body .mask #loader {
   background: url(../images/loader.gif) center center no-repeat;
-  height: 15px;
-  width: 15px;
-  left: 50%;
-  top: 50%;
-  position: absolute;
-  margin: -25px 0 0 -25px;
+    height: 100px;
+    width: 100px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    margin: -25px 0 0 -25px;
+    background-size: 100px 100px;
 }
 body > .videocontent {
   position: fixed;
@@ -5692,7 +5694,7 @@ menu .btn .fa {
   color: rgba(255, 255, 255, 0.7);
 }
 .navbar .search input {
-  font-family: "Ubuntu Mono", sans-serif;
+  /* font-family: "Ubuntu Mono", sans-serif; */
   font-size: 16px;
   color: rgba(0, 0, 0, 0.4);
   background: none;
@@ -11431,14 +11433,14 @@ a.submit:hover {
 }
 .table td .checkbox label:before,
 .table th .checkbox label:before {
-  top: -13px;
+  /* top: -13px; */
   width: 15px;
   height: 15px;
   left: 8px;
 }
 .table td .checkbox label:after,
 .table th .checkbox label:after {
-  top: -17px;
+  top: -2px;
   width: 15px;
   height: 15px;
   left: 10px;
