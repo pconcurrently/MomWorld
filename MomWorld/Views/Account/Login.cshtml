@@ -70,9 +70,12 @@
                             </div>
                         </section>
                         <section class="controls">
-
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            Ghi nhớ
+                            <div class="checkbox check-transparent">
+                                <input type="checkbox" value="1" id="remember" checked>
+                                <label for="remember">
+                                    Ghi nhớ
+                                </label>
+                            </div>
 
                             <a href="password-recovery.html#">Quên mật khẩu ?</a>
                         </section>
