@@ -221,9 +221,9 @@
                 @if (User.Identity.Name.Equals("admin") || User.Identity.Name.Equals(postedUser.UserName))
                 {
                     <div class="col-md-12 text-right">
-                        <a href="@Url.Action("Edit", "Articles", routeValues: new {id = article.Id })" class="btn btn-lg btn-warning">
+                        <a href="@Url.Action("Edit", "Articles", routeValues: new {id = article.Id })" class="btn btn-warning">
                             <i class="fa fa-plus-circle"></i> Sửa bài viết
-                        </a> <a href="@Url.Action("Delete", "Articles", routeValues: new { id = article.Id })" class=" btn btn-lg btn-red">
+                        </a> <a href="@Url.Action("Delete", "Articles", routeValues: new { id = article.Id })" class=" btn btn-red">
                             <i class="fa fa-close"></i> Xóa bài viết
                         </a>
                     </div>
@@ -242,8 +242,7 @@
                     <ul class="post-details">
                         <li>
                             <i class="fa fa-user"></i> <span class="text-muted">
-                                Người
-                                đăng:
+                                Người đăng:
                             </span> @postedUser.UserName
                         </li>
                         <li><i class="fa fa-calendar"></i> @article.PostedDate</li>
@@ -253,18 +252,22 @@
 
                     <h2 class="text-underline">Bình luận</h2>
                     <!-- COMMENTS -->
-                    <div class="feed-form">
+                    <div class="new-comment-container">
+
                         <textarea class="form-control" placeholder="Nội dung ..." rows="5" id="commentContent"></textarea>
-                        <div class="post-toolbar">
-                            <button class="pull-right" data-toggle="tooltip"
-                                    data-placement="top" title="Đăng!" id="submitComment">
+                        <div class="post-toolbar text-right">
+                            <button data-toggle="tooltip" data-placement="top" title="" data-original-title="Đăng!" id="submitComment">
                                 <i class="fa fa-share"></i>
                             </button>
                             <input type="hidden" id="articleId" value="@article.Id">
                             <input type="hidden" id="userName" value="@User.Identity.Name">
                         </div>
+
                     </div>
-                    <br /><br />
+
+
+                 
+                   
                     <div class="comments" id="commentsDiv">
                         @foreach (var item in comments)
                         {

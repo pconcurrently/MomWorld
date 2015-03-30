@@ -1,5 +1,9 @@
+ul{
+      list-style-type: disc;
+}
+
 a {
-	color: #00adeb;
+	color: #717171;
 }
 
 a:hover {

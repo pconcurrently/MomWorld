@@ -790,6 +790,7 @@ border: 5px solid white;
 .slider .owl-carousel .item p.lead {
     font-size: 22px;
     margin-bottom: 20px;
+    color: white;
 }
 .slider .owl-carousel .item .btn {
     margin: 20px 0;
@@ -972,7 +973,7 @@ section.section.featured .btn {
 }
 section.section:not(.featured) p.lead {
     font-size: 18px;
-    color: #b1b1b1;
+    color: #737373;
 }
 section.section.error {
     margin-top: 120px;
@@ -1851,7 +1852,7 @@ figure figcaption {
 }
 figure figcaption h5 {
     font-weight: 700;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     margin-bottom: 0;
 }
 figure figcaption span {
