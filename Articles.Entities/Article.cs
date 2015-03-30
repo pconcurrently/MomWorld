@@ -43,6 +43,19 @@ namespace MomWorld.Entities
         public string LastSeenUserId { get; set; }
 
         public string Description { get; set; }
+
+
+        public int Status { get; set; }
+    }
+
+    public enum ArticleStatus
+    {
+        CreatedByAdmins = 0,
+        Pending = 1,
+        Approved = 2,
+        Reported = 3,
+        Bad = 4,
+        Normal = 5
     }
 
     //public class ApplicationUser : IdentityUser
