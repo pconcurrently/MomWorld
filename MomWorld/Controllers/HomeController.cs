@@ -33,5 +33,16 @@ namespace MomWorld.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public void uploadnow(HttpPostedFileWrapper upload)
+        {
+            if (upload != null)
+            {
+                string ImageName = upload.FileName;
+                string path = System.IO.Path.Combine(Server.MapPath("~/Images/uploads"), ImageName);
+                upload.SaveAs(path);
+            }
+        }
     }
 }

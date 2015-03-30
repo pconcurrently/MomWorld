@@ -25,7 +25,10 @@ namespace MomWorld.Controllers
         // GET: Articles
         public ActionResult Index()
         {
+            var comments = commentDb.Comments.ToList();
             var articles = db.Articles.ToList();
+
+            ViewData["Comments"] = comments;
             return View(articles);
         }
 
