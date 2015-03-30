@@ -98,7 +98,7 @@
                 </a>
                 <div class="navbar-toggle" data-toggle="collapse"
                      data-target=".navbar-collapse">
-                    <a href="timeline.html#">
+                    <a href="index.html#">
                         <i class="fa fa-bars"></i>
                     </a>
                 </div>
@@ -109,7 +109,7 @@
                 <ul class="nav navbar-nav">
 
                     <li class="active">
-                        <a href="index.html"
+                        <a href="@Url.Action("Index","Home")"
                            data-0="padding: 30px 25px 22px;"
                            data-300="padding: 15px 25px 10px;">
                             <img class="icon-nav"
@@ -118,7 +118,7 @@
                     </li>
 
                     <li>
-                        <a href="pre-pregnancy.html"
+                        <a href="@Url.Action("Timeline","NineMonthArticles")"
                            data-0="padding: 30px 25px 22px;"
                            data-300="padding: 15px 25px 10px;">
                             <img class="icon-nav"
@@ -135,22 +135,34 @@
                                  src="@Url.Content("~/Content/images/icon-nav/advisory.png")"> Tư vấn
                         </a>
                     </li>
+
+                    <li>
+                        <a href="video.html" data-0="padding: 30px 25px 22px;"
+                           data-300="padding: 15px 25px 10px;">
+                            <img class="icon-nav"
+                                 src="@Url.Content("~/Content/images/icon-nav/video.png")"> Video
+                        </a>
+                    </li>
+
+
+
+
+                    <!-- LOGIN BUTTON LINK -->
                     <!-- USE AFTER LOGIN -->
                     @Html.Partial("_LoginPartial")
+                    <!--/.navbar-collapse -->
+
 
                     <li class="search">
                         <input type="text" placeholder="&#61442;"
                                data-0="margin-top:23px" data-300="margin-top:10px">
                     </li>
+
+
                 </ul>
             </div>
-            <!--/.navbar-collapse -->
-
-
-
 
         </div>
-
     </div>
     <!-- END NAVBAR -->
     <!-- BEGIN BREADCRUMBS -->
@@ -340,7 +352,7 @@
     <script src="http://maps.google.com/maps/api/js?sensor=false"
             type="text/javascript"></script>
 
-    <script src="@Url.Content("~/Content/js/minimal.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/minimal.min.nogooglemaps.js")"></script>
 
 
     <script type="text/javascript"
