@@ -24,13 +24,13 @@
 }
 .mask #loader {
     background: url(../images/loader.gif) center center no-repeat;
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     left: 50%;
     top: 50%;
     position: absolute;
     margin: -25px 0 0 -25px;
-    background-size: 100px 100px;
+    background-size: 50px 50px;
 }
 h2 {
     font-size: 32px;
@@ -790,7 +790,6 @@ border: 5px solid white;
 .slider .owl-carousel .item p.lead {
     font-size: 22px;
     margin-bottom: 20px;
-    color: white;
 }
 .slider .owl-carousel .item .btn {
     margin: 20px 0;
@@ -973,7 +972,7 @@ section.section.featured .btn {
 }
 section.section:not(.featured) p.lead {
     font-size: 18px;
-    color: #737373;
+    color: #b1b1b1;
 }
 section.section.error {
     margin-top: 120px;
@@ -1852,7 +1851,7 @@ figure figcaption {
 }
 figure figcaption h5 {
     font-weight: 700;
-    /* text-transform: uppercase; */
+    text-transform: uppercase;
     margin-bottom: 0;
 }
 figure figcaption span {
@@ -2339,7 +2338,7 @@ section.error .controls .btn {
     margin-right: 0;
 }
 .post-details>li i {
-    color: #418bca;
+    color: #717171;
     font-size: 14px;
     margin-right: 2px;
 }
@@ -2379,7 +2378,7 @@ section.error .controls .btn {
     border: 0;
 }
 
-.top-box-post{line-height: 47px; margin-bottom: 50px;background: white;padding: 5px;border-top: 5px solid wheat;}
+.top-box-post{line-height: 47px; margin-bottom: 50px;background: white;padding: 10px;border-top: 5px solid rgb(0, 168, 255);list-style: none;display: inline-flex;width: 100%;}
 .top-box-post .avatar-post {height: 80px; width: 80px;}
 .top-box-post .armorial-post {height: 80px; width: 80px; display: inline-block;}
 .top-box-post .post-details {
