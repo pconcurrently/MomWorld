@@ -5063,13 +5063,13 @@ body .mask {
 }
 body .mask #loader {
   background: url(../images/loader.gif) center center no-repeat;
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     left: 50%;
     top: 50%;
     position: absolute;
     margin: -25px 0 0 -25px;
-    background-size: 100px 100px;
+    background-size: 50px 50px;
 }
 body > .videocontent {
   position: fixed;
