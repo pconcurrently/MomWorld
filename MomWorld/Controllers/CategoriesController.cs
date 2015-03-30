@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MomWorld.DataContexts;
 using MomWorld.Entities;
+using MomWorld.Models;
 
 namespace MomWorld.Controllers
 {
@@ -133,6 +134,29 @@ namespace MomWorld.Controllers
         {
             var categoriesDb = db.Categories.ToList();
             return Json(categoriesDb, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult CreateCategory(CategoryViewModel category)
+        {
+            if (ModelState.IsValid)
+            {
+                Category cate = new Category();
+                cate.Name = category.Name;
+                cate.Description = category.Description;
+
+                try
+                {
+                    db.Categories.Add(cate);
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return Json(null);
+                }
+                return Json("Successfully");
+            }
+            return Json(null);
+            
         }
     }
 }

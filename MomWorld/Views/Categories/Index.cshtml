@@ -94,7 +94,7 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label for="videoTitle">Tên danh mục:</label> <input type="text"
-                                                                                     class="form-control" id="videoTitle"
+                                                                                     class="form-control" id="categoryName"
                                                                                      placeholder="Nhập tên danh mục ...">
                             </div>
 
@@ -102,15 +102,15 @@
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label for="comment">Nội dung:</label>
-                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                <label for="comment">Mô tả:</label>
+                                <textarea class="form-control" rows="2" id="categoryDescription"></textarea>
                             </div>
 
                         </div>
 
                         <div class="form-group form-footer">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button type="submit" class="btn btn-green">Thêm</button>
+                                <button type="submit" class="btn btn-green" id="submitCategory">Thêm</button>
                                 <button type="reset" class="btn btn-red">Hủy</button>
                             </div>
                         </div>
@@ -174,9 +174,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
-
-
     <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
@@ -268,21 +265,21 @@
     </div>
     <!-- END NAVBAR -->
     <!-- BEGIN BREADCRUMBS -->
-    
     <!-- END BREADCRUMBS -->
     <!-- PRE-PREGNANCY PAGE -->
     <section class="section">
         <div class="container">
-            <div class="row">
-
-                <div class="col-md-12 text-right">
-                    <a href="pre-pregnancy.html#modalCreateCategory"
-                       data-toggle="modal" class="btn btn-warning">
-                        <i class="fa fa-plus-circle"></i> Thêm danh mục
-                    </a>
+            @if (User.Identity.Name.Equals("admin"))
+            {
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a href="#modalCreateCategory"
+                           data-toggle="modal" class="btn btn-warning">
+                            <i class="fa fa-plus-circle"></i> Thêm danh mục
+                        </a>
+                    </div>
                 </div>
-            </div>
-
+            }
 
             <hr class="post-divider">
 
@@ -344,96 +341,99 @@
                     </div>
                     @foreach (var category in categories)
                     {
+                        if (category.Articles.Count != 0 || User.Identity.Name.Equals("admin"))
+                        {
+                            <div id="@idDictionary[category.Id]" class="row content-category">
+                                <div class="category">
+                                    <div class="title">
+                                        <div class="row">
+                                            <div class="col-md-12 ">
+                                                <div class="col-md-4">
+                                                    <h3 class="headline">@category.Name</h3>
+                                                </div>
+                                                <div class="col-md-8 text-center" style="line-height: 70px;">
+                                                    <a href="pre-pregnancy.html#modalEditCategory"
+                                                       data-toggle="modal" class="btn btn-green">
+                                                        <i class="fa fa-plus-circle"></i> Sửa danh mục
+                                                    </a> <a class="btn btn-red">
+                                                        <i class="fa fa-close"></i> Xóa
+                                                        danh mục
+                                                    </a> <a href="post.html" type="button" class="btn btn-cyan">
+                                                        Xem thêm <span class="btn-side">
+                                                            <i class="fa fa-chevron-right"></i>
+                                                        </span>
+                                                    </a>
+                                                </div>
 
-                        <div id="@idDictionary[category.Id]" class="row content-category">
-                            <div class="category">
-                                <div class="title">
-                                    <div class="row">
-                                        <div class="col-md-12 ">
-                                            <div class="col-md-4">
-                                                <h3 class="headline">@category.Name</h3>
                                             </div>
-                                            <div class="col-md-8 text-center" style="line-height: 70px;">
-                                                <a href="pre-pregnancy.html#modalEditCategory"
-                                                   data-toggle="modal" class="btn btn-green">
-                                                    <i class="fa fa-plus-circle"></i> Sửa danh mục
-                                                </a> <a class="btn btn-red">
-                                                    <i class="fa fa-close"></i> Xóa
-                                                    danh mục
-                                                </a> <a href="post.html" type="button" class="btn btn-cyan">
-                                                    Xem thêm <span class="btn-side">
-                                                        <i class="fa fa-chevron-right"></i>
-                                                    </span>
-                                                </a>
-                                            </div>
-
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="Content">
-                                    <div class="col-md-12">
+                                    <div class="Content">
+                                        <div class="col-md-12">
 
-                                        <div class="owl-carousel owl-theme">
+                                            <div class="owl-carousel owl-theme">
 
-                                            @foreach (var article in articles)
-                                            {
-                                                if (article.CategoryId.Equals(category.Id))
+                                                @foreach (var article in articles)
                                                 {
-                                                    <div class="item appear-el" data-animation="fadeIn">
-                                                        <figure>
+                                                    if (article.CategoryId.Equals(category.Id))
+                                                    {
+                                                        <div class="item appear-el" data-animation="fadeIn">
+                                                            <figure>
 
-                                                            <div class="img-view">
+                                                                <div class="img-view">
 
-                                                                <img src="@Url.Content("~/Content/images/post/1.jpg")"
-                                                                     alt="Place description here">
+                                                                    <img src="@Url.Content("~/Content/images/post/1.jpg")"
+                                                                         alt="Place description here">
 
-                                                                <div class="overlay">
+                                                                    <div class="overlay">
 
-                                                                    <div class="overlay-controls">
-                                                                        <a href="@Url.Content("~/Content/images/post/1.jpg")" data-nivobox="true"
-                                                                           data-lightbox-gallery="gallery1">
-                                                                            <i class="fa fa-arrows-alt"></i>
-                                                                        </a> <a href="post-item.html#"><i class="fa fa-chain"></i></a>
+                                                                        <div class="overlay-controls">
+                                                                            <a href="@Url.Content("~/Content/images/post/1.jpg")" data-nivobox="true"
+                                                                               data-lightbox-gallery="gallery1">
+                                                                                <i class="fa fa-arrows-alt"></i>
+                                                                            </a> <a href="post-item.html#"><i class="fa fa-chain"></i></a>
+                                                                        </div>
+
                                                                     </div>
 
                                                                 </div>
 
-                                                            </div>
+                                                                <figcaption>
+                                                                    <h5>@article.Title</h5>
+                                                                    <span>@article.Content</span>
+                                                                </figcaption>
 
-                                                            <figcaption>
-                                                                <h5>@article.Title</h5>
-                                                                <span>@article.Content</span>
-                                                            </figcaption>
-
-                                                        </figure>
-                                                    </div>
+                                                            </figure>
+                                                        </div>
+                                                    }
                                                 }
-                                            }
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-12 text-center">
-
-                                        <div class="btn-group custom-navigation">
-                                            <button type="button" class="btn prev">
-                                                <i class="fa fa-chevron-left"></i>
-                                            </button>
-                                            <button type="button" class="btn next">
-                                                <i class="fa fa-chevron-right"></i>
-                                            </button>
-
+                                            </div>
 
                                         </div>
+                                        <div class="col-md-12 text-center">
+
+                                            <div class="btn-group custom-navigation">
+                                                <button type="button" class="btn prev">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                </button>
+                                                <button type="button" class="btn next">
+                                                    <i class="fa fa-chevron-right"></i>
+                                                </button>
+
+
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                 </div>
-
                             </div>
-                        </div>
 
-                        <div class="separator"></div>
-                                            count += 1;
+                            <div class="separator"></div>
+
+                        }
+                        count += 1;
                     }
                 </div>
 
@@ -740,6 +740,24 @@
             c2.trigger("owl.prev");
         });
     </script>
-
+    <script type="text/javascript">
+        $('#submitCategory').click(function () {
+            var name = $('#categoryName').val();
+            var description = $('#categoryDescription').val();
+            $.ajax({
+                url: '/Categories/CreateCategory',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ category: { name: name, description: description } }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    window.location.reload(true);
+                },
+            });
+        });
+    </script>
 </body>
 </html>
