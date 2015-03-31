@@ -1,8 +1,9 @@
 ﻿'use strict';
 
-var profileApp = angular.module('profileApp', ['angular-md5', 'firebase']);
+var profileApp = angular.module('profileApp', ['angular-md5', 'firebase', 'angularFileUpload']);
 
-profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', '$firebaseObject', '$firebaseArray', function ($scope, $http, md5, $firebaseObject, $firebaseArray) {
+profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', '$firebaseObject', '$firebaseArray', 'FileUploader', '$window',
+function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $window) {
 
     var userStatus = new Firebase("https://momworld.firebaseio.com/Status/user1");
     $scope.statusFirebase = $firebaseArray(userStatus);
@@ -14,7 +15,7 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', '$firebaseObject
 
     $scope.loadProfile = function () {
         /* Get user Profile from User API */
-        $http.get("http://localhost:4444/api/User/user1").
+        $http.get("http://localhost:4444/api/User/Get/user1").
               success(function (data, status, headers, config) {
                   $scope.user = data;
               }).
@@ -26,8 +27,7 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', '$firebaseObject
 
     /* Update Profile  */
     $scope.updateProfile = function () {
-       //
-
+       
         var sentData = {
             FirstName: $scope.user.FirstName,
             LastName: $scope.user.LastName,
@@ -45,6 +45,43 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', '$firebaseObject
               error(function (data, status, headers, config) {
                   alert("Update CL");
               });
+
+    }
+
+    var uploader = $scope.uploader = new FileUploader({
+        url: "http://localhost:4444/api/User/UploadAvatar",
+        formData: [{Username: "user1"}]
+         
+    });
+
+    uploader.onSuccessItem = function (fileItem, response, status, headers) {
+        console.info('onSuccessItem', fileItem, response, status, headers);
+        $window.location.reload();
+        
+    };
+
+    uploader.onCompleteAll = function () {
+        console.info('onCompleteAll');
+    };
+
+    uploader.onErrorItem = function (fileItem, response, status, headers) {
+        console.info('onErrorItem', fileItem, response, status, headers);
+    };
+
+
+    /* Update Profile  */
+    $scope.updateAvatar = function () {
+
+        var sentData = {
+            FirstName: $scope.user.FirstName,
+            LastName: $scope.user.LastName,
+            PhoneNumber: $scope.user.PhoneNumber,
+
+        }
+
+        $scope.uploader.uploadAll(function () {
+
+        });
 
     }
 
@@ -110,10 +147,49 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', '$firebaseObject
 
     }
 
+}]);
 
+profileApp.directive('ngThumb', ['$window', function ($window) {
+    var helper = {
+        support: !!($window.FileReader && $window.CanvasRenderingContext2D),
+        isFile: function (item) {
+            return angular.isObject(item) && item instanceof $window.File;
+        },
+        isImage: function (file) {
+            var type = '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
+            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        }
+    };
 
+    return {
+        restrict: 'A',
+        template: '<canvas/>',
+        link: function (scope, element, attributes) {
+            if (!helper.support) return;
 
+            var params = scope.$eval(attributes.ngThumb);
 
+            if (!helper.isFile(params.file)) return;
+            if (!helper.isImage(params.file)) return;
 
+            var canvas = element.find('canvas');
+            var reader = new FileReader();
 
+            reader.onload = onLoadFile;
+            reader.readAsDataURL(params.file);
+
+            function onLoadFile(event) {
+                var img = new Image();
+                img.onload = onLoadImage;
+                img.src = event.target.result;
+            }
+
+            function onLoadImage() {
+                var width = params.width || this.width / this.height * params.height;
+                var height = params.height || this.height / this.width * params.width;
+                canvas.attr({ width: width, height: height });
+                canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
+            }
+        }
+    };
 }]);

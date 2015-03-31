@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
 
@@ -34,7 +36,7 @@ namespace MomWorld.Controllers
         // POST: api/User
         public void Post([FromBody]string value)
         {
-
+            Console.Write(value);
         }
 
         // PUT: api/User/{{UserName}}
@@ -54,6 +56,40 @@ namespace MomWorld.Controllers
         // DELETE: api/User/5
         public void Delete(int id)
         {
+        }
+
+        // POST: api/User/UploadAvatar
+        [HttpPost]
+        public HttpResponseMessage UploadAvatar()
+        {
+            HttpResponseMessage result = null;
+            var httpRequest = HttpContext.Current.Request;
+            if (httpRequest.Files.Count > 0)
+            {
+                foreach (string file in httpRequest.Files)
+                {                    
+                    var postedFile = httpRequest.Files[file];
+                    var name = httpRequest.Form.Get(0);
+
+                    // Save file to Responsitory
+                    var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/avatar/" + name + ".png");
+                    postedFile.SaveAs(filePath);
+
+                    // Change User ProfilePiture in Database
+                    var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(name));
+                    user.ProfilePicture = "http://localhost:4444/App/uploads/avatar/" + name + ".png";
+                    identityDb.SaveChanges();
+
+                }
+                result = Request.CreateResponse(HttpStatusCode.Created);
+            }
+            else
+            {
+                result = Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            return result;
+            
         }
     }
 }
