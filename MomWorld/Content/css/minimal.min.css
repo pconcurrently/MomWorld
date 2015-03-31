@@ -2355,6 +2355,7 @@ section.error .controls .btn {
     background-color: #FFFFFF;
     padding: 20px;
     border-top: 3px solid wheat;
+    display: inline-block;
 }
 .post-item blockquote p {
     color: #717171;
