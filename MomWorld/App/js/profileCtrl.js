@@ -1,23 +1,16 @@
 ﻿'use strict';
 
-var profileApp = angular.module('profileApp', ['angular-md5']);
+var profileApp = angular.module('profileApp', ['angular-md5', 'firebase']);
 
-profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', function ($scope, $http, md5) {
+profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', '$firebaseObject', '$firebaseArray', function ($scope, $http, md5, $firebaseObject, $firebaseArray) {
 
-    /* Get Prfile request URL */
-    var gravatar = 'http://www.gravatar.com/' + md5.createHash("trungnm0512@gmail.com" || '') + '.json';
+    var userStatus = new Firebase("https://momworld.firebaseio.com/Status/user1");
+    $scope.statusFirebase = $firebaseArray(userStatus);
 
     $scope.user = {
     }
 
-    $scope.statuses = [
-        {
-            CreatorName: "TrungNM", Content: "YOloo 111",
-            Comment: [{}]
-        },
-        { CreatorName: "PhoHT", Content: "YOloo 222" },
 
-    ]
 
     $scope.loadProfile = function () {
         /* Get user Profile from User API */
@@ -33,11 +26,13 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', function ($scope
 
     /* Update Profile  */
     $scope.updateProfile = function () {
-
+       //
 
         var sentData = {
             FirstName: $scope.user.FirstName,
-            LastName: $scope.user.LastName
+            LastName: $scope.user.LastName,
+            PhoneNumber: $scope.user.PhoneNumber,
+
         }
 
         console.log(JSON.stringify(sentData));
@@ -50,6 +45,68 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', function ($scope
               error(function (data, status, headers, config) {
                   alert("Update CL");
               });
+
+    }
+
+    /* Retrive all Status from API */
+    $scope.loadStatus = function () {
+
+    }
+
+    /* Create new Status using Status API */
+    $scope.createStatus = function () {
+        
+        var sentData = {
+                Content: $scope.Content,
+                CreatorName: $scope.user.LastName + " " + $scope.user.FirstName,
+                CreatorUsername: "user1",
+                CreatorAvatar: "http://meobeoi.com/wp-content/uploads/2014/06/hoanhtrang.jpg",
+                createdDate: Firebase.ServerValue.TIMESTAMP
+        }
+
+        $scope.statusFirebase.$add(sentData).then(
+             $scope.Content = ""
+        );
+
+    }
+
+    /* Remove Selected Status using Status API */
+    $scope.removeStatus = function (_status) {
+        $scope.statusFirebase.$remove(_status).then(
+            
+        );
+
+    }
+
+
+    /* Create new Commment using Status API */
+    $scope.addComment = function (_user, _status, _comment) {
+
+        var sentData = {
+            Content: _comment,
+            CreatorName: _user.FirstName + " " + _user.LastName,
+            CreatorUsername: "user1",
+            CreatorAvatar: "http://meobeoi.com/wp-content/uploads/2014/06/hoanhtrang.jpg",
+            createdDate: Firebase.ServerValue.TIMESTAMP
+        }
+        var commentStatus = new Firebase("https://momworld.firebaseio.com/Status/user1/" + _status.$id + "/Comment");
+        var commentFirebase = $firebaseArray(commentStatus);
+
+        commentFirebase.$add(sentData).then(
+             $scope.commentContent = ""
+        );
+
+    }
+
+    /* Delete Selected Commment*/
+    $scope.removeComment = function (_user, _status) {
+
+        var commentStatus = new Firebase("https://momworld.firebaseio.com/Status/user1/" + _status.$id + "/Comment");
+        var commentFirebase = $firebaseArray(commentStatus);
+
+        commentFirebase.$remove(_status).then(
+             
+        );
 
     }
 
