@@ -235,7 +235,7 @@ namespace MomWorld.Controllers
         public JsonResult Like(string articleId)
         { 
             string userId = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
-            ArticleLike check =  db.ArticleLikes.ToList().First(al => al.ArticleId.Equals(articleId) && al.UserId.Equals(userId));
+            ArticleLike check =  db.ArticleLikes.ToList().FirstOrDefault(al => al.ArticleId.Equals(articleId) && al.UserId.Equals(userId));
             if (check == null)
             {
                 try
