@@ -45,18 +45,28 @@ namespace MomWorld.Controllers
             {
                 return HttpNotFound();
             }
-            article.ViewNumber += 1;
-            db.SaveChanges();
-            ApplicationUser postedUser = identityDb.Users.FirstOrDefault(x => x.Id.Equals(article.UserId));
-            Category category = categoryDb.Categories.FirstOrDefault(c => c.Id.Equals(article.CategoryId));
-            var comments = commentDb.Comments.ToList().FindAll(cmt => cmt.ArticleId.Equals(article.Id));
-            comments.OrderBy(cmt=>cmt.Date);
+            if (article.Status == (int)ArticleStatus.Approved || article.Status == (int)ArticleStatus.CreatedByAdmins
+                || article.Status == (int)ArticleStatus.Normal)
+            {
+                article.ViewNumber += 1;
+                db.SaveChanges();
+                ApplicationUser postedUser = identityDb.Users.FirstOrDefault(x => x.Id.Equals(article.UserId));
+                Category category = categoryDb.Categories.FirstOrDefault(c => c.Id.Equals(article.CategoryId));
+                var comments = commentDb.Comments.ToList().FindAll(cmt => cmt.ArticleId.Equals(article.Id));
+                comments.OrderBy(cmt => cmt.Date);
 
-            ViewData["PostedUser"] = postedUser;
-            ViewData["Article"] = article;
-            ViewData["Category"] = category;
-            ViewData["Comments"] = comments;
-            return View();
+                ViewData["PostedUser"] = postedUser;
+                ViewData["Article"] = article;
+                ViewData["Category"] = category;
+                ViewData["Comments"] = comments;
+                return View();
+            }
+            else
+            {
+                //TO DO
+                //Bài báo xấu
+                return Redirect("Bài báo xấu");
+            }
         }
 
         // GET: Articles/Create
@@ -83,6 +93,17 @@ namespace MomWorld.Controllers
             article.PostedDate = DateTime.Now;
             article.LastModifiedDate = DateTime.Now;
             article.ViewNumber = 0;
+            article.Description = ParseHtml(article.Content);
+
+            if (!user.Roles.FirstOrDefault().ToString().Equals("Admins"))
+            {
+                article.Status = (int)ArticleStatus.Pending;
+            }
+            else
+            {
+                article.Status = (int)ArticleStatus.CreatedByAdmins;
+            }
+
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
@@ -180,5 +201,17 @@ namespace MomWorld.Controllers
             }
             return Json(returnArticles, JsonRequestBehavior.AllowGet);
         }
+
+        public static string ParseHtml(string html){
+
+            html = html.Substring(0, html.IndexOf("</p>") - 1);
+        //var htmlSymbols = new string[] {"<p>", "</p>", "<br>", "<b>","</b>"};
+        //    foreach(var item in htmlSymbols)
+        //    {
+        //        html = html.Replace(item,string.Empty);
+        //    }
+            return html;
+        }
+        
     }
 }

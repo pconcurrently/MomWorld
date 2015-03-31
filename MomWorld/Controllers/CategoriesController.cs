@@ -20,8 +20,10 @@ namespace MomWorld.Controllers
         // GET: Categories
         public ActionResult Index()
         {
+            List<Article> articles = articleDb.Articles.ToList();
+            articles.RemoveAll(art => art.Status.Equals(ArticleStatus.Pending) || art.Status.Equals(ArticleStatus.Bad));
             ViewData["Categories"] = db.Categories.ToList();
-            ViewData["Articles"] = articleDb.Articles.ToList();
+            ViewData["Articles"] = articles;
 
             return View();
         }
