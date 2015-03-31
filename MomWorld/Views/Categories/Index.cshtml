@@ -343,7 +343,7 @@
                     {
                         if (category.Articles.Count != 0 || User.Identity.Name.Equals("admin"))
                         {
-                            <div id="@string.Format("category{0}",idDictionary[category.Id])" class=" row content-category">
+                            <div id="@idDictionary[category.Id]" class=" row content-category">
                                 <div class="category">
                                     <div class="title">
                                         <div class="row">
@@ -393,7 +393,7 @@
                                                                 </div>
                                                                 <figcaption>
                                                                     <h5>@article.Title</h5>
-                                                                    <span>@article.Content</span>
+                                                                    <span>@Html.Raw(article.Content)</span>
                                                                 </figcaption>
                                                             </figure>
                                                         </div>
@@ -416,7 +416,7 @@
                                 </div>
                             </div>
 
-                            div class="separator"></div>
+                            <div class="separator"></div>
 
                         }
                         count += 1;
