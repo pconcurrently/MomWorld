@@ -2394,6 +2394,15 @@ section.error .controls .btn {
 }
 
 
+.post-item .comments {
+    background:white;
+    border-radius:5px;
+}
+
+
+
+
+
  .feed-form textarea,
 .new-comment-container textarea {
   width: 100%;
@@ -2446,7 +2455,7 @@ section.error .controls .btn {
 
 
 .post-item .comments .comment {
-    margin-bottom: 20px;
+    padding: 20px;
 }
 .post-item .comments .comment .profile-photo {
     width: 10%;
@@ -2462,8 +2471,8 @@ section.error .controls .btn {
     width: 85%;
     display: inline-block;
     vertical-align: top;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 20px;
+    /* border-bottom: 1px solid #eee; */
+    /* padding-bottom: 20px; */
 }
 .post-item .comments .comment .comment-container header {
     margin-bottom: 10px;
@@ -2479,9 +2488,10 @@ section.error .controls .btn {
     color: #8b8b8b;
 }
 .post-item .comments .comment .comment-container header .author small {
-    display: block;
+    display: inline-block;
     color: #a4a4a4;
     font-size: 11px;
+    margin-left: 10px;
 }
 .post-item .comments .comment .comment-container .comment-content p {
     font-size: 12px;
