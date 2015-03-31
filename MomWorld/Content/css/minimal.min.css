@@ -2391,7 +2391,7 @@ section.error .controls .btn {
   background: transparent;
   }
 
-.top-box-post{line-height: 47px; margin-bottom: 50px;background: white;padding: 10px;border-top: 5px solid rgb(0, 168, 255);list-style: none;display: inline-flex;width: 100%;}
+.top-box-post{/* line-height: 47px; */ /* margin-bottom: 50px; */background: white;padding: 10px;border-top: 5px solid rgb(0, 168, 255);list-style: none;display: inline-flex;width: 100%;}
 .top-box-post .avatar-post {height: 80px; width: 80px;}
 .top-box-post .armorial-post {height: 80px; width: 80px; display: inline-block;}
 .top-box-post .post-details {
