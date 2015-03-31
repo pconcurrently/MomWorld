@@ -343,7 +343,7 @@
                     {
                         if (category.Articles.Count != 0 || User.Identity.Name.Equals("admin"))
                         {
-                            <div id="@idDictionary[category.Id]" class="row content-category">
+                            <div id="@string.Format("category{0}",idDictionary[category.Id])" class=" row content-category">
                                 <div class="category">
                                     <div class="title">
                                         <div class="row">
@@ -358,7 +358,6 @@
                                                     <a href="pre-pregnancy.html#modalEditCategory" data-toggle="modal" class="btn btn-green">
                                                         <i class="fa fa-plus-circle"></i> Sửa danh mục
                                                     </a>
-
                                                     <a class="btn btn-red">
                                                         <i class="fa fa-close"></i> Xóa
                                                         danh mục
@@ -368,55 +367,41 @@
                                                         </span>
                                                     </a>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="Content">
                                         <div class="col-md-12">
-
                                             <div class="owl-carousel owl-theme">
-
                                                 @foreach (var article in articles)
                                                 {
                                                     if (article.CategoryId.Equals(category.Id))
                                                     {
                                                         <div class="item appear-el" data-animation="fadeIn">
                                                             <figure>
-
                                                                 <div class="img-view">
-
                                                                     <img src="@Url.Content("~/Content/images/post/1.jpg")"
                                                                          alt="Place description here">
-
                                                                     <div class="overlay">
-
                                                                         <div class="overlay-controls">
                                                                             <a href="@Url.Content("~/Content/images/post/1.jpg")" data-nivobox="true"
                                                                                data-lightbox-gallery="gallery1">
                                                                                 <i class="fa fa-arrows-alt"></i>
                                                                             </a> <a href="post-item.html#"><i class="fa fa-chain"></i></a>
                                                                         </div>
-
                                                                     </div>
-
                                                                 </div>
-
                                                                 <figcaption>
                                                                     <h5>@article.Title</h5>
                                                                     <span>@article.Content</span>
                                                                 </figcaption>
-
                                                             </figure>
                                                         </div>
                                                     }
                                                 }
                                             </div>
-
                                         </div>
                                         <div class="col-md-12 text-center">
-
                                             <div class="btn-group custom-navigation">
                                                 <button type="button" class="btn prev">
                                                     <i class="fa fa-chevron-left"></i>
@@ -425,16 +410,13 @@
                                                     <i class="fa fa-chevron-right"></i>
                                                 </button>
 
-
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
 
-                            <div class="separator"></div>
+                            div class="separator"></div>
 
                         }
                         count += 1;
@@ -561,95 +543,6 @@
         </div>
     </section>
     <!-- END PRE-PREGNANCY PAGE -->
-    <!-- FOOTER -->
-    <footer id="footer">
-
-        <div class="footer-main">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-4">
-
-                        <div class="widget widget-about">
-                            <img class="img-responsive" src="@Url.Content("~/Content/images/slider/1.png")"
-                                 style="max-width: 30%;">
-                            <h2>
-                                <strong>Mom's </strong>World
-                            </h2>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4">
-
-                        <div class="widget widget-newsletter">
-
-                            <h4>
-                                <strong>Nhận bản tin</strong>
-                            </h4>
-                            <p>
-                                Theo dõi bản tin của chúng tôi và luôn cập nhật các tin
-                                tức mới nhất !
-                            </p>
-
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                       placeholder="NHập địa chỉ email của bạn"> <span class="input-group-btn">
-                                    <button class="btn btn-theme" type="button">Đăng kí</button>
-                                </span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="col-md-4">
-                        <div class="widget widget-contact">
-                            <h4>
-                                <strong>Liên hệ</strong> với chúng tôi
-                            </h4>
-                            <address>
-                                <strong>Địa chỉ :</strong> FPT_University - Đà Nẵng<br> <strong>
-                                    Điện
-                                    thoại :
-                                </strong> +84 01655757445<br> <strong>Email:</strong> <a href="mailto:exc-group@gmail.com">exc-group@gmail.com</a><br>
-                            </address>
-                        </div>
-
-                        <div class="widget widget-social">
-                            <a href="index.html#">
-                                <span class="overlay bg-cyan"></span>
-                                <i class="fa fa-twitter" style="padding-left: 10px;"></i>
-                            </a> <a href="index.html#">
-                                <span class="overlay bg-blue"></span><i class="fa fa-facebook" style="padding-left: 14px;"></i>
-                            </a> <a href="index.html#">
-                                <span class="overlay bg-red"></span><i class="fa fa-google-plus" style="padding-left: 10px;"></i>
-                            </a> <a href="index.html#">
-                                <span class="overlay"></span><i class="fa fa-flickr" style="padding-left: 10px;"></i>
-                            </a> <a href="index.html#">
-                                <span class="overlay bg-hotpink"></span><i class="fa fa-dribbble" style="padding-left: 10px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-12 copyright">
-                        &copy; Copyright 2014 by <a href="index.html#">KhoaHN</a>. All
-                        Rights Reserved.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </footer>
-    <!-- END FOOTER -->
     <!-- SCROLL TOP -->
     <div class="scroll-top">
         <a href="contacts.html#">
