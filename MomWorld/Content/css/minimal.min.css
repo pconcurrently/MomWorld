@@ -2356,6 +2356,7 @@ section.error .controls .btn {
     padding: 20px;
     border-top: 3px solid wheat;
     display: inline-block;
+    width: 100%;
 }
 .post-item blockquote p {
     color: #717171;
@@ -2378,6 +2379,10 @@ section.error .controls .btn {
     padding: 0;
     border: 0;
 }
+
+.post-item .post-details button#like,.post-item .post-details button#unlike, .post-item .post-details button#report{border: none;
+  background: transparent;
+  color: #00adeb;}
 
 .top-box-post{line-height: 47px; margin-bottom: 50px;background: white;padding: 10px;border-top: 5px solid rgb(0, 168, 255);list-style: none;display: inline-flex;width: 100%;}
 .top-box-post .avatar-post {height: 80px; width: 80px;}

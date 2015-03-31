@@ -178,10 +178,21 @@
 
                         <li>
                             <button id="like">
-                                <i class="fa fa-heart color-red"></i>
-                                Thích
-                            </button> <span id="likesNumber" data-value="@articleLikes.Count">(@articleLikes.Count người thích)</span>
+                                <i class="fa fa-thumbs-up color-cyan"></i>
+                                Cảm ơn
+                            </button> <span id="likesNumber" data-value="@articleLikes.Count">(@articleLikes.Count người cảm ơn)</span>
                         </li>
+
+
+                        @*Sau khi cảm ơn*@
+
+                        @*<li>
+                            <button id="unlike" disabled>
+                                <i class="fa fa-thumbs-up color-red"></i>
+                                Đã cảm ơn
+                            </button> <span id="likesNumber" data-value="@articleLikes.Count">(@articleLikes.Count người cảm ơn)</span>
+                        </li>*@
+
                         <li>
                             <i class="fa fa-user"></i> <span class="text-muted">
                                 Người đăng:
@@ -193,9 +204,9 @@
 
 
                         <li style="float: right">
-                            <a href="#" id="report">
+                            <button id="report">
                                 <i class="fa fa-exclamation-circle color-red"></i> Báo xấu
-                            </a>
+                            </button>
                         </li>
                     </ul>
 
