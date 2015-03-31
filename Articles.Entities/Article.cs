@@ -60,11 +60,18 @@ namespace MomWorld.Entities
 
     public class ArticleLike
     {
+        [Required]
+        [MaxLength(128)]
         public string Id { get; set; }
 
         public string UserId { get; set; }
 
         public string ArticleId { get; set; }
+
+        public ArticleLike()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
     }
 
     //public class ApplicationUser : IdentityUser

@@ -3,10 +3,11 @@
 
 @{
     Layout = "~/Views/Shared/_MWLayout.cshtml";
-    MomWorld.Models.ApplicationUser postedUser = ViewData["PostedUser"] as MomWorld.Models.ApplicationUser;
-    MomWorld.Entities.Article article = ViewData["Article"] as MomWorld.Entities.Article;
-    MomWorld.Entities.Category category = ViewData["Category"] as MomWorld.Entities.Category;
-    List<MomWorld.Entities.Comment> comments = ViewData["Comments"] as List<MomWorld.Entities.Comment>;
+    var postedUser = ViewData["PostedUser"] as MomWorld.Models.ApplicationUser;
+    var article = ViewData["Article"] as MomWorld.Entities.Article;
+    var category = ViewData["Category"] as MomWorld.Entities.Category;
+    var comments = ViewData["Comments"] as List<MomWorld.Entities.Comment>;
+    var articleLikes = ViewData["ArticleLikes"] as List<MomWorld.Entities.ArticleLike>;
 }
 
 <!DOCTYPE html>
@@ -176,10 +177,10 @@
                     <ul class="post-details">
 
                         <li>
-                            <a href="#">
+                            <a href="#" id="like">
                                 <i class="fa fa-heart color-red"></i>
                                 Thích
-                            </a> <span>(56 người thích)</span>
+                            </a> <span id="likesNumber" data-value="@articleLikes.Count">(@articleLikes.Count người thích)</span>
                         </li>
                         <li>
                             <i class="fa fa-user"></i> <span class="text-muted">
@@ -443,7 +444,7 @@
                     cache: false,
                     success: function (data) {
                         location.reload(true);
-                    },
+                    }
                 });
             });
 
@@ -461,7 +462,33 @@
                     cache: false,
                     success: function (data) {
                         location.reload(true);
+                    }
+                });
+            });
+
+            $("#like").click(function () {
+                var articleId = $("#articleId").val();
+                var likes = parseInt($('#likesNumber').attr('data-value'),10);
+                $.ajax({
+                    url: '/Articles/Like',
+                    dataType: "json",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ articleId: articleId }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        //alert(parseInt($('#likesNumber').attr('data-value'), 10));
+                        likes = likes + 1;
+                        //alert(likes);
+                        var spanText = '(' + likes + ' người thích)';
+                        $('#likesNumber').html(spanText);
                     },
+                    error: function ()
+                    {
+                        alert("Error while excuting 'Like'");
+                    }
                 });
             });
         });

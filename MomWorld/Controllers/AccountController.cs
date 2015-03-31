@@ -13,6 +13,7 @@ using Owin;
 using MomWorld.Models;
 using MomWorld.Entities;
 using System.Web.Helpers;
+using MomWorld.DataContexts;
 
 namespace MomWorld.Controllers
 {
@@ -20,6 +21,7 @@ namespace MomWorld.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
+        private ArticleDb articleDb = new ArticleDb();
 
         public AccountController()
         {
@@ -30,7 +32,8 @@ namespace MomWorld.Controllers
             UserManager = userManager;
         }
 
-        public ApplicationUserManager UserManager {
+        public ApplicationUserManager UserManager
+        {
             get
             {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -92,7 +95,7 @@ namespace MomWorld.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, Email=model.Email };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -121,7 +124,7 @@ namespace MomWorld.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
-            if (userId == null || code == null) 
+            if (userId == null || code == null)
             {
                 return View("Error");
             }
@@ -181,13 +184,13 @@ namespace MomWorld.Controllers
         {
             return View();
         }
-	
+
         //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
-            if (code == null) 
+            if (code == null)
             {
                 return View("Error");
             }
@@ -415,13 +418,13 @@ namespace MomWorld.Controllers
                     if (result.Succeeded)
                     {
                         await SignInAsync(user, isPersistent: false);
-                        
+
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                         // Send an email with this link
                         // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // SendEmail(user.Email, callbackUrl, "Confirm your account", "Please confirm your account by clicking this link");
-                        
+
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -469,7 +472,6 @@ namespace MomWorld.Controllers
         }
 
         public ActionResult GetDetail(string id)
-        
         {
             return Json(UserManager.FindByName(id), JsonRequestBehavior.AllowGet);
         }
@@ -482,6 +484,8 @@ namespace MomWorld.Controllers
 
         public ActionResult PostsManage()
         {
+            var articles = articleDb.Articles.ToList() as List<Article>;
+            ViewData["Articles"] = articles;
             return View();
         }
         #region Helpers
@@ -547,7 +551,8 @@ namespace MomWorld.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 
