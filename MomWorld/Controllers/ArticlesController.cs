@@ -54,11 +54,14 @@ namespace MomWorld.Controllers
                 Category category = categoryDb.Categories.FirstOrDefault(c => c.Id.Equals(article.CategoryId));
                 var comments = commentDb.Comments.ToList().FindAll(cmt => cmt.ArticleId.Equals(article.Id));
                 comments.OrderBy(cmt => cmt.Date);
+                var articleLikes = db.ArticleLikes.ToList().FindAll(al=>al.ArticleId.Equals(article.Id));
 
                 ViewData["PostedUser"] = postedUser;
                 ViewData["Article"] = article;
                 ViewData["Category"] = category;
                 ViewData["Comments"] = comments;
+                ViewData["ArticleLikes"] = articleLikes;
+
                 return View();
             }
             else
@@ -228,5 +231,32 @@ namespace MomWorld.Controllers
             }
             return Json("Successfully");
         }
+
+        public JsonResult Like(string articleId)
+        { 
+            string userId = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
+            ArticleLike check =  db.ArticleLikes.ToList().First(al => al.ArticleId.Equals(articleId) && al.UserId.Equals(userId));
+            if (check == null)
+            {
+                try
+                {
+                    ArticleLike artlike = new ArticleLike();
+                    artlike.UserId = userId;
+                    artlike.ArticleId = articleId;
+                    db.ArticleLikes.Add(artlike);
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return Json(null);
+                }
+                return Json("Successfully");
+            }
+            else 
+            {
+                return Json(null);
+            }
+        }
     }
+
 }
