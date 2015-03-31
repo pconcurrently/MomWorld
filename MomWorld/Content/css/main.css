@@ -1,7 +1,7 @@
 a {
     color: #00adeb;
 }
-a:hover {
+a:hover,a:focus,a:active {
     color: #ee8f04;
     text-decoration: none;
 }
@@ -370,9 +370,15 @@ menu .btn .fa {
 .modal .modal-content .modal-header h3 {
     color: #555;
     font-size: 32px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    border-top: 5px solid rgb(0, 207, 255);
+    /* border: 5px solid rgb(0, 207, 255); */
 }
+
+
+.modal .modal-content .modal-header h3 strong {
+     border-bottom: 5px solid rgb(0, 207, 255); 
+     padding: 10px 0;
+}
+
 .modal .modal-content .modal-header button.close {
     background: url(../images/modal-close.png) left center no-repeat;
     position: absolute;
