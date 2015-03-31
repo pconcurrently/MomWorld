@@ -177,7 +177,7 @@
                 <div class="col-sm-9 post-posts">
                     <h1 class="uppercase no-top-margin" style="margin-bottom: 50px;">
                         <i class="fa fa-pencil-square-o"></i> <strong> Bài viết </strong>
-                        Mới
+                        mới
                     </h1>
                     <form class="form-horizontal" role="form" action="@Url.Action("Create", "Articles")">
                         @Html.AntiForgeryToken()
@@ -188,7 +188,7 @@
                                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <br /><br />
+                        
                         <div class="form-group">
                             @Html.LabelFor(model => model.CategoryId, "Danh mục", htmlAttributes: new { @for = "title", @class = "col-md-4 ", style = "font-size: 20px;" })
                             <div class="col-md-8">
@@ -226,7 +226,7 @@
                         <!-- tile header -->
                         <div class="tile-header color green rounded-top-corners">
                             <h1>
-                                Bài viết <strong> Nên Chia Sẻ</strong>
+                                Bài viết <strong> nên chia sẻ</strong>
                             </h1>
                         </div>
                         <!-- /tile header -->
@@ -253,7 +253,7 @@
                         <!-- tile header -->
                         <div class="tile-header color redbrown rounded-top-corners">
                             <h1>
-                                Bài viết <strong> Không Nên Chia Sẻ</strong>
+                                Bài viết <strong> không nên chia sẻ</strong>
                             </h1>
                         </div>
                         <!-- /tile header -->
@@ -276,7 +276,7 @@
                     <section class="tile color transparent-white">
                         <!-- TAGS -->
                         <div class="tile-header color cyan rounded-top-corners">
-                            <h1>Các Thẻ</h1>
+                            <h1>Các thẻ</h1>
                         </div>
                         <div class="tile-body">
                             <ul class="tags sidebar-widget">

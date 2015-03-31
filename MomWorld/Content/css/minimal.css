@@ -5304,13 +5304,18 @@ menu .btn .fa {
 }
 .navbar .navbar-nav.quick-actions {
   float: right;
-  margin-right: 50px;
+  margin-right: 10px;
 }
 .navbar .navbar-nav.quick-actions > li {
   display: inline-block;
   float: none;
   vertical-align: top;
 }
+
+.navbar .navbar-nav.quick-actions > li.user {  
+  padding-left: 50px;
+}
+
 .navbar .navbar-nav.quick-actions .label {
   font-size: 10px;
   margin-left: 5px;

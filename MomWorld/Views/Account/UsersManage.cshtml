@@ -1,8 +1,6 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
-
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +8,6 @@
     <title>Mom's World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
-
 
 
     <link rel="icon" type="image/ico" href="@Url.Content("~/Content/images/favicon.png")" />
@@ -47,14 +44,12 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-
-
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="@Url.Content("~/Content/js/vendor/jquery/jquery.js")"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="@Url.Content("~/Content/js/vendor/bootstrap/bootstrap.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/bootstrap/bootstrap-dropdown-multilevel.js")"></script>
+
     <script type="text/javascript"
             src="@Url.Content("~/Content/js/vendor/mmenu/js/jquery.mmenu.min.js")"></script>
     <script type="text/javascript"
@@ -78,6 +73,7 @@
     <script src="@Url.Content("~/Content/js/vendor/chosen/chosen.jquery.min.js")"></script>
 
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
+
 </head>
 <body class="bg-1">
 
@@ -156,7 +152,7 @@
                                 <li>
                                     <a class="cyan" href="#">
                                         <div class="profile-photo">
-                                            <img src="Content/images/ici-avatar.jpg" alt />
+                                            <img src="@Url.Content("~/Content/images/ici-avatar.jpg")" />
                                         </div>
                                         <div class="message-info">
                                             <span class="sender">Ing. Imrich Kamarel</span> <span class="time">12 mins</span>
@@ -171,7 +167,7 @@
                                 <li>
                                     <a class="green" href="#">
                                         <div class="profile-photo">
-                                            <img src="Content/images/arnold-avatar.jpg" alt />
+                                            <img src="@Url.Content("~/Content/images/arnold-avatar.jpg")" />
                                         </div>
                                         <div class="message-info">
                                             <span class="sender">Arnold Karlsberg</span> <span class="time">1 hour</span>
@@ -186,7 +182,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="profile-photo">
-                                            <img src="Content/images/profile-photo.jpg" alt />
+                                            <img src="@Url.Content("~/Content/images/profile-photo.jpg")" />
                                         </div>
                                         <div class="message-info">
                                             <span class="sender">KhoaHN</span> <span class="time">
@@ -204,7 +200,7 @@
                                 <li>
                                     <a class="red" href="#">
                                         <div class="profile-photo">
-                                            <img src="Content/images/peter-avatar.jpg" alt />
+                                            <img src="@Url.Content("~/Content/images/peter-avatar.jpg")" />
                                         </div>
                                         <div class="message-info">
                                             <span class="sender">Peter Kay</span> <span class="time">
@@ -222,7 +218,7 @@
                                 <li>
                                     <a class="orange" href="#">
                                         <div class="profile-photo">
-                                            <img src="Content/images/george-avatar.jpg" alt />
+                                            <img src="@Url.Content("~/Content/images/george-avatar.jpg")" />
                                         </div>
                                         <div class="message-info">
                                             <span class="sender">George McCain</span> <span class="time">
@@ -306,7 +302,7 @@
 
                         <li class="dropdown divided user" id="current-user">
                             <div class="profile-photo">
-                                <img src="@Url.Content("~/Content/images/profile-photo.jpg")"/>
+                                <img src="@Url.Content("~/Content/images/profile-photo.jpg")" />
                             </div> <a class="dropdown-toggle options" data-toggle="dropdown"
                                       href="#">
                                 KhoaHN <i class="fa fa-caret-down"></i>
@@ -375,41 +371,43 @@
                         </li>
 
                         <li class="navigation" id="navigation">
-                            <a href="personal-page.html#" class="sidebar-toggle"
+                            <a href="#" class="sidebar-toggle"
                                data-toggle="#navigation">
                                 Trang quản lí <i class="fa fa-angle-up"></i>
                             </a>
 
                             <ul class="menu">
                                 <li>
-                                    <a href="statistic.html">
+                                    <a href="#">
                                         <i class="fa fa-tachometer"></i> Thống kê
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="personal-page.html">
+                                    <a href="#">
                                         <i class="fa fa-user"></i>
                                         Thông tin cá nhân
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="chat.html">
+                                    <a href="#">
                                         <i class="fa fa-envelope-o"></i>
                                         Tin nhắn <span class="badge badge-red">2</span>
                                     </a>
                                 </li>
                                 <li class="active">
-                                    <a href="user-management.html">
+                                    <a href="@Url.Action("UsersManage", "Account")">
                                         <i class="fa fa-users"></i> Quản lí người dùng
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="user-management.html">
+                                    <a href="@Url.Action("PostsManage", "Account")">
                                         <i class="fa fa-pencil-square-o"></i> Quản lí bài viết
                                     </a>
                                 </li>
 
                             </ul> <!-- Sidebar end -->
+
+                            </ul>
                 </div>
                 <!--/.nav-collapse -->
 
@@ -419,11 +417,6 @@
 
             </div>
             <!-- Fixed navbar end -->
-
-
-
-
-
             <!-- Page content -->
             <div id="content" class="col-md-12">
 
@@ -441,7 +434,8 @@
 
                     <h2>
                         <i class="fa fa-lightbulb-o"
-                           style="line-height: 48px; padding-left: 0;"></i> Quản lí bài viết
+                           style="line-height: 48px; padding-left: 0;"></i> Quản lí người
+                        dùng
                     </h2>
 
 
@@ -481,10 +475,10 @@
                                     <div class="controls">
                                         <a href="#" class="minimize">
                                             <i class="fa fa-chevron-down"></i>
-                                        </a> <a href="#" class="refresh">
-                                            <i class="fa fa-refresh"></i>
                                         </a> <a href="#"
-                                                class="remove"><i class="fa fa-times"></i></a>
+                                                class="refresh"><i class="fa fa-refresh"></i></a> <a href="#" class="remove">
+                                            <i class="fa fa-times"></i>
+                                        </a>
                                     </div>
                                 </div>
                                 <!-- /tile header -->
@@ -496,199 +490,185 @@
                                                id="inlineEditDataTable">
                                             <thead>
                                                 <tr>
-                                                    <th class="sort-alpha">ID</th>
-                                                    <th class="sort-alpha">Tên bài viết</th>
-                                                    <th class="sort-alpha">Nội dung</th>
-                                                    <th class="sort-alpha">Người tạo</th>
-                                                    <th class="sort-alpha">Ngày tạo</th>
-                                                    <th class="sort-alpha">Người sửa cuối cùng</th>
+                                                   
+                                                    <th class="sort-alpha">Tài khoản</th>
+                                                    <th class="no-sort">Mật khẩu</th>
+                                                    <th class="sort-alpha">Email</th>
+                                                    <th class="sort-alpha">Quyền</th>
                                                     <th class="sort-alpha">Tình trạng</th>
                                                     <th class="no-sort text-center">Hành động</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="odd ">
-                                                    <td>ID01</td>
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
+                                                   
+                                                    <td>Tài khoản 1</td>
+                                                    <td>********</td>
+                                                    <td>email1@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
                                                 <tr class="even ">
-                                                    <td>ID02</td>
-                                                    <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
+                                                    
+                                                    <td>Tài khoản 2</td>
+                                                    <td>********</td>
+                                                    <td>email1@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
 
                                                 <tr class="odd ">
-                                                    <td>ID01</td>
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
+                                                    
+                                                    <td>Tài khoản 3</td>
+                                                    <td>********</td>
+                                                    <td>email3@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
                                                 <tr class="even ">
-                                                    <td>ID02</td>
-                                                    <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
+                                                    
+                                                    <td>Tài khoản 4</td>
+                                                    <td>********</td>
+                                                    <td>email4@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
                                                 <tr class="odd ">
-                                                    <td>ID01</td>
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
+                                                    
+                                                    <td>Tài khoản 6</td>
+                                                    <td>********</td>
+                                                    <td>email6@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
                                                 <tr class="even ">
-                                                    <td>ID02</td>
-                                                    <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
+                                                    
+                                                    <td>Tài khoản 7</td>
+                                                    <td>********</td>
+                                                    <td>email7@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
                                                 <tr class="odd ">
-                                                    <td>ID01</td>
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
+                                                    
+                                                    <td>Tài khoản 8</td>
+                                                    <td>********</td>
+                                                    <td>email8@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
                                                 <tr class="even ">
-                                                    <td>ID02</td>
-                                                    <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
+                                                    
+                                                    <td>Tài khoản 9</td>
+                                                    <td>********</td>
+                                                    <td>email9@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
                                                 <tr class="odd ">
-                                                    <td>ID01</td>
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
+                                                   
+                                                    <td>Tài khoản 10</td>
+                                                    <td>********</td>
+                                                    <td>email10@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
                                                 <tr class="even ">
-                                                    <td>ID02</td>
-                                                    <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
+                                                    
+                                                    <td>Tài khoản 11</td>
+                                                    <td>********</td>
+                                                    <td>email11@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
                                                 <tr class="odd ">
-                                                    <td>ID01</td>
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
+                                                   
+                                                    <td>Tài khoản 12</td>
+                                                    <td>********</td>
+                                                    <td>email12@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
                                                 <tr class="even ">
-                                                    <td>ID02</td>
-                                                    <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
+                                                   
+                                                    <td>Tài khoản 13</td>
+                                                    <td>********</td>
+                                                    <td>email13@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                                                           href="#">Xóa</a>
+                                                           href="#">Cấm</a><a class="edit"
+                                                                                                  href="#">Sửa</a><a class="delete"
+                                                                                                                                         href="#">Xóa</a>
                                                     </td>
                                                 </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
@@ -744,8 +724,7 @@
 
 
 
-    
-
+   
     <script>
         $(function () {
 
@@ -848,9 +827,7 @@
                 jqTds[2].innerHTML = '<input type="text" value="' + aData[2] + '" class="form-control">';
                 jqTds[3].innerHTML = '<input type="text" value="' + aData[3] + '" class="form-control">';
                 jqTds[4].innerHTML = '<input type="text" value="' + aData[4] + '" class="form-control">';
-                jqTds[5].innerHTML = '<input type="text" value="' + aData[5] + '" class="form-control">';
-                jqTds[6].innerHTML = '<input type="text" value="' + aData[6] + '" class="form-control">';
-                jqTds[7].innerHTML = '<a class="edit save" href="#">Lưu</a><a class="delete" href="#">Xóa</a>';
+                jqTds[5].innerHTML = '<a class="edit save" href="#">Lưu</a><a class="delete" href="#">Xóa</a>';
             }
             ;
 
@@ -861,12 +838,10 @@
                 oTable02.fnUpdate(jqInputs[2].value, nRow, 2, false);
                 oTable02.fnUpdate(jqInputs[3].value, nRow, 3, false);
                 oTable02.fnUpdate(jqInputs[4].value, nRow, 4, false);
-                oTable02.fnUpdate(jqInputs[5].value, nRow, 5, false);
-                oTable02.fnUpdate(jqInputs[6].value, nRow, 6, false);
-                oTable02
+               oTable02
 						.fnUpdate(
-								'<a class="ban" href="#">Duyệt</a> <a class="edit" href="#">Sửa</a><a class="delete" href="#">Xóa</a>',
-								nRow, 7, false);
+								'<a class="ban" href="#">Cấm</a> <a class="edit" href="#">Sửa</a><a class="delete" href="#">Xóa</a>',
+								nRow, 5, false);
                 oTable02.fnDraw();
             }
             ;
@@ -909,8 +884,6 @@
 
 							    var aiNew = oTable02
 										.fnAddData([
-												'',
-												'',
 												'',
 												'',
 												'',
