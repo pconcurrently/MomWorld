@@ -60,24 +60,17 @@ namespace MomWorld.Entities
 
     public class ArticleLike
     {
+        [Required]
+        [MaxLength(128)]
         public string Id { get; set; }
 
         public string UserId { get; set; }
 
         public string ArticleId { get; set; }
+
+        public ArticleLike()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
     }
-
-    //public class ApplicationUser : IdentityUser
-    //{
-    //    public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
-    //    {
-    //        // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-    //        var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-    //        // Add custom user claims here
-    //        return userIdentity;
-    //    }
-
-    //    public virtual ICollection<Article> Articles { get; set; }
-
-    //}
 }
