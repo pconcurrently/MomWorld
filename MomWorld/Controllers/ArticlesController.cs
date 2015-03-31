@@ -50,17 +50,21 @@ namespace MomWorld.Controllers
             {
                 article.ViewNumber += 1;
                 db.SaveChanges();
+                string userId = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
                 ApplicationUser postedUser = identityDb.Users.FirstOrDefault(x => x.Id.Equals(article.UserId));
                 Category category = categoryDb.Categories.FirstOrDefault(c => c.Id.Equals(article.CategoryId));
                 var comments = commentDb.Comments.ToList().FindAll(cmt => cmt.ArticleId.Equals(article.Id));
                 comments.OrderBy(cmt => cmt.Date);
                 var articleLikes = db.ArticleLikes.ToList().FindAll(al=>al.ArticleId.Equals(article.Id));
 
+                var isLike = db.ArticleLikes.ToList().FirstOrDefault(al => al.ArticleId.Equals(id) && al.UserId.Equals(userId));
+
                 ViewData["PostedUser"] = postedUser;
                 ViewData["Article"] = article;
                 ViewData["Category"] = category;
                 ViewData["Comments"] = comments;
                 ViewData["ArticleLikes"] = articleLikes;
+                ViewData["IsLike"] = isLike;
 
                 return View();
             }

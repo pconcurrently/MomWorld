@@ -8,6 +8,7 @@
     var category = ViewData["Category"] as MomWorld.Entities.Category;
     var comments = ViewData["Comments"] as List<MomWorld.Entities.Comment>;
     var articleLikes = ViewData["ArticleLikes"] as List<MomWorld.Entities.ArticleLike>;
+    var isLike = ViewData["IsLike"] as MomWorld.Entities.ArticleLike;
 }
 
 <!DOCTYPE html>
@@ -27,7 +28,7 @@
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
 </head>
 
 <body>
@@ -81,11 +82,6 @@
         </div>
     </div>
     <!-- END BREADCRUMBS -->
-
-
-
-
-    
     <!-- post PAGE -->
     <section class="section">
         <div class="container">
@@ -138,24 +134,27 @@
                     <blockquote>
                         @Html.Raw(article.Content)
                     </blockquote>
-                    <ul class="post-details">
+                    <ul class="post-details" id="likeSection">
+                        @if (isLike == null)
+                        {
+                            <li>
+                                <button id="like">
+                                    <i class="fa fa-thumbs-up color-cyan"></i>
+                                    Cảm ơn
+                                </button> <span id="likesNumber" data-value="@articleLikes.Count">(@articleLikes.Count người cảm ơn)</span>
+                            </li>
+                        }
+                        else
+                        {
 
-                        <li>
-                            <button id="like">
-                                <i class="fa fa-thumbs-up color-cyan"></i>
-                                Cảm ơn
-                            </button> <span id="likesNumber" data-value="@articleLikes.Count">(@articleLikes.Count người cảm ơn)</span>
-                        </li>
+                            @*Sau khi cảm ơn*@
 
-
-                        @*Sau khi cảm ơn*@
-
-                        @*<li>
-                            <button id="unlike" disabled>
-                                <i class="fa fa-thumbs-up color-red"></i>
-                                Đã cảm ơn
-                            </button> <span id="likesNumber" data-value="@articleLikes.Count">(@articleLikes.Count người cảm ơn)</span>
-                        </li>*@
+                            <li>
+                                <button id="unlike" disabled>
+                                    <i class="fa fa-thumbs-up color-red"></i>
+                                    Đã cảm ơn
+                                </button> <span id="likesNumber" data-value="@articleLikes.Count">(@articleLikes.Count người cảm ơn)</span>
+                            </li>}
 
                         <li>
                             <i class="fa fa-user"></i> <span class="text-muted">
@@ -190,8 +189,8 @@
                     </div>
 
 
-                 
-                   
+
+
                     <div class="comments" id="commentsDiv">
                         @foreach (var item in comments)
                         {
@@ -393,7 +392,7 @@
         </div>
     </section>
     <!-- END post PAGE -->
-  
+
 
     <script type="text/javascript">
         $(function () {
@@ -423,8 +422,7 @@
                 });
             });
 
-            $("#report").click(function ()
-            {
+            $("#report").click(function () {
                 var articleId = $("#articleId").val();
                 $.ajax({
                     url: '/Articles/Report',
@@ -443,7 +441,7 @@
 
             $("#like").click(function () {
                 var articleId = $("#articleId").val();
-                var likes = parseInt($('#likesNumber').attr('data-value'),10);
+                var likes = parseInt($('#likesNumber').attr('data-value'), 10);
                 $.ajax({
                     url: '/Articles/Like',
                     dataType: "json",
@@ -456,12 +454,12 @@
                     success: function (data) {
                         //alert(parseInt($('#likesNumber').attr('data-value'), 10));
                         likes = likes + 1;
-                        //alert(likes);
-                        var spanText = '(' + likes + ' người thích)';
-                        $('#likesNumber').html(spanText);
+                        alert(likes);
+
+                        var spanText = "<li> <button id='unlike' disabled> <i class='fa fa-thumbs-up color-red'></i> Đã cảm ơn </button> <span id='likesNumber' data-value='" + likes + "'>(" + likes + " người cảm ơn)</span> </li>";
+                        $('#likeSection').html(spanText);
                     },
-                    error: function ()
-                    {
+                    error: function () {
                         alert("Error while excuting 'Like'");
                     }
                 });
