@@ -192,7 +192,7 @@
 
 
                         <li style="float: right">
-                            <a href="#">
+                            <a href="#" id="report">
                                 <i class="fa fa-exclamation-circle color-red"></i> Báo xấu
                             </a>
                         </li>
@@ -438,6 +438,24 @@
                     type: "POST",
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify({ comment: { articleId: articleId, username: username, content: content } }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        location.reload(true);
+                    },
+                });
+            });
+
+            $("#report").click(function ()
+            {
+                var articleId = $("#articleId").val();
+                $.ajax({
+                    url: '/Articles/Report',
+                    dataType: "json",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ articleId: articleId }),
                     async: true,
                     processData: false,
                     cache: false,

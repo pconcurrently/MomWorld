@@ -46,7 +46,7 @@ namespace MomWorld.Controllers
                 return HttpNotFound();
             }
             if (article.Status == (int)ArticleStatus.Approved || article.Status == (int)ArticleStatus.CreatedByAdmins
-                || article.Status == (int)ArticleStatus.Normal)
+                || article.Status == (int)ArticleStatus.Normal || article.Status == (int)ArticleStatus.Reported)
             {
                 article.ViewNumber += 1;
                 db.SaveChanges();
@@ -95,7 +95,7 @@ namespace MomWorld.Controllers
             article.ViewNumber = 0;
             article.Description = ParseHtml(article.Content);
 
-            if (!user.Roles.FirstOrDefault().ToString().Equals("Admins"))
+            if (!User.Identity.Name.Equals("admin"))
             {
                 article.Status = (int)ArticleStatus.Pending;
             }
@@ -109,7 +109,7 @@ namespace MomWorld.Controllers
             {
                 db.Articles.Add(article);
                 db.SaveChanges();
-                return RedirectToAction("Details", "Articles",routeValues: new { id = article.Id});
+                return RedirectToAction("Details", "Articles", routeValues: new { id = article.Id });
             }
 
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", article.CategoryId);
@@ -147,7 +147,7 @@ namespace MomWorld.Controllers
             {
                 db.Entry(article).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details", routeValues: new {id=article.Id });
+                return RedirectToAction("Details", routeValues: new { id = article.Id });
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", article.CategoryId);
             return View(article);
@@ -202,16 +202,31 @@ namespace MomWorld.Controllers
             return Json(returnArticles, JsonRequestBehavior.AllowGet);
         }
 
-        public static string ParseHtml(string html){
+        public static string ParseHtml(string html)
+        {
 
             html = html.Substring(0, html.IndexOf("</p>") - 1);
-        //var htmlSymbols = new string[] {"<p>", "</p>", "<br>", "<b>","</b>"};
-        //    foreach(var item in htmlSymbols)
-        //    {
-        //        html = html.Replace(item,string.Empty);
-        //    }
+            //var htmlSymbols = new string[] {"<p>", "</p>", "<br>", "<b>","</b>"};
+            //    foreach(var item in htmlSymbols)
+            //    {
+            //        html = html.Replace(item,string.Empty);
+            //    }
             return html;
         }
-        
+
+        public JsonResult Report(string articleId)
+        {
+            try
+            {
+                db.Articles.FirstOrDefault(art => art.Id.Equals(articleId)).Status = (int)ArticleStatus.Reported;
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return Json(null);
+                
+            }
+            return Json("Successfully");
+        }
     }
 }

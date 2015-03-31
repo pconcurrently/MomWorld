@@ -39,7 +39,6 @@
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/nivo-lightbox/css/themes/default/default.css")"
           type="text/css" />
-
     <link href="@Url.Content("~/Content/css/vendor/froala_editor/froala_editor.min.css")"
           rel="stylesheet" type="text/css">
     <link href="@Url.Content("~/Content/css/vendor/froala_editor/froala_style.min.css")"
@@ -49,8 +48,6 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/minimal.min.css")">
 </head>
 <body>
-
-
 
     <!-- Preloader -->
     <div class="mask">
@@ -62,8 +59,6 @@
          data-0="line-height:80px; height:80px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);"
          data-300="line-height:40px; height:52px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
         <div class="container">
-
-
 
             <!-- Branding -->
             <div class="navbar-header">
@@ -101,7 +96,6 @@
                                  src="@Url.Content("~/Content/images/icon-nav/motherhood.png")"> Làm mẹ
                         </a>
                     </li>
-
                     <li>
                         <a href="advisory.html" data-0="padding: 30px 25px 22px;"
                            data-300="padding: 15px 25px 10px;">
@@ -124,7 +118,6 @@
                 </ul>
             </div>
             <!--/.navbar-collapse -->
-
 
         </div>
     </div>
@@ -186,10 +179,8 @@
                         <i class="fa fa-pencil-square-o"></i> <strong> Bài viết </strong>
                         Mới
                     </h1>
-                    @using (Html.BeginForm(new { @class = "form-horizontal", role = "form" }))
-                    {
+                    <form class="form-horizontal" role="form" action="@Url.Action("Create", "Articles")">
                         @Html.AntiForgeryToken()
-
                         <div class="form-group">
                             @Html.Label("Tiêu đề", htmlAttributes: new { @for = "title", @class = "col-md-4 ", style = "font-size: 20px;" })
                             <div class="col-md-8">
@@ -205,7 +196,6 @@
                                 @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="title" class="col-md-12" style="font-size: 20px;">
                                 Nội
@@ -218,8 +208,6 @@
                             </div>
                         </div>
 
-
-
                         <div class="row">
                             <div class="col-lg-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-green">
@@ -228,7 +216,7 @@
                                 <button type="reset" class="btn">Hủy</button>
                             </div>
                         </div>
-                    }
+                    </form>
                 </div>
                 <!-- END post POSTS -->
                 <!-- post SIDEBAR -->
@@ -340,7 +328,6 @@
                             </h2>
                         </div>
                     </div>
-
                     <div class="col-md-4">
                         <div class="widget widget-newsletter">
                             <h4>
@@ -358,7 +345,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-4">
                         <div class="widget widget-contact">
                             <h4>
@@ -410,9 +396,6 @@
     <!-- END SCROLL TOP -->
 
 
-
-
-
     <script src="@Url.Content("~/Content/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js")"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="@Url.Content("~/Content/js/vendor/jquery/jquery.js")"></script>
@@ -453,6 +436,5 @@
             })
         });
     </script>
-
 </body>
 </html>
