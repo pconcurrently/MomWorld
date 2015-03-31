@@ -5304,6 +5304,7 @@ menu .btn .fa {
 }
 .navbar .navbar-nav.quick-actions {
   float: right;
+  margin-right: 50px;
 }
 .navbar .navbar-nav.quick-actions > li {
   display: inline-block;
