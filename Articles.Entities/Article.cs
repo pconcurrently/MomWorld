@@ -58,6 +58,15 @@ namespace MomWorld.Entities
         Normal = 5
     }
 
+    public class ArticleLike
+    {
+        public string Id { get; set; }
+
+        public string UserId { get; set; }
+
+        public string ArticleId { get; set; }
+    }
+
     //public class ApplicationUser : IdentityUser
     //{
     //    public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
