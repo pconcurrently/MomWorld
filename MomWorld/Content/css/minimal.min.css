@@ -2380,9 +2380,16 @@ section.error .controls .btn {
     border: 0;
 }
 
-.post-item .post-details button#like,.post-item .post-details button#unlike, .post-item .post-details button#report{border: none;
+.post-item .post-details button#like,.post-item .post-details button#unlike, .post-item .post-details button#report
+{border: none;
   background: transparent;
   color: #00adeb;}
+
+
+.comments button#delete-comment
+{border: none;
+  background: transparent;
+  }
 
 .top-box-post{line-height: 47px; margin-bottom: 50px;background: white;padding: 10px;border-top: 5px solid rgb(0, 168, 255);list-style: none;display: inline-flex;width: 100%;}
 .top-box-post .avatar-post {height: 80px; width: 80px;}
@@ -2423,7 +2430,7 @@ section.error .controls .btn {
   -ms-border-radius: 0 0 4px 4px;
   -o-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
-  border: 1px solid #CCCCCC;
+  border: 1px solid #e2e2e2;
   border-top: 0;
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
