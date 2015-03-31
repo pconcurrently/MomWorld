@@ -469,10 +469,21 @@ namespace MomWorld.Controllers
         }
 
         public ActionResult GetDetail(string id)
+        
         {
             return Json(UserManager.FindByName(id), JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult UsersManage()
+        {
+            return View();
+        }
+
+
+        public ActionResult PostsManage()
+        {
+            return View();
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
