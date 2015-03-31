@@ -2456,6 +2456,8 @@ section.error .controls .btn {
 
 .post-item .comments .comment {
     padding: 20px;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
 }
 .post-item .comments .comment .profile-photo {
     width: 10%;
