@@ -1,17 +1,686 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
+<body class="bg-1">
+
     
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+
+
+
+        <!-- Make page fluid -->
+        <div class="row">
+
+
+
+
+
+
+            <!-- Page content -->
+            <div id="content" class="col-md-12">
+
+
+
+
+
+
+
+
+
+                <!-- page header -->
+                <div class="pageheader">
+
+
+                    <h2>
+                        <i class="fa fa-lightbulb-o"
+                           style="line-height: 48px; padding-left: 0;"></i> Quản lí người
+                        dùng
+                    </h2>
+
+
+                    <div class="breadcrumbs">
+                        <ol class="breadcrumb">
+                            <li>You are here</li>
+                            <li><a href="index.html">Minimal</a></li>
+                            <li><a href="tables.html">Tables</a></li>
+                            <li class="active">DataTables</li>
+                        </ol>
+                    </div>
+
+
+                </div>
+                <!-- /page header -->
+                <!-- content main container -->
+                <div class="main">
+
+
+
+
+                    <!-- row -->
+                    <div class="row">
+
+
+                        <!-- col 12 -->
+                        <div class="col-md-12">
+
+
+
+                            <!-- tile -->
+                            <section class="tile transparent">
+
+
+                                <!-- tile header -->
+                                <div class="tile-header transparent">
+                                    <div class="controls">
+                                        <a href="user-management.html#" class="minimize">
+                                            <i class="fa fa-chevron-down"></i>
+                                        </a> <a href="user-management.html#"
+                                                class="refresh"><i class="fa fa-refresh"></i></a> <a href="user-management.html#" class="remove">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- /tile header -->
+                                <!-- tile body -->
+                                <div class="tile-body color transparent-white rounded-corners">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-datatable table-custom"
+                                               id="inlineEditDataTable">
+                                            <thead>
+                                                <tr>
+                                                    
+                                                    <th class="sort-alpha">Tài khoản</th>
+                                                    <th class="no-sort">Mật khẩu</th>
+                                                    <th class="sort-alpha">Email</th>
+                                                    <th class="sort-alpha">Quyền</th>
+                                                    <th class="sort-alpha">Tình trạng</th>
+                                                    <th class="no-sort text-center">Hành động</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="odd ">
+                                                    
+                                                    <td>Tài khoản 1</td>
+                                                    <td>********</td>
+                                                    <td>email1@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="even ">
+                                                    
+                                                    <td>Tài khoản 2</td>
+                                                    <td>********</td>
+                                                    <td>email1@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="odd ">
+                                                    
+                                                    <td>Tài khoản 3</td>
+                                                    <td>********</td>
+                                                    <td>email3@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="even ">
+                                                    
+                                                    <td>Tài khoản 4</td>
+                                                    <td>********</td>
+                                                    <td>email4@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd ">
+                                                    
+                                                    <td>Tài khoản 6</td>
+                                                    <td>********</td>
+                                                    <td>email6@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="even ">
+                                                    
+                                                    <td>Tài khoản 7</td>
+                                                    <td>********</td>
+                                                    <td>email7@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd ">
+                                                    
+                                                    <td>Tài khoản 8</td>
+                                                    <td>********</td>
+                                                    <td>email8@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="even ">
+                                                    
+                                                    <td>Tài khoản 9</td>
+                                                    <td>********</td>
+                                                    <td>email9@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd ">
+                                                    
+                                                    <td>Tài khoản 10</td>
+                                                    <td>********</td>
+                                                    <td>email10@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="even ">
+                                                    
+                                                    <td>Tài khoản 11</td>
+                                                    <td>********</td>
+                                                    <td>email11@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd ">
+                                                    
+                                                    <td>Tài khoản 12</td>
+                                                    <td>********</td>
+                                                    <td>email12@gmail.com</td>
+                                                    <td>Quản lí</td>
+                                                    <td class="color-greensea">Bình thường</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="even ">
+                                                    
+                                                    <td>Tài khoản 13</td>
+                                                    <td>********</td>
+                                                    <td>email13@gmail.com</td>
+                                                    <td>Người dùng</td>
+                                                    <td class="color-red">Bị cấm</td>
+                                                    <td class="actions text-center">
+                                                        <a class="ban"
+                                                           href="user-management.html#">Cấm</a><a class="edit"
+                                                                                                  href="user-management.html#">Sửa</a><a class="delete"
+                                                                                                                                         href="user-management.html#">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <!-- /tile body -->
+
+
+
+                            </section>
+                            <!-- /tile -->
+
+
+                        </div>
+                        <!-- /col 12 -->
+
+
+
+                    </div>
+                    <!-- /row -->
+
+
+
+                </div>
+                <!-- /content container -->
+
+
+
+
+
+
+            </div>
+            <!-- Page content end -->
+
+
+
+
+
+
+
+        </div>
+        <!-- Make page fluid-->
+
+
+
+
     </div>
+    <!-- Wrap all page content end -->
+
+
+
+    <section class="videocontent" id="video"></section>
+
+
+
+   
+    <script>
+        $(function () {
+
+            // Add custom class to pagination div
+            $.fn.dataTableExt.oStdClasses.sPaging = 'dataTables_paginate paging_bootstrap paging_custom';
+
+            $('div.dataTables_filter input').addClass('form-control');
+            $('div.dataTables_length select').addClass('form-control');
+
+            /*************************************************/
+            /**************** BASIC DATATABLE ****************/
+            /*************************************************/
+
+            /* Define two custom functions (asc and desc) for string sorting */
+            jQuery.fn.dataTableExt.oSort['string-case-asc'] = function (x, y) {
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            };
+
+            jQuery.fn.dataTableExt.oSort['string-case-desc'] = function (x, y) {
+                return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+            };
+
+            /* Add a click handler to the rows - this could be used as a callback */
+            $("#basicDataTable tbody tr").click(function (e) {
+                if ($(this).hasClass('row_selected')) {
+                    $(this).removeClass('row_selected');
+                } else {
+                    oTable01.$('tr.row_selected').removeClass('row_selected');
+                    $(this).addClass('row_selected');
+                }
+
+                // FadeIn/Out delete rows button
+                if ($('#basicDataTable tr.row_selected').length > 0) {
+                    $('#deleteRow').stop().fadeIn(300);
+                } else {
+                    $('#deleteRow').stop().fadeOut(300);
+                }
+            });
+
+            /* Build the DataTable with third column using our custom sort functions */
+            var oTable01 = $('#basicDataTable')
+					.dataTable(
+							{
+							    "sDom": "R<'row'<'col-md-6'l><'col-md-6'f>r>"
+										+ "t"
+										+ "<'row'<'col-md-4 sm-center'i><'col-md-4'><'col-md-4 text-right sm-center'p>>",
+							    "oLanguage": {
+							        "sSearch": ""
+							    },
+							    "aaSorting": [[0, 'asc'], [1, 'asc']],
+							    "aoColumns": [null, null, {
+							        "sType": 'string-case'
+							    }, null, null],
+							    "fnInitComplete": function (oSettings, json) {
+							        $('.dataTables_filter input').attr(
+											"placeholder", "Search");
+							    }
+							});
+
+            // Append delete button to table
+            var deleteRowLink = '<a href="user-management.html#" id="deleteRow" class="btn btn-red btn-xs delete-row">Xóa dòng đang chọn</a>'
+            $('#basicDataTable_wrapper').append(deleteRowLink);
+
+            /* Add a click handler for the delete row */
+            $('#deleteRow').click(function () {
+                var anSelected = fnGetSelected(oTable01);
+                if (anSelected.length !== 0) {
+                    oTable01.fnDeleteRow(anSelected[0]);
+                    $('#deleteRow').stop().fadeOut(300);
+                }
+            });
+
+            /* Get the rows which are currently selected */
+            function fnGetSelected(oTable01Local) {
+                return oTable01Local.$('tr.row_selected');
+            }
+            ;
+
+            /*******************************************************/
+            /**************** INLINE EDIT DATATABLE ****************/
+            /*******************************************************/
+
+            function restoreRow(oTable02, nRow) {
+                var aData = oTable02.fnGetData(nRow);
+                var jqTds = $('>td', nRow);
+
+                for (var i = 0, iLen = jqTds.length; i < iLen; i++) {
+                    oTable02.fnUpdate(aData[i], nRow, i, false);
+                }
+
+                oTable02.fnDraw();
+            }
+            ;
+
+            function editRow(oTable02, nRow) {
+                var aData = oTable02.fnGetData(nRow);
+                var jqTds = $('>td', nRow);
+                jqTds[0].innerHTML = '<input type="text" value="' + aData[0] + '" class="form-control">';
+                jqTds[1].innerHTML = '<input type="text" value="' + aData[1] + '" class="form-control">';
+                jqTds[2].innerHTML = '<input type="text" value="' + aData[2] + '" class="form-control">';
+                jqTds[3].innerHTML = '<input type="text" value="' + aData[3] + '" class="form-control">';
+                jqTds[4].innerHTML = '<input type="text" value="' + aData[4] + '" class="form-control">';                
+                jqTds[5].innerHTML = '<a class="edit save" href="user-management.html#">Lưu</a><a class="delete" href="user-management.html#">Xóa</a>';
+            }
+            ;
+
+            function saveRow(oTable02, nRow) {
+                var jqInputs = $('input', nRow);
+                oTable02.fnUpdate(jqInputs[0].value, nRow, 0, false);
+                oTable02.fnUpdate(jqInputs[1].value, nRow, 1, false);
+                oTable02.fnUpdate(jqInputs[2].value, nRow, 2, false);
+                oTable02.fnUpdate(jqInputs[3].value, nRow, 3, false);
+                oTable02.fnUpdate(jqInputs[4].value, nRow, 4, false);
+                
+                oTable02
+						.fnUpdate(
+								'<a class="ban" href="user-management.html#">Cấm</a> <a class="edit" href="user-management.html#">Sửa</a><a class="delete" href="user-management.html#">Xóa</a>',
+								nRow, 5, false);
+                oTable02.fnDraw();
+            }
+            ;
+
+            var oTable02 = $('#inlineEditDataTable')
+					.dataTable(
+							{
+							    "sDom": "R<'row'<'col-md-6'l><'col-md-6'f>r>"
+										+ "t"
+										+ "<'row'<'col-md-4 sm-center'i><'col-md-4'><'col-md-4 text-right sm-center'p>>",
+							    "oLanguage": {
+							        "sSearch": ""
+							    },
+							    "aoColumnDefs": [{
+							        'bSortable': false,
+							        'aTargets': ["no-sort"]
+							    }],
+							    "fnInitComplete": function (oSettings, json) {
+							        $('.dataTables_filter input').attr(
+											"placeholder", "Tìm kiếm");
+							    }
+							});
+
+            // Append add row button to table
+            var addRowLink = '<a href="user-management.html#" id="addRow" class="btn btn-green btn-xs add-row">Thêm mới</a>'
+            $('#inlineEditDataTable_wrapper').append(addRowLink);
+
+            var nEditing = null;
+
+            // Add row initialize
+            $('#addRow')
+					.click(
+							function (e) {
+							    e.preventDefault();
+
+							    // Only allow a new row when not currently editing
+							    if (nEditing !== null) {
+							        return;
+							    }
+
+							    var aiNew = oTable02
+										.fnAddData([
+												'',
+												'',
+												'',
+												'',
+												'',												
+												'<a class="edit" href="user-management.html">Sửa</a>',
+												'<a class="delete" href="user-management.html">Xóa</a>']);
+							    var nRow = oTable02.fnGetNodes(aiNew[0]);
+							    editRow(oTable02, nRow);
+							    nEditing = nRow;
+
+							    $(nRow).find('td:last-child').addClass(
+										'actions text-center');
+							});
+
+            // Delete row initialize
+            $(document).on("click", "#inlineEditDataTable a.delete",
+					function (e) {
+					    e.preventDefault();
+
+					    var nRow = $(this).parents('tr')[0];
+					    oTable02.fnDeleteRow(nRow);
+					});
+
+            // Edit row initialize
+            $(document).on("click", "#inlineEditDataTable a.edit", function (e) {
+                e.preventDefault();
+
+                /* Get the row as a parent of the link that was clicked on */
+                var nRow = $(this).parents('tr')[0];
+
+                if (nEditing !== null && nEditing != nRow) {
+                    /* A different row is being edited - the edit should be cancelled and this row edited */
+                    restoreRow(oTable02, nEditing);
+                    editRow(oTable02, nRow);
+                    nEditing = nRow;
+                } else if (nEditing == nRow && this.innerHTML == "Lưu") {
+                    /* This row is being edited and should be saved */
+                    saveRow(oTable02, nEditing);
+                    nEditing = null;
+                } else {
+                    /* No row currently being edited */
+                    editRow(oTable02, nRow);
+                    nEditing = nRow;
+                }
+            });
+
+            /******************************************************/
+            /**************** DRILL DOWN DATATABLE ****************/
+            /******************************************************/
+
+            var anOpen = [];
+
+            var oTable03 = $('#drillDownDataTable')
+					.dataTable(
+							{
+							    "sDom": "R<'row'<'col-md-6'l><'col-md-6'f>r>"
+										+ "t"
+										+ "<'row'<'col-md-4 sm-center'i><'col-md-4'><'col-md-4 text-right sm-center'p>>",
+							    "oLanguage": {
+							        "sSearch": ""
+							    },
+							    "aoColumnDefs": [{
+							        'bSortable': false,
+							        'aTargets': ["no-sort"]
+							    }],
+							    "aaSorting": [[1, "asc"]],
+							    "bProcessing": true,
+							    "sAjaxSource": "Content/js/vendor/datatables/ajax/sources/objects.txt",
+							    "aoColumns": [
+										{
+										    "mDataProp": null,
+										    "sClass": "control text-center",
+										    "sDefaultContent": '<a href="user-management.html#"><i class="fa fa-plus"></i></a>'
+										}, {
+										    "mDataProp": "engine"
+										}, {
+										    "mDataProp": "browser"
+										}, {
+										    "mDataProp": "grade"
+										}],
+							    "fnInitComplete": function (oSettings, json) {
+							        $('.dataTables_filter input').attr(
+											"placeholder", "Search");
+							    }
+							});
+
+            $(document).on(
+					'click',
+					'#drillDownDataTable td.control',
+					function () {
+					    var nTr = this.parentNode;
+					    var i = $.inArray(nTr, anOpen);
+
+					    $(anOpen).each(function () {
+					        if (this !== nTr) {
+					            $('td.control', this).click();
+					        }
+					    });
+
+					    if (i === -1) {
+					        $('i', this).removeClass().addClass('fa fa-minus');
+					        $(this).parent().addClass('drilled');
+					        var nDetailsRow = oTable03.fnOpen(nTr,
+									fnFormatDetails(oTable03, nTr), 'details');
+					        $('div.innerDetails', nDetailsRow).slideDown();
+					        anOpen.push(nTr);
+					    } else {
+					        $('i', this).removeClass().addClass('fa fa-plus');
+					        $(this).parent().removeClass('drilled');
+					        $('div.innerDetails', $(nTr).next()[0]).slideUp(
+									function () {
+									    oTable03.fnClose(nTr);
+									    anOpen.splice(i, 1);
+									});
+					    }
+
+					    return false;
+					});
+
+            function fnFormatDetails(oTable03, nTr) {
+                var oData = oTable03.fnGetData(nTr);
+                var sOut = '<div class="innerDetails">'
+						+ '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'
+						+ '<tr><td>Rendering engine:</td><td>' + oData.engine
+						+ '</td></tr>' + '<tr><td>Browser:</td><td>'
+						+ oData.browser + '</td></tr>'
+						+ '<tr><td>Platform:</td><td>' + oData.platform
+						+ '</td></tr>' + '<tr><td>Version:</td><td>'
+						+ oData.version + '</td></tr>'
+						+ '<tr><td>Grade:</td><td>' + oData.grade
+						+ '</td></tr>' + '</table>' + '</div>';
+                return sOut;
+            }
+            ;
+
+            /****************************************************/
+            /**************** ADVANCED DATATABLE ****************/
+            /****************************************************/
+
+            var oTable04 = $('#advancedDataTable')
+					.dataTable(
+							{
+							    "sDom": "<'row'<'col-md-4'l><'col-md-4 text-center sm-left'T C><'col-md-4'f>r>"
+										+ "t"
+										+ "<'row'<'col-md-4 sm-center'i><'col-md-4'><'col-md-4 text-right sm-center'p>>",
+							    "oLanguage": {
+							        "sSearch": ""
+							    },
+							    "oTableTools": {
+							        "sSwfPath": "Content/js/vendor/datatables/tabletools/swf/copy_csv_xls_pdf.swf",
+							        "aButtons": [
+											"copy",
+											"print",
+											{
+											    "sExtends": "collection",
+											    "sButtonText": 'Lưu <span class="caret" />',
+											    "aButtons": ["csv", "xls",
+														"pdf"]
+											}]
+							    },
+							    "fnInitComplete": function (oSettings, json) {
+							        $('.dataTables_filter input').attr(
+											"placeholder", "Search");
+							    },
+							    "oColVis": {
+							        "buttonText": '<i class="fa fa-eye"></i>'
+							    }
+							});
+
+            $('.ColVis_MasterButton').on('click', function () {
+                var newtop = $('.ColVis_collection').position().top - 45;
+
+                $('.ColVis_collection').addClass('dropdown-menu');
+                $('.ColVis_collection>li>label').addClass('btn btn-default')
+                $('.ColVis_collection').css('top', newtop + 'px');
+            });
+
+            $('.DTTT_button_collection').on('click', function () {
+                var newtop = $('.DTTT_dropdown').position().top - 45;
+                $('.DTTT_dropdown').css('top', newtop + 'px');
+            });
+
+            //initialize chosen
+            $('.dataTables_length select').chosen({
+                disable_search_threshold: 10
+            });
+
+            // Add custom class
+            $('div.dataTables_filter input').addClass('form-control');
+            $('div.dataTables_length select').addClass('form-control');
+
+        })
+    </script>
 </body>
 </html>
