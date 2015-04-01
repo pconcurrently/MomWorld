@@ -19,3 +19,5 @@ MomWorld/bin/MomWorld.dll
 MomWorld/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 *.Cache
 *.dll
+*.dll
+*.pdb
