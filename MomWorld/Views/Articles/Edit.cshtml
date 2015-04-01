@@ -230,6 +230,8 @@
                         @Html.HiddenFor(model => model.UserId)
                         @Html.HiddenFor(model => model.PostedDate)
                         @Html.HiddenFor(model => model.ViewNumber)
+                        @Html.HiddenFor(model => model.Description)
+                        @Html.HiddenFor(model => model.Status)
                         <div class="form-group">
                             @Html.Label("Tiêu đề", htmlAttributes: new { @for = "title", @class = "col-md-4 ", style = "font-size: 20px;" })
                             <div class="col-md-8">

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Claims;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.ComponentModel;
 
 namespace MomWorld.Entities
 {
@@ -42,6 +43,8 @@ namespace MomWorld.Entities
 
         public string LastSeenUserId { get; set; }
 
+        public string LastModifiedUserId { get; set; }
+
         public string Description { get; set; }
 
 
@@ -50,12 +53,35 @@ namespace MomWorld.Entities
 
     public enum ArticleStatus
     {
+        [Description("Tạo bởi Admin")]
         CreatedByAdmins = 0,
+        [Description("Chờ duyệt")]
         Pending = 1,
+        [Description("Đã duyệt")]
         Approved = 2,
+        [Description("Bị báo xấu")]
         Reported = 3,
+        [Description("Xấu")]
         Bad = 4,
+        [Description("Bình thường")]
         Normal = 5
+    }
+
+    public static class EnumHelper<T>
+    {
+        public static string GetEnumDescription(string value)
+        {
+            Type type = typeof(T);
+            var name = Enum.GetNames(type).Where(f => f.Equals(value, StringComparison.CurrentCultureIgnoreCase)).Select(d => d).FirstOrDefault();
+
+            if (name == null)
+            {
+                return string.Empty;
+            }
+            var field = type.GetField(name);
+            var customAttribute = field.GetCustomAttributes(typeof(DescriptionAttribute), false);
+            return customAttribute.Length > 0 ? ((DescriptionAttribute)customAttribute[0]).Description : name;
+        }
     }
 
     public class ArticleLike

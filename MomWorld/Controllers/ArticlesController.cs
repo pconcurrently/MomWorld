@@ -51,11 +51,12 @@ namespace MomWorld.Controllers
                 article.ViewNumber += 1;
                 db.SaveChanges();
                 string userId = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
+
                 ApplicationUser postedUser = identityDb.Users.FirstOrDefault(x => x.Id.Equals(article.UserId));
                 Category category = categoryDb.Categories.FirstOrDefault(c => c.Id.Equals(article.CategoryId));
                 var comments = commentDb.Comments.ToList().FindAll(cmt => cmt.ArticleId.Equals(article.Id));
                 comments.OrderBy(cmt => cmt.Date);
-                var articleLikes = db.ArticleLikes.ToList().FindAll(al=>al.ArticleId.Equals(article.Id));
+                var articleLikes = db.ArticleLikes.ToList().FindAll(al => al.ArticleId.Equals(article.Id));
 
                 var isLike = db.ArticleLikes.ToList().FirstOrDefault(al => al.ArticleId.Equals(id) && al.UserId.Equals(userId));
 
@@ -99,8 +100,9 @@ namespace MomWorld.Controllers
             article.LastSeenUserId = user.Id;
             article.PostedDate = DateTime.Now;
             article.LastModifiedDate = DateTime.Now;
+            article.LastModifiedUserId = user.Id;
             article.ViewNumber = 0;
-            article.Description = ParseHtml(article.Content);
+
 
             if (!User.Identity.Name.Equals("admin"))
             {
@@ -114,13 +116,19 @@ namespace MomWorld.Controllers
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
+                article.Description = ParseHtml(article.Content);
                 db.Articles.Add(article);
                 db.SaveChanges();
-                return RedirectToAction("Details", "Articles", routeValues: new { id = article.Id });
+                if (article.Status == (int)ArticleStatus.CreatedByAdmins)
+                {
+                    return RedirectToAction("Details", "Articles", routeValues: new { id = article.Id });
+                }
+                return RedirectToAction("Index", "Categories", routeValues: new { id = article.Id });
             }
 
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", article.CategoryId);
             return View(article);
+
         }
 
         // GET: Articles/Edit/5
@@ -145,11 +153,12 @@ namespace MomWorld.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,UserId,CategoryId,Title,Content,PostedDate,LastModifiedDate,ViewNumber,LastSeenUserId")] Article article)
+        public ActionResult Edit([Bind(Include = "Id,UserId,CategoryId,Title,Content,PostedDate,LastModifiedDate,ViewNumber,LastSeenUserId,Status,Description")] Article article)
         {
             article.LastModifiedDate = DateTime.Now;
             ApplicationUser currentUser = identityDb.Users.FirstOrDefault(x => x.UserName.Equals(User.Identity.Name));
             article.LastSeenUserId = currentUser.Id;
+            article.LastModifiedUserId = currentUser.Id;
             if (ModelState.IsValid)
             {
                 db.Entry(article).State = EntityState.Modified;
@@ -231,15 +240,15 @@ namespace MomWorld.Controllers
             catch (Exception)
             {
                 return Json(null);
-                
+
             }
             return Json("Successfully");
         }
 
         public JsonResult Like(string articleId)
-        { 
+        {
             string userId = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
-            ArticleLike check =  db.ArticleLikes.ToList().FirstOrDefault(al => al.ArticleId.Equals(articleId) && al.UserId.Equals(userId));
+            ArticleLike check = db.ArticleLikes.ToList().FirstOrDefault(al => al.ArticleId.Equals(articleId) && al.UserId.Equals(userId));
             if (check == null)
             {
                 try
@@ -256,10 +265,23 @@ namespace MomWorld.Controllers
                 }
                 return Json("Successfully");
             }
-            else 
+            else
             {
                 return Json(null);
             }
+        }
+
+        public JsonResult Approve(string articleId)
+        {
+            var art = db.Articles.FirstOrDefault(a => a.Id.Equals(articleId));
+
+            if (art != null)
+            {
+                art.Status = (int)ArticleStatus.Approved;
+                db.SaveChanges();
+                return Json("Successfully");
+            }
+            return Json(null);
         }
     }
 

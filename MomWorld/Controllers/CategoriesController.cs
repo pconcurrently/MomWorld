@@ -16,14 +16,27 @@ namespace MomWorld.Controllers
     {
         private CategoryDb db = new CategoryDb();
         private ArticleDb articleDb = new ArticleDb();
+        private IdentityDb identityDb = new IdentityDb();
 
         // GET: Categories
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
             List<Article> articles = articleDb.Articles.ToList();
             articles.RemoveAll(art => art.Status.Equals(ArticleStatus.Pending) || art.Status.Equals(ArticleStatus.Bad));
             ViewData["Categories"] = db.Categories.ToList();
             ViewData["Articles"] = articles;
+            if (id != null)
+            {
+                Article popupArticle = articles.FirstOrDefault(a => a.Id.Equals(id));
+                if ((popupArticle.Status == (int)MomWorld.Entities.ArticleStatus.Pending) && popupArticle.UserId == (identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id))
+                {
+                    ViewData["IsPopup"] = "true";
+                }
+                else
+                {
+                    ViewData["IsPopup"] = "false";
+                }
+            }
 
             return View();
         }
@@ -158,7 +171,7 @@ namespace MomWorld.Controllers
                 return Json("Successfully");
             }
             return Json(null);
-            
+
         }
     }
 }

@@ -14,6 +14,7 @@ using MomWorld.Models;
 using MomWorld.Entities;
 using System.Web.Helpers;
 using MomWorld.DataContexts;
+using System.Reflection;
 
 namespace MomWorld.Controllers
 {
@@ -485,7 +486,23 @@ namespace MomWorld.Controllers
         public ActionResult PostsManage()
         {
             var articles = articleDb.Articles.ToList() as List<Article>;
+
+            Dictionary<string, string> postedUsers = new Dictionary<string, string>();
+            
+            foreach(var article in articles)
+            {
+                postedUsers.Add(article.Id, UserManager.FindById(article.UserId).UserName);
+            }
+
+            Dictionary<string, string> modifiedUsers = new Dictionary<string, string>();
+            foreach (var article in articles)
+            {
+                modifiedUsers.Add(article.Id, UserManager.FindById(article.LastModifiedUserId).UserName);
+            }
+
             ViewData["Articles"] = articles;
+            ViewData["PostedUsers"] = postedUsers;
+            ViewData["LastModifiedUsers"] = modifiedUsers;
             return View();
         }
         #region Helpers

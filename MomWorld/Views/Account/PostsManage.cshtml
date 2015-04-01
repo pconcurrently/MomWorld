@@ -1,5 +1,15 @@
-﻿@{
+﻿@using MomWorld.Entities;
+@{
     Layout = null;
+    var articles = ViewData["Articles"] as List<MomWorld.Entities.Article>;
+    var postedUsers = ViewData["PostedUsers"] as Dictionary<string, string>;
+    var lastModifiedUsers = ViewData["LastModifiedUsers"] as Dictionary<string, string>;
+    Dictionary<string, string> enumDescriptions = new Dictionary<string, string>();
+    foreach (var item in articles)
+    {
+        enumDescriptions.Add(item.Id, EnumHelper<ArticleStatus>.GetEnumDescription(((ArticleStatus)item.Status).ToString()));
+    }
+
 }
 
 <!DOCTYPE html>
@@ -490,29 +500,39 @@
                                                     <th class="sort-alpha">Ngày tạo</th>
                                                     <th class="sort-alpha">Người sửa cuối cùng</th>
                                                     <th class="sort-alpha">Tình trạng</th>
-                                                    <th class="no-sort text-center">Hành động</th>
+                                                    <th class="no-sort text-center">Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="odd " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
+                                                @foreach (var article in articles)
+                                                {
+                                                    <tr class="odd " data-toggle="tooltip" data-placement="top" title="@article.Description">
 
-                                                    <td>Bài viết 1</td>
-                                                    
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
+                                                        <td>@article.Title</td>
+                                                        <td>@postedUsers[article.Id]</td>
+                                                        <td>@(article.PostedDate != null ? article.PostedDate.Value.ToString("dd/MM/yyyy") : "NULL")</td>
+                                                        <td>@lastModifiedUsers[article.Id]</td>
+                                                        <td class="color-greensea">@enumDescriptions[article.Id]</td>
+                                                        <td class="actions text-center">
+                                                            <a class="ban"
+                                                               href="#" data-id="@article.Id">
+                                                                Duyệt
+                                                            </a>
+
+                                                            <a href="#" id="editArticle" data-id="@article.Id">
+                                                                Sửa
+                                                            </a>
+
+                                                            <a class="delete" href="#">
+                                                                Xóa
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                <tr class="even ">
 
                                                     <td>Bài viết 2</td>
-                                                    
+
                                                     <td>Người dùng 2</td>
                                                     <td>3/22/2015</td>
                                                     <td>Người sửa 1</td>
@@ -525,156 +545,22 @@
                                                     </td>
                                                 </tr>
 
-                                                <tr class="odd " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
+                                                @*<tr class="odd ">
 
-                                                    <td>Bài viết 1</td>
-                                                    
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
+                                                        <td>Bài viết 1</td>
 
-                                                    <td>Bài viết 2</td>
-                                                    
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
+                                                        <td>Người dùng 1</td>
+                                                        <td>3/22/2015</td>
+                                                        <td>Người sửa 1</td>
+                                                        <td class="color-greensea">Đã duyệt</td>
+                                                        <td class="actions text-center">
+                                                            <a class="ban"
+                                                               href="#">Duyệt</a><a class="edit"
+                                                                                    href="#">Sửa</a><a class="delete"
+                                                                                                       href="#">Xóa</a>
+                                                        </td>
+                                                    </tr>*@
 
-                                                    <td>Bài viết 1</td>
-                                                    
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
-
-                                                    <td>Bài viết 2</td>
-                                                    
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
-
-                                                    <td>Bài viết 1</td>
-                                                    
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
-
-                                                    <td>Bài viết 2</td>
-                                                    
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
-
-                                                    <td>Bài viết 1</td>
-                                                    
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
-
-                                                    <td>Bài viết 2</td>
-                                                    
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
-
-                                                    <td>Bài viết 1</td>
-                                                    
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even " data-toggle="tooltip" data-placement="top" title="Ai trong đời cũng sẽ có lúc phải đối mặt với những khó khăn, những nỗi khổ tâm, hay những suy nghĩ tăm tối. Phần lớn chúng ta rồi sẽ tự tìm ra cách đối phó và vượt qua chúng, nhưng thiền sư Thích Nhất Hạnh lại có một cách đơn giản nhưng thực sự đáng ngạc nhiên khiến bạn thay đổi cách nhìn nhận và đối diện với những nỗi niềm khó khăn trong đời">
-
-                                                    <td>Bài viết 2</td>
-                                                    
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
 
                                             </tbody>
                                         </table>
@@ -1084,6 +970,37 @@
             $('div.dataTables_length select').addClass('form-control');
 
         })
+    </script>
+
+    <script>
+        $(function () {
+            $(document).ready(function () {
+                $('.ban').click(function () {
+                    var articleId = $(this).attr('data-id');
+                    //alert(articleId);
+                    $.ajax({
+                        url: '/Articles/Approve',
+                        dataType: "json",
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify({ articleid: articleId }),
+                        async: true,
+                        processData: false,
+                        cache: false,
+                        success: function () {
+                            $('.color-greensea').html("Đã duyệt");
+                        }
+                    });
+                });
+
+                $('#editArticle').click(function () {
+                    var articleId = $(this).attr("data-id");
+                    window.location= "/Articles/Edit/"+ articleId;
+                });
+
+            });
+        });
+
     </script>
 </body>
 </html>
