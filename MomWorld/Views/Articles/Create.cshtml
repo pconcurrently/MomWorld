@@ -1,6 +1,7 @@
 ﻿@model MomWorld.Entities.Article
 @{
     Layout = null;
+    
 }
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -118,55 +119,8 @@
 
 
 </head>
+
 <body>
-    <!--modal chờ phê duyệt -->
-    <div class="modal fade" id="modalWaitingApproved" tabindex="-1"
-         role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
-         style="background: rgba(0, 0, 0, 0.75); top: 0px;">
-        <div class="modal-dialog" style="margin-top: 100px;">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">
-                        Thoát
-                    </button>
-                    <img src="@Url.Content("~/Content/images/approval.png")" style="width:300px;" />
-                    <h3 class="modal-title" id="modalConfirmLabel">
-                        <strong>Kiểm duyệt</strong> 
-                    </h3>
-                </div>
-                <div class="modal-body">
-
-                    <!-- The file upload form used as target for the file upload widget -->
-                    <form class="form-horizontal">
-
-                        <div class="form-group">
-                           
-                          
-
-                        </div>
-
-                        <div class="form-group form-footer">
-                            <div class="text-center">
-                               <h3>Bài viết của bạn đang được chờ kiểm duyệt.</h3>
-                                <span>Cảm ơn bạn đã chia sẽ những thông tin bổ ích với chúng tôi</span>  
-                              
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-
-
-   
-   
-
     <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
@@ -297,7 +251,7 @@
                         <i class="fa fa-pencil-square-o"></i> <strong> Bài viết </strong>
                         mới
                     </h1>
-                    <form class="form-horizontal" role="form" action="@Url.Action("Create", "Articles")">
+                    <form class="form-horizontal" role="form" method="post" action="@Url.Action("Create", "Articles")">
                         @Html.AntiForgeryToken()
                         <div class="form-group">
                             @Html.Label("Tiêu đề", htmlAttributes: new { @for = "title", @class = "col-md-4 ", style = "font-size: 20px;" })
@@ -328,7 +282,7 @@
 
                         <div class="row text-center">
                            
-                                <button type="submit" class="btn btn-green">
+                                <button type="submit" class="btn btn-green" id="submitArticle">
                                     Tạo bài viết
                                 </button>
                                 <button type="reset" class="btn">Hủy</button>
@@ -515,16 +469,7 @@
 
 
 
-   @*Hiển thị modalWaitingApproved khi load trang*@
-    <script type="text/javascript">
-    $(window).load(function () {
-        $('#modalWaitingApproved').modal('show');
-    });
-    </script>
-
-
-
-    <script>
+   <script>
     $(function () {
         $('#edit').editable({
             inlineMode: false,

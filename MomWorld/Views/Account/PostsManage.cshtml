@@ -1,5 +1,15 @@
-﻿@{
+﻿@using MomWorld.Entities;
+@{
     Layout = null;
+    var articles = ViewData["Articles"] as List<MomWorld.Entities.Article>;
+    var postedUsers = ViewData["PostedUsers"] as Dictionary<string, string>;
+    var lastModifiedUsers = ViewData["LastModifiedUsers"] as Dictionary<string, string>;
+    Dictionary<string, string> enumDescriptions = new Dictionary<string, string>();
+    foreach (var item in articles)
+    {
+        enumDescriptions.Add(item.Id, EnumHelper<ArticleStatus>.GetEnumDescription(((ArticleStatus)item.Status).ToString()));
+    }
+
 }
 
 <!DOCTYPE html>
@@ -297,7 +307,7 @@
 
                         <li class="dropdown divided user" id="current-user">
                             <div class="profile-photo">
-                                <img src="@Url.Content("~/Content/images/profile-photo.jpg")")" />
+                                <img src="@Url.Content("~/Content/images/profile-photo.jpg")" )" />
                             </div> <a class="dropdown-toggle options" data-toggle="dropdown"
                                       href="#">
                                 KhoaHN <i class="fa fa-caret-down"></i>
@@ -486,34 +496,43 @@
                                                 <tr>
 
                                                     <th class="sort-alpha">Tên bài viết</th>
-                                                    <th class="sort-alpha">Nội dung</th>
                                                     <th class="sort-alpha">Người tạo</th>
                                                     <th class="sort-alpha">Ngày tạo</th>
                                                     <th class="sort-alpha">Người sửa cuối cùng</th>
                                                     <th class="sort-alpha">Tình trạng</th>
-                                                    <th class="no-sort text-center">Hành động</th>
+                                                    <th class="no-sort text-center">Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="odd ">
+                                                @foreach (var article in articles)
+                                                {
+                                                    <tr class="odd " data-toggle="tooltip" data-placement="top" title="@article.Description">
 
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
+                                                        <td>@article.Title</td>
+                                                        <td>@postedUsers[article.Id]</td>
+                                                        <td>@(article.PostedDate != null ? article.PostedDate.Value.ToString("dd/MM/yyyy") : "NULL")</td>
+                                                        <td>@lastModifiedUsers[article.Id]</td>
+                                                        <td class="color-greensea">@enumDescriptions[article.Id]</td>
+                                                        <td class="actions text-center">
+                                                            <a class="ban"
+                                                               href="#" data-id="@article.Id">
+                                                                Duyệt
+                                                            </a>
+
+                                                            <a href="#" id="editArticle" data-id="@article.Id">
+                                                                Sửa
+                                                            </a>
+
+                                                            <a class="delete" href="#">
+                                                                Xóa
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                }
                                                 <tr class="even ">
 
                                                     <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
+
                                                     <td>Người dùng 2</td>
                                                     <td>3/22/2015</td>
                                                     <td>Người sửa 1</td>
@@ -526,156 +545,22 @@
                                                     </td>
                                                 </tr>
 
-                                                <tr class="odd ">
+                                                @*<tr class="odd ">
 
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even ">
+                                                        <td>Bài viết 1</td>
 
-                                                    <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd ">
+                                                        <td>Người dùng 1</td>
+                                                        <td>3/22/2015</td>
+                                                        <td>Người sửa 1</td>
+                                                        <td class="color-greensea">Đã duyệt</td>
+                                                        <td class="actions text-center">
+                                                            <a class="ban"
+                                                               href="#">Duyệt</a><a class="edit"
+                                                                                    href="#">Sửa</a><a class="delete"
+                                                                                                       href="#">Xóa</a>
+                                                        </td>
+                                                    </tr>*@
 
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even ">
-
-                                                    <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd ">
-
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even ">
-
-                                                    <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd ">
-
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even ">
-
-                                                    <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd ">
-
-                                                    <td>Bài viết 1</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 1</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-greensea">Đã duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even ">
-
-                                                    <td>Bài viết 2</td>
-                                                    <td>Nôi dung</td>
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
 
                                             </tbody>
                                         </table>
@@ -726,7 +611,11 @@
     </div>
     <!-- Wrap all page content end -->
 
-
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
     <script>
         $(function () {
@@ -830,8 +719,7 @@
                 jqTds[2].innerHTML = '<input type="text" value="' + aData[2] + '" class="form-control">';
                 jqTds[3].innerHTML = '<input type="text" value="' + aData[3] + '" class="form-control">';
                 jqTds[4].innerHTML = '<input type="text" value="' + aData[4] + '" class="form-control">';
-                jqTds[5].innerHTML = '<input type="text" value="' + aData[5] + '" class="form-control">';
-                jqTds[6].innerHTML = '<a class="edit save" href="#">Lưu</a><a class="delete" href="#">Xóa</a>';
+                jqTds[5].innerHTML = '<a class="edit save" href="#">Lưu</a><a class="delete" href="#">Xóa</a>';
             }
             ;
 
@@ -842,11 +730,10 @@
                 oTable02.fnUpdate(jqInputs[2].value, nRow, 2, false);
                 oTable02.fnUpdate(jqInputs[3].value, nRow, 3, false);
                 oTable02.fnUpdate(jqInputs[4].value, nRow, 4, false);
-                oTable02.fnUpdate(jqInputs[5].value, nRow, 5, false);
                 oTable02
 						.fnUpdate(
 								'<a class="ban" href="#">Duyệt</a> <a class="edit" href="#">Sửa</a><a class="delete" href="#">Xóa</a>',
-								nRow, 6, false);
+								nRow, 5, false);
                 oTable02.fnDraw();
             }
             ;
@@ -878,32 +765,32 @@
 
             //// Add row initialize
             //$('#addRow')
-			//		.click(
-			//				function (e) {
-			//				    e.preventDefault();
+            //		.click(
+            //				function (e) {
+            //				    e.preventDefault();
 
-			//				    // Only allow a new row when not currently editing
-			//				    if (nEditing !== null) {
-			//				        return;
-			//				    }
+            //				    // Only allow a new row when not currently editing
+            //				    if (nEditing !== null) {
+            //				        return;
+            //				    }
 
-			//				    var aiNew = oTable02
-			//							.fnAddData([
-			//									'',
-			//									'',
-			//									'',
-			//									'',
-			//									'',
-			//									'',
-			//									'<a class="edit" href="#">Sửa</a>',
-			//									'<a class="delete" href="#">Xóa</a>']);
-			//				    var nRow = oTable02.fnGetNodes(aiNew[0]);
-			//				    editRow(oTable02, nRow);
-			//				    nEditing = nRow;
+            //				    var aiNew = oTable02
+            //							.fnAddData([
+            //									'',
+            //									'',
+            //									'',
+            //									'',
+            //									'',
+            //									'',
+            //									'<a class="edit" href="#">Sửa</a>',
+            //									'<a class="delete" href="#">Xóa</a>']);
+            //				    var nRow = oTable02.fnGetNodes(aiNew[0]);
+            //				    editRow(oTable02, nRow);
+            //				    nEditing = nRow;
 
-			//				    $(nRow).find('td:last-child').addClass(
-			//							'actions text-center');
-			//				});
+            //				    $(nRow).find('td:last-child').addClass(
+            //							'actions text-center');
+            //				});
 
             // Delete row initialize
             $(document).on("click", "#inlineEditDataTable a.delete",
@@ -1083,6 +970,37 @@
             $('div.dataTables_length select').addClass('form-control');
 
         })
+    </script>
+
+    <script>
+        $(function () {
+            $(document).ready(function () {
+                $('.ban').click(function () {
+                    var articleId = $(this).attr('data-id');
+                    //alert(articleId);
+                    $.ajax({
+                        url: '/Articles/Approve',
+                        dataType: "json",
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify({ articleid: articleId }),
+                        async: true,
+                        processData: false,
+                        cache: false,
+                        success: function () {
+                            $('.color-greensea').html("Đã duyệt");
+                        }
+                    });
+                });
+
+                $('#editArticle').click(function () {
+                    var articleId = $(this).attr("data-id");
+                    window.location= "/Articles/Edit/"+ articleId;
+                });
+
+            });
+        });
+
     </script>
 </body>
 </html>

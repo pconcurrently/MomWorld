@@ -178,7 +178,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnwsersController.cs" />
-    <Compile Include="Controllers\Articles1Controller.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
@@ -200,6 +199,14 @@
     <Compile Include="DataContexts\Migrations\ArticleMigrations\201503230649255_InitialCreate1.cs" />
     <Compile Include="DataContexts\Migrations\ArticleMigrations\201503230649255_InitialCreate1.Designer.cs">
       <DependentUpon>201503230649255_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503300916562_AddStatus.cs" />
+    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503300916562_AddStatus.Designer.cs">
+      <DependentUpon>201503300916562_AddStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503310537448_3rd.cs" />
+    <Compile Include="DataContexts\Migrations\ArticleMigrations\201503310537448_3rd.Designer.cs">
+      <DependentUpon>201503310537448_3rd.cs</DependentUpon>
     </Compile>
     <Compile Include="DataContexts\Migrations\ArticleMigrations\Configuration.cs" />
     <Compile Include="DataContexts\Migrations\CategoryMigrations\201503191952070_InitialCreate.cs" />
@@ -1428,6 +1435,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataContexts\Migrations\ArticleMigrations\201503230649255_InitialCreate1.resx">
       <DependentUpon>201503230649255_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataContexts\Migrations\ArticleMigrations\201503300916562_AddStatus.resx">
+      <DependentUpon>201503300916562_AddStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataContexts\Migrations\ArticleMigrations\201503310537448_3rd.resx">
+      <DependentUpon>201503310537448_3rd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataContexts\Migrations\CategoryMigrations\201503191952070_InitialCreate.resx">
       <DependentUpon>201503191952070_InitialCreate.cs</DependentUpon>
