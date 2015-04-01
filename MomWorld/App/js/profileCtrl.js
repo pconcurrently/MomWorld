@@ -97,7 +97,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
                 Content: $scope.Content,
                 CreatorName: $scope.user.LastName + " " + $scope.user.FirstName,
                 CreatorUsername: "user1",
-                CreatorAvatar: "http://meobeoi.com/wp-content/uploads/2014/06/hoanhtrang.jpg",
+                CreatorAvatar: "http://localhost:4444/App/uploads/avatar/user1.png",
                 createdDate: Firebase.ServerValue.TIMESTAMP
         }
 
@@ -123,7 +123,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
             Content: _comment,
             CreatorName: _user.FirstName + " " + _user.LastName,
             CreatorUsername: "user1",
-            CreatorAvatar: "http://meobeoi.com/wp-content/uploads/2014/06/hoanhtrang.jpg",
+            CreatorAvatar: "http://localhost:4444/App/uploads/avatar/user1.png",
             createdDate: Firebase.ServerValue.TIMESTAMP
         }
         var commentStatus = new Firebase("https://momworld.firebaseio.com/Status/user1/" + _status.$id + "/Comment");
