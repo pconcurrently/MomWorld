@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-var app = angular.module('quizApp', ['ui.router', 'ngResource', 'ui.bootstrap', 'angular-md5'])
+var app = angular.module('quizApp', ['ui.router', 'ngResource', 'ui.bootstrap', 'angular-md5', 'firebase'])
     // Routing has been added to keep flexibility in mind. This will be used in future.
     
 
@@ -9,27 +9,27 @@ var app = angular.module('quizApp', ['ui.router', 'ngResource', 'ui.bootstrap', 
           $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: '../../Content/js/templates/quiz.html',
+                templateUrl: '../../App/js/templates/quiz.html',
                 controller: 'quizCtrl'
             })
             .state('review', {
                 url: '/review',
-                templateUrl: '../../Content/js/templates/review.html',
+                templateUrl: '../../App/js/templates/review.html',
                 controller: 'reviewCtrl'
             })
             .state('result', {
                 url: '/result',
-                templateUrl: '../../Content/js/templates/result.html',
+                templateUrl: '../../App/js/templates/result.html',
                 controller: 'quizCtrl'
             })
             .state('contact', {
                 url: '/contact',
-                templateUrl: '../../Content/js/contact.html',
+                templateUrl: '../../App/js/contact.html',
                 controller: 'quizCtrl'
             })
             .state('create', {
                 url: '/create',
-                templateUrl: '../../Content/js/templates/create.html',
+                templateUrl: '../../App/js/templates/create.html',
                 controller: 'createCtrl'
             })
       }])

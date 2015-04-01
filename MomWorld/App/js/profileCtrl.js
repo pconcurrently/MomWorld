@@ -35,8 +35,6 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', '$firebaseObject
 
         }
 
-        console.log(JSON.stringify(sentData));
-
         $http.put("http://localhost:4444/api/User/user1", sentData).
               success(function (data, status, headers, config) {
                   alert("Update Ok");
@@ -46,11 +44,39 @@ profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', '$firebaseObject
                   alert("Update CL");
               });
 
+        // Change Passworld
+        // $scope.changePassword();
+
+
+
     }
+
+
 
     /* Retrive all Status from API */
     $scope.loadStatus = function () {
 
+    }
+
+    /* Retrive all Status from API */
+    $scope.changePassword = function () {
+
+        // TODO: Finish This
+
+        var sentData = {
+            OldPassword: "12345678",
+            NewPassword: $scope.NewPassword,
+            ConfirmPassword: $scope.ConfirmPassword
+        }
+
+        $http.post("http://localhost:4444/Account/Manage", sentData).
+              success(function (data, status, headers, config) {
+                  alert("Chanbe Passwold Ok");
+                  console.log(JSON.stringify(data));
+              }).
+              error(function (data, status, headers, config) {
+                  alert("Passworld Fail");
+              });
     }
 
     /* Create new Status using Status API */

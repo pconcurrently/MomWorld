@@ -57,17 +57,20 @@
     <link href="@Url.Content("~/Content/css/bootstrap.min.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" />
 
+    <!-- Logic Dependencies -->
     <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
     <script src="@Url.Content("~/Scripts/angular-ui/angular-ui-router.js")"></script>
     <script src="@Url.Content("~/Scripts/angular-route.min.js")"></script>
     <script src="@Url.Content("~/Scripts/angular-resource.min.js")"></script>
     <script src="@Url.Content("~/Scripts/angular-ui/ui-bootstrap-tpls.min.js")"></script>
     <script src="@Url.Content("~/Scripts/angular-md5.min.js")"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
 
-    <script src="@Url.Content("~/Content/js/app.js")"></script>
-    <script src="@Url.Content("~/Content/js/helperService.js")"></script>
-    <script src="@Url.Content("~/Content/js/quizCtrl.js")"></script>
-    <script src="@Url.Content("~/Content/js/createCtrl.js")"></script>
+    <script src="@Url.Content("~/App/js/app.js")"></script>
+    <script src="@Url.Content("~/App/js/helperService.js")"></script>
+    <script src="@Url.Content("~/App/js/quizCtrl.js")"></script>
+    <script src="@Url.Content("~/App/js/createCtrl.js")"></script>
 
 
 </head>
@@ -233,22 +236,7 @@
 
                 <!-- col 12 -->
                 <div class="col-md-12">
-                    <div class="col-xs-12 col-sm-3 col-lg-3">
-                        <div class="list-group">
-                            <a class="list-group-item list-group-item-heading active" href="">
-                                Tất
-                                cả
-                            </a> <a class="list-group-item" href="">
-                                <span class="badge pull-right badge-success">0</span> Mong con
-                            </a> <a class="list-group-item" href="">
-                                <span class="badge pull-right badge-success">0</span> Mang thai
-                            </a> <a class="list-group-item" href="">
-                                <span class="badge pull-right badge-success">0</span> Trẻ sơ sinh
-                            </a> <a class="list-group-item" href="">
-                                <span class="badge pull-right badge-warning">1</span> Nuôi dạy trẻ
-                            </a>
-                        </div>
-                    </div>
+                    
                     <div class="col-xs-12 col-sm-9 col-lg-9">
                       
                         <div class="row">
