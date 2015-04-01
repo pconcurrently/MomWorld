@@ -1292,6 +1292,23 @@ p:not(.lead) {
     color: #b1b1b1;
     font-weight: 300;
 }
+
+.category figure figcaption h5{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+p.fr-tag {
+  margin-top: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 p.less-width {
     max-width: 760px;
     margin: 0 auto 40px auto;
