@@ -12,15 +12,18 @@
 }
 
 .question{
-    background-color:#eee;
+    background-color: #FFF;
     color:#151569;
-    min-height:300px;
-    padding:6px;
+    padding: 30px 10px;
     text-align:center;
+    border-bottom: 2px solid rgb(111, 187, 242);
+    border-bottom-style: dashed;
+    margin-bottom: 10px;
 }
 .question h2{
     font-size:26px;
     font-weight:normal;
+    margin-top: 0;
 }
 
 
@@ -29,7 +32,7 @@
     width: 50%;
 }
     #quiz .options > div > label {
-        background-color: #d0def6;
+        background-color: #CBF1FF;
         color: #224;
         cursor: pointer;
         display: block;
@@ -40,7 +43,9 @@
         margin: 10px;
         padding: 10px 15px;
         vertical-align: middle;
-    }
+    
+        border-radius: 10px;
+}
 
     #quiz .options input[type=checkbox] {
         background-color:#eee;
