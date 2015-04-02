@@ -512,14 +512,14 @@
                                                         <td>@postedUsers[article.Id]</td>
                                                         <td>@(article.PostedDate != null ? article.PostedDate.Value.ToString("dd/MM/yyyy") : "NULL")</td>
                                                         <td>@lastModifiedUsers[article.Id]</td>
-                                                        <td class="color-greensea">@enumDescriptions[article.Id]</td>
+                                                        <td class="color-greensea" id="@article.Id">@enumDescriptions[article.Id]</td>
                                                         <td class="actions text-center">
                                                             <a class="ban"
                                                                href="#" data-id="@article.Id">
                                                                 Duyệt
                                                             </a>
 
-                                                            <a href="#" id="editArticle" data-id="@article.Id">
+                                                            <a href="#" class="editArticle" data-id="@article.Id" >
                                                                 Sửa
                                                             </a>
 
@@ -988,12 +988,12 @@
                         processData: false,
                         cache: false,
                         success: function () {
-                            $('.color-greensea').html("Đã duyệt");
+                            $('#' + articleId).html("Đã duyệt");
                         }
                     });
                 });
 
-                $('#editArticle').click(function () {
+                $('.editArticle').click(function () {
                     var articleId = $(this).attr("data-id");
                     window.location= "/Articles/Edit/"+ articleId;
                 });

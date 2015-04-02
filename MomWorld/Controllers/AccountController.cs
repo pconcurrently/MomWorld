@@ -477,12 +477,13 @@ namespace MomWorld.Controllers
             return Json(UserManager.FindByName(id), JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize(Roles = "Admins")]
         public ActionResult UsersManage()
         {
             return View();
         }
 
-
+        [Authorize(Roles="Admins")]
         public ActionResult PostsManage()
         {
             var articles = articleDb.Articles.ToList() as List<Article>;

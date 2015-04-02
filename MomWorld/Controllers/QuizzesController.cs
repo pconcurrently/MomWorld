@@ -35,7 +35,7 @@ namespace MomWorld.Controllers
             Quiz quiz = db.Quizzes.Find(id);
             if (quiz == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(quiz);
         }
@@ -91,7 +91,7 @@ namespace MomWorld.Controllers
             Quiz quiz = db.Quizzes.Find(id);
             if (quiz == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             ViewBag.QuizQuestionId = new SelectList(db.QuizQuestions, "Id", "QuestionId", quiz.QuizQuestionId);
             return View(quiz);
@@ -124,7 +124,7 @@ namespace MomWorld.Controllers
             Quiz quiz = db.Quizzes.Find(id);
             if (quiz == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(quiz);
         }

@@ -34,7 +34,7 @@ namespace MomWorld.Controllers
             NineMonthArticle nineMonthArticle = db.NineMonthArticles.Find(id);
             if (nineMonthArticle == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(nineMonthArticle);
         }
@@ -75,7 +75,7 @@ namespace MomWorld.Controllers
             NineMonthArticle nineMonthArticle = db.NineMonthArticles.Find(id);
             if (nineMonthArticle == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(nineMonthArticle);
         }
@@ -107,7 +107,7 @@ namespace MomWorld.Controllers
             NineMonthArticle nineMonthArticle = db.NineMonthArticles.Find(id);
             if (nineMonthArticle == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(nineMonthArticle);
         }

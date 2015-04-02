@@ -32,7 +32,7 @@ namespace MomWorld.Controllers
             Answer anwser = db.Anwsers.Find(id);
             if (anwser == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(anwser);
         }
@@ -72,7 +72,7 @@ namespace MomWorld.Controllers
             Answer anwser = db.Anwsers.Find(id);
             if (anwser == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             ViewBag.OptionId = new SelectList(db.Options, "Id", "QuestionId", anwser.OptionId);
             return View(anwser);
@@ -105,7 +105,7 @@ namespace MomWorld.Controllers
             Answer anwser = db.Anwsers.Find(id);
             if (anwser == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(anwser);
         }

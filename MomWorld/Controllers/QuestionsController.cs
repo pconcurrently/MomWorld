@@ -31,7 +31,7 @@ namespace MomWorld.Controllers
             Question question = db.Questions.Find(id);
             if (question == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(question);
         }
@@ -69,7 +69,7 @@ namespace MomWorld.Controllers
             Question question = db.Questions.Find(id);
             if (question == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(question);
         }
@@ -100,7 +100,7 @@ namespace MomWorld.Controllers
             Question question = db.Questions.Find(id);
             if (question == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(question);
         }

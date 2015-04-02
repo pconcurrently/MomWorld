@@ -75,17 +75,19 @@ namespace MomWorld.Controllers
 
         // POST: Comments/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public JsonResult Delete(string id)
         {
             try
             {
-                // TODO: Add delete logic here
+                var cmt = db.Comments.FirstOrDefault(c=>c.Id.Equals(id));
+                db.Comments.Remove(cmt);
+                db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return Json("Successfully");
             }
             catch
             {
-                return View();
+                return Json(null);
             }
         }
     }

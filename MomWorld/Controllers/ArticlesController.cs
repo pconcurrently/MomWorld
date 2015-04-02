@@ -43,7 +43,7 @@ namespace MomWorld.Controllers
             Article article = db.Articles.Find(id);
             if (article == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             if (article.Status == (int)ArticleStatus.Approved || article.Status == (int)ArticleStatus.CreatedByAdmins
                 || article.Status == (int)ArticleStatus.Normal || article.Status == (int)ArticleStatus.Reported)
@@ -141,7 +141,7 @@ namespace MomWorld.Controllers
             Article article = db.Articles.Find(id);
             if (article == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", article.CategoryId);
             return View(article);
@@ -179,7 +179,7 @@ namespace MomWorld.Controllers
             Article article = db.Articles.Find(id);
             if (article == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(article);
         }

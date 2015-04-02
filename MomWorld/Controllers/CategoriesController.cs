@@ -51,7 +51,7 @@ namespace MomWorld.Controllers
             Category category = db.Categories.Find(id);
             if (category == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(category);
         }
@@ -89,7 +89,7 @@ namespace MomWorld.Controllers
             Category category = db.Categories.Find(id);
             if (category == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(category);
         }
@@ -120,7 +120,7 @@ namespace MomWorld.Controllers
             Category category = db.Categories.Find(id);
             if (category == null)
             {
-                return HttpNotFound();
+                throw new HttpException(404, "Not Found");
             }
             return View(category);
         }

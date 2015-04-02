@@ -263,10 +263,13 @@
                                         <p>@item.Content</p>
                                     </div>
                                     <footer>
-                                        <button id="delete-comment">
-                                            <i class="fa fa-close color-red"></i> Xóa
-                                            bình luận
-                                        </button>
+                                        @if (User.Identity.Name.Equals(item.UserName))
+                                        {
+                                            <button id="delete-comment" data-id="@item.Id">
+                                                <i class="fa fa-close color-red"></i> Xóa
+                                                bình luận
+                                            </button>
+                                        }
                                     </footer>
                                 </div>
 
@@ -457,6 +460,23 @@
                     type: "POST",
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify({ comment: { articleId: articleId, username: username, content: content } }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        location.reload(true);
+                    }
+                });
+            });
+
+            $("#delete-comment").click(function () {
+                var commentId = $(this).attr('data-id');
+                $.ajax({
+                    url: '/Comments/Delete/'+ commentId,
+                    dataType: "json",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    //data: JSON.stringify({ comment: { articleId: articleId, username: username, content: content } }),
                     async: true,
                     processData: false,
                     cache: false,
