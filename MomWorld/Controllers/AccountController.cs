@@ -80,8 +80,8 @@ namespace MomWorld.Controllers
                     };
                     IFirebaseClient client = new FirebaseClient(config);
 
-                    SetResponse response = await client.SetAsync("Users/" + user.UserName, user);
-                    LoginViewModel result = response.ResultAs<LoginViewModel>();
+                    client.Update("User/" + user.UserName, user);
+                    client.Update("User/" + user.UserName +"/badge", user);
 
                     return RedirectToLocal(returnUrl);
                 }

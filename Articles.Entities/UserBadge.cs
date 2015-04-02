@@ -9,22 +9,13 @@ namespace MomWorld.Entities
 {
     public class UserBadge
     {
-        [Required]
-        [MaxLength(128)]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
-        [Required]
-        public string UserId { get; set; }
+        public string Name { get; set; }
 
-        [Required]
-        public string Badge { get; set; }
+        public string Image { get; set; }
 
-        [Required]
-        public string Link { get; set; }
+        public string Status { get; set; }
 
-        public UserBadge()
-        {
-            Id = Guid.NewGuid().ToString();
-        }
     }
 }
