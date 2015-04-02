@@ -1,4 +1,5 @@
-﻿
+﻿.quizz-main{text-align:center;background: white;/* padding: 0 10px; */border: 3px solid rgb(83, 208, 253);    border-radius: 10px;}
+
 .header-right{
     padding-top:12px;
     text-align:right;
@@ -11,19 +12,31 @@
     text-align:right;
 }
 
+.ng-scope h1{
+    /* border-bottom: 4px solid green; */
+    
+    /* display: inline-block; */
+    padding: 20px 0;
+    font-size: 32px;
+    background: rgb(83, 208, 253);
+    margin: 0;
+    color: white;
+}
+
 .question{
-    background-color: #FFF;
+    /* background-color: #FFF; */
     color:#151569;
     padding: 30px 10px;
-    text-align:center;
-    border-bottom: 2px solid rgb(111, 187, 242);
-    border-bottom-style: dashed;
-    margin-bottom: 10px;
+    /* text-align:center; */
+    /* border-bottom: 2px solid rgb(242, 111, 111); */
+    /* border-bottom-style: dashed; */
+    /* margin-bottom: 10px; */
+    text-transform: inherit;
 }
 .question h2{
-    font-size:26px;
-    font-weight:normal;
-    margin-top: 0;
+     font-size: 22px;
+  font-weight: normal;
+  text-align: left;
 }
 
 
@@ -37,9 +50,9 @@
         cursor: pointer;
         display: block;
         font-family: 'Segoe UI', Calibri, Arial;
-        font-weight:600;
+        font-weight: 600;
         text-align: left;
-        font-size: 20px;
+        font-size: 18px;
         margin: 10px;
         padding: 10px 15px;
         vertical-align: middle;
@@ -50,8 +63,8 @@
     #quiz .options input[type=checkbox] {
         background-color:#eee;
         border:1px solid #ccc;
-        height: 15px;
-        width: 15px;
+        height: 13px;
+        width: 13px;
     
 }
 
@@ -92,17 +105,22 @@ div.review > div {
 }
 
 .result{
+    /* background: white; */
 
+    /* padding: 10px; */
+    /* border: 3px solid rgb(83, 208, 253); */
+    /* border-radius: 10px; */
 }
 
 .result-question{
-    background-color:#eee;
+    /* background-color:#eee; */
     margin:4px;
     padding:6px;
 }
 .result-question h3 {
-    font-size:18px;
+    font-size: 22px;
     font-weight:normal;
+    text-align: left;
 }
 #quiz .result-options {
     margin: auto;
@@ -111,21 +129,22 @@ div.review > div {
 }
 #quiz .result-options > div{
     display:inline-block;
+    width: 50%;
 }
     #quiz .result-options > div > label {
-        background-color: #ccd2dc;
+        background-color: #CBF1FF;
         color: #224;
         cursor: pointer;
         display: block;
         font-family: 'Segoe UI', Calibri, Arial;
-        font-weight:normal;
-        margin: 5px;
+        font-weight:600;
         text-align: left;
-        font-size: 16px;
-        margin: 6px;
-        min-width: 300px;
-        padding: 6px 12px;
+        font-size: 18px;
+        margin: 10px;
+        padding: 10px 15px;
         vertical-align: middle;
+    
+        border-radius: 10px;
     }
 
     #quiz .result-options input[type=checkbox] {
