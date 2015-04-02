@@ -1299,6 +1299,8 @@ p:not(.lead) {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-top: 5px;
+  min-height: 35px;
 }
 
 p.fr-tag {
