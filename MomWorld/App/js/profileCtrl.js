@@ -51,7 +51,6 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
     var uploader = $scope.uploader = new FileUploader({
         url: "http://localhost:4444/api/User/UploadAvatar",
         formData: [{ Username: "admin4" }]
-
     });
 
     uploader.onSuccessItem = function (fileItem, response, status, headers) {
