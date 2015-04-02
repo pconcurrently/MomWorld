@@ -23,13 +23,10 @@
     font-weight:normal;
 }
 
-#quiz .options {
-    margin: auto;
-    max-width: 800px;
-    text-align: left;
-}
+
 #quiz .options > div{
     display:inline-block;
+    width: 50%;
 }
     #quiz .options > div > label {
         background-color: #d0def6;
@@ -38,11 +35,9 @@
         display: block;
         font-family: 'Segoe UI', Calibri, Arial;
         font-weight:600;
-        margin: 5px;
         text-align: left;
         font-size: 20px;
         margin: 10px;
-        min-width: 350px;
         padding: 10px 15px;
         vertical-align: middle;
     }
@@ -50,9 +45,10 @@
     #quiz .options input[type=checkbox] {
         background-color:#eee;
         border:1px solid #ccc;
-        height:22px;
-        width:22px;
-    }
+        height: 15px;
+        width: 15px;
+    
+}
 
     .quizNav {
         margin:auto;
