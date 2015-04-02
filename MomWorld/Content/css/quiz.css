@@ -78,14 +78,17 @@
 
 .thumbnail span.exam-category {
 	font-family: Arial, sans-serif;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
+	/* text-transform: capitalize; */
+	/* letter-spacing: 0.1em; */
 	display: inline-block;
 	width: 100%;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	-webkit-font-smoothing: subpixel-antialiased;
+	text-align: center;
+	font-weight: 600;
+	font-size: large;
 }
 
 .thumbnail p.exam-title {
@@ -94,6 +97,8 @@
 	height: 33px;
 	overflow: hidden;
 }
+
+.exam-item a:hover,.exam-item a:focus{  text-decoration: none;}
 
 .thumbnail .total-question {
 	font-size: 11px;
