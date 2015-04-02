@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
@@ -21,7 +22,7 @@ namespace MomWorld.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/User/Get/{{username}}
+        // GET: api/User/user1
         // Retrive User from Database using UserName 
         public object Get(string id)
         {
@@ -38,7 +39,7 @@ namespace MomWorld.Controllers
             Console.Write(value);
         }
 
-        // PUT: api/User/Put/{{userName}}
+        // PUT: api/User/{{UserName}}
         public void Put(string id, UpdateProfileViewModel userPro)
         {
             var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(id));

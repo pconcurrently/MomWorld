@@ -43,6 +43,7 @@
     <!-- Logic dependences -->
     <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
     <script src="@Url.Content("~/Scripts/angular-md5.min.js")"></script>
+    <script src="@Url.Content("~/App/scripts/angular-file-upload/angular-file-upload.min.js")"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
 
@@ -701,13 +702,19 @@
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
-                                                    <label for="country">Quốc gia</label> <select class="chosen-select form-control" id="country">
-                                                        <option>Việt nam</option>
-                                                        <option>Czech Republic</option>
-                                                        <option>Poland</option>
-                                                        <option>Hungary</option>
-                                                        <option>Austria</option>
-                                                    </select>
+                                                    <label for="avatar">Ảnh đại diện</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <span class="btn btn-primary btn-file">
+                                                                <i class="fa fa-upload"></i><input type="file" nv-file-select uploader="uploader" />
+                                                            </span>
+                                                        </span> <input type="text" class="form-control" readonly=""
+                                                                       id="avatar">
+                                                    </div>
+                                                    <span class="help-block">
+                                                        File cho phép: gif, png,
+                                                        jpg. Kích thước tối đa 1Mb
+                                                    </span>
                                                 </div>
 
                                             </div>
@@ -718,23 +725,20 @@
                                                     <label for="phone">Số điện thoại</label> <input type="text"
                                                                                                     class="form-control" id="phone" ng-model="user.PhoneNumber">
                                                     <span class="help-block">+(84)1655757445</span>
+
+
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
-                                                    <label for="avatar">Ảnh đại diện</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-btn">
-                                                            <span class="btn btn-primary btn-file">
-                                                                <i class="fa fa-upload"></i><input type="file" multiple="">
-                                                            </span>
-                                                        </span> <input type="text" class="form-control" readonly=""
-                                                                       id="avatar">
-                                                    </div>
-                                                    <span class="help-block">
-                                                        File cho phép: gif, png,
-                                                        jpg. Kích thước tối đa 1Mb
-                                                    </span>
+                                                    <ul id="thumbPic">
+                                                        <li ng-repeat="item in uploader.queue">
+                                                            <div ng-thumb="{ file: item._file, height: 100 }"></div><br />
+                                                            <button ng-click="updateAvatar()">upload</button>
+                                                        </li>
+                                                    </ul>
                                                 </div>
+
+                                                
 
                                             </div>
 

@@ -60,6 +60,11 @@
         'theme': 'none'
     }
 
+    $scope.initQuiz = function () {
+        var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUserName + "/badge/" + $scope.quizNameTemp);
+        $scope.badgeFirebase = $firebaseObject(userTmp);
+    }
+
     $scope.initQuizDo = function (quizId, username) {
         $scope.quizName = $scope.quizData[quizId].quizData;
         $scope.quizNameTemp = $scope.quizData[quizId].quizName;
@@ -67,6 +72,7 @@
         $scope.loadQuiz($scope.quizName);
 
     }
+
 
     $scope.goTo = function (index) {
         if (index > 0 && index <= $scope.totalItems) {
