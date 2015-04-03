@@ -506,13 +506,13 @@
                                             <tbody>
                                                 @foreach (var article in articles)
                                                 {
-                                                    <tr class="masterTooltip" data-toggle="tooltip" title="@article.Description">
+                                                    <tr>
 
                                                         <td>@article.Title</td>
                                                         <td>@postedUsers[article.Id]</td>
                                                         <td>@(article.PostedDate != null ? article.PostedDate.Value.ToString("dd/MM/yyyy") : "NULL")</td>
                                                         <td>@lastModifiedUsers[article.Id]</td>
-                                                        <td class="color-greensea" id="@article.Id">@enumDescriptions[article.Id]</td>
+                                                        <td  id="@article.Id">@enumDescriptions[article.Id]</td>
                                                         <td class="actions text-center">
                                                             <a class="ban"
                                                                href="#" data-id="@article.Id">
@@ -974,27 +974,5 @@
 
     </script>
 
-
-    <script>$(document).ready(function () {
-    // Tooltip only Text
-    $('.masterTooltip').hover(function () {
-        // Hover over code
-        var title = $(this).attr('title');
-        $(this).data('tipText', title).removeAttr('title');
-        $('<p class="tooltip"></p>')
-        .text(title)
-        .appendTo('body')
-        .fadeIn('slow');
-    }, function () {
-        // Hover out code
-        $(this).attr('title', $(this).data('tipText'));
-        $('.tooltip').remove();
-    }).mousemove(function (e) {
-        var mousex = e.pageX + 20; //Get X coordinates
-        var mousey = e.pageY + 10; //Get Y coordinates
-        $('.tooltip')
-        .css({ top: mousey, left: mousex })
-    });
-});</script>
 </body>
 </html>
