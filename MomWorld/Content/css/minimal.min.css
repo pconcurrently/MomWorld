@@ -1251,7 +1251,7 @@ form .btn[type="reset"]:hover {
 form.form-block {
     padding: 20px;
     background-color: #f2f2f2;
-    border-bottom: 3px solid #A6D17C;
+    border-bottom: 3px solid #418bca;
 }
 form .form-group.legend {
     margin-top: 20px;
@@ -1915,16 +1915,11 @@ figure figcaption {
     -moz-transition: all 0.2s linear;
     transition: all 0.2s linear;
 }
-p.fr-tag {
+figure figcaption h5 {
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 0;
 }
-
-p.fr-tag:hover {
-   color:white;
-}
-
 figure figcaption span {
     font-size: 12px;
     color: #b1b1b1;
@@ -2190,7 +2185,7 @@ section.twitter-holder .twitter-feed .tweet_list > li a {
     margin: 0;
 }
 .search-results > .search-result {
-    /* padding: 15px 0; */
+    padding: 15px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .search-results > .search-result:last-child {
@@ -2208,7 +2203,6 @@ section.twitter-holder .twitter-feed .tweet_list > li a {
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
     border-radius: 4px;
-    border-bottom: 1px solid rgb(166, 209, 124);
 }
 .search-results > .search-result .cover h4 {
     padding: 0;
@@ -2216,7 +2210,7 @@ section.twitter-holder .twitter-feed .tweet_list > li a {
     font-weight: 700;
 }
 .search-results > .search-result .cover h4 a {
-    /* color: #008BFF; */
+    color: #4b4b4b;
 }
 .search-results > .search-result .cover h4 a:hover {
     text-decoration: none;
@@ -2224,7 +2218,7 @@ section.twitter-holder .twitter-feed .tweet_list > li a {
 }
 .search-results > .search-result .cover > p {
     font-size: 12px;
-    color: #696969;
+    color: #8b8b8b;
 }
 .search-results > .search-result .cover > a {
     font-size: 11px;
