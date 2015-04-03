@@ -787,6 +787,11 @@ ul.chat-nav.side-nav > li .form-control:focus {
 }
 
 /* colors */
+
+.color-white {
+  color: #fff !important;
+}
+
 .color-red {
   color: #ff4a43 !important;
 }

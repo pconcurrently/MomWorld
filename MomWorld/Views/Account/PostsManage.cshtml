@@ -508,7 +508,7 @@
                                                 {
                                                     <tr>
 
-                                                        <td>@article.Title</td>
+                                                        <td><a class="color-white" href="@Url.Action("Details", "Articles", routeValues: new { id= article.Id })">@article.Title</a></td>
                                                         <td>@postedUsers[article.Id]</td>
                                                         <td>@(article.PostedDate != null ? article.PostedDate.Value.ToString("dd/MM/yyyy") : "NULL")</td>
                                                         <td>@lastModifiedUsers[article.Id]</td>
