@@ -506,7 +506,7 @@
                                             <tbody>
                                                 @foreach (var article in articles)
                                                 {
-                                                    <tr class="odd " data-toggle="tooltip" data-placement="top" title="@article.Description">
+                                                    <tr class="masterTooltip" data-toggle="tooltip" title="@article.Description">
 
                                                         <td>@article.Title</td>
                                                         <td>@postedUsers[article.Id]</td>
@@ -529,37 +529,8 @@
                                                         </td>
                                                     </tr>
                                                 }
-                                                <tr class="even ">
+                                                
 
-                                                    <td>Bài viết 2</td>
-
-                                                    <td>Người dùng 2</td>
-                                                    <td>3/22/2015</td>
-                                                    <td>Người sửa 1</td>
-                                                    <td class="color-red">Chưa duyệt</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Duyệt</a><a class="edit"
-                                                                                href="#">Sửa</a><a class="delete"
-                                                                                                   href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-
-                                                @*<tr class="odd ">
-
-                                                        <td>Bài viết 1</td>
-
-                                                        <td>Người dùng 1</td>
-                                                        <td>3/22/2015</td>
-                                                        <td>Người sửa 1</td>
-                                                        <td class="color-greensea">Đã duyệt</td>
-                                                        <td class="actions text-center">
-                                                            <a class="ban"
-                                                               href="#">Duyệt</a><a class="edit"
-                                                                                    href="#">Sửa</a><a class="delete"
-                                                                                                       href="#">Xóa</a>
-                                                        </td>
-                                                    </tr>*@
 
 
                                             </tbody>
@@ -1002,5 +973,28 @@
         });
 
     </script>
+
+
+    <script>$(document).ready(function () {
+    // Tooltip only Text
+    $('.masterTooltip').hover(function () {
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+    }, function () {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+    }).mousemove(function (e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+    });
+});</script>
 </body>
 </html>
