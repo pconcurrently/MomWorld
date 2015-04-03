@@ -2057,15 +2057,15 @@ select.form-control.parsley-success + .chosen-container-multi .chosen-choices {
     border: 1px solid #e9ff9f;
 }
 select.form-control.form-control.chosen-transparent + .chosen-container-multi .chosen-choices {
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 0;
-    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 1);
+    color: #717171;
+    border: 1px solid #ccc;
 }
 select.form-control.form-control.chosen-transparent + .chosen-container-multi .chosen-choices .search-choice {
     border-radius: 2px;
     border: 0;
     color: #717171;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     font-size: 11px;
     line-height: 18px;
     -webkit-box-shadow: none !important;
@@ -2074,10 +2074,12 @@ select.form-control.form-control.chosen-transparent + .chosen-container-multi .c
 select.form-control.form-control.chosen-transparent + .chosen-container-multi .chosen-choices .search-field input {
     line-height: 18px;
     min-height: 18px;
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: rgba(113, 113, 113, 1) !important;
 }
 select.form-control.form-control.chosen-transparent + .chosen-container-multi.chosen-container-active .chosen-choices {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 1);
+    color: #717171;
+    border: 1px solid #b2b2b2;      -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);      box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);
 }
 select.form-control.chosen-transparent.parsley-error + .chosen-container-multi .chosen-choices {
     background-color: rgba(255, 74, 67, 0.2);
