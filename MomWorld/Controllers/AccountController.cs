@@ -15,6 +15,10 @@ using MomWorld.Entities;
 using System.Web.Helpers;
 using MomWorld.DataContexts;
 using System.Reflection;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp;
+using FireSharp.Response;
 
 namespace MomWorld.Controllers
 {
@@ -68,6 +72,18 @@ namespace MomWorld.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
+
+                    // Sync User to Firebase
+                    IFirebaseConfig config = new FirebaseConfig
+                    {
+                        AuthSecret = "MQN9HDJakBgjQy2mxTDig01jgcVaHXRRILop7hPe",
+                        BasePath = "https://momworld.firebaseio.com/"
+                    };
+                    IFirebaseClient client = new FirebaseClient(config);
+
+                    client.Update("User/" + user.UserName, user);
+                    client.Update("User/" + user.UserName +"/badge", user);
+
                     return RedirectToLocal(returnUrl);
                 }
                 else

@@ -33,12 +33,6 @@ namespace MomWorld.Controllers
             return user;
         }
 
-        // POST: api/User
-        public void Post([FromBody]string value)
-        {
-            Console.Write(value);
-        }
-
         // PUT: api/User/{{UserName}}
         public void Put(string id, UpdateProfileViewModel userPro)
         {

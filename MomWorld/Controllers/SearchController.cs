@@ -23,7 +23,8 @@ namespace MomWorld.Controllers
                 return Json(string.Empty);
             }
 
-            var arts = db.Articles.ToList().FindAll(a => a.Content.Contains(id));
+            var arts = db.Articles.ToList().FindAll(a => a.Content.Contains(id)||a.Title.Contains(id));
+            
             return Json(arts, JsonRequestBehavior.AllowGet);
         }
     }
