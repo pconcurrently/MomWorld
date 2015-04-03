@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.ComponentModel;
 
 namespace MomWorld.Models
 {
@@ -25,7 +26,7 @@ namespace MomWorld.Models
         public string Phone { get; set; }
 
         public string Description { get; set; }
-        
+
         // TODO: Create Social Profile
         // public object Social { get; set; }
 
@@ -38,5 +39,15 @@ namespace MomWorld.Models
         public string ProfilePicture { get; set; }
 
         public DateTime? DatePregnancy { get; set; }
+
+        public int Status { get; set; }
+    }
+
+    public enum IdentityStatus
+    {
+        [Description("Khóa")]
+        Locked = 1,
+        [Description("Bình thường")]
+        Normal = 2
     }
 }

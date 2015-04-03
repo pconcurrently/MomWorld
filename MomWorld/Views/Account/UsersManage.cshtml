@@ -1,10 +1,20 @@
 ﻿@{
     Layout = null;
+    var users = ViewData["Users"] as List<MomWorld.Models.ApplicationUser>;
+    var roles = ViewData["Roles"] as Dictionary<string,string>;
+   // var role1 = ViewData["Roles1"]as List<IdentityUserRole>;
+   /* Dictionary<string, string> enumstatus = new Dictionary<string, string>();
+    foreach (var item in users)
+    {
+        enumstatus.Add(item.Id, EnumHelper<Loc>.GetEnumDescription(((ArticleStatus)item.Status).ToString()));
+    }
+    * */
 }
 
 <!DOCTYPE html>
-<html>
+<html>;
 <head>
+    
     <title>Mom's World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
@@ -499,12 +509,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach (var user in users)
+                                                { 
                                                 <tr class="odd ">
 
-                                                    <td>Tài khoản 1</td>
+                                                    <td>@user.UserName</td>
 
-                                                    <td>email1@gmail.com</td>
-                                                    <td>Quản lí</td>
+                                                    <td>@user.Email</td>
+                                                    <td>@roles[user.Id]</td>
                                                     <td class="color-greensea">Bình thường</td>
                                                     <td class="actions text-center">
                                                         <a class="ban"
@@ -513,161 +525,8 @@
                                                                                                  href="#">Xóa</a>
                                                     </td>
                                                 </tr>
-                                                <tr class="even ">
-
-                                                    <td>Tài khoản 2</td>
-
-                                                    <td>email1@gmail.com</td>
-                                                    <td>Người dùng</td>
-                                                    <td class="color-red">Bị cấm</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr class="odd ">
-
-                                                    <td>Tài khoản 3</td>
-
-                                                    <td>email3@gmail.com</td>
-                                                    <td>Quản lí</td>
-                                                    <td class="color-greensea">Bình thường</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even ">
-
-                                                    <td>Tài khoản 4</td>
-
-                                                    <td>email4@gmail.com</td>
-                                                    <td>Người dùng</td>
-                                                    <td class="color-red">Bị cấm</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd ">
-
-                                                    <td>Tài khoản 6</td>
-
-                                                    <td>email6@gmail.com</td>
-                                                    <td>Quản lí</td>
-                                                    <td class="color-greensea">Bình thường</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even ">
-
-                                                    <td>Tài khoản 7</td>
-
-                                                    <td>email7@gmail.com</td>
-                                                    <td>Người dùng</td>
-                                                    <td class="color-red">Bị cấm</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd ">
-
-                                                    <td>Tài khoản 8</td>
-
-                                                    <td>email8@gmail.com</td>
-                                                    <td>Quản lí</td>
-                                                    <td class="color-greensea">Bình thường</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even ">
-
-                                                    <td>Tài khoản 9</td>
-
-                                                    <td>email9@gmail.com</td>
-                                                    <td>Người dùng</td>
-                                                    <td class="color-red">Bị cấm</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd ">
-
-                                                    <td>Tài khoản 10</td>
-
-                                                    <td>email10@gmail.com</td>
-                                                    <td>Quản lí</td>
-                                                    <td class="color-greensea">Bình thường</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even ">
-
-                                                    <td>Tài khoản 11</td>
-
-                                                    <td>email11@gmail.com</td>
-                                                    <td>Người dùng</td>
-                                                    <td class="color-red">Bị cấm</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd ">
-
-                                                    <td>Tài khoản 12</td>
-
-                                                    <td>email12@gmail.com</td>
-                                                    <td>Quản lí</td>
-                                                    <td class="color-greensea">Bình thường</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even ">
-
-                                                    <td>Tài khoản 13</td>
-
-                                                    <td>email13@gmail.com</td>
-                                                    <td>Người dùng</td>
-                                                    <td class="color-red">Bị cấm</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
+                                                }
+                                                
                                             </tbody>
                                         </table>
                                     </div>

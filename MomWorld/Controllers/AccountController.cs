@@ -23,6 +23,7 @@ namespace MomWorld.Controllers
     {
         private ApplicationUserManager _userManager;
         private ArticleDb articleDb = new ArticleDb();
+        private IdentityDb identityDb = new IdentityDb();
 
         public AccountController()
         {
@@ -98,6 +99,7 @@ namespace MomWorld.Controllers
             {
                 var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                UserManager.AddToRole(user.Id, "Users");
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
@@ -480,7 +482,22 @@ namespace MomWorld.Controllers
         [Authorize(Roles = "Admins")]
         public ActionResult UsersManage()
         {
-            return View();
+            var users = UserManager.Users.ToList() as List<ApplicationUser>;
+
+            Dictionary<string,string> userRoles = new Dictionary<string,string>();
+
+            foreach (var user in users)
+            {
+                userRoles.Add(user.Id, identityDb.Roles.ToList().FirstOrDefault(r=>r.Id.Equals(user.Roles.ToList()[0].RoleId)).Name);
+                //var roles = UserManager.GetRoles(user.Id);
+                //string role = roles.ToString();
+            }
+
+            
+            ViewData["Users"] = users;
+            ViewData["Roles"] = userRoles;
+            
+            return View();  
         }
 
         [Authorize(Roles="Admins")]
