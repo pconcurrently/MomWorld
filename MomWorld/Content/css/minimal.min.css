@@ -1222,7 +1222,8 @@ section.parallax {
     margin-top: 10px;
 }
 form label {
-    font-weight: 300;
+    font-weight: 700;
+    margin-bottom: 5px !important;
 }
 form .form-control {
     -webkit-box-shadow: none;
@@ -1251,7 +1252,7 @@ form .btn[type="reset"]:hover {
 form.form-block {
     padding: 20px;
     background-color: #f2f2f2;
-    border-bottom: 3px solid #418bca;
+    border-bottom: 3px solid #A2D200;
 }
 form .form-group.legend {
     margin-top: 20px;
@@ -2203,6 +2204,7 @@ section.twitter-holder .twitter-feed .tweet_list > li a {
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
     border-radius: 4px;
+    border-bottom: 1px solid rgb(162, 210, 0);
 }
 .search-results > .search-result .cover h4 {
     padding: 0;

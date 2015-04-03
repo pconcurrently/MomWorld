@@ -330,206 +330,202 @@ menu .btn .fa {
 /**********************************/
 /************* MODALS *************/
 /**********************************/
-
 .modal-ios {
-    position: absolute;
-    overflow: visible;
+  position: absolute;
+  overflow: visible;
 }
+
 .modal {
-    color: #717171;
-    top: 50px;
-    z-index: 1999;
+  color: #717171;
+  top: 50px;
+  z-index: 1999;
 }
 .modal .modal-dialog {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 .modal .modal-dialog.wide {
-    width: 1200px;
+  width: 1200px;
 }
 .modal .modal-content {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
-    border: 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  border: 0;
 }
 .modal .modal-content .modal-header,
 .modal .modal-content .modal-footer {
-    background-color: white;
+  background-color: white;
 }
 .modal .modal-content .modal-header {
-    border: 0;
-    position: relative;
-    -webkit-border-radius: 4px 4px 0 0;
-    -moz-border-radius: 4px 4px 0 0;
-    -ms-border-radius: 4px 4px 0 0;
-    -o-border-radius: 4px 4px 0 0;
-    border-radius: 4px 4px 0 0;
+  border: 0;
+  position: relative;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  -ms-border-radius: 4px 4px 0 0;
+  -o-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 .modal .modal-content .modal-header h3 {
-    color: #555;
-    font-size: 32px;
-    /* border: 5px solid rgb(0, 207, 255); */
+  color: #555;
+  font-size: 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-
-
-.modal .modal-content .modal-header h3 strong {
-     border-bottom: 5px solid rgb(0, 207, 255); 
-     padding: 10px 0;
-}
-
 .modal .modal-content .modal-header button.close {
-    background: url(../images/modal-close.png) left center no-repeat;
-    position: absolute;
-    top: -30px;
-    right: 0;
-    color: white;
-    font-weight: 400;
-    filter: alpha(opacity=100);
-    opacity: 1;
-    text-shadow: none;
-    padding-left: 23px;
+  background: url(../images/modal-close.png) left center no-repeat;
+  position: absolute;
+  top: -30px;
+  right: 0;
+  color: white;
+  font-weight: 400;
+  filter: alpha(opacity=100);
+  opacity: 1;
+  text-shadow: none;
+  padding-left: 23px;
 }
 .modal .modal-content .modal-header button.close:hover {
-    background: url(../images/modal-close-hover.png) left center no-repeat;
-    color: #418bca;
+  background: url(../images/modal-close-hover.png) left center no-repeat;
+  color: #418bca;
 }
 .modal .modal-content .modal-header button.close:focus {
-    outline: none;
+  outline: none;
 }
 .modal .modal-content .modal-footer {
-    -webkit-border-radius: 0 0 4px 4px;
-    -moz-border-radius: 0 0 4px 4px;
-    -ms-border-radius: 0 0 4px 4px;
-    -o-border-radius: 0 0 4px 4px;
-    border-radius: 0 0 4px 4px;
-    background-color: rgba(0, 0, 0, 0.03);
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  -ms-border-radius: 0 0 4px 4px;
+  -o-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+  background-color: rgba(0, 0, 0, 0.03);
 }
+
 .modal-backdrop.in {
-    filter: alpha(opacity=70);
-    opacity: 0.7;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
 }
+
 .md-modal {
-    height: 100%;
-    margin-top: 3%;
+  height: 100%;
+  margin-top: 3%;
 }
 .md-modal .md-content {
-    max-height: 80%;
-    overflow: auto;
+  max-height: 80%;
+  overflow: auto;
 }
 .md-modal.md-cyan .md-content {
-    background-color: #22beef;
-    color: white;
+  background-color: #22beef;
+  color: white;
 }
 .md-modal.md-cyan.colorize-overlay.md-show ~ .md-overlay {
-    background: #22beef;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #22beef;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-red .md-content {
-    background-color: #ff4a43;
-    color: white;
+  background-color: #ff4a43;
+  color: white;
 }
 .md-modal.md-red.colorize-overlay.md-show ~ .md-overlay {
-    background: #ff4a43;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #ff4a43;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-green .md-content {
-    background-color: #a2d200;
-    color: white;
+  background-color: #a2d200;
+  color: white;
 }
 .md-modal.md-green.colorize-overlay.md-show ~ .md-overlay {
-    background: #a2d200;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #a2d200;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-orange .md-content {
-    background-color: #ffc100;
-    color: white;
+  background-color: #ffc100;
+  color: white;
 }
 .md-modal.md-orange.colorize-overlay.md-show ~ .md-overlay {
-    background: #ffc100;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #ffc100;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-amethyst .md-content {
-    background-color: #cd97eb;
-    color: white;
+  background-color: #cd97eb;
+  color: white;
 }
 .md-modal.md-amethyst.colorize-overlay.md-show ~ .md-overlay {
-    background: #cd97eb;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #cd97eb;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-greensea .md-content {
-    background-color: #16a085;
-    color: white;
+  background-color: #16a085;
+  color: white;
 }
 .md-modal.md-greensea.colorize-overlay.md-show ~ .md-overlay {
-    background: #16a085;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #16a085;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-dutch .md-content {
-    background-color: #1693a5;
-    color: white;
+  background-color: #1693a5;
+  color: white;
 }
 .md-modal.md-dutch.colorize-overlay.md-show ~ .md-overlay {
-    background: #1693a5;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #1693a5;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-hotpink .md-content {
-    background-color: #ff0066;
-    color: white;
+  background-color: #ff0066;
+  color: white;
 }
 .md-modal.md-hotpink.colorize-overlay.md-show ~ .md-overlay {
-    background: #ff0066;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #ff0066;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-drank .md-content {
-    background-color: #a40778;
-    color: white;
+  background-color: #a40778;
+  color: white;
 }
 .md-modal.md-drank.colorize-overlay.md-show ~ .md-overlay {
-    background: #a40778;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #a40778;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-blue .md-content {
-    background-color: #418bca;
-    color: white;
+  background-color: #418bca;
+  color: white;
 }
 .md-modal.md-blue.colorize-overlay.md-show ~ .md-overlay {
-    background: #418bca;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #418bca;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-redbrown .md-content {
-    background-color: #d9544f;
-    color: white;
+  background-color: #d9544f;
+  color: white;
 }
 .md-modal.md-redbrown.colorize-overlay.md-show ~ .md-overlay {
-    background: #d9544f;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #d9544f;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-slategray .md-content {
-    background-color: #3f4e62;
-    color: white;
+  background-color: #3f4e62;
+  color: white;
 }
 .md-modal.md-slategray.colorize-overlay.md-show ~ .md-overlay {
-    background: #3f4e62;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+  background: #3f4e62;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 .md-modal.md-show.md-effect-12 ~ .md-overlay {
-    opacity: 1 !important;
-    filter: alpha(opacity=1) !important;
+  opacity: 1 !important;
+  filter: alpha(opacity=1) !important;
 }
+
 /***********************************/
 /************* BUTTONS *************/
 /***********************************/
