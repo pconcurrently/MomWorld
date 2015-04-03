@@ -85,5 +85,40 @@ namespace MomWorld.Controllers
             return result;
 
         }
+
+        // POST: api/User/UploadVideo
+        [HttpPost]
+        [Route("api/User/UploadVideo")]
+        public HttpResponseMessage UploadVideo()
+        {
+            HttpResponseMessage result = null;
+            var httpRequest = HttpContext.Current.Request;
+            if (httpRequest.Files.Count > 0)
+            {
+                foreach (string file in httpRequest.Files)
+                {
+                    var postedFile = httpRequest.Files[file];
+                    var name = httpRequest.Form.Get(0);
+
+                    // Save file to Responsitory
+                    var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/" + name + ".3pg");
+                    postedFile.SaveAs(filePath);
+
+                    // Change User ProfilePiture in Database
+                    //var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(name));
+                    //user.ProfilePicture = "http://localhost:4444/App/uploads/video/" + name + ".3pg";
+                    //identityDb.SaveChanges();
+
+                }
+                result = Request.CreateResponse(HttpStatusCode.Created);
+            }
+            else
+            {
+                result = Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            return result;
+
+        }
     }
 }

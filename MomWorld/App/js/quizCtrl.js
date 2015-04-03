@@ -1,7 +1,11 @@
 ﻿app.controller('quizCtrl', ['$scope', '$http', 'helperService', '$location', '$firebaseArray', '$firebaseObject',
     function ($scope, $http, helper, $location, $firebaseArray, $firebaseObject) {
 
-   
+    $scope.initQuizShow = function (username) {
+        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + username + "/Badge/");
+        $scope.badgeFire = $firebaseArray(userFireTmp);
+    }
+
     $scope.quizData = [
     {
         "id": "0",
@@ -31,7 +35,7 @@
         "id": "3",
         "name": "Y Tế",
         "quizData": "../../app/js/data/yte.js",
-        "quizName": "dinhduong",
+        "quizName": "yte",
         "image": "http://localhost:4444/App/images/badge/default.png",
         "status": "new"
     },
@@ -68,7 +72,10 @@
     $scope.initQuizDo = function (quizId, username) {
         $scope.quizName = $scope.quizData[quizId].quizData;
         $scope.quizNameTemp = $scope.quizData[quizId].quizName;
+
+        $scope.currentQuizId = quizId;
         $scope.currentUserName = username;
+
         $scope.loadQuiz($scope.quizName);
 
     }
@@ -115,7 +122,8 @@
         var score = correctAns / answers.length * 100;
         // TODO: Code Huan Chuong
         if (score >= 75) {
-            var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUserName + "/badge/" + $scope.quizNameTemp);
+            alert($scope.currentQuizId);
+            var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUserName + "/Badge/" + $scope.currentQuizId);
             $scope.badgeFirebase = $firebaseObject(userTmp);
 
             // Give user badge

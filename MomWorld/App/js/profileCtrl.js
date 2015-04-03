@@ -94,7 +94,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
         var sentData = {
             Content: $scope.Content,
-            CreatorName: $scope.user.LastName + " " + $scope.user.FirstName,
+            CreatorName: $scope.user.FirstName + " " + $scope.user.LastName,
             CreatorUsername: "user1",
             CreatorAvatar: "http://localhost:4444/App/uploads/avatar/user1.png",
             createdDate: Firebase.ServerValue.TIMESTAMP
