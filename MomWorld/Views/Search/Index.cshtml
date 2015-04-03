@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -229,13 +233,6 @@
 
                         <li class="search-result">
                             <div class="cover">
-
-                                <h4><a href="http://tattek.com/minoral/mail.html">Inbox</a></h4>
-
-                                <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.</p>
-
-                                <a href="http://tattek.com/minoral/mail.html">http://tattek.com/minoral/mail.html</a>
-
                             </div>
                         </li>
 
@@ -406,20 +403,25 @@
         $(document).ready(function () {
             $(function () {
                 // Instantiate MixItUp:
-                alert("ac");
+               
                 $('#gallery').mixItUp();
             });
 
-            
-            $("#searchBox").keypress(function () {                
+            $("#searchBox").keyup(function () {                
                 var keyword = $(this).val();
-                alert(keyword);
+                var divText = "";
                 $.ajax({
                     url: "/Search/GetResults/" + keyword,
                     dataType: "json",
                     async: true,
                     success: function (data) {
-                        alert(data);
+                        
+                        var $resultDiv = $('.search-result');
+                        data.forEach(function (article, index) {
+                            divText = divText + "<div class='cover'> <h4><a href='/Articles/Details/"+article.Id+"'>" + article.Title + "</a></h4> <p>"+article.Description+"</p></div>";
+                        });
+                        $resultDiv.html(divText);
+                        data = "";
                     }
                 })
             });
