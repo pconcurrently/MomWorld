@@ -1294,7 +1294,7 @@ p:not(.lead) {
     font-weight: 300;
 }
 
-.category figure figcaption h5{
+figure figcaption h5{
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
