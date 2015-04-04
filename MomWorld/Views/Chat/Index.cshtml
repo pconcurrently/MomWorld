@@ -432,16 +432,6 @@
                     </h2>
 
 
-                    <div class="breadcrumbs">
-                        <ol class="breadcrumb">
-                            <li>You are here</li>
-                            <li><a href="index.html">Minimal</a></li>
-                            <li><a href="chat.html#">Example Pages</a></li>
-                            <li class="active">Chat</li>
-                        </ol>
-                    </div>
-
-
                 </div>
                 <!-- /page header -->
                 <!-- content main container -->
@@ -582,23 +572,21 @@
                                     <div class="chat-content" id="chat-content">
                                         <ul class="chat-list">
 
-                                            <li class="message receive" 
-                                                ng-class="{'message sent': message.Sender != currentUsername}"
+                                            <li class="message receive"
+                                                ng-class="{'message sent': message.Sender == currentUser.Username}"
                                                 ng-repeat="message in chatContent">
                                                 <div class="media">
                                                     <div class="pull-left user-avatar">
-                                                        <img class="media-object img-circle"
-                                                             ng-src="{{}}">
+                                                        <img ng-if="message.Sender == currentUser.Username" class="media-object img-circle"
+                                                             ng-src="{{currentUser.ProfileImage}}">
+                                                        <img ng-if="message.Sender != currentUser.Username" class="media-object img-circle"
+                                                             ng-src="{{currentReceiver.ProfileImage}}">
                                                     </div>
                                                     <div class="media-body">
                                                         <p class="media-heading">
                                                             <a href="chat.html#">Ing. Imrich Kamarel</a> <span class="time">26.3.2014 18:36</span>
                                                         </p>
-                                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                                                        metus scelerisque ante sollicitudin commodo. Cras purus
-                                                        odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                        Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-                                                        lacinia congue felis in faucibus.
+                                                        {{message.Content}}
                                                     </div>
                                                 </div>
                                             </li>

@@ -5,12 +5,16 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
 
         /* ------------------- Init variables --------------------- */
         
-        // Get username from local storage
-        localStorage.setItem('currentUsername', 'user1');
-        
-        $scope.currentUsername = localStorage.getItem('currentUsername');
+        var u = {
+            Username: 'user1',
+            ProfileImage: 'http://localhost:4444/App/uploads/avatar/user1.png'
+        }
 
-        $scope.currentUser = localStorage.getItem('currentUser');
+        
+        // Get User from local storage
+        localStorage.setItem('currentUser', JSON.stringify(u));
+        $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        var currentUsername = $scope.currentUser.Username;
 
 
         // Get Chat of User from Firebase
@@ -27,10 +31,11 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         $scope.getChatFrom = function (receiver) {
 
             // Set Current Revercier
-            $scope.currentReceiver = receiver;
+            var r = new Firebase("https://momworld.firebaseio.com/User/" + receiver);
+            $scope.currentReceiver = $firebaseObject(r);
 
             // Get Chat content from Sender and Receiver
-            var senderFire = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername + "/" + receiver + "/Content");
+            var senderFire = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername+ "/" + receiver + "/Content");
             $scope.chatContent = $firebaseArray(senderFire);
 
             var receiverFire = new Firebase("https://momworld.firebaseio.com/Chat/" + receiver + "/" + currentUsername + "/Content");
