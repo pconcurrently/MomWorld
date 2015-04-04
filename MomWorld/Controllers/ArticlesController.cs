@@ -36,6 +36,7 @@ namespace MomWorld.Controllers
         [AllowAnonymous]
         public ActionResult Details(string id)
         {
+            int likesNumber = 0;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -65,14 +66,20 @@ namespace MomWorld.Controllers
                     ViewData["Tags"] = tags;
                 }
                 else
+                    ViewData["PostedUser"] = postedUser;
 
-                ViewData["PostedUser"] = postedUser;
+                ViewData["UserArticles"] = db.Articles.ToList().FindAll(a=>a.UserId.Equals(postedUser.Id)).Count;
+                foreach(var item in db.Articles.ToList().FindAll(a=>a.UserId.Equals(postedUser.Id)))
+                {
+                    likesNumber += db.ArticleLikes.ToList().FindAll(a => a.ArticleId.Equals(item.Id)).Count;
+                }
+                ViewData["UserLikes"] = likesNumber;
                 ViewData["Article"] = article;
                 ViewData["Category"] = category;
                 ViewData["Comments"] = comments;
                 ViewData["ArticleLikes"] = articleLikes;
                 ViewData["IsLike"] = isLike;
-                
+
 
                 return View();
             }
@@ -80,7 +87,7 @@ namespace MomWorld.Controllers
             {
                 //TO DO
                 //Bài báo xấu
-                return Redirect("Bài báo xấu");
+                return RedirectToAction("Index", "Error");
             }
         }
 
@@ -197,30 +204,12 @@ namespace MomWorld.Controllers
             return View(article);
         }
 
-        // GET: Articles/Delete/5
-        public ActionResult Delete(string id)
+        public JsonResult Delete(string articleId)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Article article = db.Articles.Find(id);
-            if (article == null)
-            {
-                throw new HttpException(404, "Not Found");
-            }
-            return View(article);
-        }
-
-        // POST: Articles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            Article article = db.Articles.Find(id);
+            Article article = db.Articles.Find(articleId);
             db.Articles.Remove(article);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json("Successfully");
         }
 
         protected override void Dispose(bool disposing)
@@ -261,13 +250,20 @@ namespace MomWorld.Controllers
         public JsonResult Report(ReportViewModel model)
         {
             var report = new Report();
-            report.Id = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
+            report.UserId = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
             report.ArticleId = model.ArticleId;
             report.Content = model.Content;
+            report.Date = DateTime.Now;
             try
             {
                 db.Reports.Add(report);
-                db.Articles.FirstOrDefault(art => art.Id.Equals(report.ArticleId)).Status = (int)ArticleStatus.Reported;
+                var article = db.Articles.FirstOrDefault(art => art.Id.Equals(report.ArticleId));
+                if (article.Status != (int)ArticleStatus.Reported)
+                {
+                    article.Status = (int)ArticleStatus.Reported;
+                    db.Entry(article).State = EntityState.Modified;
+                }
+                db.Entry(report).State = EntityState.Added;
                 db.SaveChanges();
             }
             catch (Exception)
@@ -310,11 +306,31 @@ namespace MomWorld.Controllers
 
             if (art != null)
             {
-                art.Status = (int)ArticleStatus.Approved;
-                db.SaveChanges();
-                return Json("Successfully");
+                if (art.Status != (int)ArticleStatus.Approved)
+                {
+                    art.Status = (int)ArticleStatus.Approved;
+                    db.Entry(art).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return Json("Successfully");
+                }
             }
             return Json(null);
+        }
+
+        public JsonResult Lock(string articleId)
+        {
+            var art = db.Articles.FirstOrDefault(a => a.Id.Equals(articleId));
+
+            if (art != null)
+            {
+                art.Status = (int)ArticleStatus.Bad;
+                db.Entry(art).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json("Successfully");
+
+            }
+            return Json(null);
+
         }
 
         private MultiSelectList GetTags(string[] selectedValues)
@@ -324,6 +340,22 @@ namespace MomWorld.Controllers
 
             return new MultiSelectList(Tags, "Id", "Name", selectedValues);
 
+        }
+
+        //Get
+        public JsonResult GetReports(string id)
+        {
+            if (id == null || id == string.Empty)
+            {
+                return Json(string.Empty);
+            }
+            List<ReportResultsViewModel> results = new List<ReportResultsViewModel>();
+            var reports = db.Reports.ToList().FindAll(r => r.ArticleId.Equals(id));
+            foreach (var report in reports)
+            {
+                results.Add(new ReportResultsViewModel(report.Content, identityDb.Users.FirstOrDefault(u => u.Id.Equals(report.UserId)).UserName, report.UserId));
+            }
+            return Json(results, JsonRequestBehavior.AllowGet);
         }
     }
 

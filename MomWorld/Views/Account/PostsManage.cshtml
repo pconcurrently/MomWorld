@@ -87,7 +87,7 @@
 <body class="bg-1">
 
     <!--modal chờ phê duyệt -->
-    <div class="modal fade" id="modalWaitingApproved" tabindex="-1"
+    <div class="modal fade" id="modalReportContent" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true" style="  overflow-y: hidden;">
         <div class="modal-dialog" style="height:451px;">
             <div class="modal-content">
@@ -102,70 +102,7 @@
                     </h3>
                 </div>
                 <div class="modal-body" style="overflow:auto;height:292px">
-                    <div class="list-group">
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam </p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-                        <div class="list-group-item">
-                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
-                            <p class="list-group-item-text">Spam</p>
-                        </div>
-
-
+                    <div class="list-group" id="reportDiv">
                     </div>
                 </div>
 
@@ -607,7 +544,7 @@
                                                         <td>@lastModifiedUsers[article.Id]</td>
                                                         @if (article.Status == (int)ArticleStatus.Reported)
                                                         {
-                                                            <td id="@article.Id"><a href="#" id="> @enumDescriptions[article.Id]</a></td>}
+                                                            <td id="@article.Id"><a href="#" id="popupReportContent" data-id="@article.Id"> @enumDescriptions[article.Id]</a></td>}
                                                         else
                                                         {
                                                             <td id="@article.Id">@enumDescriptions[article.Id]</td>}
@@ -628,7 +565,7 @@
                                                                 Sửa
                                                             </a>
 
-                                                            <a class="delete" href="#">
+                                                            <a class="delete" href="#" data-id="@article.Id">
                                                                 Xóa
                                                             </a>
                                                         </td>
@@ -688,16 +625,6 @@
     <!-- Wrap all page content end -->
 
 
-
-    <script type="text/javascript">
-        $(window).load(function () {
-
-
-            $('#modalWaitingApproved').modal('show');
-
-
-        });
-    </script>
 
 
 
@@ -1087,11 +1014,65 @@
                     });
                 });
 
+                $('.lock').click(function () {
+                    var articleId = $(this).attr('data-id');
+                    //alert(articleId);
+                    $.ajax({
+                        url: '/Articles/Lock',
+                        dataType: "json",
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify({ articleid: articleId }),
+                        async: true,
+                        processData: false,
+                        cache: false,
+                        success: function () {
+                            $('#' + articleId).html("Bị khóa");
+                        }
+                    });
+                });
+
+                $('.delete').click(function () {
+                    var articleId = $(this).attr('data-id');
+                    //alert(articleId);
+                    $.ajax({
+                        url: '/Articles/Delete',
+                        dataType: "json",
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify({ articleid: articleId }),
+                        async: true,
+                        processData: false,
+                        cache: false,
+                        success: function () {
+                        }
+                    });
+                });
+
                 $('.editArticle').click(function () {
                     var articleId = $(this).attr("data-id");
                     window.location = "/Articles/Edit/" + articleId;
                 });
 
+                $('#popupReportContent').click(function () {
+                    var id = $(this).attr('data-id');
+                    var $reportDiv = $('#reportDiv');
+                    var divText = "";
+                    $.ajax({
+                        url: "/Articles/GetReports/" + id,
+                        dataType: "json",
+                        async: true,
+                        success: function (data) {
+                            if (data != null) {
+                                data.forEach(function (report, index) {
+                                    divText = divText + "<div class='list-group-item'> <h3 class='list-group-item-heading'><a href='#'>" + report.UserName + "</a></h3> <p class='list-group-item-text'>" + report.Content + "</p> </div>";
+                                });
+                                $reportDiv.html(divText);
+                                $('#modalReportContent').modal('show');
+                            }
+                        }
+                    });
+                });
             });
         });
 

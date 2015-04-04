@@ -63,7 +63,7 @@ namespace MomWorld.Entities
         Approved = 2,
         [Description("Bị báo xấu")]
         Reported = 3,
-        [Description("Xấu")]
+        [Description("Bị khóa")]
         Bad = 4,
         [Description("Bình thường")]
         Normal = 5

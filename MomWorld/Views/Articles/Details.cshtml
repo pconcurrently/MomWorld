@@ -10,6 +10,8 @@
     var articleLikes = ViewData["ArticleLikes"] as List<MomWorld.Entities.ArticleLike>;
     var isLike = ViewData["IsLike"] as MomWorld.Entities.ArticleLike;
     var tags = ViewData["Tags"] as List<MomWorld.Entities.Tag>;
+    var likesNumber = ViewData["UserLikes"] as int?;
+    var userArticles = ViewData["UserArticles"] as int?;
 }
 
 <!DOCTYPE html>
@@ -187,7 +189,7 @@
                 <div class="col-sm-9 post-item">
                     <div class="top-box-post">
                         <div class="col-md-2 col-sm-4">
-                            <a href="personal-page.html">
+                            <a href="#">
                                 <img class="img-responsive img-circle avatar-post"
                                      src="@Url.Content("~/Content/images/arnold-avatar.jpg")">
                             </a>
@@ -195,11 +197,11 @@
 
                         <div class="col-md-6 col-sm-4">
                             <h4>
-                                <a href="personal-page.html">Khoahn</a>
+                                <a href="personal-page.html">@postedUser.UserName</a>
                             </h4>
                             <ul class="post-details">
-                                <li><i class="fa fa-edit color-cyan"></i> 69 Bài viết</li>
-                                <li><i class="fa fa-heart color-red"></i> 18 Lượt cảm ơn</li>
+                                <li><i class="fa fa-edit color-cyan"></i> @userArticles Bài viết</li>
+                                <li><i class="fa fa-heart color-red"></i> @likesNumber Lượt cảm ơn</li>
                             </ul>
                         </div>
                         <div class="col-md-4 col-sm-4 text-right">
@@ -541,7 +543,6 @@
             $("#submitReport").click(function () {
                 var articleId = $("#articleId").val();
                 var reportContent = $('#reportContent').val();
-                alert(reportContent);
                 $.ajax({
                     url: '/Articles/Report',
                     dataType: "json",
