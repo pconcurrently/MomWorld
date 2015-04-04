@@ -1398,6 +1398,7 @@ a.submit:hover {
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
     line-height: 20px;
+    font-weight: 300;
 }
 [class^="tile"][class*="transparent-"] .form-control:focus {
     background-color: rgba(0, 0, 0, 0.5);

@@ -866,7 +866,7 @@
 
                                     </div>
 
-                                    <div id="trophies-tab" class="tab-pane fade in">
+                                    <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge('user1')">
                                         <div class="tile text-center">
 
                                             <div class="">
@@ -896,15 +896,17 @@
                                             <div class="tile-body">
                                                 <div class="panel-heading"></div>
                                                 <div class="panel-body">
-                                                    <div class="row" ng-repeat="badge in user.badges"
+                                                    <div class="row" ng-repeat="badge in badgeFire"
                                                          style="border: 3px solid rgba(0, 0, 0, 0.5);">
-                                                        <div class="col-xs-6 col-md-2">
-                                                            <img alt="" ng-src="{{badge.image}}"
-                                                                 style="height: 80px; width: 80px;">
-                                                        </div>
-                                                        <div class="col-xs-6 col-md-10">
-                                                            <h4>{{badge.name}}</h4>
-                                                            Chúc mừng, bạn là một người tuyệt vời
+                                                        <div ng-if="badge.Status == 'done'">
+                                                        	<div class="col-xs-6 col-md-2">
+                                                        	    <img alt="" ng-src="{{badge.Image}}"
+                                                        	         style="height: 80px; width: 80px;">
+                                                        	</div>
+                                                        	<div class="col-xs-6 col-md-10">
+                                                        	    <h4>{{badge.Name}}</h4>
+                                                        	    Chúc mừng, bạn là một người tuyệt vời
+                                                        	</div>
                                                         </div>
                                                     </div>
 

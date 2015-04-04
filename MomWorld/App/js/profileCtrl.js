@@ -146,6 +146,11 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
     }
 
+    $scope.getBadge = function (username) {
+        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + username + "/Badge/");
+        $scope.badgeFire = $firebaseArray(userFireTmp);
+    }
+
 }]);
 
 profileApp.directive('ngThumb', ['$window', function ($window) {

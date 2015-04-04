@@ -1,0 +1,15 @@
+{
+  "name": "MomWorld",
+  "version": "0.0.0",
+  "homepage": "https://github.com/shortgiraffe4/MomWorld",
+  "authors": [
+    "meobeoi <trungnm0512@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "moment": "~2.9.0"
+  }
+}

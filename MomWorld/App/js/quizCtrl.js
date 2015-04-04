@@ -122,7 +122,6 @@
         var score = correctAns / answers.length * 100;
         // TODO: Code Huan Chuong
         if (score >= 75) {
-            alert($scope.currentQuizId);
             var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUserName + "/Badge/" + $scope.currentQuizId);
             $scope.badgeFirebase = $firebaseObject(userTmp);
 
@@ -131,6 +130,7 @@
            
             $scope.badgeFirebase.Image = 'http://localhost:4444/App/images/badge/' + $scope.quizNameTemp + '.png';
             $scope.badgeFirebase.Score = score;
+            $scope.badgeFirebase.Status = 'done';
             $scope.badgeFirebase.createdDate = Firebase.ServerValue.TIMESTAMP;
 
             $scope.badgeFirebase.$save().then(
