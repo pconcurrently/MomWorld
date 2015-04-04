@@ -68,8 +68,8 @@ namespace MomWorld.Controllers
                 else
                     ViewData["PostedUser"] = postedUser;
 
-                ViewData["UserArticles"] = db.Articles.ToList().FindAll(a=>a.UserId.Equals(postedUser.Id)).Count;
-                foreach(var item in db.Articles.ToList().FindAll(a=>a.UserId.Equals(postedUser.Id)))
+                ViewData["UserArticles"] = db.Articles.ToList().FindAll(a => a.UserId.Equals(postedUser.Id)).Count;
+                foreach (var item in db.Articles.ToList().FindAll(a => a.UserId.Equals(postedUser.Id)))
                 {
                     likesNumber += db.ArticleLikes.ToList().FindAll(a => a.ArticleId.Equals(item.Id)).Count;
                 }
@@ -208,6 +208,7 @@ namespace MomWorld.Controllers
         {
             Article article = db.Articles.Find(articleId);
             db.Articles.Remove(article);
+            db.Entry(article).State = EntityState.Deleted;
             db.SaveChanges();
             return Json("Successfully");
         }

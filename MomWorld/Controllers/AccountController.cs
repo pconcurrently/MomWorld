@@ -19,6 +19,7 @@ using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp;
 using FireSharp.Response;
+using System.Data.Entity;
 
 namespace MomWorld.Controllers
 {
@@ -82,7 +83,7 @@ namespace MomWorld.Controllers
                     IFirebaseClient client = new FirebaseClient(config);
 
                     client.Update("User/" + user.UserName, user);
-                    client.Update("User/" + user.UserName +"/badge", user);
+                    client.Update("User/" + user.UserName + "/badge", user);
 
                     return RedirectToLocal(returnUrl);
                 }
@@ -500,30 +501,30 @@ namespace MomWorld.Controllers
         {
             var users = UserManager.Users.ToList() as List<ApplicationUser>;
 
-            Dictionary<string,string> userRoles = new Dictionary<string,string>();
+            Dictionary<string, string> userRoles = new Dictionary<string, string>();
 
             foreach (var user in users)
             {
-                userRoles.Add(user.Id, identityDb.Roles.ToList().FirstOrDefault(r=>r.Id.Equals(user.Roles.ToList()[0].RoleId)).Name);
+                userRoles.Add(user.Id, identityDb.Roles.ToList().FirstOrDefault(r => r.Id.Equals(user.Roles.ToList()[0].RoleId)).Name);
                 //var roles = UserManager.GetRoles(user.Id);
                 //string role = roles.ToString();
             }
 
-            
+
             ViewData["Users"] = users;
             ViewData["Roles"] = userRoles;
-            
-            return View();  
+
+            return View();
         }
 
-        [Authorize(Roles="Admins")]
+        [Authorize(Roles = "Admins")]
         public ActionResult PostsManage()
         {
             var articles = articleDb.Articles.ToList() as List<Article>;
 
             Dictionary<string, string> postedUsers = new Dictionary<string, string>();
-            
-            foreach(var article in articles)
+
+            foreach (var article in articles)
             {
                 postedUsers.Add(article.Id, UserManager.FindById(article.UserId).UserName);
             }
@@ -539,6 +540,85 @@ namespace MomWorld.Controllers
             ViewData["LastModifiedUsers"] = modifiedUsers;
             return View();
         }
+
+        public JsonResult GetUserInfo(string id)
+        {
+            var user = UserManager.Users.FirstOrDefault(u => u.Id.Equals(id));
+            if (user != null)
+            {
+                return Json(user, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null);
+        }
+
+        public JsonResult Update(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(model.UserName)) as ApplicationUser;
+                IPasswordHasher myPasswordHasher = UserManager.PasswordHasher;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Phone = model.Phone;
+                user.Email = model.Email;
+                if (model.Password != null)
+                    user.PasswordHash = myPasswordHasher.HashPassword(model.Password);
+                try
+                {
+                    identityDb.Entry(user).State = EntityState.Modified;
+                    identityDb.SaveChanges();
+                    return Json("Successfully");
+                }
+                catch (Exception)
+                {
+                    return Json(null);
+                }
+            }
+            return Json(null);
+
+        }
+
+        public JsonResult Lock(string id)
+        {
+            var user = identityDb.Users.FirstOrDefault(a => a.Id.Equals(id));
+
+            if (user != null && user.Status != (int)IdentityStatus.Locked)
+            {
+                user.Status = (int)IdentityStatus.Locked;
+                identityDb.Entry(user).State = EntityState.Modified;
+                identityDb.SaveChanges();
+                return Json("Successfully");
+
+            }
+            return Json(null);
+
+        }
+
+        public JsonResult Unlock(string id)
+        {
+            var user = identityDb.Users.FirstOrDefault(a => a.Id.Equals(id));
+
+            if (user != null && user.Status != (int)IdentityStatus.Normal)
+            {
+                user.Status = (int)IdentityStatus.Normal;
+                identityDb.Entry(user).State = EntityState.Modified;
+                identityDb.SaveChanges();
+                return Json("Successfully");
+
+            }
+            return Json(null);
+
+        }
+
+        public JsonResult Delete(string id)
+        {
+            var user = identityDb.Users.FirstOrDefault(u => u.Id.Equals(id)) as ApplicationUser;
+            identityDb.Users.Remove(user);
+            identityDb.Entry(user).State = EntityState.Deleted;
+            identityDb.SaveChanges();
+            return Json("Successfully");
+        }
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

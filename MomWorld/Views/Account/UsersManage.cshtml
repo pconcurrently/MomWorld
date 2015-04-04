@@ -10,15 +10,12 @@
      }
      * */
 }
-
 <!DOCTYPE html>
 <html>
 <head>
-
     <title>Mom's World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
-
 
     <link rel="icon" type="image/ico" href="@Url.Content("~/Content/images/favicon.png")" />
     <!-- Bootstrap -->
@@ -34,12 +31,10 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/bootstrap-checkbox.css")">
     <link rel="stylesheet"
           href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap-dropdown-multilevel.css")">
-
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/chosen/css/chosen.min.css")">
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/chosen/css/chosen-bootstrap.css")">
-
     <link rel="stylesheet" href="@Url.Content("~/Content/js/vendor/datepicker/css/bootstrap-datetimepicker.css")">
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/datatables/css/dataTables.bootstrap.css")">
@@ -49,10 +44,7 @@
           href="@Url.Content("~/Content/js/vendor/datatables/css/TableTools.css")">
 
 
-
-
     <link href="@Url.Content("~/Content/css/minimal.css")" rel="stylesheet">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -64,7 +56,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="@Url.Content("~/Content/js/vendor/bootstrap/bootstrap.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/bootstrap/bootstrap-dropdown-multilevel.js")"></script>
-
     <script type="text/javascript"
             src="@Url.Content("~/Content/js/vendor/mmenu/js/jquery.mmenu.min.js")"></script>
     <script type="text/javascript"
@@ -77,20 +68,14 @@
             src="@Url.Content("~/Content/js/vendor/videobackground/jquery.videobackground.js")"></script>
     <script type="text/javascript"
             src="@Url.Content("~/Content/js/vendor/blockui/jquery.blockUI.js")"></script>
-
     <script src="@Url.Content("~/Content/js/vendor/chosen/chosen.jquery.min.js")"></script>
-
     <script src="@Url.Content("~/Content/js/vendor/summernote/summernote.min.js")"></script>`
 
     <script src="@Url.Content("~/Content/js/vendor/chosen/chosen.jquery.min.js")"></script>
-
     <script src="@Url.Content("~/Content/js/vendor/momentjs/moment-with-langs.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datepicker/bootstrap-datetimepicker.min.js")"></script>
-
     <script src="@Url.Content("~/Content/js/vendor/colorpicker/bootstrap-colorpicker.min.js")"></script>
-
     <script src="@Url.Content("~/Content/js/vendor/colorpalette/bootstrap-colorpalette.js")"></script>
-
     <script src="@Url.Content("~/Content/js/vendor/datatables/jquery.dataTables.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datatables/ColReorderWithResize.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datatables/colvis/dataTables.colVis.min.js")"></script>
@@ -98,13 +83,9 @@
     <script src="@Url.Content("~/Content/js/vendor/datatables/tabletools/dataTables.tableTools.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datatables/dataTables.bootstrap.js")"></script>
 
-
-
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
-
 </head>
 <body class="bg-1">
-
     <!-- Modal create category -->
     <div class="modal fade" id="modalEditUser" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
@@ -120,58 +101,30 @@
                     </h3>
                 </div>
                 <div class="modal-body">
-
                     <!-- tile -->
                     <section class="tile transparent">
 
 
 
-
-
-
                         <form class="profile-settings">
-
-                            <div class="row text-center">
-
-                                <div class="form-group col-sm-6 col-sm-offset-3">
-                                    <label for="first-name">Phân quyền</label>
-
-                                    <select class="chosen-select chosen-transparent form-control">
-
-                                        <option>Quản lí</option>
-                                        <option>Người dùng</option>
-                                        <option>Tư vấn viên</option>
-
-                                    </select>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label for="last-name">Họ</label> <input type="text"
+                                                                             class="form-control" id="last-name">
                                 </div>
-
+                                <div class="form-group col-sm-6">
+                                    <label for="first-name">Tên</label> <input type="text"
+                                                                               class="form-control" id="first-name">
+                                </div>
 
                             </div>
 
                             <div class="row">
-
-                                <div class="form-group col-sm-6">
-                                    <label for="first-name">Họ</label> <input type="text"
-                                                                              class="form-control" id="first-name" value="Huỳnh">
-                                </div>
-
-                                <div class="form-group col-sm-6">
-                                    <label for="last-name">Tên</label> <input type="text"
-                                                                              class="form-control" id="last-name" value="Ngọc Khoa">
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="row">
-
                                 <div class="form-group col-sm-6">
                                     <label for="email">E-mail</label> <input type="email"
-                                                                             class="form-control" id="email" value="johny.d@tattek.com"
+                                                                             class="form-control" id="email"
                                                                              readonly>
                                 </div>
-
                                 <div class="form-group col-sm-6">
                                     <label for="country">Quốc gia</label> <select class="chosen-select form-control" id="country">
                                         <option>Việt nam</option>
@@ -181,36 +134,14 @@
                                         <option>Austria</option>
                                     </select>
                                 </div>
-
                             </div>
-
                             <div class="row">
-
                                 <div class="form-group col-sm-6">
                                     <label for="phone">Số điện thoại</label> <input type="text"
-                                                                                    class="form-control" id="phone" value="+(84)1655757445">
-                                    <span class="help-block">+(84)1655757445</span>
+                                                                                    class="form-control" id="phone">
+                                    <span class="help-block">Ví dụ: +(84)1655757445</span>
                                 </div>
-
-                                <div class="form-group col-sm-6">
-                                    <label for="avatar">Ảnh đại diện</label>
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <span class="btn btn-primary btn-file">
-                                                <i class="fa fa-upload"></i><input type="file" multiple="">
-                                            </span>
-                                        </span> <input type="text" class="form-control" readonly=""
-                                                       id="avatar">
-                                    </div>
-                                    <span class="help-block">
-                                        File cho phép: gif, png,
-                                        jpg. Kích thước tối đa 1Mb
-                                    </span>
-                                </div>
-
                             </div>
-
-
 
 
                             <div class="row">
@@ -221,28 +152,21 @@
                                     <p>Bảo vệ tài khoản của bạn</p>
                                 </div>
                             </div>
-
                             <div class="row">
-
                                 <div class="form-group col-sm-6">
                                     <label for="username">Tên đăng nhập</label> <input type="text" class="form-control" id="username"
-                                                                                       value="khoahn" readonly>
+                                                                                       readonly>
                                 </div>
-
 
                                 <div class="form-group col-sm-6">
                                     <label for="password">Mật khẩu cũ</label> <input type="password" class="form-control" id="password"
-                                                                                     value="123456" readonly>
+                                                                                     value="123456789" readonly>
                                 </div>
-
                             </div>
-
                             <div class="row">
-
                                 <div class="form-group col-sm-6">
                                     <label for="new-password">Mật khẩu mới</label> <input type="password" class="form-control" id="new-password">
                                 </div>
-
                                 <div class="form-group col-sm-6">
                                     <label for="new-password-repeat">
                                         Nhập lại mật khẩu
@@ -250,35 +174,25 @@
                                     </label> <input type="password" class="form-control"
                                                     id="new-password-repeat">
                                 </div>
-
                             </div>
 
-
                             <div class="row">
-
                                 <div class="form-group col-md-12 text-right">
-                                    <button class="btn btn-cyan start btn-md">
+                                    <button class="btn btn-cyan start btn-md" id="submitUserInfo">
                                         <i class="fa fa-refresh"></i> <span> Cập nhật</span>
                                     </button>
 
-
-                                    <button class="btn btn-red cancel btn-md">
+                                    <button class="btn btn-red cancel btn-md" type="reset">
                                         <i class="fa fa-times"></i> <span> Hủy</span>
                                     </button>
                                 </div>
                             </div>
 
-
-
                         </form>
-
-
-
 
 
                     </section>
                     <!-- /tile -->
-
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -295,21 +209,14 @@
     <div id="wrap">
 
 
-
-
         <!-- Make page fluid -->
         <div class="row">
-
-
-
 
 
 
             <!-- Fixed navbar -->
             <div class="navbar navbar-default navbar-fixed-top navbar-transparent-black mm-fixed-top collapsed"
                  role="navigation" id="navbar">
-
-
 
                 <!-- Branding -->
                 <div class="navbar-header col-md-2">
@@ -325,7 +232,6 @@
                 <!-- Branding end -->
                 <!-- .nav-collapse -->
                 <div class="navbar-collapse">
-
                     <!-- Page refresh -->
                     <ul class="nav navbar-nav refresh">
                         <li class="divided">
@@ -344,14 +250,12 @@
                     <!-- Quick Actions -->
                     <ul class="nav navbar-nav quick-actions">
 
-
                         <li class="dropdown divided">
                             <a class="dropdown-toggle button" data-toggle="dropdown"
                                href="#">
                                 <i class="fa fa-envelope"></i>
                                 <span class="label label-transparent-black">1</span>
                             </a>
-
                             <ul class="dropdown-menu wider arrow nopadding messages">
                                 <li>
                                     <h1>
@@ -372,7 +276,6 @@
                                         </div>
                                     </a>
                                 </li>
-
                                 <li>
                                     <a class="green" href="#">
                                         <div class="profile-photo">
@@ -387,7 +290,6 @@
                                         </div>
                                     </a>
                                 </li>
-
                                 <li>
                                     <a href="#">
                                         <div class="profile-photo">
@@ -405,7 +307,6 @@
                                         </div>
                                     </a>
                                 </li>
-
                                 <li>
                                     <a class="red" href="#">
                                         <div class="profile-photo">
@@ -423,7 +324,6 @@
                                         </div>
                                     </a>
                                 </li>
-
                                 <li>
                                     <a class="orange" href="#">
                                         <div class="profile-photo">
@@ -442,7 +342,6 @@
                                     </a>
                                 </li>
 
-
                                 <li class="topborder">
                                     <a href="#">
                                         Check
@@ -451,55 +350,47 @@
                                 </li>
                             </ul>
                         </li>
-
                         <li class="dropdown divided">
                             <a class="dropdown-toggle button" data-toggle="dropdown"
                                href="#">
                                 <i class="fa fa-bell"></i> <span class="label label-transparent-black">3</span>
                             </a>
-
                             <ul class="dropdown-menu wide arrow nopadding bordered">
                                 <li>
                                     <h1>
                                         Bạn có <strong>3</strong> thông báo mới
                                     </h1>
                                 </li>
-
                                 <li>
                                     <a href="#">
                                         <span class="label label-green"><i class="fa fa-user"></i></span>
                                         New user registered. <span class="small">18 mins</span>
                                     </a>
                                 </li>
-
                                 <li>
                                     <a href="#">
                                         <span class="label label-red"><i class="fa fa-power-off"></i></span>
                                         Server down. <span class="small">27 mins</span>
                                     </a>
                                 </li>
-
                                 <li>
                                     <a href="#">
                                         <span class="label label-orange"><i class="fa fa-plus"></i></span>
                                         New order. <span class="small">36 mins</span>
                                     </a>
                                 </li>
-
                                 <li>
                                     <a href="#">
                                         <span class="label label-cyan"><i class="fa fa-power-off"></i></span>
                                         Server restared. <span class="small">45 mins</span>
                                     </a>
                                 </li>
-
                                 <li>
                                     <a href="#">
                                         <span class="label label-amethyst"><i class="fa fa-power-off"></i></span>
                                         Server started. <span class="small">50 mins</span>
                                     </a>
                                 </li>
-
                                 <li>
                                     <a href="#">
                                         Check all
@@ -508,7 +399,6 @@
                                 </li>
                             </ul>
                         </li>
-
                         <li class="dropdown divided user" id="current-user">
                             <div class="profile-photo">
                                 <img src="@Url.Content("~/Content/images/profile-photo.jpg")" />
@@ -516,11 +406,8 @@
                                       href="#">
                                 KhoaHN <i class="fa fa-caret-down"></i>
                             </a>
-
                             <ul class="dropdown-menu arrow settings">
-
                                 <li>
-
                                     <h3>Ảnh nền:</h3>
                                     <ul id="color-schemes">
                                         <li><a href="#" class="bg-1"></a></li>
@@ -538,26 +425,20 @@
                                         <li><a href="#" class="solid-bg-6"></a></li>
                                     </ul>
 
-
                                 </li>
-
                                 <li class="divider"></li>
-
 
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-user"></i> Thông tin cá nhân
                                     </a>
                                 </li>
-
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-envelope"></i> Tin nhắn <span class="badge badge-red" id="user-inbox">3</span>
                                     </a>
                                 </li>
-
                                 <li class="divider"></li>
-
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-power-off"></i> Đăng xuất
@@ -565,12 +446,10 @@
                                 </li>
                             </ul>
                         </li>
-
                     </ul>
                     <!-- /Quick Actions -->
                     <!-- Sidebar -->
                     <ul class="nav navbar-nav side-nav" id="sidebar">
-
                         <li class="collapsed-content">
                             <ul>
                                 <li class="search">
@@ -578,13 +457,11 @@
                                 </li>
                             </ul>
                         </li>
-
                         <li class="navigation" id="navigation">
                             <a href="#" class="sidebar-toggle"
                                data-toggle="#navigation">
                                 Trang quản lí <i class="fa fa-angle-up"></i>
                             </a>
-
                             <ul class="menu">
                                 <li>
                                     <a href="#">
@@ -613,15 +490,10 @@
                                         <i class="fa fa-pencil-square-o"></i> Quản lí bài viết
                                     </a>
                                 </li>
-
                             </ul> <!-- Sidebar end -->
-
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
-
-
-
 
 
             </div>
@@ -632,21 +504,14 @@
 
 
 
-
-
-
-
-
                 <!-- page header -->
                 <div class="pageheader">
-
 
                     <h2>
                         <i class="fa fa-lightbulb-o"
                            style="line-height: 48px; padding-left: 0;"></i> Quản lí người
                         dùng
                     </h2>
-
 
                     <div class="breadcrumbs">
                         <ol class="breadcrumb">
@@ -657,27 +522,20 @@
                         </ol>
                     </div>
 
-
                 </div>
                 <!-- /page header -->
                 <!-- content main container -->
                 <div class="main">
 
 
-
-
                     <!-- row -->
                     <div class="row">
-
 
                         <!-- col 12 -->
                         <div class="col-md-12">
 
-
-
                             <!-- tile -->
                             <section class="tile transparent">
-
 
                                 <!-- tile header -->
                                 <div class="tile-header transparent">
@@ -693,67 +551,57 @@
                                 <!-- /tile header -->
                                 <!-- tile body -->
                                 <div class="tile-body color transparent-white rounded-corners">
-
                                     <div class="table-responsive">
                                         <table class="table table-datatable table-custom"
                                                id="inlineEditDataTable">
                                             <thead>
                                                 <tr>
-
                                                     <th class="sort-alpha">Tài khoản</th>
                                                     <th class="sort-alpha">Email</th>
                                                     <th class="sort-alpha">Quyền</th>
                                                     <th class="sort-alpha">Tình trạng</th>
-                                                    <th class="no-sort text-center">Hành động</th>
+                                                    <th class="no-sort text-center">Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach (var user in users)
                                                 {
                                                     <tr class="odd ">
-
                                                         <td>@user.UserName</td>
-
                                                         <td>@user.Email</td>
                                                         <td>@roles[user.Id]</td>
-                                                        <td class="color-greensea">Bình thường</td>
+                                                        <td class="color-greensea" id="@user.Id">@(user.Status == 1 ? "Bị khóa" : "Bình thường")</td>
                                                         <td class="actions text-center">
-                                                            <a class="ban"
-                                                               href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                                                                                           href="#">Sửa</a><a class="delete"
-                                                                                                                                                              href="#">Xóa</a>
+                                                            @if (!user.UserName.Equals("admin"))
+                                                            {
+                                                                <a class="ban" href="#" data-id="@user.Id">Khóa</a>
+                                                                <a href="#" class="unlock" data-id="@user.Id">Mở khóa</a>
+                                                            }
+                                                            <a href="#" class="editUser" data-id="@user.Id">Sửa</a>
+                                                            @if (!user.UserName.Equals("admin"))
+                                                            {
+                                                                <a class="delete" href="#" data-id="@user.Id">Xóa</a>
+                                                            }
                                                         </td>
                                                     </tr>
                                                 }
-
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
                                 <!-- /tile body -->
-
-
 
                             </section>
                             <!-- /tile -->
 
-
                         </div>
                         <!-- /col 12 -->
-
-
 
                     </div>
                     <!-- /row -->
 
-
-
                 </div>
                 <!-- /content container -->
-
-
-
 
 
 
@@ -762,24 +610,14 @@
 
 
 
-
-
-
-
         </div>
         <!-- Make page fluid-->
-
-
 
 
     </div>
     <!-- Wrap all page content end -->
 
-
-
     <section class="videocontent" id="video"></section>
-
-
 
 
     <script>
@@ -1132,22 +970,119 @@
 
         })
     </script>
-
     <script>
         //chosen select input
         $(".chosen-select").chosen({ disable_search_threshold: 10 });</script>
-
     <script type="text/javascript">
         $(window).load(function () {
+            $('.editUser').click(function () {
+                var id = $(this).attr('data-id');
+                $.ajax({
+                    url: "/Account/GetUserInfo/" + id,
+                    dataType: "json",
+                    async: true,
+                    success: function (data) {
+                        $('#first-name').attr('value', data.FirstName);
+                        $('#last-name').attr('value', data.LastName);
+                        $('#email').attr('value', data.Email);
+                        $('#phone').attr('value', data.Phone);
+                        $('#username').attr('value', data.UserName);
 
+                        $('#modalEditUser').modal('show');
+                    }
+                });
 
-            $('#modalEditUser').modal('show');
+            });
+
+            $('#submitUserInfo').click(function () {
+                var firstname = $('#first-name').val();
+                var lastname = $('#last-name').val();
+                var email = $('#email').val();
+                var phone = $('#phone').val();
+                var username = $('#username').val();
+                var password = $('#new-password').val();
+                var passwordConfirm = $('#new-password-repeat').val();
+                console.log(JSON.stringify({
+                    model: {
+                        UserName: username, FirsName: firstname, LastName: lastname,
+                        Email: email, Phone: phone, Password: password, ConfirmPassword: passwordConfirm
+                    }
+                }));
+                $.ajax({
+                    url: '/Account/Update',
+                    dataType: "json",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({
+                        model: {
+                            UserName: username, FirstName: firstname, LastName: lastname, Email: email, Phone: phone, Password: password, ConfirmPassword: passwordConfirm
+                        }
+                    }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function () {
+                        window.location.reload();
+                    }
+                });
+
+            });
+
+            $('.ban').click(function () {
+                var id = $(this).attr('data-id');
+                //alert(articleId);
+                $.ajax({
+                    url: '/Account/Lock',
+                    dataType: "json",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ id: id }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function () {
+                        $('#' + id).html("Bị khóa");
+                    }
+                });
+            });
+
+            $('.unlock').click(function () {
+                var id = $(this).attr('data-id');
+                //alert(articleId);
+                $.ajax({
+                    url: '/Account/Unlock',
+                    dataType: "json",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ id: id }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function () {
+                        $('#' + id).html("Bình thường");
+                    }
+                });
+            });
+
+            $('.delete').click(function () {
+                var id = $(this).attr('data-id');
+                //alert(articleId);
+                $.ajax({
+                    url: '/Account/Delete',
+                    dataType: "json",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ id: id }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function () {
+                    }
+                });
+            });
 
         });
     </script>
-
-
-
 
 
 </body>

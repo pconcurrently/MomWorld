@@ -45,7 +45,7 @@ namespace MomWorld.Models
 
     public enum IdentityStatus
     {
-        [Description("Khóa")]
+        [Description("Bị khóa")]
         Locked = 1,
         [Description("Bình thường")]
         Normal = 2
