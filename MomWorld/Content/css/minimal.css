@@ -11474,7 +11474,7 @@ a.submit:hover {
   font-weight: 700;
   color: #717171;
   text-transform: uppercase;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
   margin-right: 10px;
 }
 .table td.actions a:hover,
