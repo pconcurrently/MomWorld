@@ -49,6 +49,8 @@ namespace MomWorld.Entities
 
 
         public int Status { get; set; }
+
+        public string Tags { get; set; }
     }
 
     public enum ArticleStatus

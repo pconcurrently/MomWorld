@@ -9,6 +9,7 @@
     var comments = ViewData["Comments"] as List<MomWorld.Entities.Comment>;
     var articleLikes = ViewData["ArticleLikes"] as List<MomWorld.Entities.ArticleLike>;
     var isLike = ViewData["IsLike"] as MomWorld.Entities.ArticleLike;
+    var tags = ViewData["Tags"] as List<MomWorld.Entities.Tag>;
 }
 
 <!DOCTYPE html>
@@ -204,7 +205,13 @@
                         </li>
                         <li><i class="fa fa-calendar"></i> @article.PostedDate</li>
                         <li><i class="fa fa-comments"></i> @comments.Count</li>
-                        @*<li><i class="fa fa-tags"></i> Tâm lí</li>*@
+                        <li>
+                            <i class="fa fa-tags"></i>
+                            @foreach (var tag in tags)
+                            {
+                                <span><a href="@Url.Action("Details", "Tags", routeValues: new { id = tag.Id })"> @tag.Name </a></span>
+                            }
+                        </li>
 
 
                         <li style="float: right">
@@ -473,7 +480,7 @@
             $("#delete-comment").click(function () {
                 var commentId = $(this).attr('data-id');
                 $.ajax({
-                    url: '/Comments/Delete/'+ commentId,
+                    url: '/Comments/Delete/' + commentId,
                     dataType: "json",
                     type: "POST",
                     contentType: 'application/json; charset=utf-8',

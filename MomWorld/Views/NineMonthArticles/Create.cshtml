@@ -1,7 +1,7 @@
-﻿@model MomWorld.Entities.Article
+﻿@model MomWorld.Models.NineMonthViewModel
 @{
     Layout = null;
-
+    var Tags = ViewData["Data"] as List<MomWorld.Entities.Tag>;
 }
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -258,40 +258,25 @@
                         <i class="fa fa-pencil-square-o"></i> <strong> Bài viết </strong>
                         mới
                     </h1>
-
-                    <form class="form-horizontal" role="form">
-
-                        <div class="form-group">
-                            <label for="title" class="col-md-4 " style="font-size: 20px;">
-                                Tiêu đề <span class="required">*</span>
-                            </label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="title">
-                            </div>
-                        </div>
-
+                    <form class="form-horizontal" role="form" method="POST" action="@Url.Action("Create", "NineMonthArticles")">
+                        @Html.AntiForgeryToken()
                         <div class="form-group">
                             <label for="title" class="col-md-4 " style="font-size: 20px;">
                                 Ngày thứ <span class="required">*</span>
                             </label>
                             <div class="col-md-8">
-                                <input type="number" class="form-control" id="title">
+                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", type = "number", id = "date" } })
+                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="title" class="col-md-4 " style="font-size: 20px;">
-                                Danh mục <span class="required">*</span>
+                                Thẻ <span class="required">*</span>
                             </label>
                             <div class="col-md-8">
-                                <select multiple class="chosen-select chosen-transparent form-control">
-                                    <option>Dinh dưỡng</option>
-                                    <option>Sức khỏe</option>
-                                    <option>Tiêm phòng</option>
-                                    <option>Ăn uống</option>
-                                    <option>Tâm lí</option>
-                                </select>
-
+                                @Html.ListBoxFor(model => model.Tags, ViewData["Tags"] as MultiSelectList
+                  , new { @class = "chosen-select chosen-transparent form-control", data_placeholder = "Chọn thẻ..." })
                             </div>
                         </div>
 
@@ -302,7 +287,7 @@
                             </label>
                             <div class="col-lg-12">
                                 <section id="editor">
-                                    <div id='edit' style="margin-top: 10px;"></div>
+                                    @Html.TextAreaFor(model => model.Content, new { @id = "edit", style = "margin-top: 10px;" })
                                 </section>
                             </div>
                         </div>
@@ -310,7 +295,7 @@
 
 
                         <div class="row text-center">
-                            <button type="submit" class="btn btn-green">
+                            <button type="submit" class="btn btn-green" id="submitArticle">
                                 Tạo bài
                                 viết
                             </button>
@@ -512,6 +497,30 @@
         //chosen select input
         $(".chosen-select").chosen({ disable_search_threshold: 10 });
     </script>
+
+    @*<script>
+        $(document).ready(function () {
+            $('#submitArticle').click(function () {
+                var date = $('#date').val();
+                var content = $('#edit').html();
+                alert(content);
+                var tags = $('#tags').val() + "";
+                $.ajax({
+                    url: '/NineMonthArticles/Create',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ model: { date: date, content: content, tags: tags } }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>*@
 
 
 </body>

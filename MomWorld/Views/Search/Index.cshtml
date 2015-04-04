@@ -410,20 +410,24 @@
             $("#searchBox").keyup(function () {                
                 var keyword = $(this).val();
                 var divText = "";
-                $.ajax({
-                    url: "/Search/GetResults/" + keyword,
-                    dataType: "json",
-                    async: true,
-                    success: function (data) {
-                        
-                        var $resultDiv = $('.search-result');
-                        data.forEach(function (article, index) {
-                            divText = divText + "<div class='cover'> <h4><a href='/Articles/Details/"+article.Id+"'>" + article.Title + "</a></h4> <p>"+article.Description+"</p></div>";
-                        });
-                        $resultDiv.html(divText);
-                        data = "";
-                    }
-                })
+                var $resultDiv = $('.search-result');
+                if (keyword.length > 0) {
+                    $.ajax({
+                        url: "/Search/GetResults/" + keyword,
+                        dataType: "json",
+                        async: true,
+                        success: function (data) {
+
+                            data.forEach(function (article, index) {
+                                divText = divText + "<div class='cover'> <h4><a href='/Articles/Details/" + article.Id + "'>" + article.Title + "</a></h4> <p>" + article.Description + "</p></div>";
+                            });
+                            $resultDiv.html(divText);
+                            data = "";
+                        }
+                    });
+                }
+                else
+                    $resultDiv.html("");
             });
         });
 

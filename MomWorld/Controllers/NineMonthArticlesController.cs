@@ -16,6 +16,7 @@ namespace MomWorld.Controllers
     public class NineMonthArticlesController : Controller
     {
         private NineMonthArticleDb db = new NineMonthArticleDb();
+        private ArticleDb articleDb = new ArticleDb();
         private IdentityDb identityDb = new IdentityDb();
 
         // GET: NineMonthArticles
@@ -43,26 +44,49 @@ namespace MomWorld.Controllers
         [Authorize(Roles = "Admins")]
         public ActionResult Create()
         {
+            ViewData["Tags"] = GetTags(null);
             return View();
         }
 
         // POST: NineMonthArticles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles="Admins")]
+        [Authorize(Roles = "Admins")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Date,Week,Content")] NineMonthArticle nineMonthArticle)
+        [ValidateInput(false)]
+        public ActionResult Create(NineMonthViewModel model)
         {
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
-            if (ModelState.IsValid)
+            NineMonthArticle article = new NineMonthArticle();
+            article.Date = model.Date;
+            article.Content = model.Content;
+            article.Description = ParseHtml(model.Content);
+            if (model.Tags.Length < 1)
             {
-                db.NineMonthArticles.Add(nineMonthArticle);
+                article.Tags = string.Empty;
+            }
+            else if (model.Tags.Length > 1)
+            {
+                article.Tags = model.Tags[0];
+                for (var index = 1; index <= model.Tags.Length - 1; index++)
+                {
+                    article.Tags += ", "+ model.Tags[index];
+                }
+            }
+            else
+                article.Tags = model.Tags[0];
+
+            try
+            {
+                db.NineMonthArticles.Add(article);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Timeline", "NineMonthArticles");
+            }
+            catch (Exception)
+            {
+                return View(model);
             }
 
-            return View(nineMonthArticle);
         }
 
         // GET: NineMonthArticles/Edit/5
@@ -138,6 +162,27 @@ namespace MomWorld.Controllers
             ApplicationUser currentUser = identityDb.Users.FirstOrDefault(x => x.UserName.Equals(User.Identity.Name));
             ViewData["CurrentUser"] = currentUser;
             return View();
+        }
+
+        private MultiSelectList GetTags(string[] selectedValues)
+        {
+
+            List<Tag> Tags = articleDb.Tags.ToList();
+
+            return new MultiSelectList(Tags, "Id", "Name", selectedValues);
+
+        }
+
+        public static string ParseHtml(string html)
+        {
+
+            html = html.Substring(0, html.IndexOf("</p>") - 1);
+            var htmlSymbols = new string[] { "<br>", "<b>", "</b>", "<i>", "</i>", "<p>", "<p class=\"fr-tag\">", "</p>", "<hr>" };
+            foreach (var item in htmlSymbols)
+            {
+                html = html.Replace(item, string.Empty);
+            }
+            return html;
         }
     }
 }

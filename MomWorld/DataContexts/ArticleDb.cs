@@ -28,6 +28,8 @@ namespace MomWorld.DataContexts
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<ArticleLike> ArticleLikes { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
         
     }
     

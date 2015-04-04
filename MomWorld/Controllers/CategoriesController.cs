@@ -22,7 +22,7 @@ namespace MomWorld.Controllers
         public ActionResult Index(string id)
         {
             List<Article> articles = articleDb.Articles.ToList();
-            articles.RemoveAll(art => art.Status.Equals(ArticleStatus.Pending) || art.Status.Equals(ArticleStatus.Bad));
+            articles.RemoveAll(art => art.Status== (int)ArticleStatus.Pending || art.Status == (int) ArticleStatus.Bad);
             ViewData["Categories"] = db.Categories.ToList();
             ViewData["Articles"] = articles;
             if (id != null)
@@ -110,30 +110,13 @@ namespace MomWorld.Controllers
             return View(category);
         }
 
-        // GET: Categories/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                throw new HttpException(404, "Not Found");
-            }
-            return View(category);
-        }
-
         // POST: Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public JsonResult Delete(string id)
         {
             Category category = db.Categories.Find(id);
             db.Categories.Remove(category);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json("Successfully");
         }
 
         protected override void Dispose(bool disposing)
@@ -172,6 +155,22 @@ namespace MomWorld.Controllers
             }
             return Json(null);
 
+        }
+
+        public JsonResult Get(string id)
+        {
+            return Json(db.Categories.FirstOrDefault(c=>c.Id.Equals(id)), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Update([Bind(Include = "Id,Name,Description")]Category model)
+        {
+            if(ModelState.IsValid)
+            {
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json("Successfully");
+            }
+            return Json(null);
         }
     }
 }

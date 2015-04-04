@@ -45,8 +45,8 @@ namespace MomWorld.Controllers
             {
                 throw new HttpException(404, "Not Found");
             }
-            if (article.Status == (int)ArticleStatus.Approved || article.Status == (int)ArticleStatus.CreatedByAdmins
-                || article.Status == (int)ArticleStatus.Normal || article.Status == (int)ArticleStatus.Reported)
+            if ((article.Status == (int)ArticleStatus.Approved || article.Status == (int)ArticleStatus.CreatedByAdmins
+                || article.Status == (int)ArticleStatus.Normal || article.Status == (int)ArticleStatus.Reported) || User.Identity.Name.Equals("admin"))
             {
                 article.ViewNumber += 1;
                 db.SaveChanges();
@@ -59,6 +59,7 @@ namespace MomWorld.Controllers
                 var articleLikes = db.ArticleLikes.ToList().FindAll(al => al.ArticleId.Equals(article.Id));
 
                 var isLike = db.ArticleLikes.ToList().FirstOrDefault(al => al.ArticleId.Equals(id) && al.UserId.Equals(userId));
+                var tags = db.Tags.ToList().FindAll(t=>article.Tags.Contains(t.Id));
 
                 ViewData["PostedUser"] = postedUser;
                 ViewData["Article"] = article;
@@ -66,6 +67,7 @@ namespace MomWorld.Controllers
                 ViewData["Comments"] = comments;
                 ViewData["ArticleLikes"] = articleLikes;
                 ViewData["IsLike"] = isLike;
+                ViewData["Tags"] = tags;
 
                 return View();
             }
@@ -80,6 +82,7 @@ namespace MomWorld.Controllers
         // GET: Articles/Create
         public ActionResult Create()
         {
+            ViewData["Tags"] = GetTags(null);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
             return View();
         }
@@ -90,8 +93,9 @@ namespace MomWorld.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "Id,UserId,CategoryId,Title,Content,PostedDate,LastModifiedDate,ViewNumber,LastSeenUserId")] Article article)
+        public ActionResult Create(ArticleViewModel model)
         {
+            Article article = new Article();
             var store = new UserStore<ApplicationUser>(new IdentityDb());
             var userManager = new UserManager<ApplicationUser>(store);
             var user = userManager.FindByNameAsync(User.Identity.Name).Result;
@@ -102,7 +106,24 @@ namespace MomWorld.Controllers
             article.LastModifiedDate = DateTime.Now;
             article.LastModifiedUserId = user.Id;
             article.ViewNumber = 0;
-
+            article.Title = model.Title;
+            article.Content = model.Content;
+            article.Description = ParseHtml(model.Content);
+            article.CategoryId = model.CategoryId;
+            if (model.Tags.Length < 1)
+            {
+                article.Tags = string.Empty;
+            }
+            else if (model.Tags.Length > 1)
+            {
+                article.Tags = model.Tags[0];
+                for (var index = 1; index <= model.Tags.Length - 1; index++)
+                {
+                    article.Tags += ", " + model.Tags[index];
+                }
+            }
+            else
+                article.Tags = model.Tags[0];
 
             if (!User.Identity.Name.Equals("admin"))
             {
@@ -114,7 +135,7 @@ namespace MomWorld.Controllers
             }
 
             var errors = ModelState.Values.SelectMany(v => v.Errors);
-            if (ModelState.IsValid)
+            try
             {
                 article.Description = ParseHtml(article.Content);
                 db.Articles.Add(article);
@@ -125,10 +146,12 @@ namespace MomWorld.Controllers
                 }
                 return RedirectToAction("Index", "Categories", routeValues: new { id = article.Id });
             }
-
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", article.CategoryId);
-            return View(article);
-
+            catch (Exception)
+            {
+                ViewData["Tags"] = GetTags(null);
+                ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", article.CategoryId);
+                return View(article);
+            }
         }
 
         // GET: Articles/Edit/5
@@ -222,11 +245,11 @@ namespace MomWorld.Controllers
         {
 
             html = html.Substring(0, html.IndexOf("</p>") - 1);
-            //var htmlSymbols = new string[] {"<p>", "</p>", "<br>", "<b>","</b>"};
-            //    foreach(var item in htmlSymbols)
-            //    {
-            //        html = html.Replace(item,string.Empty);
-            //    }
+            var htmlSymbols = new string[] { "<br>", "<b>", "</b>", "<i>", "</i>", "<p>", "<p class=\"fr-tag\">", "</p>", "<hr>" };
+            foreach (var item in htmlSymbols)
+            {
+                html = html.Replace(item, string.Empty);
+            }
             return html;
         }
 
@@ -282,6 +305,15 @@ namespace MomWorld.Controllers
                 return Json("Successfully");
             }
             return Json(null);
+        }
+
+        private MultiSelectList GetTags(string[] selectedValues)
+        {
+
+            List<Tag> Tags = db.Tags.ToList();
+
+            return new MultiSelectList(Tags, "Id", "Name", selectedValues);
+
         }
     }
 

@@ -139,16 +139,16 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label for="videoTitle">Tên danh mục:</label> <input type="text"
-                                                                                     class="form-control" id="categoryName"
-                                                                                     placeholder="Nhập tên danh mục ...">
+                                <label class="control-label" for="videoTitle">Tên danh mục:</label> <input type="text"
+                                                                                                           class="form-control" id="categoryName"
+                                                                                                           placeholder="Nhập tên danh mục ...">
                             </div>
 
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label for="comment">Mô tả:</label>
+                                <label class="control-label" for="comment">Mô tả:</label>
                                 <textarea class="form-control" rows="2" id="categoryDescription"></textarea>
                             </div>
 
@@ -190,25 +190,25 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label for="videoTitle">Tên danh mục:</label> <input type="text"
-                                                                                     class="form-control" id="videoTitle"
-                                                                                     placeholder="Nhập tên danh mục ...">
+                                <label class="control-label" for="videoTitle">Tên danh mục:</label> <input type="text"
+                                                                                                           class="form-control" id="Name"
+                                                                                                           placeholder="Nhập tên danh mục ...">
                             </div>
 
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label for="comment">Nội dung:</label>
-                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                <label class="control-label" for="comment">Nội dung:</label>
+                                <textarea class="form-control" rows="5" id="Description"></textarea>
                             </div>
 
                         </div>
+                        <div class="form-group"><a hidden id="hiddenId"></a></div>
 
                         <div class="form-group form-footer">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button type="submit" class="btn btn-green">Thêm</button>
-                                <button type="reset" class="btn btn-red">Hủy</button>
+                                <button type="submit" class="btn btn-green" id="confirmCategory">Cập nhật</button>
                             </div>
                         </div>
                     </form>
@@ -322,10 +322,10 @@
             {
                 <div class="row">
                     <div class="col-md-12 text-right">
-                        <a href="#modalCreateCategory"
+                        <button data-target="#modalCreateCategory"
                            data-toggle="modal" class="btn btn-warning">
                             <i class="fa fa-plus-circle"></i> Thêm danh mục
-                        </a>
+                        </button>
                     </div>
                 </div>
             }
@@ -400,17 +400,21 @@
                                                 <div class="col-md-4">
                                                     <h3 class="headline">@category.Name</h3>
                                                 </div>
-                                                <div class="col-md-8 text-center" style="line-height: 70px;">
-                                                    <a href="@Url.Action("Create","Articles")" class="btn btn-orange">
+                                                <div class="col-md-8 text-right" style="line-height: 70px;">
+                                                    <button class="btn btn-orange" id="addArticle">
                                                         <i class="fa fa-plus-circle"></i> Thêm bài viết
-                                                    </a>
-                                                    <a href="pre-pregnancy.html#modalEditCategory" data-toggle="modal" class="btn btn-green">
-                                                        <i class="fa fa-plus-circle"></i> Sửa danh mục
-                                                    </a>
-                                                    <a class="btn btn-red">
-                                                        <i class="fa fa-close"></i> Xóa
-                                                        danh mục
-                                                    </a> <a href="post.html" type="button" class="btn btn-cyan">
+                                                    </button>
+                                                    @if (User.Identity.Name.Equals("admin"))
+                                                    {
+                                                        <button class="btn btn-green" id="editModal" data-id="@category.Id">
+                                                            <i class="fa fa-plus-circle"></i> Sửa danh mục
+                                                        </button>
+                                                        <button class="btn btn-red" id="deleteCat" data-id="@category.Id">
+                                                            <i class="fa fa-close"></i> Xóa
+                                                            danh mục
+                                                        </button>
+                                                    }
+                                                    <a href="post.html" type="button" class="btn btn-cyan">
                                                         Xem thêm <span class="btn-side">
                                                             <i class="fa fa-chevron-right"></i>
                                                         </span>
@@ -766,6 +770,62 @@
             }
 
         });
+    </script>
+
+    <script>
+        $('#editModal').click(function () {
+            $('#modalEditCategory').modal('show');
+            var categoryId = $(this).attr('data-id');
+            $.ajax({
+                url: "/Categories/Get/" + categoryId,
+                cache: false
+            }).done(function (data) {
+                $("#Name").val(data.Name);
+                $("#Description").val(data.Description);
+                $('#hiddenId').val(data.Id);
+            });
+        });
+
+        $('#confirmCategory').click(function () {
+            var Id = $('#hiddenId').val();
+            var description = $("#Description").val();
+            var name = $("#Name").val();
+            $.ajax({
+                url: '/Categories/Update',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ model: { Id: Id, Name: name, Description: description } }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    window.location.reload();
+                }
+            });
+        });
+
+        $('#deleteCat').click(function () {
+            var Id = $(this).attr('data-id');
+            $.ajax({
+                url: '/Categories/Delete/' + Id,
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    window.location.reload();
+                }
+            });
+        });
+
+        $('#addArticle').click(function () {
+            window.location.href = "/Articles/Create";
+        });
+
+
     </script>
 
 </body>
