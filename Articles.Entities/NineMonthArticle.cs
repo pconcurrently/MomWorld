@@ -21,6 +21,8 @@ namespace MomWorld.Entities
 
         public string Description { get; set; }
 
+        public string Tags { get; set; }
+
         #region Constructor
         public NineMonthArticle()
         {
