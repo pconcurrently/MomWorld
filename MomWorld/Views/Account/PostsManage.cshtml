@@ -605,7 +605,13 @@
                                                         <td>@postedUsers[article.Id]</td>
                                                         <td>@(article.PostedDate != null ? article.PostedDate.Value.ToString("dd/MM/yyyy") : "NULL")</td>
                                                         <td>@lastModifiedUsers[article.Id]</td>
-                                                        <td id="@article.Id">@enumDescriptions[article.Id]</td>
+                                                        @if (article.Status == (int)ArticleStatus.Reported)
+                                                        {
+                                                            <td id="@article.Id"><a href="#" id="> @enumDescriptions[article.Id]</a></td>}
+                                                        else
+                                                        {
+                                                            <td id="@article.Id">@enumDescriptions[article.Id]</td>}
+
                                                         <td class="actions text-center">
 
                                                             <a class="ban"
