@@ -85,6 +85,99 @@
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
 </head>
 <body class="bg-1">
+
+    <!--modal chờ phê duyệt -->
+    <div class="modal fade" id="modalWaitingApproved" tabindex="-1"
+         role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true" style="  overflow-y: hidden;">
+        <div class="modal-dialog" style="height:451px;">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        Thoát
+                    </button>
+                    <img src="@Url.Content("~/Content/images/alert-icon-.png")" style="width:100px;" />
+                    <h3 class="modal-title" id="modalConfirmLabel">
+                        <strong>Nội dung báo xấu</strong>
+                    </h3>
+                </div>
+                <div class="modal-body" style="overflow:auto;height:292px">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam Spam </p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading"><a href="#">Khoahn</a></h3>
+                            <p class="list-group-item-text">Spam</p>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
     <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
@@ -512,14 +605,20 @@
                                                         <td>@postedUsers[article.Id]</td>
                                                         <td>@(article.PostedDate != null ? article.PostedDate.Value.ToString("dd/MM/yyyy") : "NULL")</td>
                                                         <td>@lastModifiedUsers[article.Id]</td>
-                                                        <td  id="@article.Id">@enumDescriptions[article.Id]</td>
+                                                        <td id="@article.Id">@enumDescriptions[article.Id]</td>
                                                         <td class="actions text-center">
+
                                                             <a class="ban"
                                                                href="#" data-id="@article.Id">
                                                                 Duyệt
                                                             </a>
 
-                                                            <a href="#" class="editArticle" data-id="@article.Id" >
+                                                            <a class="lock"
+                                                               href="#" data-id="@article.Id">
+                                                                Khóa
+                                                            </a>
+
+                                                            <a href="#" class="editArticle" data-id="@article.Id">
                                                                 Sửa
                                                             </a>
 
@@ -529,7 +628,7 @@
                                                         </td>
                                                     </tr>
                                                 }
-                                                
+
 
 
 
@@ -581,6 +680,24 @@
 
     </div>
     <!-- Wrap all page content end -->
+
+
+
+    <script type="text/javascript">
+        $(window).load(function () {
+
+
+            $('#modalWaitingApproved').modal('show');
+
+
+        });
+    </script>
+
+
+
+
+
+
 
     <script>
         $(function () {
@@ -703,7 +820,7 @@
                 oTable02.fnUpdate(jqInputs[4].value, nRow, 4, false);
                 oTable02
 						.fnUpdate(
-								'<a class="ban" href="#">Duyệt</a> <a class="edit" href="#">Sửa</a><a class="delete" href="#">Xóa</a>',
+								'<a class="ban" href="#">Duyệt</a> <a class="lock" href="#">Khóa</a>  <a class="edit" href="#">Sửa</a><a class="delete" href="#">Xóa</a>',
 								nRow, 5, false);
                 oTable02.fnDraw();
             }
@@ -966,7 +1083,7 @@
 
                 $('.editArticle').click(function () {
                     var articleId = $(this).attr("data-id");
-                    window.location= "/Articles/Edit/"+ articleId;
+                    window.location = "/Articles/Edit/" + articleId;
                 });
 
             });
