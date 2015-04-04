@@ -119,6 +119,8 @@
     </div>
     <!-- /.modal -->
 
+
+    <!-- Modal create category -->
     <div class="modal fade" id="modalCreateCategory" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
          style="background: rgba(0, 0, 0, 0.75); top: 0px;">
@@ -169,7 +171,10 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <!-- Modal -->
+    
+    
+    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       <!-- Modal edit category -->
     <div class="modal fade" id="modalEditCategory" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
          style="background: rgba(0, 0, 0, 0.75); top: 0px;">
@@ -220,6 +225,46 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+
+
+    <!-- Modal tông báo xóa -->
+    <div class="modal fade" id="modalDeleteNotice" tabindex="-1"
+         role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
+         style="background: rgba(0, 0, 0, 0.75); top: 0px;">
+        <div class="modal-dialog" style="margin-top: 100px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        Thoát
+                    </button>
+                    <img src="@Url.Content("~/Content/images/delete-modal.png")" style="width:300px;" />
+                    <h3 class="modal-title" id="modalConfirmLabel">
+                        <strong>Xóa </strong>danh mục                                                                                                                                                                                                                                                                                           
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <!-- The file upload form used as target for the file upload widget -->
+                    <form class="form-horizontal">
+                        
+                        <div class="form-group form-footer">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <button type="submit" class="btn btn-green" id="deleteCategory">Xóa</button>
+                                <button data-dismiss="modal" class="btn btn-red">Hủy</button>
+                            </div>
+                        </div>
+                    </form>+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+
+
     <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
