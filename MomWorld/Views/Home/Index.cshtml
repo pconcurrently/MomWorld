@@ -400,9 +400,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input class="form-control textbox-n" placeholder="Ngày mang thai"
-                                               type="text" onfocus="(this.type='date')"
-                                               onblur="(this.type='text')" id="date">
+                                        <input type="text" class="form-control" id="datepicker" placeholder="Ngày mang thai">
                                     </div>
                                 </div>
 
@@ -799,6 +797,25 @@
 
 
     <script>
+        //initialize datepicker
+        $('#datepicker').datetimepicker({
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        });
+
+        $("#datepicker").on("dp.show", function (e) {
+            var newtop = $('.bootstrap-datetimepicker-widget').position().top - 45;
+            $('.bootstrap-datetimepicker-widget').css('top', newtop + 'px');
+        });
+    </script>
+
+
+
+    <script>
         $(window)
 				.load(
 						function () {
@@ -866,6 +883,3 @@
 
 
 </body>
-
-
-

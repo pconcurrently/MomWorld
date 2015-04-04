@@ -1,20 +1,20 @@
 ﻿@{
     Layout = null;
     var users = ViewData["Users"] as List<MomWorld.Models.ApplicationUser>;
-    var roles = ViewData["Roles"] as Dictionary<string,string>;
-   // var role1 = ViewData["Roles1"]as List<IdentityUserRole>;
-   /* Dictionary<string, string> enumstatus = new Dictionary<string, string>();
-    foreach (var item in users)
-    {
-        enumstatus.Add(item.Id, EnumHelper<Loc>.GetEnumDescription(((ArticleStatus)item.Status).ToString()));
-    }
-    * */
+    var roles = ViewData["Roles"] as Dictionary<string, string>;
+    // var role1 = ViewData["Roles1"]as List<IdentityUserRole>;
+    /* Dictionary<string, string> enumstatus = new Dictionary<string, string>();
+     foreach (var item in users)
+     {
+         enumstatus.Add(item.Id, EnumHelper<Loc>.GetEnumDescription(((ArticleStatus)item.Status).ToString()));
+     }
+     * */
 }
 
 <!DOCTYPE html>
-<html>;
+<html>
 <head>
-    
+
     <title>Mom's World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
@@ -39,6 +39,8 @@
           href="@Url.Content("~/Content/js/vendor/chosen/css/chosen.min.css")">
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/chosen/css/chosen-bootstrap.css")">
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/js/vendor/datepicker/css/bootstrap-datetimepicker.css")">
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/datatables/css/dataTables.bootstrap.css")">
     <link rel="stylesheet"
@@ -46,13 +48,16 @@
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/datatables/css/TableTools.css")">
 
+
+
+
     <link href="@Url.Content("~/Content/css/minimal.css")" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js")"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js")"></script>
         <![endif]-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="@Url.Content("~/Content/js/vendor/jquery/jquery.js")"></script>
@@ -73,6 +78,19 @@
     <script type="text/javascript"
             src="@Url.Content("~/Content/js/vendor/blockui/jquery.blockUI.js")"></script>
 
+    <script src="@Url.Content("~/Content/js/vendor/chosen/chosen.jquery.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/summernote/summernote.min.js")"></script>`
+
+    <script src="@Url.Content("~/Content/js/vendor/chosen/chosen.jquery.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/momentjs/moment-with-langs.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/datepicker/bootstrap-datetimepicker.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/colorpicker/bootstrap-colorpicker.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/colorpalette/bootstrap-colorpalette.js")"></script>
+
     <script src="@Url.Content("~/Content/js/vendor/datatables/jquery.dataTables.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datatables/ColReorderWithResize.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datatables/colvis/dataTables.colVis.min.js")"></script>
@@ -80,13 +98,194 @@
     <script src="@Url.Content("~/Content/js/vendor/datatables/tabletools/dataTables.tableTools.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datatables/dataTables.bootstrap.js")"></script>
 
-    <script src="@Url.Content("~/Content/js/vendor/chosen/chosen.jquery.min.js")"></script>
+
 
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
 
 </head>
 <body class="bg-1">
 
+    <!-- Modal create category -->
+    <div class="modal fade" id="modalEditUser" tabindex="-1"
+         role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        Thoát
+                    </button>
+                    <h3 class="modal-title" id="modalConfirmLabel">
+                        Sửa thông tin <strong>cá nhân</strong>
+                    </h3>
+                </div>
+                <div class="modal-body">
+
+                    <!-- tile -->
+                    <section class="tile transparent">
+
+
+
+
+
+
+                        <form class="profile-settings">
+
+                            <div class="row text-center">
+
+                                <div class="form-group col-sm-6 col-sm-offset-3">
+                                    <label for="first-name">Phân quyền</label>
+
+                                    <select class="chosen-select chosen-transparent form-control">
+
+                                        <option>Quản lí</option>
+                                        <option>Người dùng</option>
+                                        <option>Tư vấn viên</option>
+
+                                    </select>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="first-name">Họ</label> <input type="text"
+                                                                              class="form-control" id="first-name" value="Huỳnh">
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label for="last-name">Tên</label> <input type="text"
+                                                                              class="form-control" id="last-name" value="Ngọc Khoa">
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="email">E-mail</label> <input type="email"
+                                                                             class="form-control" id="email" value="johny.d@tattek.com"
+                                                                             readonly>
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label for="country">Quốc gia</label> <select class="chosen-select form-control" id="country">
+                                        <option>Việt nam</option>
+                                        <option>Czech Republic</option>
+                                        <option>Poland</option>
+                                        <option>Hungary</option>
+                                        <option>Austria</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="phone">Số điện thoại</label> <input type="text"
+                                                                                    class="form-control" id="phone" value="+(84)1655757445">
+                                    <span class="help-block">+(84)1655757445</span>
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label for="avatar">Ảnh đại diện</label>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-primary btn-file">
+                                                <i class="fa fa-upload"></i><input type="file" multiple="">
+                                            </span>
+                                        </span> <input type="text" class="form-control" readonly=""
+                                                       id="avatar">
+                                    </div>
+                                    <span class="help-block">
+                                        File cho phép: gif, png,
+                                        jpg. Kích thước tối đa 1Mb
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="row">
+                                <div class="form-group col-md-12 legend">
+                                    <h4>
+                                        Thiết lập <strong>Bảo mật</strong>
+                                    </h4>
+                                    <p>Bảo vệ tài khoản của bạn</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="username">Tên đăng nhập</label> <input type="text" class="form-control" id="username"
+                                                                                       value="khoahn" readonly>
+                                </div>
+
+
+                                <div class="form-group col-sm-6">
+                                    <label for="password">Mật khẩu cũ</label> <input type="password" class="form-control" id="password"
+                                                                                     value="123456" readonly>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="new-password">Mật khẩu mới</label> <input type="password" class="form-control" id="new-password">
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label for="new-password-repeat">
+                                        Nhập lại mật khẩu
+                                        mới
+                                    </label> <input type="password" class="form-control"
+                                                    id="new-password-repeat">
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="form-group col-md-12 text-right">
+                                    <button class="btn btn-cyan start btn-md">
+                                        <i class="fa fa-refresh"></i> <span> Cập nhật</span>
+                                    </button>
+
+
+                                    <button class="btn btn-red cancel btn-md">
+                                        <i class="fa fa-times"></i> <span> Hủy</span>
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+
+
+
+
+
+                    </section>
+                    <!-- /tile -->
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
     <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
@@ -510,23 +709,23 @@
                                             </thead>
                                             <tbody>
                                                 @foreach (var user in users)
-                                                { 
-                                                <tr class="odd ">
+                                                {
+                                                    <tr class="odd ">
 
-                                                    <td>@user.UserName</td>
+                                                        <td>@user.UserName</td>
 
-                                                    <td>@user.Email</td>
-                                                    <td>@roles[user.Id]</td>
-                                                    <td class="color-greensea">Bình thường</td>
-                                                    <td class="actions text-center">
-                                                        <a class="ban"
-                                                           href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
-                                                                              href="#">Sửa</a><a class="delete"
-                                                                                                 href="#">Xóa</a>
-                                                    </td>
-                                                </tr>
+                                                        <td>@user.Email</td>
+                                                        <td>@roles[user.Id]</td>
+                                                        <td class="color-greensea">Bình thường</td>
+                                                        <td class="actions text-center">
+                                                            <a class="ban"
+                                                               href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit"
+                                                                                                                                           href="#">Sửa</a><a class="delete"
+                                                                                                                                                              href="#">Xóa</a>
+                                                        </td>
+                                                    </tr>
                                                 }
-                                                
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -933,5 +1132,23 @@
 
         })
     </script>
+
+    <script>
+        //chosen select input
+        $(".chosen-select").chosen({ disable_search_threshold: 10 });</script>
+
+    <script type="text/javascript">
+        $(window).load(function () {
+
+
+            $('#modalEditUser').modal('show');
+
+        });
+    </script>
+
+
+
+
+
 </body>
 </html>

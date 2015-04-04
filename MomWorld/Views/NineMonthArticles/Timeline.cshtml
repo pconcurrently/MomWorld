@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/bootstrap-checkbox.css")">
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/text-rotator/css/simpletextrotator.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/js/vendor/datepicker/css/bootstrap-datetimepicker.css")">
 
     <!-- Important Owl stylesheet -->
     <link rel="stylesheet"
@@ -70,6 +71,52 @@
     <link href="@Url.Content("~/Content/css/vendor/timeline/style.css")" rel="stylesheet"
           type="text/css" />
 
+
+
+    <script src="@Url.Content("~/Content/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js")"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery/jquery.js")"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="@Url.Content("~/Content/js/vendor/bootstrap/bootstrap.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/skrollr/skrollr.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/jquery-flexslider/jquery.flexslider.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/text-rotator/jquery.simple-text-rotator.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/owl-carousel/owl.carousel.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/nivo-lightbox/nivo-lightbox.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/tweet-js/jquery.tweet.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/vticker/jquery.vticker.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/jflickrfeed/jflickrfeed.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/appear/jquery.appear.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/parallax/jquery.parallax-1.1.3.js")"></script>
+
+    <script src="http://maps.google.com/maps/api/js?sensor=false"
+            type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/momentjs/moment-with-langs.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/datepicker/bootstrap-datetimepicker.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/minimal.min.js")"></script>
+
+    <script type="text/javascript"
+            src="@Url.Content("~/Content/js/vendor/jquery-easing/jquery.easing.1.3.js")"></script>
+
+    <script type="text/javascript"
+            src="@Url.Content("~/Content/js/vendor/timeline/jquery.timeline.min.js")"></script>
+    <script type="text/javascript"
+            src="@Url.Content("~/Content/js/vendor/timeline/image.js")"></script>
+    <script type="text/javascript"
+            src="@Url.Content("~/Content/js/vendor/timeline/lightbox.js")"></script>
 
 
 </head>
@@ -350,10 +397,11 @@
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">
                                         <i class="fa fa-calendar"></i>
-                                    </span> <input class="form-control text-center"
+                                    </span> @*<input class="form-control text-center"
                                                    placeholder="Ngày mang thai dự định" type="text"
                                                    onfocus="(this.type='date')" onblur="(this.type='text')"
-                                                   id="date" aria-describedby="basic-addon1">
+                                                   id="date" aria-describedby="basic-addon1">*@
+                                    <input type="text" class="form-control" id="datepicker" placeholder="Ngày mang thai">
                                 </div>
                             </div>
                         </div>
@@ -379,49 +427,23 @@
 
 
 
-    <script src="@Url.Content("~/Content/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js")"></script>
+   
+    <script>
+    //initialize datepicker
+    $('#datepicker').datetimepicker({
+        icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-arrow-up",
+            down: "fa fa-arrow-down"
+        }
+    });
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="@Url.Content("~/Content/js/vendor/jquery/jquery.js")"></script>
-
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="@Url.Content("~/Content/js/vendor/bootstrap/bootstrap.min.js")"></script>
-
-    <script src="@Url.Content("~/Content/js/vendor/skrollr/skrollr.min.js")"></script>
-
-    <script src="@Url.Content("~/Content/js/vendor/jquery-flexslider/jquery.flexslider.js")"></script>
-
-    <script src="@Url.Content("~/Content/js/vendor/text-rotator/jquery.simple-text-rotator.js")"></script>
-
-    <script src="@Url.Content("~/Content/js/vendor/owl-carousel/owl.carousel.min.js")"></script>
-
-    <script src="@Url.Content("~/Content/js/vendor/nivo-lightbox/nivo-lightbox.min.js")"></script>
-
-    <script src="@Url.Content("~/Content/js/vendor/tweet-js/jquery.tweet.min.js")"></script>
-
-    <script src="@Url.Content("~/Content/js/vendor/vticker/jquery.vticker.min.js")"></script>
-
-    <script src="@Url.Content("~/Content/js/vendor/jflickrfeed/jflickrfeed.min.js")"></script>
-
-    <script src="@Url.Content("~/Content/js/vendor/appear/jquery.appear.js")"></script>
-
-    <script src="@Url.Content("~/Content/js/vendor/parallax/jquery.parallax-1.1.3.js")"></script>
-
-    <script src="http://maps.google.com/maps/api/js?sensor=false"
-            type="text/javascript"></script>
-
-    <script src="@Url.Content("~/Content/js/minimal.min.nogooglemaps.js")"></script>
-
-
-    <script type="text/javascript"
-            src="@Url.Content("~/Content/js/vendor/jquery-easing/jquery.easing.1.3.js")"></script>
-
-    <script type="text/javascript"
-            src="@Url.Content("~/Content/js/vendor/timeline/jquery.timeline.min.js")"></script>
-    <script type="text/javascript"
-            src="@Url.Content("~/Content/js/vendor/timeline/image.js")"></script>
-    <script type="text/javascript"
-            src="@Url.Content("~/Content/js/vendor/timeline/lightbox.js")"></script>
+    $("#datepicker").on("dp.show", function (e) {
+        var newtop = $('.bootstrap-datetimepicker-widget').position().top - 45;
+        $('.bootstrap-datetimepicker-widget').css('top', newtop + 'px');
+    });
+    </script>
 
 
 
@@ -463,7 +485,7 @@
 
         $('#submitDate').click(function (e) {
             e.preventDefault();
-            var date = $('#date').val();
+            var date = $('#datepicker').val();
             $.ajax({
                 url: '/NineMonthArticles/SetDate',
                 dataType: "json",
