@@ -49,6 +49,8 @@
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/text-rotator/css/simpletextrotator.css")">
 
+    <link rel="stylesheet" href="@Url.Content("~/Content/js/vendor/datepicker/css/bootstrap-datetimepicker.css")">
+
     <!-- Important Owl stylesheet -->
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/owl-carousel/css/owl.carousel.css")">
@@ -69,8 +71,9 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/minimal.min.css")">
 
 
-    <style type="text/css">
-    </style>
+    <script src="@Url.Content("~/Content/js/vendor/momentjs/moment-with-langs.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/datepicker/bootstrap-datetimepicker.min.js")"></script>
+
 </head>
 
 <body>
@@ -544,9 +547,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input class="form-control textbox-n" placeholder="Ngày mang thai"
-                                               type="text" onfocus="(this.type='date')"
-                                               onblur="(this.type='text')" id="date">
+                                        <input type="text" class="form-control" id="datepicker" placeholder="Ngày mang thai">
                                     </div>
                                 </div>
 
@@ -651,7 +652,21 @@
 
 
 
+    <script>//initialize datepicker
+        $('#datepicker').datetimepicker({
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        });
 
+        $("#datepicker").on("dp.show", function (e) {
+            var newtop = $('.bootstrap-datetimepicker-widget').position().top - 45;
+            $('.bootstrap-datetimepicker-widget').css('top', newtop + 'px');
+        });
+</script>
 
 
 
