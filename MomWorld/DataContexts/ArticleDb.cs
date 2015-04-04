@@ -30,6 +30,8 @@ namespace MomWorld.DataContexts
         public DbSet<ArticleLike> ArticleLikes { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<Report> Reports { get; set; }
         
     }
     

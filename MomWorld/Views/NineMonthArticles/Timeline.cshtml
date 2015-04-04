@@ -1,7 +1,12 @@
 ﻿@{
     ViewBag.Title = "Timeline";
     Layout = null;
+    string setPopup = "false";
     MomWorld.Models.ApplicationUser currentUser = ViewData["CurrentUser"] as MomWorld.Models.ApplicationUser;
+    if (currentUser.DatePregnancy == null)
+    {
+        setPopup = "true";
+    }
     //var datePregnancy
 }
 
@@ -69,57 +74,7 @@
 
 </head>
 <body>
-    <!-- Modal -->
-    <div class="modal fade" id="setDateModal" tabindex="-1" role="dialog"
-         aria-labelledby="modalConfirmLabel" aria-hidden="true"
-         style="background: rgba(0, 0, 0, 0.75); top: 0px;">
-        <div class="modal-dialog" style="margin-top: 100px;">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">
-                        Thoát
-                    </button>
-                    <img class="img-responsive" src="@Url.Content("~/Content/images/page-images/1.jpg")" />
-                    <h3 class="modal-title" id="modalConfirmLabel">
-                        <strong>Đặt ngày mang thai</strong>
-                    </h3>
-                </div>
-                <div class="modal-body">
-                    <!-- The file upload form used as target for the file upload widget -->
-                    <form class="form-horizontal">
-
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">
-                                        <i class="fa fa-calendar"></i>
-                                    </span> <input class="form-control text-center"
-                                                   placeholder="Ngày mang thai dự định" type="text"
-                                                   onfocus="(this.type='date')" onblur="(this.type='text')"
-                                                   id="date" aria-describedby="basic-addon1">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group form-footer">
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-green">Đồng ý</button>
-                                <button type="reset" class="btn btn-red" data-dismiss="modal"
-                                        aria-hidden="true">
-                                    Hủy
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-
+    <a hidden id="setPopup" data-id="@setPopup"></a>
 
     <!-- Preloader -->
     <div class="mask">
@@ -240,30 +195,33 @@
         </div>
         <div class="timelineLight tl">
             <!-- BEGIN TIMELINE -->
-            @foreach (var item in ViewData["NineMonthArticles"] as List<MomWorld.Entities.NineMonthArticle>)
+            @if (setPopup.Equals("false"))
             {
-                <div class="item" data-id="@currentUser.DatePregnancy.Value.AddDays(item.Date).ToString("dd/MM/yyyy")" data-name="@currentUser.DatePregnancy.Value.AddDays(item.Date).ToString("dd")"
-                     data-description="Ngày thứ @item.Date">
-                    <a class="image_rollover_bottom con_borderImage"
-                       data-description="ZOOM IN" href="@Url.Content("~/Content/images/page-images/4.jpg")"
-                       rel="lightbox[timeline]">
-                        <img src="@Url.Content("~/Content/images/page-images/4.jpg")" class="img-responsive"
-                             alt="" />
-                        >
-                    </a>
-                    <h2>Ngày thứ @item.Date</h2>
-                    <span>
-                        @item.Content
-                    </span>
-                    <div class="read_more" data-id="@currentUser.DatePregnancy.Value.AddDays(item.Date).ToString("dd/MM/yyyy")">Xem thêm</div>
-                </div>
-                <div class="item_open" data-id="@currentUser.DatePregnancy.Value.AddDays(item.Date)"
-                     data-access="timeline-content.html?item=4">
-                    <div class="item_open_content">
-                        <img class="ajaxloader"
-                             src="@Url.Content("~/Content/images/timeline/timeline/loadingAnimation.gif")" alt="" />
+                foreach (var item in ViewData["NineMonthArticles"] as List<MomWorld.Entities.NineMonthArticle>)
+                {
+                    <div class="item" data-id="@currentUser.DatePregnancy.Value.AddDays(item.Date).ToString("dd/MM/yyyy")" data-name="@currentUser.DatePregnancy.Value.AddDays(item.Date).ToString("dd")"
+                         data-description="Ngày thứ @item.Date">
+                        <a class="image_rollover_bottom con_borderImage"
+                           data-description="ZOOM IN" href="@Url.Content("~/Content/images/page-images/4.jpg")"
+                           rel="lightbox[timeline]">
+                            <img src="@Url.Content("~/Content/images/page-images/4.jpg")" class="img-responsive"
+                                 alt="" />
+                            >
+                        </a>
+                        <h2>Ngày thứ @item.Date</h2>
+                        <span>
+                            @item.Content
+                        </span>
+                        <div class="read_more" data-id="@item.Id">Xem thêm</div>
                     </div>
-                </div>
+                    <div class="item_open" data-id="@currentUser.DatePregnancy.Value.AddDays(item.Date)"
+                         data-access="timeline-content.html?item=4">
+                        <div class="item_open_content">
+                            <img class="ajaxloader"
+                                 src="@Url.Content("~/Content/images/timeline/timeline/loadingAnimation.gif")" alt="" />
+                        </div>
+                    </div>
+                }
             }
         </div>
         <!-- /END TIMELINE -->
@@ -367,7 +325,56 @@
     </div>
     <!-- END SCROLL TOP -->
 
+    <!-- Modal -->
+    <div class="modal fade" id="setDateModal" tabindex="-1" role="dialog"
+         aria-labelledby="modalConfirmLabel" aria-hidden="true"
+         style="background: rgba(0, 0, 0, 0.75); top: 0px;">
+        <div class="modal-dialog" style="margin-top: 100px;">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        Thoát
+                    </button>
+                    <img class="img-responsive" src="@Url.Content("~/Content/images/page-images/1.jpg")" />
+                    <h3 class="modal-title" id="modalConfirmLabel">
+                        <strong>Đặt ngày mang thai</strong>
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <!-- The file upload form used as target for the file upload widget -->
+                    <form class="form-horizontal">
 
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">
+                                        <i class="fa fa-calendar"></i>
+                                    </span> <input class="form-control text-center"
+                                                   placeholder="Ngày mang thai dự định" type="text"
+                                                   onfocus="(this.type='date')" onblur="(this.type='text')"
+                                                   id="date" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-footer">
+                            <div class="text-center">
+                                <button class="btn btn-green" id="submitDate">Đồng ý</button>
+                                <button type="reset" class="btn btn-red" data-dismiss="modal"
+                                        aria-hidden="true">
+                                    Hủy
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
 
 
@@ -419,14 +426,6 @@
 
 
     <script type="text/javascript">
-    $(window).load(function () {
-        $('#setDayModal').modal('show');
-    });
-    </script>
-
-
-
-    <script type="text/javascript">
         $(window).load(function () {
             var startDate;
             var date = new Date();
@@ -448,6 +447,42 @@
                 startItem: startDate,
             });
         });
+    </script>
+    <script>
+        $('.read_more').click(function () {
+            var id = $(this).attr('data-id');
+            window.location.href = "/NineMonthArticles/Details/" + id;
+        });
+
+        $(document).ready(function () {
+            var isPopup = $('#setPopup').attr('data-id');
+            if (isPopup == "true") {
+                $('#setDateModal').modal('show');
+            }
+        })
+
+        $('#submitDate').click(function (e) {
+            e.preventDefault();
+            var date = $('#date').val();
+            $.ajax({
+                url: '/NineMonthArticles/SetDate',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ date: date }),
+                processData: true,
+                success: function (data) {
+                    //setTimeout(function () {
+                        window.location.reload();
+                    //}, 1000);
+                    //window.location.reload();
+                }
+            });
+
+        });
+
+
+
     </script>
 
 </body>

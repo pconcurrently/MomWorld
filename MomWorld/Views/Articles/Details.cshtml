@@ -63,7 +63,7 @@
 
                         <div class="form-group form-footer">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-green" id="submit">Gửi</button>
+                                <button type="submit" class="btn btn-green" id="submitReport">Gửi</button>
                                 <button type="reset" data-dismiss="modal" class="btn btn-red">Hủy</button>
                             </div>
                         </div>
@@ -76,7 +76,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
     <!--modal cảm ơn đã báo xấu bài viết -->
     <div class="modal fade" id="modalThankForReport" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -102,7 +101,7 @@
                         <div class="form-group form-footer">
                             <div class="text-center">
                                 <h3>Cảm ơn bạn đã báo cho chúng tôi bài viết này, chúng tôi sẽ xem xét và xử lí.</h3>
-                                
+
                             </div>
                         </div>
                     </form>
@@ -113,7 +112,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
     <!-- BEGIN BREADCRUMBS -->
     <div id="breadcrumbs" class="breadcrumbs bg-1">
         <div class="container">
@@ -246,9 +244,12 @@
                         <li><i class="fa fa-comments"></i> @comments.Count</li>
                         <li>
                             <i class="fa fa-tags"></i>
-                            @foreach (var tag in tags)
+                            @if (tags != null)
                             {
-                                <span><a href="@Url.Action("Details", "Tags", routeValues: new { id = tag.Id })"> @tag.Name </a></span>
+                                foreach (var tag in tags)
+                                {
+                                    <span><a href="@Url.Action("Details", "Tags", routeValues: new { id = tag.Id })"> @tag.Name </a></span>
+                                }
                             }
                         </li>
 
@@ -258,7 +259,7 @@
 
                             @*<a href="#modalReport"*@
                             <a href="#"
-                               data-toggle="modal" id="submitReport">
+                               data-toggle="modal" id="displayReport">
                                 <i class="fa fa-exclamation-circle color-red"></i> Báo xấu
                             </a>
                         </li>
@@ -533,20 +534,25 @@
                 });
             });
 
+            $('#displayReport').click(function () {
+                $('#modalReport').modal('show');
+            });
+
             $("#submitReport").click(function () {
                 var articleId = $("#articleId").val();
                 var reportContent = $('#reportContent').val();
+                alert(reportContent);
                 $.ajax({
                     url: '/Articles/Report',
                     dataType: "json",
                     type: "POST",
                     contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify({ articleId: articleId, reportContent: reportContent }),
+                    data: JSON.stringify({ model: { articleId: articleId, content: reportContent } }),
                     async: true,
                     processData: false,
                     cache: false,
                     success: function (data) {
-                        location.reload(true);
+                        
                     }
                 });
             });

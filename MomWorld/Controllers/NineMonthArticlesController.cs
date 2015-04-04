@@ -70,7 +70,7 @@ namespace MomWorld.Controllers
                 article.Tags = model.Tags[0];
                 for (var index = 1; index <= model.Tags.Length - 1; index++)
                 {
-                    article.Tags += ", "+ model.Tags[index];
+                    article.Tags += ", " + model.Tags[index];
                 }
             }
             else
@@ -164,6 +164,21 @@ namespace MomWorld.Controllers
             return View();
         }
 
+        public JsonResult SetDate(DateTime date)
+        {
+            try
+            {
+                var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+                user.DatePregnancy = date;
+                identityDb.Entry(user).State = EntityState.Modified;
+                identityDb.SaveChanges();
+                return Json("Successfully");
+            }
+            catch (Exception)
+            {
+                return Json(null);
+            }
+        }
         private MultiSelectList GetTags(string[] selectedValues)
         {
 

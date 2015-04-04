@@ -59,7 +59,12 @@ namespace MomWorld.Controllers
                 var articleLikes = db.ArticleLikes.ToList().FindAll(al => al.ArticleId.Equals(article.Id));
 
                 var isLike = db.ArticleLikes.ToList().FirstOrDefault(al => al.ArticleId.Equals(id) && al.UserId.Equals(userId));
-                var tags = db.Tags.ToList().FindAll(t=>article.Tags.Contains(t.Id));
+                if (article.Tags != null)
+                {
+                    var tags = db.Tags.ToList().FindAll(t => article.Tags.Contains(t.Id));
+                    ViewData["Tags"] = tags;
+                }
+                else
 
                 ViewData["PostedUser"] = postedUser;
                 ViewData["Article"] = article;
@@ -67,7 +72,7 @@ namespace MomWorld.Controllers
                 ViewData["Comments"] = comments;
                 ViewData["ArticleLikes"] = articleLikes;
                 ViewData["IsLike"] = isLike;
-                ViewData["Tags"] = tags;
+                
 
                 return View();
             }
@@ -253,11 +258,16 @@ namespace MomWorld.Controllers
             return html;
         }
 
-        public JsonResult Report(string articleId)
+        public JsonResult Report(ReportViewModel model)
         {
+            var report = new Report();
+            report.Id = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
+            report.ArticleId = model.ArticleId;
+            report.Content = model.Content;
             try
             {
-                db.Articles.FirstOrDefault(art => art.Id.Equals(articleId)).Status = (int)ArticleStatus.Reported;
+                db.Reports.Add(report);
+                db.Articles.FirstOrDefault(art => art.Id.Equals(report.ArticleId)).Status = (int)ArticleStatus.Reported;
                 db.SaveChanges();
             }
             catch (Exception)
