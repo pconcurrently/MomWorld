@@ -516,10 +516,11 @@ namespace MomWorld.Controllers
                 //var roles = UserManager.GetRoles(user.Id);
                 //string role = roles.ToString();
             }
-
+            var adminRole = identityDb.Roles.FirstOrDefault(ro => ro.Name.Equals("Admins")).Id;
 
             ViewData["Users"] = users;
             ViewData["Roles"] = userRoles;
+            ViewData["AdminRole"] = adminRole;
 
             return View();
         }
@@ -553,7 +554,15 @@ namespace MomWorld.Controllers
             var user = UserManager.Users.FirstOrDefault(u => u.Id.Equals(id));
             if (user != null)
             {
-                return Json(user, JsonRequestBehavior.AllowGet);
+                EditUserViewModel editUser = new EditUserViewModel();
+                editUser.FirstName = user.FirstName;
+                editUser.LastName = user.LastName;
+                editUser.Phone = user.Phone;
+                editUser.UserName = user.UserName;
+                editUser.Email = user.Email;
+                editUser.Role = identityDb.Roles.ToList().FirstOrDefault(r => r.Id.Equals(user.Roles.ToList()[0].RoleId)).Name;
+
+                return Json(editUser, JsonRequestBehavior.AllowGet);
             }
             return Json(null);
         }
@@ -568,6 +577,10 @@ namespace MomWorld.Controllers
                 user.LastName = model.LastName;
                 user.Phone = model.Phone;
                 user.Email = model.Email;
+                UserManager.RemoveFromRole(user.Id, identityDb.Roles.ToList().FirstOrDefault(r => r.Id.Equals(user.Roles.ToList()[0].RoleId)).Name);
+                UserManager.AddToRole(user.Id, model.Role);
+
+
                 if (model.Password != null)
                     user.PasswordHash = myPasswordHasher.HashPassword(model.Password);
                 try
@@ -581,6 +594,20 @@ namespace MomWorld.Controllers
                     return Json(null);
                 }
             }
+            return Json(null);
+
+        }
+
+        public JsonResult Create(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Phone = model.Phone };
+                IdentityResult result = UserManager.Create(user, model.Password);
+                UserManager.AddToRole(user.Id, model.Role);
+                return Json("Successfully");
+            }
+
             return Json(null);
 
         }

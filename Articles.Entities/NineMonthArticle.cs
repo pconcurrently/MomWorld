@@ -23,6 +23,8 @@ namespace MomWorld.Entities
 
         public string Tags { get; set; }
 
+        public string DescriptionImage { get; set; }
+
         #region Constructor
         public NineMonthArticle()
         {

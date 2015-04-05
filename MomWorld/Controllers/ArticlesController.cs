@@ -318,7 +318,9 @@ namespace MomWorld.Controllers
                     ArticleLike artlike = new ArticleLike();
                     artlike.UserId = userId;
                     artlike.ArticleId = articleId;
+                    artlike.Date = DateTime.Now;
                     db.ArticleLikes.Add(artlike);
+                    db.Entry(artlike).State = EntityState.Added;
                     db.SaveChanges();
                 }
                 catch (Exception)

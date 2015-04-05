@@ -61,20 +61,25 @@ namespace MomWorld.Controllers
             article.Date = model.Date;
             article.Content = model.Content;
             article.Description = ParseHtml(model.Content);
-            if (model.Tags.Length < 1)
+            article.DescriptionImage = GetDescriptionImage(model.Content);
+
+            if (model.Tags != null)
             {
-                article.Tags = string.Empty;
-            }
-            else if (model.Tags.Length > 1)
-            {
-                article.Tags = model.Tags[0];
-                for (var index = 1; index <= model.Tags.Length - 1; index++)
+                if (model.Tags.Length < 1)
                 {
-                    article.Tags += ", " + model.Tags[index];
+                    article.Tags = string.Empty;
                 }
+                else if (model.Tags.Length > 1)
+                {
+                    article.Tags = model.Tags[0];
+                    for (var index = 1; index <= model.Tags.Length - 1; index++)
+                    {
+                        article.Tags += ", " + model.Tags[index];
+                    }
+                }
+                else
+                    article.Tags = model.Tags[0];
             }
-            else
-                article.Tags = model.Tags[0];
 
             try
             {
@@ -198,6 +203,29 @@ namespace MomWorld.Controllers
                 html = html.Replace(item, string.Empty);
             }
             return html;
+        }
+
+        public static string GetDescriptionImage(string html)
+        {
+            //step 1
+            string imageLink = string.Empty;
+            int start = html.IndexOf("<img");
+            if (start == -1)
+            {
+
+                return string.Empty;
+            }
+            imageLink = html.Remove(0, start);
+            int end = imageLink.IndexOf(">");
+            imageLink = imageLink.Remove(end + 1);
+
+            //step2
+            start = imageLink.IndexOf("src=\"");
+            imageLink = imageLink.Remove(0, start + 5);
+            end = imageLink.IndexOf("\"");
+            imageLink = imageLink.Remove(end);
+
+            return imageLink;
         }
     }
 }
