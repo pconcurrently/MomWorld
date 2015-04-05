@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MomWorld.Controllers
 {
@@ -88,37 +89,52 @@ namespace MomWorld.Controllers
 
         // POST: api/User/UploadVideo
         [HttpPost]
+        [DisableCors]
         [Route("api/User/UploadVideo")]
-        public HttpResponseMessage UploadVideo()
+        public void uploadnow(HttpPostedFileWrapper upload)
         {
-            HttpResponseMessage result = null;
-            var httpRequest = HttpContext.Current.Request;
-            if (httpRequest.Files.Count > 0)
+            if (upload != null)
             {
-                foreach (string file in httpRequest.Files)
-                {
-                    var postedFile = httpRequest.Files[file];
-                    var name = httpRequest.Form.Get(0);
-
-                    // Save file to Responsitory
-                    var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/" + name + ".3pg");
-                    postedFile.SaveAs(filePath);
-
-                    // Change User ProfilePiture in Database
-                    //var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(name));
-                    //user.ProfilePicture = "http://localhost:4444/App/uploads/video/" + name + ".3pg";
-                    //identityDb.SaveChanges();
-
-                }
-                result = Request.CreateResponse(HttpStatusCode.Created);
+                string ImageName = upload.FileName;
+                string path = HttpContext.Current.Server.MapPath("~/App/uploads/video" + ImageName);
+                upload.SaveAs(path);
             }
-            else
-            {
-                result = Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-
-            return result;
-
         }
+
+
+        // POST: api/User/UploadVideo
+        //[HttpPost]
+        //[Route("api/User/UploadVideo")]
+        //public HttpResponseMessage UploadVideo()
+        //{
+        //    HttpResponseMessage result = null;
+        //    var httpRequest = HttpContext.Current.Request;
+        //    if (httpRequest.Files.Count > 0)
+        //    {
+        //        foreach (string file in httpRequest.Files)
+        //        {
+        //            var postedFile = httpRequest.Files[file];
+        //            var name = httpRequest.Form.Get(0);
+
+        //            // Save file to Responsitory
+        //            var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/" + name + ".3pg");
+        //            postedFile.SaveAs(filePath);
+
+        //            // Change User ProfilePiture in Database
+        //            //var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(name));
+        //            //user.ProfilePicture = "http://localhost:4444/App/uploads/video/" + name + ".3pg";
+        //            //identityDb.SaveChanges();
+
+        //        }
+        //        result = Request.CreateResponse(HttpStatusCode.Created);
+        //    }
+        //    else
+        //    {
+        //        result = Request.CreateResponse(HttpStatusCode.BadRequest);
+        //    }
+
+        //    return result;
+
+        //}
     }
 }

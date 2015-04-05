@@ -24,7 +24,8 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         
         /* Init Chat */
         $scope.initChat = function () {
-        
+            // Set closest coversation
+
         }
 
         /* Get Chat between User with Receiver */

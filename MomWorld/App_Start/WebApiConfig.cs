@@ -12,6 +12,9 @@ namespace MomWorld
         {
             config.MapHttpAttributeRoutes();
 
+            // Enable CORS
+            config.EnableCors();
+
             // Config to get JSON when request using WebAPI
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
