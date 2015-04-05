@@ -85,7 +85,7 @@
 
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
 </head>
-<body class="bg-1">
+<body class="solid-bg-1">
     <!-- Modal create user  -->
     <div class="modal fade" id="modalCreateUser" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
@@ -745,7 +745,7 @@
                 <div class="pageheader">
 
                     <h2>
-                        <i class="fa fa-lightbulb-o"
+                        <i class="fa fa-users"
                            style="line-height: 48px; padding-left: 0;"></i> Quản lí người
                         dùng
                     </h2>
@@ -807,7 +807,7 @@
                                                         <td>@user.UserName</td>
                                                         <td>@user.Email</td>
                                                         <td>@roles[user.Id]</td>
-                                                        <td class="color-greensea" id="@user.Id">@(user.Status == 1 ? "Bị khóa" : "Bình thường")</td>
+                                                        <td class="" id="@user.Id">@(user.Status == 1 ? "Bị khóa" : "Bình thường")</td>
                                                         <td class="actions text-center">
                                                             @if (!user.UserName.Equals("admin"))
                                                             {
@@ -853,8 +853,6 @@
 
     </div>
     <!-- Wrap all page content end -->
-
-    <section class="videocontent" id="video"></section>
 
 
     <script>
@@ -996,7 +994,7 @@
 							});
 
             // Append add row button to table
-            var addRowLink = '<a href="#" id="addRow" class="btn btn-green btn-xs add-row">Thêm mới</a>'
+            var addRowLink = '<a href="#" id="addRow" class="btn btn-white btn-xs add-row"><i class="fa fa-user-plus"></i> Thêm mới</a>'
             $('#inlineEditDataTable_wrapper').append(addRowLink);
 
             var nEditing = null;

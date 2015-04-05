@@ -578,6 +578,16 @@ menu .btn .fa {
     background-color: #0fa1cf;
     color: white;
 }
+
+.btn.btn-white {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #7f7f7f;
+}
+.btn.btn-white:hover {
+    background-color: white;
+    color: rgb(60, 60, 60);
+}
+
 .btn.btn-red {
     background-color: #ff7b76;
     color: #f2f2f2;

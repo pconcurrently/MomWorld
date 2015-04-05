@@ -5012,43 +5012,43 @@ body.no-bg {
   background: none;
 }
 body.solid-bg-1 {
-  background-color: #1693A5;
-  background-image: url(../images/noise.png);
+  background-color: #40B84F;
+  /* background-image: url(../images/noise.png); */
   background-repeat: repeat;
   background-position: left top;
   background-size: auto;
 }
 body.solid-bg-2 {
   background-color: #FBB829;
-  background-image: url(../images/noise.png);
+  /* background-image: url(../images/noise.png); */
   background-repeat: repeat;
   background-position: left top;
   background-size: auto;
 }
 body.solid-bg-3 {
   background-color: #556270;
-  background-image: url(../images/noise.png);
+  /* background-image: url(../images/noise.png); */
   background-repeat: repeat;
   background-position: left top;
   background-size: auto;
 }
 body.solid-bg-4 {
   background-color: #2A8FBD;
-  background-image: url(../images/noise.png);
+  /* background-image: url(../images/noise.png); */
   background-repeat: repeat;
   background-position: left top;
   background-size: auto;
 }
 body.solid-bg-5 {
   background-color: #D8D8C0;
-  background-image: url(../images/noise.png);
+  /* background-image: url(../images/noise.png); */
   background-repeat: repeat;
   background-position: left top;
   background-size: auto;
 }
 body.solid-bg-6 {
   background-color: #7F94B0;
-  background-image: url(../images/noise.png);
+  /* background-image: url(../images/noise.png); */
   background-repeat: repeat;
   background-position: left top;
   background-size: auto;
@@ -5627,7 +5627,7 @@ menu .btn .fa {
 }
 .navbar .navbar-nav.quick-actions .dropdown .dropdown-menu.settings > li #color-schemes > li > a.solid-bg-1,
 .navbar .navbar-nav.quick-actions .dropdown .dropdown-menu.settings > li #videobackgrounds > li > a.solid-bg-1 {
-  background-color: #1693A5;
+  background-color: #16A56F;
 }
 .navbar .navbar-nav.quick-actions .dropdown .dropdown-menu.settings > li #color-schemes > li > a.solid-bg-2,
 .navbar .navbar-nav.quick-actions .dropdown .dropdown-menu.settings > li #videobackgrounds > li > a.solid-bg-2 {
@@ -5716,7 +5716,7 @@ menu .btn .fa {
 .navbar .search input {
   /* font-family: "Ubuntu Mono", sans-serif; */
   font-size: 16px;
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 1);
   background: none;
   border: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -5736,21 +5736,21 @@ menu .btn .fa {
 .navbar .search input:focus {
   outline: none;
   border: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255,255);
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 .navbar .search input::-webkit-input-placeholder {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.7);
 }
 .navbar .search input:-moz-placeholder {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.7);
 }
 .navbar .search input::-moz-placeholder {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.7);
 }
 .navbar .search input:-ms-input-placeholder {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.7);
 }
 .navbar.collapsed .navbar-header {
   width: 40px;
@@ -9985,6 +9985,14 @@ ul.chart-legend > li small {
 .btn.btn-cyan:hover {
   background-color: #0fa1cf;
   color: white;
+}
+.btn.btn-white {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #7f7f7f;
+}
+.btn.btn-white:hover {
+    background-color: white;
+    color: rgb(60, 60, 60);
 }
 .btn.btn-red {
   background-color: #ff7b76;

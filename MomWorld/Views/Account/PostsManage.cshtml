@@ -84,7 +84,7 @@
 
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
 </head>
-<body class="bg-1">
+<body class="solid-bg-1">
 
     <!--modal ReportContent -->
     <div class="modal fade" id="modalReportContent" tabindex="-1"
@@ -115,7 +115,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
     <!-- Modal thông báo xóa -->
     <div class="modal fade" id="modalDeleteNotice" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -150,7 +149,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
     <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
@@ -504,7 +502,7 @@
 
 
                     <h2>
-                        <i class="fa fa-lightbulb-o"
+                        <i class="fa fa-edit"
                            style="line-height: 48px; padding-left: 0;"></i> Quản lí bài viết
                     </h2>
 
@@ -815,7 +813,7 @@
 							});
 
             // Append add row button to table
-            var addRowLink = '<a href="@Url.Action("Create", "Articles")" id="addRow" class="btn btn-green btn-xs add-row">Thêm mới</a>'
+            var addRowLink = '<a href="@Url.Action("Create", "Articles")" id="addRow" class="btn btn-white btn-xs add-row"><i class="fa fa-pencil-square-o"></i> Thêm mới</a>'
             $('#inlineEditDataTable_wrapper').append(addRowLink);
 
             var nEditing = null;
