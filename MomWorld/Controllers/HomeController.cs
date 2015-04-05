@@ -12,11 +12,21 @@ namespace MomWorld.Controllers
     {
 
         private ArticleDb articleDb = new ArticleDb();
+        private IdentityDb identityDb = new IdentityDb();
+        
+
         public ActionResult Index()
-        {
-            
+        {            
             List<Article> articles = articleDb.Articles.OrderBy(art=>art.PostedDate).Take(5).ToList();
             ViewData["Top5Articles"] = articles;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+                ViewData["CurrentUser"] = user;
+            }
+            
+
             return View();
         }
 

@@ -124,8 +124,8 @@ namespace MomWorld.Controllers
             {
                 foreach (string file in httpRequest.Files)
                 {
-                    var postedFile = httpRequest.Files[file];
-                    var name = httpRequest.Form.Get(0);
+                    var postedFile = httpRequest.Files[0];
+                    // var name = httpRequest.Form.Get(0);
 
                     // Save file to Responsitory
                     var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/" + postedFile.FileName);
