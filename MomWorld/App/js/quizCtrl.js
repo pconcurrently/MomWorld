@@ -1,8 +1,13 @@
 ﻿app.controller('quizCtrl', ['$scope', '$http', 'helperService', '$location', '$firebaseArray', '$firebaseObject',
     function ($scope, $http, helper, $location, $firebaseArray, $firebaseObject) {
 
-    $scope.initQuizShow = function (username) {
-        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + username + "/Badge/");
+        // Get User from local storage
+        $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        $scope.currentUsername = $scope.currentUser.Username;
+
+    $scope.initQuizShow = function () {
+
+        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/");
         $scope.badgeFire = $firebaseArray(userFireTmp);
     }
 
@@ -12,7 +17,6 @@
         "name": "Dinh Dưỡng",
         "quizData": "../../app/js/data/dinhduong.js",
         "quizName": "dinhduong",
-        "image": "http://localhost:4444/App/images/badge/dinhduong.png",
         "status": "done"
     },
     {
@@ -20,7 +24,6 @@
         "name": "sinh con",
         "quizData": "../../app/js/data/sinhcon.js",
         "quizName": "sinhcon",
-        "image": "http://localhost:4444/App/images/badge/default.png",
         "status": "new"
     },
     {
@@ -28,7 +31,6 @@
         "name": "Chăm sóc",
         "quizData": "../../app/js/data/chamsoc.js",
         "quizName": "chamsoc",
-        "image": "http://localhost:4444/App/images/badge/default.png",
         "status": "new"
     },
     {
@@ -36,7 +38,6 @@
         "name": "Y Tế",
         "quizData": "../../app/js/data/yte.js",
         "quizName": "yte",
-        "image": "http://localhost:4444/App/images/badge/default.png",
         "status": "new"
     },
     {
@@ -44,7 +45,6 @@
         "name": "Giới Tính",
         "quizData": "../../app/js/data/gioitinh.js",
         "quizName": "gioitinh",
-        "image": "http://localhost:4444/App/images/badge/default.png",
         "status": "new"
     }];
 
@@ -65,16 +65,16 @@
     }
 
     $scope.initQuiz = function () {
-        var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUserName + "/badge/" + $scope.quizNameTemp);
+        var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/badge/" + $scope.quizNameTemp);
         $scope.badgeFirebase = $firebaseObject(userTmp);
     }
 
     $scope.initQuizDo = function (quizId, username) {
         $scope.quizName = $scope.quizData[quizId].quizData;
         $scope.quizNameTemp = $scope.quizData[quizId].quizName;
+        $scope.quizNameReal = $scope.quizData[quizId].name;
 
         $scope.currentQuizId = quizId;
-        $scope.currentUserName = username;
 
         $scope.loadQuiz($scope.quizName);
 
@@ -122,22 +122,20 @@
         var score = correctAns / answers.length * 100;
         // TODO: Code Huan Chuong
         if (score >= 75) {
-            var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUserName + "/Badge/" + $scope.currentQuizId);
+            var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/" + $scope.currentQuizId);
             $scope.badgeFirebase = $firebaseObject(userTmp);
 
             // Give user badge
-            alert('Huan Chuong cho ' + $scope.currentUserName + ' ' + $scope.quizNameTemp);
-           
             $scope.badgeFirebase.Image = 'http://localhost:4444/App/images/badge/' + $scope.quizNameTemp + '.png';
             $scope.badgeFirebase.Score = score;
             $scope.badgeFirebase.Status = 'done';
             $scope.badgeFirebase.createdDate = Firebase.ServerValue.TIMESTAMP;
 
             $scope.badgeFirebase.$save().then(
-                  alert("Add Ok")
+                  $('#modalCompletedQuizz').modal('show')
             )
         } else {
-            alert('Fail vcc test 1' + $scope.currentUserName);
+            alert('Fail vcc test 1' + $scope.currentUsername);
         }
         
         // Display Result Mode
