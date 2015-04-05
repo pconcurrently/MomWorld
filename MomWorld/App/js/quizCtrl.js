@@ -12,7 +12,6 @@
         "name": "Dinh Dưỡng",
         "quizData": "../../app/js/data/dinhduong.js",
         "quizName": "dinhduong",
-        "image": "http://localhost:4444/App/images/badge/dinhduong.png",
         "status": "done"
     },
     {
@@ -20,7 +19,6 @@
         "name": "sinh con",
         "quizData": "../../app/js/data/sinhcon.js",
         "quizName": "sinhcon",
-        "image": "http://localhost:4444/App/images/badge/default.png",
         "status": "new"
     },
     {
@@ -28,7 +26,6 @@
         "name": "Chăm sóc",
         "quizData": "../../app/js/data/chamsoc.js",
         "quizName": "chamsoc",
-        "image": "http://localhost:4444/App/images/badge/default.png",
         "status": "new"
     },
     {
@@ -36,7 +33,6 @@
         "name": "Y Tế",
         "quizData": "../../app/js/data/yte.js",
         "quizName": "yte",
-        "image": "http://localhost:4444/App/images/badge/default.png",
         "status": "new"
     },
     {
@@ -44,7 +40,6 @@
         "name": "Giới Tính",
         "quizData": "../../app/js/data/gioitinh.js",
         "quizName": "gioitinh",
-        "image": "http://localhost:4444/App/images/badge/default.png",
         "status": "new"
     }];
 
@@ -72,6 +67,7 @@
     $scope.initQuizDo = function (quizId, username) {
         $scope.quizName = $scope.quizData[quizId].quizData;
         $scope.quizNameTemp = $scope.quizData[quizId].quizName;
+        $scope.quizNameReal = $scope.quizData[quizId].name;
 
         $scope.currentQuizId = quizId;
         $scope.currentUserName = username;
@@ -126,15 +122,13 @@
             $scope.badgeFirebase = $firebaseObject(userTmp);
 
             // Give user badge
-            alert('Huan Chuong cho ' + $scope.currentUserName + ' ' + $scope.quizNameTemp);
-           
             $scope.badgeFirebase.Image = 'http://localhost:4444/App/images/badge/' + $scope.quizNameTemp + '.png';
             $scope.badgeFirebase.Score = score;
             $scope.badgeFirebase.Status = 'done';
             $scope.badgeFirebase.createdDate = Firebase.ServerValue.TIMESTAMP;
 
             $scope.badgeFirebase.$save().then(
-                  alert("Add Ok")
+                  $('#modalCompletedQuizz').modal('show')
             )
         } else {
             alert('Fail vcc test 1' + $scope.currentUserName);
