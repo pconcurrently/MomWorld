@@ -67,7 +67,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
         var sentData = {
             Content: $scope.Content,
-            CreatorName: $scope.user.FirstName + " " + $scope.user.LastName,
+            CreatorName: $scope.currentUser.FirstName + " " + $scope.currentUser.LastName,
             CreatorUsername: $scope.currentUsername,
             CreatorAvatar: "http://localhost:4444/App/uploads/avatar/" + $scope.currentUsername + ".png",
             createdDate: Firebase.ServerValue.TIMESTAMP
@@ -89,11 +89,11 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
 
     /* Create new Commment using Status API */
-    $scope.addComment = function (_user, _status, _comment) {
+    $scope.addComment = function (_status, _comment) {
 
         var sentData = {
             Content: _comment,
-            CreatorName: _user.FirstName + " " + _user.LastName,
+            CreatorName: $scope.currentUser.FirstName + " " + $scope.currentUser.LastName,
             CreatorUsername: $scope.currentUsername,
             CreatorAvatar: "http://localhost:4444/App/uploads/avatar/" + $scope.currentUsername + ".png",
             createdDate: Firebase.ServerValue.TIMESTAMP
