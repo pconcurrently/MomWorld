@@ -51,6 +51,8 @@ namespace MomWorld.Entities
         public int Status { get; set; }
 
         public string Tags { get; set; }
+
+        public string DescriptionImage { get; set; }
     }
 
     public enum ArticleStatus
@@ -95,6 +97,8 @@ namespace MomWorld.Entities
         public string UserId { get; set; }
 
         public string ArticleId { get; set; }
+
+        public DateTime Date { get; set; }
 
         public ArticleLike()
         {

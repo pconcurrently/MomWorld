@@ -112,34 +112,19 @@
 
                         <form class="profile-settings">
 
-                            <div class="row text-center">
-
-                                <div class="form-group col-sm-6 col-sm-offset-3">
-                                    <label for="first-name">Phân quyền</label>
-
-                                    <select class="chosen-select chosen-transparent form-control">
-
-                                        <option>Quản lí</option>
-                                        <option>Người dùng</option>
-                                        <option>Tư vấn viên</option>
-
-                                    </select>
-                                </div>
-
-
-                            </div>
-
                             <div class="row">
 
                                 <div class="form-group col-sm-6">
-                                    <label for="first-name">Họ</label> <input type="text"
-                                                                              class="form-control" id="first-name" value="Huỳnh">
+                                    <label for="last-name">Họ</label> <input type="text"
+                                                                              class="form-control" id="last-name1">
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    <label for="last-name">Tên</label> <input type="text"
-                                                                              class="form-control" id="last-name" value="Ngọc Khoa">
+                                    <label for="first-name">Tên</label> <input type="text"
+                                                                              class="form-control" id="first-name1">
                                 </div>
+
+                                
 
                             </div>
 
@@ -149,19 +134,10 @@
 
                                 <div class="form-group col-sm-6">
                                     <label for="email">E-mail</label> <input type="email"
-                                                                             class="form-control" id="email" value="johny.d@tattek.com"
+                                                                             class="form-control" id="email1"
                                                                              readonly>
                                 </div>
 
-                                <div class="form-group col-sm-6">
-                                    <label for="country">Quốc gia</label> <select class="chosen-select form-control" id="country">
-                                        <option>Việt nam</option>
-                                        <option>Czech Republic</option>
-                                        <option>Poland</option>
-                                        <option>Hungary</option>
-                                        <option>Austria</option>
-                                    </select>
-                                </div>
 
                             </div>
 
@@ -169,24 +145,8 @@
 
                                 <div class="form-group col-sm-6">
                                     <label for="phone">Số điện thoại</label> <input type="text"
-                                                                                    class="form-control" id="phone" value="+(84)1655757445">
-                                    <span class="help-block">+(84)1655757445</span>
-                                </div>
-
-                                <div class="form-group col-sm-6">
-                                    <label for="avatar">Ảnh đại diện</label>
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <span class="btn btn-primary btn-file">
-                                                <i class="fa fa-upload"></i><input type="file" multiple="">
-                                            </span>
-                                        </span> <input type="text" class="form-control" readonly=""
-                                                       id="avatar">
-                                    </div>
-                                    <span class="help-block">
-                                        File cho phép: gif, png,
-                                        jpg. Kích thước tối đa 1Mb
-                                    </span>
+                                                                                    class="form-control" id="phone1">
+                                    <span class="help-block">Ví dụ: +(84)1655757445</span>
                                 </div>
 
                             </div>
@@ -206,14 +166,7 @@
                             <div class="row">
 
                                 <div class="form-group col-sm-6">
-                                    <label for="username">Tên đăng nhập</label> <input type="text" class="form-control" id="username"
-                                                                                       value="khoahn" readonly>
-                                </div>
-
-
-                                <div class="form-group col-sm-6">
-                                    <label for="password">Mật khẩu cũ</label> <input type="password" class="form-control" id="password"
-                                                                                     value="123456" readonly>
+                                    <label for="username">Tên đăng nhập</label> <input type="text" class="form-control" id="username1">
                                 </div>
 
                             </div>
@@ -221,13 +174,12 @@
                             <div class="row">
 
                                 <div class="form-group col-sm-6">
-                                    <label for="new-password">Mật khẩu mới</label> <input type="password" class="form-control" id="new-password">
+                                    <label for="new-password">Mật khẩu</label> <input type="password" class="form-control" id="new-password">
                                 </div>
 
                                 <div class="form-group col-sm-6">
                                     <label for="new-password-repeat">
                                         Nhập lại mật khẩu
-                                        mới
                                     </label> <input type="password" class="form-control"
                                                     id="new-password-repeat">
                                 </div>
@@ -994,7 +946,7 @@
 							});
 
             // Append add row button to table
-            var addRowLink = '<a href="#" id="addRow" class="btn btn-white btn-xs add-row"><i class="fa fa-user-plus"></i> Thêm mới</a>'
+            var addRowLink = '<a href="#" id="addUser" class="btn btn-white btn-xs add-row"><i class="fa fa-user-plus"></i> Thêm mới</a>'
             $('#inlineEditDataTable_wrapper').append(addRowLink);
 
             var nEditing = null;
@@ -1314,6 +1266,10 @@
                     success: function () {
                     }
                 });
+            });
+
+            $('#addUser').click(function () {
+                $('#modalCreateUser').
             });
 
         });

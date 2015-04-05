@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<MomWorld.Entities.Category>
-
 @{
-    Layout = "~/Views/Shared/_MWLayout.cshtml";
+    Layout = null;
     var categories = ViewData["Categories"] as List<MomWorld.Entities.Category>;
     var articles = ViewData["Articles"] as List<MomWorld.Entities.Article>;
     var isPopup = ViewData["IsPopup"] as string;
@@ -14,7 +13,6 @@
         count += 1;
     }
 }
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -23,34 +21,24 @@
 <html class="no-js">
 <!--<![endif]-->
 <head>
-
     <!-- BASICS -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-    <title>Mom's World - Mong con</title>
-
+    <title>Mom's World - Trang chủ</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/ico" href="@Url.Content("~/Content/images/favicon.png")" />
-
     <link href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap.min.css")"
           rel="stylesheet">
+    <link rel="stylesheet"
+          href="@Url.Content("~/Content/css/vendor/flexslider/flexslider.css")">
     <link href="@Url.Content("~/Content/css/vendor/font-awesome-4.2.0/css/font-awesome.min.css")"
           rel="stylesheet">
     <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/animate/animate.css")">
-
-    <link rel="stylesheet"
-          href="@Url.Content("~/Content/css/vendor/flexslider/flexslider.css")">
-
     <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/bootstrap-checkbox.css")">
     <link rel="stylesheet"
-          href="@Url.Content("~/Content/css/vendor/ribbons/3d-corner-ribbons.css")">
-    <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/text-rotator/css/simpletextrotator.css")">
-
     <link rel="stylesheet" href="@Url.Content("~/Content/js/vendor/datepicker/css/bootstrap-datetimepicker.css")">
-
     <!-- Important Owl stylesheet -->
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/owl-carousel/css/owl.carousel.css")">
@@ -58,7 +46,6 @@
           href="@Url.Content("~/Content/js/vendor/owl-carousel/css/owl.theme.css")">
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/owl-carousel/css/owl.transitions.css")">
-
     <link rel="stylesheet"
           href="@Url.Content("~/Content/js/vendor/nivo-lightbox/css/nivo-lightbox.css")">
     <link rel="stylesheet"
@@ -66,16 +53,44 @@
           type="text/css" />
 
 
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/froala_editor/froala_content.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/froala_editor/froala_editor.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/froala_editor/froala_style.min.css")">
+
+
     <!-- CUSTOM STYLE -->
     <link rel="stylesheet" href="@Url.Content("~/Content/css/main.css")">
     <link rel="stylesheet" href="@Url.Content("~/Content/css/minimal.min.css")">
+    <link href="@Url.Content("~/Content/css/vendor/timeline/light.css")" rel="stylesheet"
+          type="text/css" />
+    <link href="@Url.Content("~/Content/css/vendor/timeline/lightbox.css")" rel="stylesheet"
+          type="text/css" />
+    <link href="@Url.Content("~/Content/css/vendor/timeline/style.css")" rel="stylesheet"
+          type="text/css" />
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery/jquery.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js")"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="@Url.Content("~/Content/js/vendor/bootstrap/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/skrollr/skrollr.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/jquery-flexslider/jquery.flexslider.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/text-rotator/jquery.simple-text-rotator.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/owl-carousel/owl.carousel.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/nivo-lightbox/nivo-lightbox.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/tweet-js/jquery.tweet.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/vticker/jquery.vticker.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/jflickrfeed/jflickrfeed.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/appear/jquery.appear.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/parallax/jquery.parallax-1.1.3.js")"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"
+            type="text/javascript"></script>
 
     <script src="@Url.Content("~/Content/js/vendor/momentjs/moment-with-langs.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datepicker/bootstrap-datetimepicker.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/minimal.min.js")"></script>
 
 </head>
-
 <body>
     <a hidden id="isPopup" data-id="@isPopup"></a>
     <!--modal chờ phê duyệt -->
@@ -95,25 +110,18 @@
                     </h3>
                 </div>
                 <div class="modal-body">
-
                     <!-- The file upload form used as target for the file upload widget -->
                     <form class="form-horizontal">
-
                         <div class="form-group">
 
-
-
                         </div>
-
                         <div class="form-group form-footer">
                             <div class="text-center">
                                 <h3>Bài viết của bạn đang được chờ kiểm duyệt.</h3>
                                 <span>Cảm ơn bạn đã chia sẽ những thông tin bổ ích với chúng tôi</span>
-
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -121,8 +129,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
-
     <!-- Modal create category -->
     <div class="modal fade" id="modalCreateCategory" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -139,7 +145,6 @@
                     </h3>
                 </div>
                 <div class="modal-body">
-
                     <!-- The file upload form used as target for the file upload widget -->
                     <form class="form-horizontal">
                         <div class="form-group">
@@ -148,25 +153,20 @@
                                                                                                            class="form-control" id="categoryName"
                                                                                                            placeholder="Nhập tên danh mục ...">
                             </div>
-
                         </div>
-
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label class="control-label" for="comment">Mô tả:</label>
                                 <textarea class="form-control" rows="2" id="categoryDescription"></textarea>
                             </div>
-
                         </div>
-
                         <div class="form-group form-footer text-center">
-                           
-                                <button type="submit" class="btn btn-green" id="submitCategory">Thêm</button>
-                                <button type="reset" class="btn btn-red">Hủy</button>
-                           
+
+                            <button type="submit" class="btn btn-green" id="submitCategory">Thêm</button>
+                            <button type="reset" class="btn btn-red">Hủy</button>
+
                         </div>
                     </form>
-
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -174,9 +174,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    
-    
-    
     <!-- Modal edit category -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <!-- Modal edit category -->
     <div class="modal fade" id="modalEditCategory" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -193,7 +190,6 @@
                     </h3>
                 </div>
                 <div class="modal-body">
-
                     <!-- The file upload form used as target for the file upload widget -->
                     <form class="form-horizontal">
                         <div class="form-group">
@@ -202,25 +198,20 @@
                                                                                                            class="form-control" id="Name"
                                                                                                            placeholder="Nhập tên danh mục ...">
                             </div>
-
                         </div>
-
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label class="control-label" for="comment">Nội dung:</label>
                                 <textarea class="form-control" rows="5" id="Description"></textarea>
                             </div>
-
                         </div>
                         <div class="form-group"><a hidden id="hiddenId"></a></div>
-
                         <div class="form-group form-footer text-center">
-                            
-                                <button type="submit" class="btn btn-green" id="confirmCategory">Cập nhật</button>
-                            
+
+                            <button type="submit" class="btn btn-green" id="confirmCategory">Cập nhật</button>
+
                         </div>
                     </form>
-
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -228,9 +219,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
-
-
     <!-- Modal thông báo xóa -->
     <div class="modal fade" id="modalDeleteNotice" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -244,18 +232,18 @@
                     </button>
                     <img src="@Url.Content("~/Content/images/delete-modal.png")" style="width:300px;" />
                     <h3 class="modal-title" id="modalConfirmLabel">
-                        <strong>Xóa </strong>danh mục                                                                                                                                                                                                                                                                                           
+                        <strong>Xóa </strong>danh mục
                     </h3>
                 </div>
                 <div class="modal-body">
                     <!-- The file upload form used as target for the file upload widget -->
                     <form class="form-horizontal">
-                        
+
                         <div class="form-group">
-                            
-                                <button type="submit" class="btn btn-green" id="deleteCategory">Xóa</button>
-                                <button data-dismiss="modal" class="btn btn-red">Hủy</button>
-                           
+
+                            <button type="submit" class="btn btn-green" id="deleteCategory">Xóa</button>
+                            <button data-dismiss="modal" class="btn btn-red">Hủy</button>
+
                         </div>
                     </form>+
                 </div>
@@ -265,9 +253,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
-
-
     <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
@@ -277,11 +262,7 @@
     <div class="navbar navbar-fixed-top" role="navigation"
          data-0="line-height:80px; height:80px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);"
          data-300="line-height:40px; height:52px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
-
         <div class="container">
-
-
-
 
 
 
@@ -296,7 +277,7 @@
                 </a>
                 <div class="navbar-toggle" data-toggle="collapse"
                      data-target=".navbar-collapse">
-                    <a href="pre-pregnancy.html#">
+                    <a href="#">
                         <i class="fa fa-bars"></i>
                     </a>
                 </div>
@@ -305,7 +286,6 @@
             <!--.navbar-collapse -->
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-
                     <li>
                         <a href="index.html" data-0="padding: 30px 25px 22px;"
                            data-300="padding: 15px 25px 10px;">
@@ -313,7 +293,6 @@
                                  src="@Url.Content("~/Content/images/icon-nav/home.png")"> Trang chủ
                         </a>
                     </li>
-
                     <li class="active">
                         <a href="pre-pregnancy.html"
                            data-0="padding: 30px 25px 22px;"
@@ -323,8 +302,6 @@
                         </a>
                     </li>
 
-
-
                     <li>
                         <a href="advisory.html" data-0="padding: 30px 25px 22px;"
                            data-300="padding: 15px 25px 10px;">
@@ -332,7 +309,6 @@
                                  src="@Url.Content("~/Content/images/icon-nav/advisory.png")"> Tư vấn
                         </a>
                     </li>
-
                     <li>
                         <a href="video.html" data-0="padding: 30px 25px 22px;"
                            data-300="padding: 15px 25px 10px;">
@@ -340,9 +316,7 @@
                                  src="@Url.Content("~/Content/images/icon-nav/video.png")"> Video
                         </a>
                     </li>
-
                     @Html.Partial("_LoginPartial")
-
                     <li class="search">
                         <input type="text" placeholder="&#61442;"
                                data-0="margin-top:23px" data-300="margin-top:10px">
@@ -352,39 +326,32 @@
             <!--/.navbar-collapse -->
 
 
-
-
         </div>
-
     </div>
     <!-- END NAVBAR -->
     <!-- BEGIN BREADCRUMBS -->
     <div id="breadcrumbs" class="breadcrumbs bg-1">
-
     </div>
     <!-- END BREADCRUMBS -->
     <!-- PRE-PREGNANCY PAGE -->
     <section class="section">
         <div class="container">
-            @if (User.Identity.Name.Equals("admin"))
+            @if (User.IsInRole("Admins"))
             {
                 <div class="row">
                     <div class="col-md-12 text-right">
                         <button data-target="#modalCreateCategory"
-                           data-toggle="modal" class="btn btn-warning">
+                                data-toggle="modal" class="btn btn-warning">
                             <i class="fa fa-plus-circle"></i> Thêm danh mục
                         </button>
                     </div>
                 </div>
             }
-
             <hr class="post-divider">
-
             <div class="row">
                 <div class="col-md-9">
                     <div class="row title-category">
                         <h1 class="headline">Mong con</h1>
-
 
                         <div class="flexslider">
                             <ul class="slides">
@@ -452,7 +419,7 @@
                                                     <button class="btn btn-orange" id="addArticle">
                                                         <i class="fa fa-plus-circle"></i> Thêm bài viết
                                                     </button>
-                                                    @if (User.Identity.Name.Equals("admin"))
+                                                    @if (User.IsInRole("Admins"))
                                                     {
                                                         <button class="btn btn-green" id="editModal" data-id="@category.Id">
                                                             <i class="fa fa-plus-circle"></i> Sửa danh mục
@@ -481,19 +448,37 @@
                                                         <div class="item appear-el" data-animation="fadeIn">
                                                             <figure>
                                                                 <div class="img-view">
-                                                                    <img src="@Url.Content("~/Content/images/post/1.jpg")"
-                                                                         alt="Place description here">
+                                                                    @if (@article.DescriptionImage != null)
+                                                                    {
+                                                                        <img src="@article.DescriptionImage" )"
+                                                                             alt="Place description here"> }
+                                                                    else
+                                                                    {
+                                                                        <img src="@Url.Content("~/Content/images/post/1.jpg")"
+                                                                             alt="Place description here">
+                                                                    }
                                                                     <div class="overlay">
                                                                         <div class="overlay-controls">
-                                                                            <a href="@Url.Content("~/Content/images/post/1.jpg")" data-nivobox="true"
-                                                                               data-lightbox-gallery="gallery1">
-                                                                                <i class="fa fa-arrows-alt"></i>
-                                                                            </a> <a href="post-item.html#"><i class="fa fa-chain"></i></a>
+                                                                            @if (@article.DescriptionImage != null)
+                                                                            {
+                                                                                <a href="@article.DescriptionImage" data-nivobox="true"
+                                                                                   data-lightbox-gallery="gallery1">
+                                                                                    <i class="fa fa-arrows-alt"></i>
+                                                                                </a>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <a href="@Url.Content("~/Content/images/post/1.jpg")" data-nivobox="true"
+                                                                                   data-lightbox-gallery="gallery1">
+                                                                                    <i class="fa fa-arrows-alt"></i>
+                                                                                </a>
+                                                                            }
+                                                                            <a href="#"><i class="fa fa-chain"></i></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <figcaption>
-                                                                    <h5>@article.Title</h5>
+                                                                    <h5><a href="@Url.Action("Details", "Articles", routeValues: new { id = article.Id })">@article.Title </a></h5>
                                                                     <span>@Html.Raw(article.Description)</span>
                                                                 </figcaption>
                                                             </figure>
@@ -510,7 +495,6 @@
                                                 <button type="button" class="btn next">
                                                     <i class="fa fa-chevron-right"></i>
                                                 </button>
-
                                             </div>
                                         </div>
                                     </div>
@@ -523,10 +507,8 @@
                         count += 1;
                     }
                 </div>
-
                 <div class="col-md-3 post-sidebar">
                     <section class="tile color transparent-white">
-
                         <!-- tile header -->
                         <div class="tile-header color greensea rounded-top-corners">
                             <h4>
@@ -536,38 +518,29 @@
                         <!-- /tile header -->
                         <!-- tile body -->
                         <div class="tile-body">
-
                             <form class="form-horizontal" role="form">
-
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" placeholder="Email">
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" id="datepicker" placeholder="Ngày mang thai">
                                     </div>
                                 </div>
-
                                 <div class="form-group form-footer">
                                     <div class="col-sm-offset-4 col-sm-8">
                                         <button type="submit" class="btn btn-warning">Đăng kí</button>
                                     </div>
                                 </div>
-
                             </form>
-
                         </div>
                         <!-- /tile body -->
-
                     </section>
-
 
                     <!-- CATEGORIES -->
                     <section class="tile color transparent-white">
-
                         <!-- tile header -->
                         <div class="tile-header color redbrown rounded-top-corners">
                             <h4>
@@ -577,25 +550,22 @@
                         <!-- /tile header -->
                         <!-- tile body -->
                         <div class="tile-body">
-
                             <form class="form-horizontal" role="form">
                                 <ul class="nav categories sidebar-widget">
-                                    <li><a href="post.html#">Sức khỏe sinh sản <em>(26)</em></a></li>
+                                    <li><a href="#">Sức khỏe sinh sản <em>(26)</em></a></li>
                                     <li class="active">
-                                        <a href="post.html#">
+                                        <a href="#">
                                             40 tuần mang
                                             thai <em>(40)</em>
                                         </a>
                                     </li>
-                                    <li><a href="post.html#">Sức khỏe trong thai kỳ <em>(15)</em></a></li>
-                                    <li><a href="post.html#">Dinh dưỡng thai kỳ <em>(2)</em></a></li>
-                                    <li><a href="post.html#">Kỹ năng làm mẹ <em>(8)</em></a></li>
+                                    <li><a href="#">Sức khỏe trong thai kỳ <em>(15)</em></a></li>
+                                    <li><a href="#">Dinh dưỡng thai kỳ <em>(2)</em></a></li>
+                                    <li><a href="#">Kỹ năng làm mẹ <em>(8)</em></a></li>
                                 </ul>
                             </form>
-
                         </div>
                         <!-- /tile body -->
-
                     </section>
                     <!-- END CATEGORIES -->
                     <!-- TAGS -->
@@ -607,30 +577,29 @@
                         <div class="tile-body">
                             <ul class="tags sidebar-widget">
                                 <li>
-                                    <a href="post.html#">
+                                    <a href="#">
                                         <i class="fa fa-tags"></i>
                                         Mong con
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="post.html#">
+                                    <a href="#">
                                         <i class="fa fa-tags"></i>
                                         Mang thai
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="post.html#">
+                                    <a href="#">
                                         <i class="fa fa-tags"></i> Trẻ
                                         sơ sinh
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="post.html#">
+                                    <a href="#">
                                         <i class="fa fa-tags"></i>
                                         Nuôi dạy con
                                     </a>
                                 </li>
-
                             </ul>
                         </div>
                     </section>
@@ -638,21 +607,19 @@
                 </div>
             </div>
 
-
         </div>
     </section>
     <!-- END PRE-PREGNANCY PAGE -->
     <!-- SCROLL TOP -->
     <div class="scroll-top">
-        <a href="contacts.html#">
+        <a href="#">
             <i class="fa fa-angle-up"></i>
         </a>
     </div>
     <!-- END SCROLL TOP -->
 
-
-
-    <script>//initialize datepicker
+    <script>
+        //initialize datepicker
         $('#datepicker').datetimepicker({
             icons: {
                 time: "fa fa-clock-o",
@@ -666,143 +633,20 @@
             var newtop = $('.bootstrap-datetimepicker-widget').position().top - 45;
             $('.bootstrap-datetimepicker-widget').css('top', newtop + 'px');
         });
-</script>
-
-
-
-
-
-    <script type="text/javascript">
-        var c1 = $("#category1 .owl-carousel");
-        c1.owlCarousel({
-            items: 3,
-            itemsDesktop: false,
-            pagination: false
-        });
-        $("#category1 .custom-navigation .next").click(function () {
-            c1.trigger("owl.next");
-        });
-        $("#category1 .custom-navigation .prev").click(function () {
-            c1.trigger("owl.prev");
-        });
-
-
-
-
-        var c2 = $("#category2 .owl-carousel");
-        c2.owlCarousel({
-            items: 3,
-            itemsDesktop: false,
-            pagination: false
-        });
-        $("#category2 .custom-navigation .next").click(function () {
-            c2.trigger("owl.next");
-        });
-        $("#category2 .custom-navigation .prev").click(function () {
-            c2.trigger("owl.prev");
-        });
-
-
-
-
-        var c3 = $("#category3 .owl-carousel");
-        c3.owlCarousel({
-            items: 3,
-            itemsDesktop: false,
-            pagination: false
-        });
-        $("#category3 .custom-navigation .next").click(function () {
-            c3.trigger("owl.next");
-        });
-        $("#category3 .custom-navigation .prev").click(function () {
-            c3.trigger("owl.prev");
-        });
-
-
-
-
-        var c4 = $("#category4 .owl-carousel");
-        c4.owlCarousel({
-            items: 3,
-            itemsDesktop: false,
-            pagination: false
-        });
-        $("#category4 .custom-navigation .next").click(function () {
-            c4.trigger("owl.next");
-        });
-        $("#category4 .custom-navigation .prev").click(function () {
-            c4.trigger("owl.prev");
-        });
-
-
-
-
-        var c5 = $("#category5 .owl-carousel");
-        c5.owlCarousel({
-            items: 3,
-            itemsDesktop: false,
-            pagination: false
-        });
-        $("#category5 .custom-navigation .next").click(function () {
-            c5.trigger("owl.next");
-        });
-        $("#category5 .custom-navigation .prev").click(function () {
-            c5.trigger("owl.prev");
-        });
-
-
-
-
-        var c6 = $("#category6 .owl-carousel");
-        c6.owlCarousel({
-            items: 3,
-            itemsDesktop: false,
-            pagination: false
-        });
-        $("#category6 .custom-navigation .next").click(function () {
-            c6.trigger("owl.next");
-        });
-        $("#category6 .custom-navigation .prev").click(function () {
-            c6.trigger("owl.prev");
-        });
-
-
-        var c7 = $("#category7 .owl-carousel");
-        c7.owlCarousel({
-            items: 3,
-            itemsDesktop: false,
-            pagination: false
-        });
-        $("#category7 .custom-navigation .next").click(function () {
-            c7.trigger("owl.next");
-        });
-        $("#category7 .custom-navigation .prev").click(function () {
-            c7.trigger("owl.prev");
-        });
-
-
-
-        var c8 = $("#category8 .owl-carousel");
-        c8.owlCarousel({
-            items: 3,
-            itemsDesktop: false,
-            pagination: false
-        });
-        $("#category8 .custom-navigation .next").click(function () {
-            c8.trigger("owl.next");
-        });
-        $("#category8 .custom-navigation .prev").click(function () {
-            c8.trigger("owl.prev");
-        });
-
     </script>
 
 
+  
 
+    <script>
+        $(window).ready(function () {
+            var isPopup = $('#isPopup').attr("data-id");
+            if (isPopup == "true") {
+                $('#modalWaitingApproved').modal('show');
+            }
 
+        });
 
-
-    <script type="text/javascript">
         $('#submitCategory').click(function () {
             var name = $('#categoryName').val();
             var description = $('#categoryDescription').val();
@@ -820,19 +664,7 @@
                 },
             });
         });
-    </script>
-    @*Hiển thị modalWaitingApproved khi load trang*@
-    <script type="text/javascript">
-        $(window).load(function () {
-            var isPopup = $('#isPopup').attr("data-id");
-            if (isPopup == "true") {
-                $('#modalWaitingApproved').modal('show');
-            }
 
-        });
-    </script>
-
-    <script>
         $('#editModal').click(function () {
             $('#modalEditCategory').modal('show');
             var categoryId = $(this).attr('data-id');
@@ -884,12 +716,7 @@
         $('#addArticle').click(function () {
             window.location.href = "/Articles/Create";
         });
-
-
-
-       
-
+        
     </script>
-
 </body>
 </html>

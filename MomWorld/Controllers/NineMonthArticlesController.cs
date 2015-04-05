@@ -192,7 +192,7 @@ namespace MomWorld.Controllers
         {
 
             html = html.Substring(0, html.IndexOf("</p>") - 1);
-            var htmlSymbols = new string[] { "<br>", "<b>", "</b>", "<i>", "</i>", "<p>", "<p class=\"fr-tag\">", "</p>", "<hr>" };
+            var htmlSymbols = new string[] { "<br>", "<b>", "</b>", "<i>", "</i>", "<p>", "<p class=\"fr-tag\">", "</p>", "<hr>", "<strong>", "</strong>" };
             foreach (var item in htmlSymbols)
             {
                 html = html.Replace(item, string.Empty);

@@ -65,8 +65,8 @@ namespace MomWorld.Controllers
                     var tags = db.Tags.ToList().FindAll(t => article.Tags.Contains(t.Id));
                     ViewData["Tags"] = tags;
                 }
-                else
-                    ViewData["PostedUser"] = postedUser;
+
+                ViewData["PostedUser"] = postedUser;
 
                 ViewData["UserArticles"] = db.Articles.ToList().FindAll(a => a.UserId.Equals(postedUser.Id)).Count;
                 foreach (var item in db.Articles.ToList().FindAll(a => a.UserId.Equals(postedUser.Id)))
@@ -121,22 +121,31 @@ namespace MomWorld.Controllers
             article.Title = model.Title;
             article.Content = model.Content;
             article.Description = ParseHtml(model.Content);
+            article.DescriptionImage = GetDescriptionImage(model.Content);
             article.CategoryId = model.CategoryId;
-            if (model.Tags.Length < 1)
+
+            if (model.Tags != null)
+            {
+
+                if (model.Tags.Length < 1)
+                {
+                    article.Tags = string.Empty;
+                }
+                else if (model.Tags.Length > 1)
+                {
+                    article.Tags = model.Tags[0];
+                    for (var index = 1; index <= model.Tags.Length - 1; index++)
+                    {
+                        article.Tags += ", " + model.Tags[index];
+                    }
+                }
+                else
+                    article.Tags = model.Tags[0];
+            }
+            else
             {
                 article.Tags = string.Empty;
             }
-            else if (model.Tags.Length > 1)
-            {
-                article.Tags = model.Tags[0];
-                for (var index = 1; index <= model.Tags.Length - 1; index++)
-                {
-                    article.Tags += ", " + model.Tags[index];
-                }
-            }
-            else
-                article.Tags = model.Tags[0];
-
             if (!User.Identity.Name.Equals("admin"))
             {
                 article.Status = (int)ArticleStatus.Pending;
@@ -240,12 +249,36 @@ namespace MomWorld.Controllers
         {
 
             html = html.Substring(0, html.IndexOf("</p>") - 1);
-            var htmlSymbols = new string[] { "<br>", "<b>", "</b>", "<i>", "</i>", "<p>", "<p class=\"fr-tag\">", "</p>", "<hr>" };
+            var htmlSymbols = new string[] { "<br>", "<b>", "</b>", "<i>", "</i>", "<p>", "<p class=\"fr-tag\">", "</p>", "<hr>", "<strong>", "</strong>" };
             foreach (var item in htmlSymbols)
             {
                 html = html.Replace(item, string.Empty);
             }
             return html;
+        }
+    }
+
+        public static string GetDescriptionImage(string html)
+        {
+            //step 1
+            string imageLink = string.Empty;
+            int start = html.IndexOf("<img");
+            if (start == -1)
+            {
+
+                return string.Empty;
+            }
+            imageLink = html.Remove(0, start);
+            int end = imageLink.IndexOf(">");
+            imageLink = imageLink.Remove(end + 1);
+
+            //step2
+            start = imageLink.IndexOf("src=\"");
+            imageLink = imageLink.Remove(0, start + 5);
+            end = imageLink.IndexOf("\"");
+            imageLink = imageLink.Remove(end);
+
+            return imageLink;
         }
 
         public JsonResult Report(ReportViewModel model)

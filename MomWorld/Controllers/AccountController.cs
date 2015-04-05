@@ -72,20 +72,27 @@ namespace MomWorld.Controllers
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
-                    await SignInAsync(user, model.RememberMe);
-
-                    // Sync User to Firebase
-                    IFirebaseConfig config = new FirebaseConfig
+                    if (user.Status == (int)IdentityStatus.Locked)
                     {
-                        AuthSecret = "MQN9HDJakBgjQy2mxTDig01jgcVaHXRRILop7hPe",
-                        BasePath = "https://momworld.firebaseio.com/"
-                    };
-                    IFirebaseClient client = new FirebaseClient(config);
+                        return RedirectToAction("LockedUser");
+                    }
+                    else
+                    {
+                        await SignInAsync(user, model.RememberMe);
 
-                    client.Update("User/" + user.UserName, user);
-                    client.Update("User/" + user.UserName + "/badge", user);
+                        // Sync User to Firebase
+                        IFirebaseConfig config = new FirebaseConfig
+                        {
+                            AuthSecret = "MQN9HDJakBgjQy2mxTDig01jgcVaHXRRILop7hPe",
+                            BasePath = "https://momworld.firebaseio.com/"
+                        };
+                        IFirebaseClient client = new FirebaseClient(config);
 
-                    return RedirectToLocal(returnUrl);
+                        client.Update("User/" + user.UserName, user);
+                        client.Update("User/" + user.UserName + "/badge", user);
+
+                        return RedirectToLocal(returnUrl);
+                    }
                 }
                 else
                 {
@@ -617,6 +624,11 @@ namespace MomWorld.Controllers
             identityDb.Entry(user).State = EntityState.Deleted;
             identityDb.SaveChanges();
             return Json("Successfully");
+        }
+
+        public ActionResult LockedUser()
+        {
+            return View();
         }
 
         #region Helpers

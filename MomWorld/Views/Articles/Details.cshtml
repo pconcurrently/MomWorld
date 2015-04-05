@@ -169,7 +169,7 @@
             <div class="row">
 
 
-                @if (User.Identity.Name.Equals("admin") || User.Identity.Name.Equals(postedUser.UserName))
+                @if (User.IsInRole("Admins") || User.Identity.Name.Equals(postedUser.UserName))
                 {
                     <div class="col-md-12 text-right">
                         <a href="@Url.Action("Edit", "Articles", routeValues: new {id = article.Id })" class="btn btn-warning">
