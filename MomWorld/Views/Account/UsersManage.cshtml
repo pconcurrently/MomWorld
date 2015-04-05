@@ -86,7 +86,190 @@
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
 </head>
 <body class="bg-1">
-    <!-- Modal create category -->
+    <!-- Modal create user  -->
+    <div class="modal fade" id="modalCreateUser" tabindex="-1"
+         role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        Thoát
+                    </button>
+                    <h3 class="modal-title" id="modalConfirmLabel">
+                        Thêm <strong>người dùng</strong>
+                    </h3>
+                </div>
+                <div class="modal-body">
+
+                    <!-- tile -->
+                    <section class="tile transparent">
+
+
+
+
+
+
+                        <form class="profile-settings">
+
+                            <div class="row text-center">
+
+                                <div class="form-group col-sm-6 col-sm-offset-3">
+                                    <label for="first-name">Phân quyền</label>
+
+                                    <select class="chosen-select chosen-transparent form-control">
+
+                                        <option>Quản lí</option>
+                                        <option>Người dùng</option>
+                                        <option>Tư vấn viên</option>
+
+                                    </select>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="first-name">Họ</label> <input type="text"
+                                                                              class="form-control" id="first-name" value="Huỳnh">
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label for="last-name">Tên</label> <input type="text"
+                                                                              class="form-control" id="last-name" value="Ngọc Khoa">
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="email">E-mail</label> <input type="email"
+                                                                             class="form-control" id="email" value="johny.d@tattek.com"
+                                                                             readonly>
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label for="country">Quốc gia</label> <select class="chosen-select form-control" id="country">
+                                        <option>Việt nam</option>
+                                        <option>Czech Republic</option>
+                                        <option>Poland</option>
+                                        <option>Hungary</option>
+                                        <option>Austria</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="phone">Số điện thoại</label> <input type="text"
+                                                                                    class="form-control" id="phone" value="+(84)1655757445">
+                                    <span class="help-block">+(84)1655757445</span>
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label for="avatar">Ảnh đại diện</label>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-primary btn-file">
+                                                <i class="fa fa-upload"></i><input type="file" multiple="">
+                                            </span>
+                                        </span> <input type="text" class="form-control" readonly=""
+                                                       id="avatar">
+                                    </div>
+                                    <span class="help-block">
+                                        File cho phép: gif, png,
+                                        jpg. Kích thước tối đa 1Mb
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="row">
+                                <div class="form-group col-md-12 legend">
+                                    <h4>
+                                        Thiết lập <strong>Bảo mật</strong>
+                                    </h4>
+                                    <p>Bảo vệ tài khoản của bạn</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="username">Tên đăng nhập</label> <input type="text" class="form-control" id="username"
+                                                                                       value="khoahn" readonly>
+                                </div>
+
+
+                                <div class="form-group col-sm-6">
+                                    <label for="password">Mật khẩu cũ</label> <input type="password" class="form-control" id="password"
+                                                                                     value="123456" readonly>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="new-password">Mật khẩu mới</label> <input type="password" class="form-control" id="new-password">
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label for="new-password-repeat">
+                                        Nhập lại mật khẩu
+                                        mới
+                                    </label> <input type="password" class="form-control"
+                                                    id="new-password-repeat">
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="form-group col-md-12 text-right">
+                                    <button class="btn btn-cyan start btn-md">
+                                        <i class="fa fa-refresh"></i> <span> Tạo</span>
+                                    </button>
+
+
+                                    <button class="btn btn-red cancel btn-md">
+                                        <i class="fa fa-times"></i> <span> Hủy</span>
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+
+
+
+
+
+                    </section>
+                    <!-- /tile -->
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+
+    <!-- Modal edit user  -->
     <div class="modal fade" id="modalEditUser" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -107,6 +290,24 @@
 
 
                         <form class="profile-settings">
+
+                            <div class="row text-center">
+
+                                <div class="form-group col-sm-6 col-sm-offset-3">
+                                    <label for="first-name">Phân quyền</label>
+
+                                    <select class="chosen-select chosen-transparent form-control">
+
+                                        <option>Quản lí</option>
+                                        <option>Người dùng</option>
+                                        <option>Tư vấn viên</option>
+
+                                    </select>
+                                </div>
+
+
+                            </div>
+
                             <div class="row">
                                 <div class="form-group col-sm-6">
                                     <label for="last-name">Họ</label> <input type="text"
@@ -200,6 +401,42 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+    <!-- Modal thông báo xóa -->
+    <div class="modal fade" id="modalDeleteNotice" tabindex="-1"
+         role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
+         style="background: rgba(0, 0, 0, 0.75); top: 0px;">
+        <div class="modal-dialog" style="margin-top: 100px;">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        Thoát
+                    </button>
+                    <img src="@Url.Content("~/Content/images/delete-modal.png")" style="width:300px;" />
+                    <h3 class="modal-title" id="modalConfirmLabel">
+                        <strong>Xóa </strong>người dùng
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <!-- The file upload form used as target for the file upload widget -->
+                    <form class="form-horizontal">
+
+                        <div class="form-group">
+
+                            <button type="submit" class="btn btn-green" id="deleteCategory">Xóa</button>
+                            <button data-dismiss="modal" class="btn btn-red">Hủy</button>
+
+                        </div>
+                    </form>+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
     <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
@@ -733,7 +970,7 @@
                 oTable02.fnUpdate(jqInputs[3].value, nRow, 3, false);
                 oTable02
                          .fnUpdate(
-                                 '<a class="ban" href="#">Cấm</a><a class="reset-password" href="#">Khôi phục mật khẩu</a><a class="edit" href="#">Sửa</a><a class="delete" href="#">Xóa</a>',
+                                 '<a class="ban" href="#">Khóa</a><a class="edit" href="#">Sửa</a><a class="delete" href="#">Xóa</a>',
                                  nRow, 4, false);
                 oTable02.fnDraw();
             }
