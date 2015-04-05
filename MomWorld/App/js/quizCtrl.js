@@ -1,8 +1,13 @@
 ﻿app.controller('quizCtrl', ['$scope', '$http', 'helperService', '$location', '$firebaseArray', '$firebaseObject',
     function ($scope, $http, helper, $location, $firebaseArray, $firebaseObject) {
 
-    $scope.initQuizShow = function (username) {
-        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + username + "/Badge/");
+        // Get User from local storage
+        $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        $scope.currentUsername = $scope.currentUser.Username;
+
+    $scope.initQuizShow = function () {
+
+        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/");
         $scope.badgeFire = $firebaseArray(userFireTmp);
     }
 
@@ -60,7 +65,7 @@
     }
 
     $scope.initQuiz = function () {
-        var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUserName + "/badge/" + $scope.quizNameTemp);
+        var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/badge/" + $scope.quizNameTemp);
         $scope.badgeFirebase = $firebaseObject(userTmp);
     }
 
@@ -70,7 +75,6 @@
         $scope.quizNameReal = $scope.quizData[quizId].name;
 
         $scope.currentQuizId = quizId;
-        $scope.currentUserName = username;
 
         $scope.loadQuiz($scope.quizName);
 
@@ -118,7 +122,7 @@
         var score = correctAns / answers.length * 100;
         // TODO: Code Huan Chuong
         if (score >= 75) {
-            var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUserName + "/Badge/" + $scope.currentQuizId);
+            var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/" + $scope.currentQuizId);
             $scope.badgeFirebase = $firebaseObject(userTmp);
 
             // Give user badge
@@ -131,7 +135,7 @@
                   $('#modalCompletedQuizz').modal('show')
             )
         } else {
-            alert('Fail vcc test 1' + $scope.currentUserName);
+            alert('Fail vcc test 1' + $scope.currentUsername);
         }
         
         // Display Result Mode

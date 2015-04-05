@@ -5,7 +5,7 @@
         <!-- <div ng-repeat="question in filteredQuestions"> -->
         <div ng-repeat="question in questions">
             <div class="question">
-                <h2>{{question.Name}}</h2>
+                <h2>{{$index + 1}}. {{question.Name}}</h2>
                 <div class="options">
                     <div ng-repeat="option in question.Options">
                         <label for="{{option.Id}}">
@@ -39,6 +39,9 @@
     </div>
     <hr />
     <div class="" ng-show="mode!='result'">
-        <button class="btn btn-default" ng-click="onSubmit();">Submit</button>
+        <button class="btn btn-green" ng-click="onSubmit();">Nộp</button>
+    </div>
+    <div class="" ng-show="mode=='result'">
+        <a class="btn btn-green" ng-href="http://localhost:4444/Quizzes">Trở về</a>
     </div>
 </div>

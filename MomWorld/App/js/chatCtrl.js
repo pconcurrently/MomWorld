@@ -9,7 +9,6 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
 
         
         // Get User from local storage
-        
         $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         var currentUsername = $scope.currentUser.Username;
 
