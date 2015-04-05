@@ -22,6 +22,8 @@ namespace MomWorld.Controllers
         public ActionResult Index()
         {
             var quizzes = db.Quizzes.Include(q => q.QuizQuestion);
+            ApplicationUser CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+            ViewData["UserName"] = CurrentUser.UserName;
             return View(quizzes.ToList());
         }
 

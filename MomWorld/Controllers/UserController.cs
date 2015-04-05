@@ -2,6 +2,7 @@
 using MomWorld.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -87,54 +88,64 @@ namespace MomWorld.Controllers
 
         }
 
-        // POST: api/User/UploadVideo
-        [HttpPost]
-        [DisableCors]
-        [Route("api/User/UploadVideo")]
-        public void uploadnow(HttpPostedFileWrapper upload)
-        {
-            if (upload != null)
-            {
-                string ImageName = upload.FileName;
-                string path = HttpContext.Current.Server.MapPath("~/App/uploads/video" + ImageName);
-                upload.SaveAs(path);
-            }
-        }
-
+        private static readonly string ServerUploadFolder = "~/App/uploads/video/";
 
         // POST: api/User/UploadVideo
         //[HttpPost]
+        //[DisableCors]
         //[Route("api/User/UploadVideo")]
-        //public HttpResponseMessage UploadVideo()
+        //public void uploadnow(HttpPostedFileBase file)
         //{
-        //    HttpResponseMessage result = null;
-        //    var httpRequest = HttpContext.Current.Request;
-        //    if (httpRequest.Files.Count > 0)
+        //    var streamProvider = new MultipartFormDataStreamProvider(ServerUploadFolder);
+        //    await Request.Content.ReadAsMultipartAsync(streamProvider);
+
+        //    return new FileResult
         //    {
-        //        foreach (string file in httpRequest.Files)
-        //        {
-        //            var postedFile = httpRequest.Files[file];
-        //            var name = httpRequest.Form.Get(0);
-
-        //            // Save file to Responsitory
-        //            var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/" + name + ".3pg");
-        //            postedFile.SaveAs(filePath);
-
-        //            // Change User ProfilePiture in Database
-        //            //var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(name));
-        //            //user.ProfilePicture = "http://localhost:4444/App/uploads/video/" + name + ".3pg";
-        //            //identityDb.SaveChanges();
-
-        //        }
-        //        result = Request.CreateResponse(HttpStatusCode.Created);
-        //    }
-        //    else
-        //    {
-        //        result = Request.CreateResponse(HttpStatusCode.BadRequest);
-        //    }
-
-        //    return result;
-
+        //        FileNames = streamProvider.FileData.Select(entry => entry.LocalFileName),
+        //        Names = streamProvider.FileData.Select(entry => entry.Headers.ContentDisposition.FileName),
+        //        ContentTypes = streamProvider.FileData.Select(entry => entry.Headers.ContentType.MediaType),
+        //        Description = streamProvider.FormData["description"],
+        //        CreatedTimestamp = DateTime.UtcNow,
+        //        UpdatedTimestamp = DateTime.UtcNow,
+        //        DownloadLink = "TODO, will implement when file is persisited"
+        //    };
         //}
+
+
+
+
+        [HttpPost]
+        [Route("api/User/UploadVideo")]
+        public HttpResponseMessage UploadVideo()
+        {
+            HttpResponseMessage result = null;
+            var httpRequest = HttpContext.Current.Request;
+            if (httpRequest.Files.Count > 0)
+            {
+                foreach (string file in httpRequest.Files)
+                {
+                    var postedFile = httpRequest.Files[file];
+                    var name = httpRequest.Form.Get(0);
+
+                    // Save file to Responsitory
+                    var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/" + postedFile.FileName);
+                    postedFile.SaveAs(filePath);
+
+                    // Change User ProfilePiture in Database
+                    //var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(name));
+                    //user.ProfilePicture = "http://localhost:4444/App/uploads/video/" + name + ".3pg";
+                    //identityDb.SaveChanges();
+
+                }
+                result = Request.CreateResponse(HttpStatusCode.Created);
+            }
+            else
+            {
+                result = Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            return result;
+
+        }
     }
 }
