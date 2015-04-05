@@ -5,14 +5,10 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
 
         /* ------------------- Init variables --------------------- */
         
-        var u = {
-            Username: 'user1',
-            ProfileImage: 'http://localhost:4444/App/uploads/avatar/user1.png'
-        }
+        
 
         
         // Get User from local storage
-        localStorage.setItem('currentUser', JSON.stringify(u));
         $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         var currentUsername = $scope.currentUser.Username;
 

@@ -3,7 +3,7 @@
 }
 
 <!DOCTYPE html>
-<html ng-app="videoApp">
+<html>
 <head>
 <!-- BASICS -->
 <meta charset="utf-8">
@@ -13,125 +13,126 @@
 
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/ico" href="Content/images/favicon.png" />
+<link rel="icon" type="image/ico" href="@Url.Content("~/Content/images/favicon.png")"/>
 
-<link href="Content/css/vendor/bootstrap/bootstrap.min.css"
-	rel="stylesheet">
+<link href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap.min.css")") rel="stylesheet" ">
 <link
-	href="Content/css/vendor/font-awesome-4.2.0/css/font-awesome.min.css"
-	rel="stylesheet">
-<link rel="stylesheet" href="Content/css/vendor/animate/animate.css">
-<link rel="stylesheet" href="Content/css/vendor/bootstrap-checkbox.css">
+	href="@Url.Content("~/Content/css/vendor/font-awesome-4.2.0/css/font-awesome.min.css")") rel="stylesheet">
+<link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/animate/animate.css")")">
+<link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/bootstrap-checkbox.css")")">
 <link rel="stylesheet"
-	href="Content/css/vendor/ribbons/3d-corner-ribbons.css">
+	href="@Url.Content("~/Content/css/vendor/ribbons/3d-corner-ribbons.css")")">
+    
 <link rel="stylesheet"
-	href="Content/js/vendor/text-rotator/css/simpletextrotator.css">
+	href="@Url.Content("~/Content/js/vendor/text-rotator/css/simpletextrotator.css")")">
 
 <!-- Important Owl stylesheet -->
 <link rel="stylesheet"
-	href="Content/js/vendor/owl-carousel/css/owl.carousel.css">
+	href="@Url.Content("~/Content/js/vendor/owl-carousel/css/owl.carousel.css")")">
 <link rel="stylesheet"
-	href="Content/js/vendor/owl-carousel/css/owl.theme.css">
+	href="@Url.Content("~/Content/js/vendor/owl-carousel/css/owl.theme.css")")">
 <link rel="stylesheet"
-	href="Content/js/vendor/owl-carousel/css/owl.transitions.css">
+	href="@Url.Content("~/Content/js/vendor/owl-carousel/css/owl.transitions.css")")">
 
 <link rel="stylesheet"
-	href="Content/js/vendor/nivo-lightbox/css/nivo-lightbox.css">
+	href="@Url.Content("~/Content/js/vendor/nivo-lightbox/css/nivo-lightbox.css")")">
 <link rel="stylesheet"
-	href="Content/js/vendor/nivo-lightbox/css/themes/default/default.css" />
+	href="@Url.Content("~/Content/js/vendor/nivo-lightbox/css/themes/default/default.css")")") "/>
 
 <link rel="stylesheet"
-	href="Content/js/vendor/summernote/css/summernote.css">
+	href="@Url.Content("~/Content/js/vendor/summernote/css/summernote.css")">
 <link rel="stylesheet"
-	href="Content/js/vendor/summernote/css/summernote-bs3.css">
+	href="@Url.Content("~/Content/js/vendor/summernote/css/summernote-bs3.css")">
 
 <!-- CUSTOM STYLE -->
-<link rel="stylesheet" href="Content/css/main.css">
-<link rel="stylesheet" href="Content/css/minimal.min.css">
+<link rel="stylesheet" href="@Url.Content("~/Content/css/main.css")">
+<link rel="stylesheet" href="@Url.Content("~/Content/css/minimal.min.css")">
 
 
 <!-- Generic page styles -->
 <link rel="stylesheet"
-	href="Content/js/vendor/jquery-file-upload/css/style.css">
+	href="@Url.Content("~/Content/js/vendor/jquery-file-upload/css/style.css")">
 <!-- blueimp Gallery styles -->
 <link rel="stylesheet"
-	href="Content/js/vendor/jquery-file-upload/css/blueimp-gallery.min.css">
+	href="@Url.Content("~/Content/js/vendor/jquery-file-upload/css/blueimp-gallery.min.css")">
 <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
 <link rel="stylesheet"
-	href="Content/js/vendor/jquery-file-upload/css/jquery.fileupload.css">
+	href="@Url.Content("~/Content/js/vendor/jquery-file-upload/css/jquery.fileupload.css")">
 <link rel="stylesheet"
-	href="Content/js/vendor/jquery-file-upload/css/jquery.fileupload-ui.css">
+	href="@Url.Content("~/Content/js/vendor/jquery-file-upload/css/jquery.fileupload-ui.css")">
 
 <!-- Logic dependences -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-file-upload/0.5.6/angular-file-upload.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js")"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-file-upload/0.5.6/angular-file-upload.min.js")"></script>
 
-    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js")"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js")"></script>
 
 <!-- CSS adjustments for browsers with JavaScript disabled -->
 <noscript>
 	<link rel="stylesheet"
-		href="Content/js/vendor/jquery-file-upload/css/jquery.fileupload-noscript.css">
+		href="@Url.Content("~/Content/js/vendor/jquery-file-upload/css/jquery.fileupload-noscript.css")">
 </noscript>
 <noscript>
 	<link rel="stylesheet"
-		href="Content/js/vendor/jquery-file-upload/css/jquery.fileupload-ui-noscript.css">
+		href="@Url.Content("~/Content/js/vendor/jquery-file-upload/css/jquery.fileupload-ui-noscript.css")">
 </noscript>
 
-<link rel="stylesheet" href="Content/css/video.css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/video.css")") "/>
 
 </head>
 
-<body ng-controller="videoCtrl">
+<body ng-app="videoApp" ng-controller="videoCtrl" >
 
-	<!-- Modal -->
-	<div class= "modal fade" id="modalAddNewVideo" tabindex="-1"
-		role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
-		style="background: rgba(0, 0, 0, 0.75); top: 0px;">
-		<div class="modal-dialog modal-lg" style="margin-top: 100px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">Thoát</button>
-					<h3 class="modal-title" id="modalConfirmLabel">
-						<strong>Thêm</strong> Video
-					</h3>
-				</div>
-				<div class="modal-body">
+    <!-- Modal -->
+    <div class="modal fade" id="modalAddNewVideo" tabindex="-1"
+         role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
+         style="background: rgba(0, 0, 0, 0.75); top: 0px;">
+        <div class="modal-dialog modal-lg" style="margin-top: 100px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        Thoát
+                    </button>
+                    <h3 class="modal-title" id="modalConfirmLabel">
+                        <strong>Thêm</strong> Video
+                    </h3>
+                </div>
+                <div class="modal-body">
 
-					<!-- The file upload form used as target for the file upload widget -->
-					<form class="form-horizontal" id="fileupload"
-						action="//jquery-file-upload.appspot.com/" method="POST"
-						enctype="multipart/form-data" data-ng-app="demo"
-						data-ng-controller="DemoFileUploadController"
-						data-file-upload="options"
-						data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
-						
-
-						<div class="form-group" style="padding: 0 15px;">
-							<label for="videoTitle">Tên video</label> <input type="text"
-								class="form-control" id="videoTitle"
-								placeholder="Nhập tên video ...">
-						</div>
+                    <!-- The file upload form used as target for the file upload widget -->
+                    <form class="form-horizontal" id="fileupload"
+                          action="//jquery-file-upload.appspot.com/" method="POST"
+                          enctype="multipart/form-data" data-ng-app="demo"
+                          data-ng-controller="DemoFileUploadController"
+                          data-file-upload="options"
+                          data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
 
 
-						<div class="form-group transparent-editor"
-							style="padding: 0 15px;">
-							<label>Nội dung</label>
-							<div class="col-sm-12">
-								<div class="form-control" id="input06"></div>
-							</div>
-						</div>
+                        <div class="form-group" style="padding: 0 15px;">
+                            <label for="videoTitle">Tên video</label> <input type="text"
+                                                                             class="form-control" id="videoTitle"
+                                                                             placeholder="Nhập tên video ...">
+                        </div>
 
-						<!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-						<div class="row fileupload-buttonbar">
-							<div class="col-lg-7">
-								<!-- The fileinput-button span is used to style the file input field as button -->
-								<span class="btn btn-success fileinput-button"
-									ng-class="{disabled: disabled}"> <i
-									class="glyphicon glyphicon-plus"></i> <span>Chọn video</span> <input type="file" nv-file-select uploader="uploader" />
-								</span>
+
+                        <div class="form-group transparent-editor"
+                             style="padding: 0 15px;">
+                            <label>Nội dung</label>
+                            <div class="col-sm-12">
+                                <div class="form-control" id="input06"></div>
+                            </div>
+                        </div>
+
+                        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                        <div class="row fileupload-buttonbar">
+                            <div class="col-lg-7">
+                                <!-- The fileinput-button span is used to style the file input field as button -->
+                                <span class="btn btn-success fileinput-button"
+                                      ng-class="{disabled: disabled}">
+                                    <i class="glyphicon glyphicon-plus"></i> <span>Chọn video</span> <input type="file" nv-file-select uploader="uploader" ) " />
+                                </span>
 
                                 <div class="form-group col-sm-6">
                                     <ul id="thumbPic">
@@ -142,1011 +143,833 @@
                                     </ul>
                                 </div>
 
-								<button type="button" class="btn btn-primary start"
-									data-ng-click="submit()">
-									<i class="glyphicon glyphicon-upload"></i> <span>Bắt đầu</span>
-								</button>
-								<button type="button" class="btn btn-warning cancel"
-									data-ng-click="cancel()">
-									<i class="glyphicon glyphicon-ban-circle"></i> <span>Hủy</span>
-								</button>
-								<!-- The global file processing state -->
-								<span class="fileupload-process"></span>
-							</div>
-							<!-- The global progress state -->
-							<div class="col-lg-5 fade" data-ng-class="{in: active()}">
-								<!-- The global progress bar -->
-								<div class="progress progress-striped active"
-									data-file-upload-progress="progress()">
-									<div class="progress-bar progress-bar-success"
-										data-ng-style="{width: num + '%'}"></div>
-								</div>
-								<!-- The extended global progress state -->
-								<div class="progress-extended">&nbsp;</div>
-							</div>
-						</div>
-						<!-- The table listing the files available for upload/download -->
-						<table class="table table-striped files ng-cloak">
-							<tr data-ng-repeat="file in queue"
-								data-ng-class="{'processing': file.$processing()}">
-								<td data-ng-switch data-on="!!file.thumbnailUrl">
-									<div class="preview" data-ng-switch-when="true">
-										<a data-ng-href="{{file.url}}" title="{{file.name}}"
-											download="{{file.name}}" data-gallery><img
-											data-ng-src="{{file.thumbnailUrl}}" alt=""></a>
-									</div>
-									<div class="preview" data-ng-switch-default
-										data-file-upload-preview="file"></div>
-								</td>
-								<td>
-									<p class="name" data-ng-switch data-on="!!file.url">
-										<span data-ng-switch-when="true" data-ng-switch
-											data-on="!!file.thumbnailUrl"> <a
-											data-ng-switch-when="true" data-ng-href="{{file.url}}"
-											title="{{file.name}}" download="{{file.name}}" data-gallery>{{file.name}}</a>
-											<a data-ng-switch-default data-ng-href="{{file.url}}"
-											title="{{file.name}}" download="{{file.name}}">{{file.name}}</a>
-										</span> <span data-ng-switch-default>{{file.name}}</span>
-									</p> <strong data-ng-show="file.error" class="error text-danger">{{file.error}}</strong>
-								</td>
-								<td>
-									<p class="size">{{file.size | formatFileSize}}</p>
-									<div class="progress progress-striped active fade"
-										data-ng-class="{pending: 'in'}[file.$state()]"
-										data-file-upload-progress="file.$progress()">
-										<div class="progress-bar progress-bar-success"
-											data-ng-style="{width: num + '%'}"></div>
-									</div>
-								</td>
-								<td>
-									<button type="button" class="btn btn-primary start"
-										data-ng-click="file.$submit()"
-										data-ng-hide="!file.$submit || options.autoUpload"
-										data-ng-disabled="file.$state() == 'pending' || file.$state() == 'rejected'">
-										<i class="glyphicon glyphicon-upload"></i> <span>Bắt
-											đầu</span>
-									</button>
-									<button type="button" class="btn btn-warning cancel"
-										data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
-										<i class="glyphicon glyphicon-ban-circle"></i> <span>Hủy</span>
-									</button>
-									<button data-ng-controller="FileDestroyController"
-										type="button" class="btn btn-danger destroy"
-										data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
-										<i class="glyphicon glyphicon-trash"></i> <span>Xóa</span>
-									</button>
-								</td>
-							</tr>
-						</table>
-
-						<div class="form-group form-footer">
-							<div class="col-sm-offset-4 col-sm-8">
-								<button type="submit" class="btn btn-green">Tải lên</button>
-								<button type="reset" class="btn btn-red">Hủy</button>
-							</div>
-						</div>
-					</form>
-
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
-	<!-- /Modal -->
-
-
-
-
-
-	<!-- Preloader -->
-	<div class="mask">
-		<div id="loader"></div>
-	</div>
-	<!--/Preloader -->
-
-
-
-
-
-	<!-- BEGIN NAVBAR -->
-	<div class="navbar navbar-fixed-top" role="navigation"
-		data-0="line-height:80px; height:80px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);"
-		data-300="line-height:40px; height:52px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
-
-		<div class="container">
-
-
-
-
-
-
-			<!-- Branding -->
-			<div class="navbar-header">
-				<a class="navbar-brand" href="index.html"
-					data-0="padding-top:23px;padding-left: 55px;background-position: 0 20px;background-size: 44px 44px;font-size: 24px;height: 80px;"
-					data-300="padding-top: 10px;padding-left: 40px;background-position: 0 7px;background-size: 34px 34px;font-size: 16px; height: 50px;margin-top:0;">
-					<strong>W</strong>ORLD <span class="subheading"
-					data-0="font-size: 11px;line-height: 13px;"
-					data-300="font-size: 9px;line-height: 8px;">Thế giới của mẹ</span>
-				</a>
-				<div class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<a href="video.html#"> <i class="fa fa-bars"></i>
-					</a>
-				</div>
-			</div>
-			<!-- Branding end -->
-
-
-
-			<!--.navbar-collapse -->
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-
-					<li class="active"><a href="index.html"
-						data-0="padding: 30px 25px 22px;"
-						data-300="padding: 15px 25px 10px;"><img class="icon-nav"
-							src="Content/images/icon-nav/home.png"> Trang chủ </a></li>
-
-					<li><a href="pre-pregnancy.html"
-						data-0="padding: 30px 25px 22px;"
-						data-300="padding: 15px 25px 10px;"><img class="icon-nav"
-							src="Content/images/icon-nav/motherhood.png"> Làm mẹ</a></li>
-
-
-
-					<li><a href="advisory.html" data-0="padding: 30px 25px 22px;"
-						data-300="padding: 15px 25px 10px;"><img class="icon-nav"
-							src="Content/images/icon-nav/advisory.png"> Tư vấn</a></li>
-
-					<li><a href="video.html" data-0="padding: 30px 25px 22px;"
-						data-300="padding: 15px 25px 10px;"><img class="icon-nav"
-							src="Content/images/icon-nav/video.png"> Video</a></li>
-
-					<li class="dropdown text-center user" ><a
-						href="personal-page.html"
-						data-0="padding: 0px 5px 0px;border-bottom-width:0px;"
-						data-300="padding: 0px 5px 0px;border-bottom-width:0px;"
-						class="dropdown-toggle" data-toggle="dropdown">
-							<div class="profile-photo">
-								<img class="img-circle" src="Content/images/profile-photo.jpg"
-									data-0="padding: 0px;" data-300="padding: 3px;" />
-							</div> <span>Khoahn</span> <i class="fa fa-caret-down"></i>
-					</a>
-						<ul class="dropdown-menu arrow settings">
-							<li><a href="timeline.html#"><i class="fa fa-tachometer"></i>
-									Quá trình mang thai</a></li>
-
-							<li><a href="personal-page.html#"><i class="fa fa-user"></i>
-									Trang cá nhân</a></li>
-
-							<li><a href="personal-page.html#"><i
-									class="fa fa-envelope"></i> Tin nhắn <span
-									class="badge badge-red animated bounceIn">3</span></a></li>
-
-							<li class="divider"></li>
-
-							<li><a href="index.html#"><i class="fa fa-power-off"
-									style="float: right"></i> Đăng xuất</a></li>
-						</ul></li>
-
-					<li class="search"><input type="text" placeholder="&#61442;"
-						data-0="margin-top:23px" data-300="margin-top:10px"></li>
-				</ul>
-			</div>
-			<!--/.navbar-collapse -->
-
-
-
-
-		</div>
-
-	</div>
-	<!-- END NAVBAR -->
-
-
-
-
-
-
-
-
-
-
-	<!-- BEGIN BREADCRUMBS -->
-	<div id="breadcrumbs" class="breadcrumbs bg-1">
-		<div class="container">
-
-			<ol class="breadcrumb">
-				<li><a href="index.html"><i class="fa fa-home"></i> Trang
-						chủ</a></li>
-				<li class="active">Video</li>
-			</ol>
-
-			<h2>
-				<strong>Video</strong>
-			</h2>
-
-		</div>
-	</div>
-	<!-- END BREADCRUMBS -->
-
-
-
-
-
-	<!-- BEGIN .header -->
-	<header class="header dark">
-
-
-		<!-- BEGIN .video-slider -->
-		<div class="video-slider">
-			<!-- BEGIN .wrapper -->
-			<div class="wrapper">
-				<div class="slider-controls">
-					<div class="video-slider-inline">
-
-						<div class="otplayer-wrapper">
-							<a href="index.html" class="video-overlay-logo"><img
-								src="Content/images/video-images/overlay-logo.png" width="123"
-								height="28" alt="" /></a>
-							<video class="otplayer" preload="auto"
-								poster="Content/video/video-screen.png">
-								<source src="Content/video/sintel-2048-surround.mp4"
-									type="video/mp4">
-								<div id="videofallback">Loading the player...</div>
-							</video>
-
-							<div class="otplayer-controls">
-								<div class="ot-inline-playpause">
-									<i class="fa fa-play"></i><i class="fa fa-pause"></i>
-								</div>
-								<div class="ot-inline-slider">
-									<div></div>
-								</div>
-								<div class="ot-inline-time">00:00</div>
-								<div class="ot-inline-volume-controls">
-									<div class="ot-inline-volume">
-										<i class="fa fa-volume-up"></i> <i class="fa fa-volume-off"></i>
-									</div>
-									<div class="ot-inline-volume-slider">
-										<div></div>
-									</div>
-								</div>
-								<div class="ot-inline-fullscreen">
-									<i class="fa fa-desktop"></i>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-				<div class="video-slider-meta">
-					<div class="video-slider-info right">
-						<a href="video-detail.html" class="meta-click"><i
-							class="fa fa-comments"></i> <strong>283</strong> Bình luận</a> <a
-							href="video-detail.html" class="meta-click"><i
-							class="fa fa-eye"></i> <strong>829</strong> Lượt xem</a> <a
-							href="index.html#" class="ot-like-button"><i
-							class="fa fa-heart"></i> Thích</a>
-					</div>
-					<h3>
-						<a href="video-detail.html">Sintel</a>
-					</h3>
-				</div>
-				<!-- END .wrapper -->
-			</div>
-
-		</div>
-
-		<!-- END .header -->
-	</header>
-
-	<!-- BEGIN .content -->
-	<section class="content">
-
-		<!-- BEGIN .wrapper -->
-		<div class="wrapper">
-
-			<div class="row">
-
-
-				<div class="col-md-12 text-right">
-					<a href="ui-elements.html#modalAddNewVideo" role="button"
-						class="btn btn-lg btn-warning" data-toggle="modal"><i
-						class="fa fa-plus-circle"></i> Đăng video</a>
-				</div>
-			</div>
-			<hr class="post-divider">
-
-			<!-- BEGIN .with-sidebar-layout -->
-			<div class="with-sidebar-layout left">
-
-
-				<div class="content-panel">
-					<div class="panel-title">
-						<h2>Videos mới nhất</h2>
-					</div>
-					<div class="panel-block video-list grid">
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://b.vimeocdn.com/ts/282/542/282542993_640.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">SubWars</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://i1.ytimg.com/vi/crm79j1qeqA/hqdefault.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">JULIAN SMITH - Car Phone!</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://b.vimeocdn.com/ts/222/957/222957241_640.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">tribute to drive</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://b.vimeocdn.com/ts/629/174/62917463_640.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">Hair Conditioner</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://s2.dmcdn.net/D9VIi/x240-Vra.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">Obama Knock-Knock Jokes</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://static-cdn.jtvnw.net/jtv.thumbs/archive-514984957-320x240.jpg"
-									alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">VanillaTV - Sweden</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://b.vimeocdn.com/ts/168/404/1684044_640.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">Veil</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://b.vimeocdn.com/ts/633/842/6338426_640.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">Morphing</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://b.vimeocdn.com/ts/300/148/30014869_640.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">Flightpattern</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="https://i1.ytimg.com/vi/dYw4meRWGd4/hqdefault.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">GoPro: Red Bull Stratos</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="https://i1.ytimg.com/vi/MNCzSfv4hX8/hqdefault.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">GoPro: Lions</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html"
-									class="img-hover-effect loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://b.vimeocdn.com/ts/146/971/146971214_640.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">Breakfast Interrupted</a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-								<p>Inani vocent feugait cu eam, his et impetus indoctum, mea
-									euismod salutandi. Mel consequat moderatius intellegeb at an,
-									appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-									illud quidam labitur, eu adhuc clita quo.</p>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<div class="clear-list-button">
-							<a href="browse.html" class="back-button">Xem Thêm Videos</a>
-						</div>
-
-					</div>
-				</div>
-
-
-				<!-- END .with-sidebar-layout -->
-			</div>
-
-			<!-- BEGIN #sidebar -->
-			<aside id="sidebar" class="right">
-
-
-				<!-- BEGIN .widget -->
-				<div class="widget">
-					<h3>Videos nổi bật</h3>
-					<div class="widget-videos">
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html" class="video-thumb loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://b.vimeocdn.com/ts/160/609/160609628_640.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">Manhattan in motion</a><a
-										href="index.html#"><span class="marker">HD Videos</span></a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html" class="video-thumb loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://b.vimeocdn.com/ts/180/758/180758636_640.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">EAT</a><a href="index.html#"><span
-										class="marker">Travel &amp; Events</span></a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html" class="video-thumb loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="http://b.vimeocdn.com/ts/991/220/99122029_640.jpg" alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">Above Everything Else</a><a
-										href="index.html#"><span class="marker">Creative
-											Stuff</span></a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-							</div>
-							<!-- END .item -->
-						</div>
-
-						<!-- BEGIN .item -->
-						<div class="item">
-							<div class="item-header">
-								<a href="video-detail.html" class="video-thumb loadingvideo"><img
-									src="Content/images/video-images/aspect-px.png" width="16"
-									height="9" class="aspect-px"
-									rel="https://v.cdn.vine.co/r/thumbs/ADE6833A651053105159867662336_1c25aa1ad3a.3.2.mp4.jpg?versionId=ra78JOE8884XFoa6zhhkfTp1EYrcvAWn"
-									alt="" /></a>
-							</div>
-							<div class="item-content">
-								<h3>
-									<a href="video-detail.html">Surprised my girlfriend</a><a
-										href="index.html#"><span class="marker">Vines</span></a>
-								</h3>
-								<span class="video-meta"> <a href="video-detail.html"><i
-										class="fa fa-comment"></i>283</a> <a href="video-detail.html"><i
-										class="fa fa-eye"></i>829</a> <a href="index.html#"><i
-										class="fa fa-heart"></i>95</a>
-								</span>
-							</div>
-							<!-- END .item -->
-						</div>
-
-					</div>
-					<!-- END .widget -->
-				</div>
-
-
-
-
-
-
-				<!-- END #sidebar -->
-			</aside>
-
-			<!-- END .wrapper -->
-		</div>
-
-		<!-- BEGIN .content -->
-	</section>
-
-
-
-
-
-
-
-
-
-	<!-- FOOTER -->
-	<footer id="footer">
-
-		<div class="footer-main">
-			<div class="container">
-				<div class="row">
-
-					<div class="col-md-4">
-
-						<div class="widget widget-about">
-							<img class="img-responsive" src="Content/images/slider/1.png"
-								style="max-width: 80%;">
-							<h1>
-								<strong>Mom's </strong>World
-							</h1>
-						</div>
-
-
-
-					</div>
-					<div class="col-md-4">
-						<div class="widget widget-photo-stream">
-							<h4>
-								Ảnh<strong> mới</strong>
-							</h4>
-
-							<div class="flickr-feed"></div>
-							<a class="btn btn-green" href="Gallery.html">Xem thêm</a>
-
-						</div>
-					</div>
-
-					<div class="col-md-4">
-
-						<div class="widget widget-contact">
-							<h4>
-								<strong>Liên hệ</strong> với chúng tôi
-							</h4>
-							<address>
-								<strong>Địa chỉ :</strong> FPT_University - Đà Nẵng<br> <strong>Điện
-									thoại :</strong> +84 01655757445<br> <strong>Email:</strong> <a
-									href="mailto:exc-group@gmail.com">exc-group@gmail.com</a><br>
-							</address>
-						</div>
-
-						<div class="widget widget-social">
-							<a href="index.html#"> <span class="overlay bg-cyan"></span>
-								<i class="fa fa-twitter" style="padding-left: 10px;"></i>
-							</a> <a href="index.html#"><span class="overlay bg-blue"></span><i
-								class="fa fa-facebook" style="padding-left: 14px;"></i></a> <a
-								href="index.html#"><span class="overlay bg-red"></span><i
-								class="fa fa-google-plus" style="padding-left: 10px;"></i></a> <a
-								href="index.html#"><span class="overlay"></span><i
-								class="fa fa-flickr" style="padding-left: 10px;"></i></a> <a
-								href="index.html#"><span class="overlay bg-hotpink"></span><i
-								class="fa fa-dribbble" style="padding-left: 10px;"></i></a>
-						</div>
-
-						<div class="widget widget-newsletter">
-
-							<h4>
-								<strong>Nhận bản tin</strong>
-							</h4>
-							<p>Theo dõi bản tin của chúng tôi và luôn cập nhật các tin
-								tức mới nhất !</p>
-
-							<div class="input-group">
-								<input type="text" class="form-control"
-									placeholder="NHập địa chỉ email của bạn"> <span
-									class="input-group-btn">
-									<button class="btn btn-theme" type="button">Đăng kí</button>
-								</span>
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-
-					<div class="col-md-12 copyright">
-						&copy; Copyright 2014 by <a href="index.html#">KhoaHN</a>. All
-						Rights Reserved.
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</footer>
-	<!-- END FOOTER -->
-
-
-
-
-
-
-
-	<!-- SCROLL TOP -->
-	<div class="scroll-top">
-		<a href="gallery.html#"> <i class="fa fa-angle-up"></i>
-		</a>
-	</div>
-	<!-- END SCROLL TOP -->
-
-
-
-
-
-
-
-
-
-
-
-	<script src="Content/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="Content/js/vendor/jquery/jquery.js"></script>
-
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="Content/js/vendor/bootstrap/bootstrap.min.js"></script>
-
-	<script src="Content/js/vendor/skrollr/skrollr.min.js"></script>
-
-	<script
-		src="Content/js/vendor/text-rotator/jquery.simple-text-rotator.js"></script>
-
-	<script src="Content/js/vendor/owl-carousel/owl.carousel.min.js"></script>
-
-	<script src="Content/js/vendor/nivo-lightbox/nivo-lightbox.min.js"></script>
-
-	<script src="Content/js/vendor/tweet-js/jquery.tweet.min.js"></script>
-
-	<script src="Content/js/vendor/vticker/jquery.vticker.min.js"></script>
-
-	<script src="Content/js/vendor/jflickrfeed/jflickrfeed.min.js"></script>
-
-	<script src="Content/js/vendor/appear/jquery.appear.js"></script>
-
-	<script src="Content/js/vendor/parallax/jquery.parallax-1.1.3.js"></script>
-
-	<script src="Content/js/vendor/mixitup/jquery.mixitup.js"></script>
-
-	<script src="http://maps.google.com/maps/api/js?sensor=false"
-		type="text/javascript"></script>
-
-	<script src="Content/js/vendor/summernote/summernote.min.js"></script>
-
-
-	<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
-	<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/vendor/load-image.all.min.js"></script>
-	<!-- The Canvas to Blob plugin is included for image resizing functionality -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/vendor/canvas-to-blob.min.js"></script>
-	<!-- blueimp Gallery script -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/vendor/jquery.blueimp-gallery.min.js"></script>
-	<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/jquery.iframe-transport.js"></script>
-	<!-- The basic File Upload plugin -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/jquery.fileupload.js"></script>
-	<!-- The File Upload processing plugin -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/jquery.fileupload-process.js"></script>
-	<!-- The File Upload image preview & resize plugin -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/jquery.fileupload-image.js"></script>
-	<!-- The File Upload audio preview plugin -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/jquery.fileupload-audio.js"></script>
-	<!-- The File Upload video preview plugin -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/jquery.fileupload-video.js"></script>
-	<!-- The File Upload validation plugin -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
-	<!-- The File Upload Angular JS module -->
-	<script
-		src="Content/js/vendor/jquery-file-upload/js/jquery.fileupload-angular.js"></script>
-	<!-- The main application script -->
-	<script src="Content/js/vendor/jquery-file-upload/js/app.js"></script>
-
-	<script src="Content/js/minimal.min.js"></script>
-
-	<!-- Videos -->
-	<script src="Content/js/video.js"></script>
-	<script src="Content/js/jwplayer.js"></script>
-
-
-	<script>
-		$(function() {
-
-			//load wysiwyg editor
-			$('#input06').summernote(
+                                <button type="button" class="btn btn-primary start"
+                                        data-ng-click="submit()">
+                                    <i class="glyphicon glyphicon-upload"></i> <span>Bắt đầu</span>
+                                </button>
+                                <button type="button" class="btn btn-warning cancel"
+                                        data-ng-click="cancel()">
+                                    <i class="glyphicon glyphicon-ban-circle"></i> <span>Hủy</span>
+                                </button>
+                                <!-- The global file processing state -->
+                                <span class="fileupload-process"></span>
+                            </div>
+                            <!-- The global progress state -->
+                            <div class="col-lg-5 fade" data-ng-class="{in: active()}">
+                                <!-- The global progress bar -->
+                                <div class="progress progress-striped active"
+                                     data-file-upload-progress="progress()">
+                                    <div class="progress-bar progress-bar-success"
+                                         data-ng-style="{width: num + '%'}"></div>
+                                </div>
+                                <!-- The extended global progress state -->
+                                <div class="progress-extended">&nbsp;</div>
+                            </div>
+                        </div>
+                        <!-- The table listing the files available for upload/download -->
+                        <table class="table table-striped files ng-cloak">
+                            <tr data-ng-repeat="file in queue"
+                                data-ng-class="{'processing': file.$processing()}">
+                                <td data-ng-switch data-on="!!file.thumbnailUrl">
+                                    <div class="preview" data-ng-switch-when="true">
+                                        <a data-ng-href="{{file.url}}" title="{{file.name}}"
+                                           download="{{file.name}}" data-gallery>
+                                            <img data-ng-src="{{file.thumbnailUrl}}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="preview" data-ng-switch-default
+                                         data-file-upload-preview="file"></div>
+                                </td>
+                                <td>
+                                    <p class="name" data-ng-switch data-on="!!file.url">
+                                        <span data-ng-switch-when="true" data-ng-switch
+                                              data-on="!!file.thumbnailUrl">
+                                            <a data-ng-switch-when="true" data-ng-href="{{file.url}}"
+                                               title="{{file.name}}" download="{{file.name}}" data-gallery>{{file.name}}</a>
+                                            <a data-ng-switch-default data-ng-href="{{file.url}}"
+                                               title="{{file.name}}" download="{{file.name}}">{{file.name}}</a>
+                                        </span> <span data-ng-switch-default>{{file.name}}</span>
+                                    </p> <strong data-ng-show="file.error" class="error text-danger">{{file.error}}</strong>
+                                </td>
+                                <td>
+                                    <p class="size">{{file.size | formatFileSize}}</p>
+                                    <div class="progress progress-striped active fade"
+                                         data-ng-class="{pending: 'in'}[file.$state()]"
+                                         data-file-upload-progress="file.$progress()">
+                                        <div class="progress-bar progress-bar-success"
+                                             data-ng-style="{width: num + '%'}"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary start"
+                                            data-ng-click="file.$submit()"
+                                            data-ng-hide="!file.$submit || options.autoUpload"
+                                            data-ng-disabled="file.$state() == 'pending' || file.$state() == 'rejected'">
+                                        <i class="glyphicon glyphicon-upload"></i> <span>
+                                            Bắt
+                                            đầu
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-warning cancel"
+                                            data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
+                                        <i class="glyphicon glyphicon-ban-circle"></i> <span>Hủy</span>
+                                    </button>
+                                    <button data-ng-controller="FileDestroyController"
+                                            type="button" class="btn btn-danger destroy"
+                                            data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
+                                        <i class="glyphicon glyphicon-trash"></i> <span>Xóa</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="form-group form-footer">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <button type="submit" class="btn btn-green">Tải lên</button>
+                                <button type="reset" class="btn btn-red">Hủy</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- /Modal -->
+    <!-- Preloader -->
+    <div class="mask">
+        <div id="loader"></div>
+    </div>
+    <!--/Preloader -->
+    <!-- BEGIN NAVBAR -->
+    <div class="navbar navbar-fixed-top" role="navigation"
+         data-0="line-height:80px; height:80px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);"
+         data-300="line-height:40px; height:52px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
+
+        <div class="container">
+
+
+
+
+
+
+            <!-- Branding -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html"
+                   data-0="padding-top:23px;padding-left: 55px;background-position: 0 20px;background-size: 44px 44px;font-size: 24px;height: 80px;"
+                   data-300="padding-top: 10px;padding-left: 40px;background-position: 0 7px;background-size: 34px 34px;font-size: 16px; height: 50px;margin-top:0;">
+                    <strong>W</strong>ORLD <span class="subheading"
+                                                 data-0="font-size: 11px;line-height: 13px;"
+                                                 data-300="font-size: 9px;line-height: 8px;">Thế giới của mẹ</span>
+                </a>
+                <div class="navbar-toggle" data-toggle="collapse"
+                     data-target=".navbar-collapse">
+                    <a href="video.html#">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Branding end -->
+            <!--.navbar-collapse -->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li class="active">
+                        <a href="index.html"
+                           data-0="padding: 30px 25px 22px;"
+                           data-300="padding: 15px 25px 10px;">
+                            <img class="icon-nav"
+                                 src="Content/images/icon-nav/home.png"> Trang chủ
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="pre-pregnancy.html"
+                           data-0="padding: 30px 25px 22px;"
+                           data-300="padding: 15px 25px 10px;">
+                            <img class="icon-nav"
+                                 src="Content/images/icon-nav/motherhood.png"> Làm mẹ
+                        </a>
+                    </li>
+
+
+
+                    <li>
+                        <a href="advisory.html" data-0="padding: 30px 25px 22px;"
+                           data-300="padding: 15px 25px 10px;">
+                            <img class="icon-nav"
+                                 src="Content/images/icon-nav/advisory.png"> Tư vấn
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="video.html" data-0="padding: 30px 25px 22px;"
+                           data-300="padding: 15px 25px 10px;">
+                            <img class="icon-nav"
+                                 src="Content/images/icon-nav/video.png"> Video
+                        </a>
+                    </li>
+
+                    <li class="dropdown text-center user">
+                        <a href="personal-page.html"
+                           data-0="padding: 0px 5px 0px;border-bottom-width:0px;"
+                           data-300="padding: 0px 5px 0px;border-bottom-width:0px;"
+                           class="dropdown-toggle" data-toggle="dropdown">
+                            <div class="profile-photo">
+                                <img class="img-circle" src="Content/images/profile-photo.jpg"
+                                     data-0="padding: 0px;" data-300="padding: 3px;" ) " />
+                            </div> <span>Khoahn</span> <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu arrow settings">
+                            <li>
+                                <a href="timeline.html#">
+                                    <i class="fa fa-tachometer"></i>
+                                    Quá trình mang thai
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="personal-page.html#">
+                                    <i class="fa fa-user"></i>
+                                    Trang cá nhân
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="personal-page.html#">
+                                    <i class="fa fa-envelope"></i> Tin nhắn <span class="badge badge-red animated bounceIn">3</span>
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="index.html#">
+                                    <i class="fa fa-power-off"
+                                       style="float: right"></i> Đăng xuất
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="search">
+                        <input type="text" placeholder="&#61442;"
+                               data-0="margin-top:23px" data-300="margin-top:10px">
+                    </li>
+                </ul>
+            </div>
+            <!--/.navbar-collapse -->
+
+
+
+
+        </div>
+
+    </div>
+    <!-- END NAVBAR -->
+    <!-- BEGIN BREADCRUMBS -->
+    <div id="breadcrumbs" class="breadcrumbs bg-1">
+        <div class="container">
+
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i> Trang
+                        chủ
+                    </a>
+                </li>
+                <li class="active">Video</li>
+            </ol>
+
+            <h2>
+                <strong>Video</strong>
+            </h2>
+
+        </div>
+    </div>
+    <!-- END BREADCRUMBS -->
+    <!-- BEGIN .header -->
+    <header class="header dark">
+
+
+        <!-- BEGIN .video-slider -->
+        <div class="video-slider">
+            <!-- BEGIN .wrapper -->
+            <div class="wrapper">
+                <div class="slider-controls">
+                    <div class="video-slider-inline">
+
+                        <div class="otplayer-wrapper">
+                            <a href="index.html" class="video-overlay-logo">
+                                <img src="Content/images/video-images/overlay-logo.png" width="123"
+                                     height="28" alt="" ) " />
+                            </a>
+                            <video class="otplayer" preload="auto"
+                                   poster="Content/video/video-screen.png">
+                                <source src="Content/video/sintel-2048-surround.mp4"
+                                        type="video/mp4">
+                                <div id="videofallback">Loading the player...</div>
+                            </video>
+
+                            <div class="otplayer-controls">
+                                <div class="ot-inline-playpause">
+                                    <i class="fa fa-play"></i><i class="fa fa-pause"></i>
+                                </div>
+                                <div class="ot-inline-slider">
+                                    <div></div>
+                                </div>
+                                <div class="ot-inline-time">00:00</div>
+                                <div class="ot-inline-volume-controls">
+                                    <div class="ot-inline-volume">
+                                        <i class="fa fa-volume-up"></i> <i class="fa fa-volume-off"></i>
+                                    </div>
+                                    <div class="ot-inline-volume-slider">
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="ot-inline-fullscreen">
+                                    <i class="fa fa-desktop"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="video-slider-meta">
+                    <div class="video-slider-info right">
+                        <a href="video-detail.html" class="meta-click">
+                            <i class="fa fa-comments"></i> <strong>283</strong> Bình luận
+                        </a> <a href="video-detail.html" class="meta-click">
+                            <i class="fa fa-eye"></i> <strong>829</strong> Lượt xem
+                        </a> <a href="index.html#" class="ot-like-button">
+                            <i class="fa fa-heart"></i> Thích
+                        </a>
+                    </div>
+                    <h3>
+                        <a href="video-detail.html">Sintel</a>
+                    </h3>
+                </div>
+                <!-- END .wrapper -->
+            </div>
+
+        </div>
+
+        <!-- END .header -->
+    </header>
+
+    <!-- BEGIN .content -->
+    <section class="content">
+
+        <!-- BEGIN .wrapper -->
+        <div class="wrapper">
+
+            <div class="row">
+
+
+                <div class="col-md-12 text-right">
+                    <a href="ui-elements.html#modalAddNewVideo" role="button"
+                       class="btn btn-lg btn-warning" data-toggle="modal">
+                        <i class="fa fa-plus-circle"></i> Đăng video
+                    </a>
+                </div>
+            </div>
+            <hr class="post-divider">
+
+            <!-- BEGIN .with-sidebar-layout -->
+            <div class="with-sidebar-layout left">
+
+
+                <div class="content-panel">
+                    <div class="panel-title">
+                        <h2>Videos mới nhất</h2>
+                    </div>
+                    <div class="panel-block video-list grid">
+
+                        
+
+                        
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="video-detail.html"
+                                   class="img-hover-effect loadingvideo">
+                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/168/404/1684044_640.jpg" alt="" ) " />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="video-detail.html">Veil</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="video-detail.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="video-detail.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="video-detail.html"
+                                   class="img-hover-effect loadingvideo">
+                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/633/842/6338426_640.jpg" alt="" ) " />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="video-detail.html">Morphing</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="video-detail.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="video-detail.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="video-detail.html"
+                                   class="img-hover-effect loadingvideo">
+                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/300/148/30014869_640.jpg" alt="" ) " />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="video-detail.html">Flightpattern</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="video-detail.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="video-detail.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="video-detail.html"
+                                   class="img-hover-effect loadingvideo">
+                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="https://i1.ytimg.com/vi/dYw4meRWGd4/hqdefault.jpg" alt="" ) " />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="video-detail.html">GoPro: Red Bull Stratos</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="video-detail.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="video-detail.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="video-detail.html"
+                                   class="img-hover-effect loadingvideo">
+                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="https://i1.ytimg.com/vi/MNCzSfv4hX8/hqdefault.jpg" alt="" ) " />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="video-detail.html">GoPro: Lions</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="video-detail.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="video-detail.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="video-detail.html"
+                                   class="img-hover-effect loadingvideo">
+                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/146/971/146971214_640.jpg" alt="" ) " />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="video-detail.html">Breakfast Interrupted</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="video-detail.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="video-detail.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <div class="clear-list-button">
+                            <a href="browse.html" class="back-button">Xem Thêm Videos</a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- END .with-sidebar-layout -->
+            </div>
+
+            <!-- BEGIN #sidebar -->
+            <aside id="sidebar" class="right">
+
+
+                <!-- BEGIN .widget -->
+                <div class="widget">
+                    <h3>Videos nổi bật</h3>
+                    <div class="widget-videos">
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="video-detail.html" class="video-thumb loadingvideo">
+                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/160/609/160609628_640.jpg" alt="" ) " />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="video-detail.html">Manhattan in motion</a><a href="index.html#"><span class="marker">HD Videos</span></a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="video-detail.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="video-detail.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                       
+
+                    </div>
+                    <!-- END .widget -->
+                </div>
+
+
+
+
+
+
+                <!-- END #sidebar -->
+            </aside>
+
+            <!-- END .wrapper -->
+        </div>
+
+        <!-- BEGIN .content -->
+    </section>
+
+
+
+
+
+
+
+
+
+    <!-- FOOTER -->
+    <footer id="footer">
+
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-4">
+
+                        <div class="widget widget-about">
+                            <img class="img-responsive" src="Content/images/slider/1.png"
+                                 style="max-width: 80%;">
+                            <h1>
+                                <strong>Mom's </strong>World
+                            </h1>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="widget widget-photo-stream">
+                            <h4>
+                                Ảnh<strong> mới</strong>
+                            </h4>
+
+                            <div class="flickr-feed"></div>
+                            <a class="btn btn-green" href="Gallery.html">Xem thêm</a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="widget widget-contact">
+                            <h4>
+                                <strong>Liên hệ</strong> với chúng tôi
+                            </h4>
+                            <address>
+                                <strong>Địa chỉ :</strong> FPT_University - Đà Nẵng<br> <strong>
+                                    Điện
+                                    thoại :
+                                </strong> +84 01655757445<br> <strong>Email:</strong> <a href="mailto:exc-group@gmail.com">exc-group@gmail.com</a><br>
+                            </address>
+                        </div>
+
+                        <div class="widget widget-social">
+                            <a href="index.html#">
+                                <span class="overlay bg-cyan"></span>
+                                <i class="fa fa-twitter" style="padding-left: 10px;"></i>
+                            </a> <a href="index.html#">
+                                <span class="overlay bg-blue"></span><i class="fa fa-facebook" style="padding-left: 14px;"></i>
+                            </a> <a href="index.html#">
+                                <span class="overlay bg-red"></span><i class="fa fa-google-plus" style="padding-left: 10px;"></i>
+                            </a> <a href="index.html#">
+                                <span class="overlay"></span><i class="fa fa-flickr" style="padding-left: 10px;"></i>
+                            </a> <a href="index.html#">
+                                <span class="overlay bg-hotpink"></span><i class="fa fa-dribbble" style="padding-left: 10px;"></i>
+                            </a>
+                        </div>
+
+                        <div class="widget widget-newsletter">
+
+                            <h4>
+                                <strong>Nhận bản tin</strong>
+                            </h4>
+                            <p>
+                                Theo dõi bản tin của chúng tôi và luôn cập nhật các tin
+                                tức mới nhất !
+                            </p>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                       placeholder="NHập địa chỉ email của bạn"> <span class="input-group-btn">
+                                    <button class="btn btn-theme" type="button">Đăng kí</button>
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-12 copyright">
+                        &copy; Copyright 2014 by <a href="index.html#">KhoaHN</a>. All
+                        Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- END FOOTER -->
+    <!-- SCROLL TOP -->
+    <div class="scroll-top">
+        <a href="gallery.html#">
+            <i class="fa fa-angle-up"></i>
+        </a>
+    </div>
+    <!-- END SCROLL TOP -->
+
+
+    <script src="@Url.Content("~/Content/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js")"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery/jquery.js")"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="@Url.Content("~/Content/js/vendor/bootstrap/bootstrap.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/skrollr/skrollr.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/text-rotator/jquery.simple-text-rotator.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/owl-carousel/owl.carousel.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/nivo-lightbox/nivo-lightbox.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/tweet-js/jquery.tweet.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/vticker/jquery.vticker.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/jflickrfeed/jflickrfeed.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/appear/jquery.appear.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/parallax/jquery.parallax-1.1.3.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/mixitup/jquery.mixitup.js")"></script>
+
+    <script src="http://maps.google.com/maps/api/js?sensor=false"
+            type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/summernote/summernote.min.js")"></script>
+
+
+    <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/vendor/jquery.ui.widget.js")"></script>
+    <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/vendor/load-image.all.min.js")"></script>
+    <!-- The Canvas to Blob plugin is included for image resizing functionality -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/vendor/canvas-to-blob.min.js")"></script>
+    <!-- blueimp Gallery script -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/vendor/jquery.blueimp-gallery.min.js")"></script>
+    <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.iframe-transport.js")"></script>
+    <!-- The basic File Upload plugin -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.fileupload.js")"></script>
+    <!-- The File Upload processing plugin -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.fileupload-process.js")"></script>
+    <!-- The File Upload image preview & resize plugin -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.fileupload-image.js")"></script>
+    <!-- The File Upload audio preview plugin -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.fileupload-audio.js")"></script>
+    <!-- The File Upload video preview plugin -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.fileupload-video.js")"></script>
+    <!-- The File Upload validation plugin -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.fileupload-validate.js")"></script>
+    <!-- The File Upload Angular JS module -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.fileupload-angular.js")"></script>
+    <!-- The main application script -->
+    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/app.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/minimal.min.js")"></script>
+
+    <!-- Videos -->
+    <script src="@Url.Content("~/Content/js/video.js")"></script>
+    <script src="@Url.Content("~/Content/js/jwplayer.js")"></script>
+
+    <!-- Logic Code -->
+    <script src="@Url.Content("~/App/js/videoCtrl.js")"></script>
+
+
+    <script>
+        $(function () {
+
+            //load wysiwyg editor
+            $('#input06').summernote(
 					{
-						toolbar : [
+					    toolbar: [
 								//['style', ['style']], // no style button
 								[
 										'style',
-										[ 'bold', 'italic', 'underline',
-												'clear' ] ],
-								[ 'fontsize', [ 'fontsize' ] ],
-								[ 'color', [ 'color' ] ],
-								[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
-								[ 'height', [ 'height' ] ],
+										['bold', 'italic', 'underline',
+												'clear']],
+								['fontsize', ['fontsize']],
+								['color', ['color']],
+								['para', ['ul', 'ol', 'paragraph']],
+								['height', ['height']],
 						//['insert', ['picture', 'link']], // no insert buttons
 						//['table', ['table']], // no table button
 						//['help', ['help']] //no help button
-						],
-						height : 137
-					//set editable area's height
+					    ],
+					    height: 137
+					    //set editable area's height
 					});
 
-		})
-	</script>
+        })
+    </script>
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_MWLayout.cshtml";
     var top5Articles = ViewData["Top5Articles"] as List<MomWorld.Entities.Article>;
+    var currentUser = ViewData["CurrentUser"] as MomWorld.Models.ApplicationUser;
 }
 
 
@@ -873,7 +874,7 @@
         </a>
     </div>
     <!-- END SCROLL TOP -->
-
+    <a hidden id="username" data-id="@currentUser.UserName"></a>
 
     <script>
         //initialize datepicker
@@ -891,7 +892,16 @@
             $('.bootstrap-datetimepicker-widget').css('top', newtop + 'px');
         });
     </script>
+    <script>
+        /* Add User to Local Storage */
+        var u = {
+            Username: $('#username').attr('data-id'),
+            ProfileImage: 'http://localhost:4444/App/uploads/avatar/' + $('#username').attr('data-id') + '.png'
+        }
 
+        localStorage.setItem('currentUser', JSON.stringify(u));
+
+    </script>
 
 
     <script>
