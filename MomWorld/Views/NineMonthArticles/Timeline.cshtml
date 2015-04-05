@@ -207,7 +207,7 @@
                             <p class=""><a href="http://www.webtretho.com/forum/f92/chuan-doan-con-trai-hay-con-gai-qua-ngay-thang-thu-thai-phan-3-a-1242907/" target="_blank"><span>Dự đoán giới tính con qua ngày tháng thụ thai</span></a></p>
                         </li>
                     </ol>
-                    
+
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -373,6 +373,22 @@
 
 
     <section class="section">
+        @if (User.IsInRole("Admins"))
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button class="btn btn-warning">
+                            <i class="fa fa-plus-circle"></i> Thêm bài viết
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+
+        }
+
         <div class="timelineLoader">
             <img src="@Url.Content("~/Content/images/timeline/timeline/loadingAnimation.gif")" />
         </div>
@@ -384,9 +400,7 @@
                 {
                     <div class="item" data-id="@currentUser.DatePregnancy.Value.AddDays(item.Date).ToString("dd/MM/yyyy")" data-name="@currentUser.DatePregnancy.Value.AddDays(item.Date).ToString("dd")"
                          data-description="Ngày thứ @item.Date">
-                        <a class="image_rollover_bottom con_borderImage"
-                           data-description="ZOOM IN" href="@Url.Content("~/Content/images/page-images/4.jpg")"
-                           rel="lightbox[timeline]">
+                        <a class="image_rollover_bottom con_borderImage">
                             <img src="@Url.Content("~/Content/images/page-images/4.jpg")" class="img-responsive"
                                  alt="" />
                             >
