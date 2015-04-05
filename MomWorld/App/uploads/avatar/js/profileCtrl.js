@@ -4,6 +4,7 @@ var profileApp = angular.module('profileApp', ['angular-md5', 'firebase', 'angul
 
 profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', '$firebaseObject', '$firebaseArray', 'FileUploader', '$window',
 function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $window) {
+
     // Get User from Local Storage
     $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     $scope.currentUsername = $scope.currentUser.Username;
@@ -46,7 +47,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
                   console.log(JSON.stringify(data));
               }).
               error(function (data, status, headers, config) {
-                  alert("Update Fail");
+                  alert("Update CL");
               });
 
     }
@@ -150,7 +151,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
     }
 
     $scope.getBadge = function (username) {
-        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/");
+        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + username + "/Badge/");
         $scope.badgeFire = $firebaseArray(userFireTmp);
     }
 
