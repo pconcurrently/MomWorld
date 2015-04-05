@@ -37,13 +37,51 @@ namespace MomWorld.Controllers
             {
                 throw new HttpException(404, "Not Found");
             }
-            return View(nineMonthArticle);
+            if (nineMonthArticle.Tags == null)
+            {
+                return View(nineMonthArticle);
+            }
+            else
+            {
+                var articlesFromDb = articleDb.Articles.ToList();
+                var articles = new List<Article>();
+                string[] tagIdList = nineMonthArticle.Tags.Split(new string[] { ", " }, StringSplitOptions.None);
+                bool removed = true;
+                foreach (var item in articlesFromDb)
+                {
+                    foreach (var tag in tagIdList)
+                    {
+                        if (item.Tags != null && item.Tags.Contains(tag))
+                        {
+                            removed = false;
+                        }
+                    }
+                    if (!removed)
+                    {
+                        articles.Add(item);
+                        removed = true;
+                    }
+                }
+
+                ViewBag.Articles = articles;
+
+                Dictionary<string, string> tagsList = new Dictionary<string, string>();
+                foreach (var item in tagIdList)
+                {
+                    tagsList.Add(item, articleDb.Tags.ToList().FirstOrDefault(t => t.Id.Equals(item)).Name);
+                }
+                ViewBag.TagsList = tagsList;
+                ViewBag.TagIdList = tagIdList;
+
+                return View(nineMonthArticle);
+            }
         }
 
         // GET: NineMonthArticles/Create
         [Authorize(Roles = "Admins")]
         public ActionResult Create()
         {
+            ViewBag.TagsList = articleDb.Tags.ToList();
             ViewData["Tags"] = GetTags(null);
             return View();
         }
@@ -169,6 +207,12 @@ namespace MomWorld.Controllers
             return View();
         }
 
+        public JsonResult GetContent(string id)
+        {
+            var article = db.NineMonthArticles.ToList().FirstOrDefault(n => n.Id.Equals(id)) as NineMonthArticle;
+            return Json(article, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult SetDate(DateTime date)
         {
             try
@@ -196,7 +240,7 @@ namespace MomWorld.Controllers
         public static string ParseHtml(string html)
         {
 
-            html = html.Substring(0, html.IndexOf("</p>") - 1);
+            html = html.Substring(0, html.IndexOf("</p>"));
             var htmlSymbols = new string[] { "<br>", "<b>", "</b>", "<i>", "</i>", "<p>", "<p class=\"fr-tag\">", "</p>", "<hr>", "<strong>", "</strong>" };
             foreach (var item in htmlSymbols)
             {

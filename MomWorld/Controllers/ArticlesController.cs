@@ -94,6 +94,7 @@ namespace MomWorld.Controllers
         // GET: Articles/Create
         public ActionResult Create()
         {
+            ViewBag.TagsList = db.Tags.ToList();
             ViewData["Tags"] = GetTags(null);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
             return View();
@@ -188,6 +189,17 @@ namespace MomWorld.Controllers
                 throw new HttpException(404, "Not Found");
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", article.CategoryId);
+            if (article.Tags != null)
+            {
+                ViewBag.Tags2 = GetTags(article.Tags.Split(new string[] { ", " }, StringSplitOptions.None));
+                ViewBag.SelectedValues = article.Tags.Split(new string[] { ", " }, StringSplitOptions.None);
+            }
+            else
+            {
+                ViewBag.Tags2 = GetTags(null);
+            }
+
+            
             return View(article);
         }
 
@@ -197,12 +209,40 @@ namespace MomWorld.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,UserId,CategoryId,Title,Content,PostedDate,LastModifiedDate,ViewNumber,LastSeenUserId,Status,Description")] Article article)
+        public ActionResult Edit([Bind(Include = "Id,UserId,CategoryId,Title,Content,PostedDate,LastModifiedDate,ViewNumber,LastSeenUserId,Status,Description,Tags2")] Article article)
         {
+            //var article = db.Articles.FirstOrDefault(a => a.Id.Equals(model.Id));
+            //article.CategoryId = model.CategoryId;
+            //article.Title = model.Title;
+            //article.Content = model.Content;
+
+            if (article.Tags2 != null)
+            {
+
+                if (article.Tags2.Length < 1)
+                {
+                    article.Tags = string.Empty;
+                }
+                else if (article.Tags2.Length > 1)
+                {
+                    article.Tags = article.Tags2[0];
+                    for (var index = 1; index <= article.Tags2.Length - 1; index++)
+                    {
+                        article.Tags += ", " + article.Tags2[index];
+                    }
+                }
+                else
+                    article.Tags = article.Tags2[0];
+            }
+            else
+            {
+                article.Tags = string.Empty;
+            }
             article.LastModifiedDate = DateTime.Now;
             ApplicationUser currentUser = identityDb.Users.FirstOrDefault(x => x.UserName.Equals(User.Identity.Name));
             article.LastSeenUserId = currentUser.Id;
             article.LastModifiedUserId = currentUser.Id;
+            article.DescriptionImage = GetDescriptionImage(article.Content);
             if (ModelState.IsValid)
             {
                 db.Entry(article).State = EntityState.Modified;
@@ -248,7 +288,7 @@ namespace MomWorld.Controllers
         public static string ParseHtml(string html)
         {
 
-            html = html.Substring(0, html.IndexOf("</p>") - 1);
+            html = html.Substring(0, html.IndexOf("</p>"));
             var htmlSymbols = new string[] { "<br>", "<b>", "</b>", "<i>", "</i>", "<p>", "<p class=\"fr-tag\">", "</p>", "<hr>", "<strong>", "</strong>" };
             foreach (var item in htmlSymbols)
             {

@@ -16,4 +16,32 @@ namespace MomWorld.Models
 
         public string[] Tags { get; set; }
     }
+
+    public class EditArticleViewModel
+    {
+        public string Id { get; set; }
+        public string UserId { get; set; }
+
+        [Required]
+        public string CategoryId { get; set; }
+
+        [Required]
+        public string Title { get; set; }
+
+        [Required]
+        public string Content { get; set; }
+
+        public DateTime? PostedDate { get; set; }
+
+        public int? ViewNumber { get; set; }
+
+        public string Description { get; set; }
+
+
+        public int Status { get; set; }
+
+        public string[] Tags { get; set; }
+
+        public string DescriptionImage { get; set; }
+    }
 }

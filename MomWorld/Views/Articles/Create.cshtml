@@ -1,7 +1,7 @@
 ﻿@model MomWorld.Models.ArticleViewModel
 @{
     Layout = null;
-
+    var tags = ViewBag.TagsList as List<MomWorld.Entities.Tag>;
 }
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -128,6 +128,61 @@
 </head>
 
 <body>
+
+
+    <!-- Modal create TAG -->
+    <div class="modal fade" id="modalCreateTag" tabindex="-1"
+         role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
+         style="background: rgba(0, 0, 0, 0.75); top: 0px;">
+        <div class="modal-dialog" style="margin-top: 100px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        Thoát
+                    </button>
+                    <h3 class="modal-title" id="modalConfirmLabel">
+                        <strong>Thêm</strong> thẻ
+                    </h3>
+                </div>
+                <div class="modal-body">
+
+                    <!-- The file upload form used as target for the file upload widget -->
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label" for="videoTitle">Tên thẻ:</label> <input type="text"
+                                                                                                      class="form-control" id="tagName"
+                                                                                                      placeholder="Nhập tên thẻ ...">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label" for="comment">Mô tả:</label>
+                                <textarea class="form-control" rows="2" id="tagDescription"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group form-footer text-center">
+
+                            <button type="submit" class="btn btn-green" id="submitTag">Thêm</button>
+                            <button type="reset" class="btn btn-red">Hủy</button>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- Modal create TAG -->
+
+
     <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
@@ -251,6 +306,21 @@
     <!-- post PAGE -->
     <section class="section">
         <div class="container">
+
+            @if (User.IsInRole("Admins"))
+            {
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button data-target="#modalCreateTag"
+                                data-toggle="modal" class="btn btn-warning">
+                            <i class="fa fa-plus-circle"></i> Thêm thẻ
+                        </button>
+                    </div>
+                </div>
+            }
+
+            <hr class="post-divider">
+
             <div class="row">
                 <!-- post POSTS -->
                 <div class="col-sm-9 post-posts">
@@ -372,30 +442,15 @@
                         </div>
                         <div class="tile-body">
                             <ul class="tags sidebar-widget">
-                                <li>
-                                    <a href="post.html#">
-                                        <i class="fa fa-tags"></i>
-                                        Mong con
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post.html#">
-                                        <i class="fa fa-tags"></i>
-                                        Mang thai
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post.html#">
-                                        <i class="fa fa-tags"></i> Trẻ
-                                        sơ sinh
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post.html#">
-                                        <i class="fa fa-tags"></i>
-                                        Nuôi dạy con
-                                    </a>
-                                </li>
+                                @foreach (var item in tags)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Details", "Tags", routeValues: new { id = item.Id })">
+                                            <i class="fa fa-tags"></i>
+                                            @item.Name
+                                        </a>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </section>
@@ -500,6 +555,27 @@
                 inlineMode: false,
                 language: 'vn'
             })
+        });
+    </script>
+
+    <script>
+        $('#submitTag').click(function (e) {
+            e.preventDefault();
+            var name = $('#tagName').val();
+            var description = $('#tagDescription').val();
+            $.ajax({
+                url: '/Tags/Create',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ tag: { name: name, description: description } }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    window.location.reload(true);
+                },
+            });
         });
     </script>
 

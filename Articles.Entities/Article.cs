@@ -52,6 +52,8 @@ namespace MomWorld.Entities
 
         public string Tags { get; set; }
 
+        public string[] Tags2 { get; set; }
+
         public string DescriptionImage { get; set; }
     }
 
