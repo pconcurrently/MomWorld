@@ -1323,6 +1323,7 @@ h6,
     font-family: "Roboto Slab", serif;
     -webkit-font-smoothing: antialiased;
     font-weight: 300;
+    text-transform: uppercase;
 }
 h1.sans-serif,
 h2.sans-serif,
@@ -2297,7 +2298,31 @@ section.error .controls .btn {
     margin-top: 0;
 }
 .post-sidebar .sidebar-widget {
-    margin-bottom: 40px;
+    margin-bottom: 0px;
+}
+
+.post-sidebar .media:first-child {
+  margin-top: 0;
+}
+
+.post-sidebar .media:last-child{
+    border: none;
+}
+
+.post-sidebar .media{
+  border-bottom: 1px solid rgb(205, 205, 205);
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+    .post-sidebar .media .badge {
+        background: url('../images/ranking.png') no-repeat 2px rgba(0, 0, 0, 0);
+        
+        height: 30px;    
+        width: 30px;                    
+        background-size: 30px 30px;
+        color: red;
+        font-size: 16px;            
 }
 .post-sidebar .nav.categories > li > a {
     color: #8b8b8b;
