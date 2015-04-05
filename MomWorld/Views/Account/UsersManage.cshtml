@@ -2,6 +2,7 @@
     Layout = null;
     var users = ViewData["Users"] as List<MomWorld.Models.ApplicationUser>;
     var roles = ViewData["Roles"] as Dictionary<string, string>;
+    var adminRole = ViewData["AdminRole"] as string;
     // var role1 = ViewData["Roles1"]as List<IdentityUserRole>;
     /* Dictionary<string, string> enumstatus = new Dictionary<string, string>();
      foreach (var item in users)
@@ -107,24 +108,23 @@
 
 
 
-
-
-
                         <form class="profile-settings">
+
+
 
                             <div class="row">
 
                                 <div class="form-group col-sm-6">
                                     <label for="last-name">Họ</label> <input type="text"
-                                                                              class="form-control" id="last-name1">
+                                                                             class="form-control" id="last-name1">
                                 </div>
 
                                 <div class="form-group col-sm-6">
                                     <label for="first-name">Tên</label> <input type="text"
-                                                                              class="form-control" id="first-name1">
+                                                                               class="form-control" id="first-name1">
                                 </div>
 
-                                
+
 
                             </div>
 
@@ -134,23 +134,16 @@
 
                                 <div class="form-group col-sm-6">
                                     <label for="email">E-mail</label> <input type="email"
-                                                                             class="form-control" id="email1"
-                                                                             readonly>
+                                                                             class="form-control" id="email1">
                                 </div>
-
-
-                            </div>
-
-                            <div class="row">
-
                                 <div class="form-group col-sm-6">
                                     <label for="phone">Số điện thoại</label> <input type="text"
                                                                                     class="form-control" id="phone1">
                                     <span class="help-block">Ví dụ: +(84)1655757445</span>
                                 </div>
 
-                            </div>
 
+                            </div>
 
 
 
@@ -169,19 +162,31 @@
                                     <label for="username">Tên đăng nhập</label> <input type="text" class="form-control" id="username1">
                                 </div>
 
+                                <div class="form-group col-sm-6">
+
+                                    <label class=" control-label">Phân quyền</label>
+                                    <div class="">
+                                        <select class="chosen-select chosen-transparent form-control" id="roles1">
+                                            <option value="Users" class="selected">Người dùng</option>
+                                            <option value="Admins">Quản trị viên</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div class="row">
 
                                 <div class="form-group col-sm-6">
-                                    <label for="new-password">Mật khẩu</label> <input type="password" class="form-control" id="new-password">
+                                    <label for="new-password">Mật khẩu</label> <input type="password" class="form-control" id="new-password1">
                                 </div>
 
                                 <div class="form-group col-sm-6">
                                     <label for="new-password-repeat">
                                         Nhập lại mật khẩu
                                     </label> <input type="password" class="form-control"
-                                                    id="new-password-repeat">
+                                                    id="new-password-repeat1">
                                 </div>
 
                             </div>
@@ -190,12 +195,12 @@
                             <div class="row">
 
                                 <div class="form-group col-md-12 text-right">
-                                    <button class="btn btn-cyan start btn-md">
+                                    <button class="btn btn-cyan start btn-md" id="submitCreateUser">
                                         <i class="fa fa-refresh"></i> <span> Tạo</span>
                                     </button>
 
 
-                                    <button class="btn btn-red cancel btn-md">
+                                    <button class="btn btn-red cancel btn-md" type="reset">
                                         <i class="fa fa-times"></i> <span> Hủy</span>
                                     </button>
                                 </div>
@@ -219,8 +224,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
-
     <!-- Modal edit user  -->
     <div class="modal fade" id="modalEditUser" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
@@ -243,19 +246,8 @@
 
                         <form class="profile-settings">
 
-                            <div class="row text-center">
+                            <div class="row ">
 
-                                <div class="form-group col-sm-6 col-sm-offset-3">
-                                    <label for="first-name">Phân quyền</label>
-
-                                    <select class="chosen-select chosen-transparent form-control">
-
-                                        <option>Quản lí</option>
-                                        <option>Người dùng</option>
-                                        <option>Tư vấn viên</option>
-
-                                    </select>
-                                </div>
 
 
                             </div>
@@ -279,17 +271,6 @@
                                                                              readonly>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label for="country">Quốc gia</label> <select class="chosen-select form-control" id="country">
-                                        <option>Việt nam</option>
-                                        <option>Czech Republic</option>
-                                        <option>Poland</option>
-                                        <option>Hungary</option>
-                                        <option>Austria</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-sm-6">
                                     <label for="phone">Số điện thoại</label> <input type="text"
                                                                                     class="form-control" id="phone">
                                     <span class="help-block">Ví dụ: +(84)1655757445</span>
@@ -312,9 +293,13 @@
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    <label for="password">Mật khẩu cũ</label> <input type="password" class="form-control" id="password"
-                                                                                     value="123456789" readonly>
+                                    <label for='first-name'>Phân quyền</label>
+                                    <select class='chosen-select chosen-transparent form-control' id="roles">
+                                        <option value="Users">Người dùng</option>
+                                        <option value="Admins">Quản trị viên</option>
+                                    </select>
                                 </div>
+
                             </div>
                             <div class="row">
                                 <div class="form-group col-sm-6">
@@ -353,7 +338,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
     <!-- Modal thông báo xóa -->
     <div class="modal fade" id="modalDeleteNotice" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -388,7 +372,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
     <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
@@ -755,24 +738,24 @@
                                             <tbody>
                                                 @foreach (var user in users)
                                                 {
-                                                    <tr class="odd ">
-                                                        <td>@user.UserName</td>
-                                                        <td>@user.Email</td>
-                                                        <td>@roles[user.Id]</td>
-                                                        <td class="" id="@user.Id">@(user.Status == 1 ? "Bị khóa" : "Bình thường")</td>
-                                                        <td class="actions text-center">
-                                                            @if (!user.UserName.Equals("admin"))
-                                                            {
-                                                                <a class="ban" href="#" data-id="@user.Id">Khóa</a>
-                                                                <a href="#" class="unlock" data-id="@user.Id">Mở khóa</a>
-                                                            }
-                                                            <a href="#" class="editUser" data-id="@user.Id">Sửa</a>
-                                                            @if (!user.UserName.Equals("admin"))
-                                                            {
+                                                    if (!user.UserName.Equals("admin"))
+                                                    {
+                                                        <tr class="odd ">
+                                                            <td>@user.UserName</td>
+                                                            <td>@user.Email</td>
+                                                            <td>@roles[user.Id]</td>
+                                                            <td class="" id="@user.Id">@(user.Status == 1 ? "Bị khóa" : "Bình thường")</td>
+                                                            <td class="actions text-center">
+                                                                @if (!user.Roles.ToList()[0].RoleId.Equals(adminRole))
+                                                                {
+                                                                    <a class="ban" href="#" data-id="@user.Id">Khóa</a>
+                                                                    <a href="#" class="unlock" data-id="@user.Id">Mở khóa</a>
+                                                                }
+                                                                <a href="#" class="editUser" data-id="@user.Id">Sửa</a>
                                                                 <a class="delete" href="#" data-id="@user.Id">Xóa</a>
-                                                            }
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                        </tr>
+                                                    }
                                                 }
                                             </tbody>
                                         </table>
@@ -1162,6 +1145,7 @@
         $(".chosen-select").chosen({ disable_search_threshold: 10 });</script>
     <script type="text/javascript">
         $(window).load(function () {
+
             $('.editUser').click(function () {
                 var id = $(this).attr('data-id');
                 $.ajax({
@@ -1175,13 +1159,24 @@
                         $('#phone').attr('value', data.Phone);
                         $('#username').attr('value', data.UserName);
 
+                        $('#roles').chosen();
+
+                        if (data.Role == "Users") {
+                            $('#roles').val("Users");
+                            $('#roles').trigger("chosen:updated");
+                        }
+                        else {
+                            $('#roles').val("Admins");
+                            $('#roles').trigger("chosen:updated");
+                        }
                         $('#modalEditUser').modal('show');
                     }
                 });
 
             });
 
-            $('#submitUserInfo').click(function () {
+            $('#submitUserInfo').click(function (e) {
+                e.preventDefault();
                 var firstname = $('#first-name').val();
                 var lastname = $('#last-name').val();
                 var email = $('#email').val();
@@ -1189,12 +1184,7 @@
                 var username = $('#username').val();
                 var password = $('#new-password').val();
                 var passwordConfirm = $('#new-password-repeat').val();
-                console.log(JSON.stringify({
-                    model: {
-                        UserName: username, FirsName: firstname, LastName: lastname,
-                        Email: email, Phone: phone, Password: password, ConfirmPassword: passwordConfirm
-                    }
-                }));
+                var role = $('#roles').val();
                 $.ajax({
                     url: '/Account/Update',
                     dataType: "json",
@@ -1202,7 +1192,7 @@
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify({
                         model: {
-                            UserName: username, FirstName: firstname, LastName: lastname, Email: email, Phone: phone, Password: password, ConfirmPassword: passwordConfirm
+                            UserName: username, FirstName: firstname, LastName: lastname, Email: email, Phone: phone, Password: password, ConfirmPassword: passwordConfirm, Role: role
                         }
                     }),
                     async: true,
@@ -1269,12 +1259,43 @@
             });
 
             $('#addUser').click(function () {
-                $('#modalCreateUser').
+                $('#modalCreateUser').modal('show');
             });
+
+            $('#submitCreateUser').click(function () {
+                var firstname = $('#first-name1').val();
+                var lastname = $('#last-name1').val();
+                var email = $('#email1').val();
+                var phone = $('#phone1').val();
+                var username = $('#username1').val();
+                var password = $('#new-password1').val();
+                var passwordConfirm = $('#new-password-repeat1').val();
+                var role = $('#roles1').val();
+
+                $.ajax({
+                    url: '/Account/Create',
+                    dataType: "json",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({
+                        model: {
+                            UserName: username, FirstName: firstname, LastName: lastname, Email: email, Phone: phone, Password: password, ConfirmPassword: passwordConfirm, Role: role
+                        }
+                    }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function () {
+                        window.location.reload();
+                    }
+                });
+
+            });
+
+
 
         });
     </script>
-
 
 </body>
 </html>
