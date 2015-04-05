@@ -1,5 +1,6 @@
 ﻿using MomWorld.DataContexts;
 using MomWorld.Entities;
+using MomWorld.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,11 @@ namespace MomWorld.Controllers
                 var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
                 ViewData["CurrentUser"] = user;
             }
-            
+            else
+            {
+                //Fix sau
+                ViewData["CurrentUser"] = new ApplicationUser();
+            }
 
             return View();
         }
