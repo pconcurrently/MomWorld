@@ -256,7 +256,6 @@ namespace MomWorld.Controllers
             }
             return html;
         }
-    }
 
         public static string GetDescriptionImage(string html)
         {
