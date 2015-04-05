@@ -1323,7 +1323,7 @@ h6,
     font-family: "Roboto Slab", serif;
     -webkit-font-smoothing: antialiased;
     font-weight: 300;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 h1.sans-serif,
 h2.sans-serif,
