@@ -1,4 +1,4 @@
-﻿.quizz-main{text-align:center;background: white;/* padding: 0 10px; */border: 3px solid rgb(83, 208, 253);    border-radius: 10px;}
+﻿.quizz-main{text-align:center;background: white;/* padding: 0 10px; *//* border: 3px solid rgb(83, 208, 253); */    border-radius: 10px;}
 
 .header-right{
     padding-top:12px;
@@ -13,14 +13,21 @@
 }
 
 .ng-scope h1{
-    /* border-bottom: 4px solid green; */
+    border-bottom: 4px rgb(132, 218, 255);
     
     /* display: inline-block; */
     padding: 20px 0;
     font-size: 32px;
-    background: rgb(83, 208, 253);
+    /* background: rgb(83, 208, 253); */
     margin: 0;
-    color: white;
+    color: rgb(97, 97, 97);
+    border-bottom-style: double;
+}
+
+.quizz-footer{
+    padding:15px;
+    border-top: 3px rgb(132, 218, 255);
+    border-top-style: double;
 }
 
 .question{
@@ -45,7 +52,7 @@
     width: 50%;
 }
     #quiz .options > div > label {
-        background-color: #CBF1FF;
+        background-color: #CBFFD8;
         color: #224;
         cursor: pointer;
         display: block;
