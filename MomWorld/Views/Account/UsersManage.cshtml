@@ -1545,8 +1545,8 @@
         //chosen select input
         $(".chosen-select").chosen({ disable_search_threshold: 10 });</script>
     <script type="text/javascript">
-        $(window).load(function () {
-
+        $(window).load(function (e) {
+            e.preventDefault();
             $('.editUser').click(function () {
                 var id = $(this).attr('data-id');
                 $.ajax({
@@ -1663,7 +1663,8 @@
                 $('#modalCreateUser').modal('show');
             });
 
-            $('#submitCreateUser').click(function () {
+            $('#submitCreateUser').click(function (e) {
+                e.preventDefault();
                 var firstname = $('#first-name1').val();
                 var lastname = $('#last-name1').val();
                 var email = $('#email1').val();

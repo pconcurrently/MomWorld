@@ -684,6 +684,7 @@ namespace MomWorld.Controllers
             }
         }
 
+        [AllowAnonymous]
         private bool HasPassword()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
