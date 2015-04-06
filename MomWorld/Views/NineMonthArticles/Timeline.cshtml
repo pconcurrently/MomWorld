@@ -137,7 +137,7 @@
                         <strong id="date">Tuần 1</strong>
                     </h3>
                 </div>
-                <div class="modal-body" id="modalBody"> 
+                <div class="modal-body" id="modalBody">
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -314,7 +314,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <hr>
 
         }
@@ -333,13 +333,14 @@
                         <a class="image_rollover_bottom con_borderImage" href="#" data-id="@item.Id">
                             <img src="@Url.Content("~/Content/images/page-images/4.jpg")" class="img-responsive"
                                  alt="" />
-                            >
+                            
                         </a>
                         <h2>Ngày thứ @item.Date</h2>
                         <span>
                             @item.Description
                         </span>
-                        <div class="read_more" data-id="@item.Id">Xem thêm</div>
+                        <button class="btn btn-red btn-xs">Xem thêm</button>
+                        <div class="read_more btn-xs" data-id="@item.Id">Bài viết liên quan</div>
                     </div>
                     <div class="item_open" data-id="@currentUser.DatePregnancy.Value.AddDays(item.Date)"
                          data-access="timeline-content.html?item=4">
@@ -602,7 +603,7 @@
             $("#addNewArticle").click(function () {
                 window.location.href = "/NineMonthArticles/Create";
             });
-            
+
         });</script>
 
 </body>

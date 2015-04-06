@@ -13,11 +13,10 @@
 
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/ico" href="@Url.Content("~/Content/images/favicon.png")"/>
+<link rel="icon" type="image/ico" href="@Url.Content("~/Content/images/favicon.png")")"/>
 
-<link href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap.min.css")") rel="stylesheet" ">
-<link
-	href="@Url.Content("~/Content/css/vendor/font-awesome-4.2.0/css/font-awesome.min.css")") rel="stylesheet">
+<link href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap.min.css")") rel="stylesheet" >
+<link href="@Url.Content("~/Content/css/vendor/font-awesome-4.2.0/css/font-awesome.min.css")" rel="stylesheet">
 <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/animate/animate.css")")">
 <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/bootstrap-checkbox.css")")">
 <link rel="stylesheet"
@@ -37,12 +36,10 @@
 <link rel="stylesheet"
 	href="@Url.Content("~/Content/js/vendor/nivo-lightbox/css/nivo-lightbox.css")")">
 <link rel="stylesheet"
-	href="@Url.Content("~/Content/js/vendor/nivo-lightbox/css/themes/default/default.css")")") "/>
+	href="@Url.Content("~/Content/js/vendor/nivo-lightbox/css/themes/default/default.css")")"/>
 
 <link rel="stylesheet"
 	href="@Url.Content("~/Content/js/vendor/summernote/css/summernote.css")">
-<link rel="stylesheet"
-	href="@Url.Content("~/Content/js/vendor/summernote/css/summernote-bs3.css")">
 
 <!-- CUSTOM STYLE -->
 <link rel="stylesheet" href="@Url.Content("~/Content/css/main.css")">
@@ -78,7 +75,7 @@
 		href="@Url.Content("~/Content/js/vendor/jquery-file-upload/css/jquery.fileupload-ui-noscript.css")">
 </noscript>
 
-<link rel="stylesheet" href="@Url.Content("~/Content/css/video.css")") "/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/video.css")"/>
 
 </head>
 
@@ -131,7 +128,7 @@
                                 <!-- The fileinput-button span is used to style the file input field as button -->
                                 <span class="btn btn-success fileinput-button"
                                       ng-class="{disabled: disabled}">
-                                    <i class="glyphicon glyphicon-plus"></i> <span>Chọn video</span> <input type="file" nv-file-select uploader="uploader" ) " />
+                                    <i class="glyphicon glyphicon-plus"></i> <span>Chọn video</span> <input type="file" nv-file-select uploader="uploader"  />
                                 </span>
 
                                 <div class="form-group col-sm-6">
@@ -174,7 +171,7 @@
                                     <div class="preview" data-ng-switch-when="true">
                                         <a data-ng-href="{{file.url}}" title="{{file.name}}"
                                            download="{{file.name}}" data-gallery>
-                                            <img data-ng-src="{{file.thumbnailUrl}}" alt="">
+                                            <img data-ng-src="{{file.thumbnailUrl}}" >
                                         </a>
                                     </div>
                                     <div class="preview" data-ng-switch-default
@@ -282,7 +279,7 @@
                            data-0="padding: 30px 25px 22px;"
                            data-300="padding: 15px 25px 10px;">
                             <img class="icon-nav"
-                                 src="Content/images/icon-nav/home.png"> Trang chủ
+                                 src="@Url.Content("~/Content/images/icon-nav/home.png")")"> Trang chủ
                         </a>
                     </li>
 
@@ -291,7 +288,7 @@
                            data-0="padding: 30px 25px 22px;"
                            data-300="padding: 15px 25px 10px;">
                             <img class="icon-nav"
-                                 src="Content/images/icon-nav/motherhood.png"> Làm mẹ
+                                 src="@Url.Content("~/Content/images/icon-nav/motherhood.png")")"> Làm mẹ
                         </a>
                     </li>
 
@@ -301,7 +298,7 @@
                         <a href="advisory.html" data-0="padding: 30px 25px 22px;"
                            data-300="padding: 15px 25px 10px;">
                             <img class="icon-nav"
-                                 src="Content/images/icon-nav/advisory.png"> Tư vấn
+                                 src="@Url.Content("~/Content/images/icon-nav/advisory.png")")"> Tư vấn
                         </a>
                     </li>
 
@@ -309,7 +306,7 @@
                         <a href="video.html" data-0="padding: 30px 25px 22px;"
                            data-300="padding: 15px 25px 10px;">
                             <img class="icon-nav"
-                                 src="Content/images/icon-nav/video.png"> Video
+                                 src="@Url.Content("~/Content/images/icon-nav/video.png")")"> Video
                         </a>
                     </li>
 
@@ -319,8 +316,8 @@
                            data-300="padding: 0px 5px 0px;border-bottom-width:0px;"
                            class="dropdown-toggle" data-toggle="dropdown">
                             <div class="profile-photo">
-                                <img class="img-circle" src="Content/images/profile-photo.jpg"
-                                     data-0="padding: 0px;" data-300="padding: 3px;" ) " />
+                                <img class="img-circle" src="@Url.Content("~/Content/images/profile-photo.jpg")"
+                                     data-0="padding: 0px;" data-300="padding: 3px;"  />
                             </div> <span>Khoahn</span> <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu arrow settings">
@@ -404,12 +401,12 @@
 
                         <div class="otplayer-wrapper">
                             <a href="index.html" class="video-overlay-logo">
-                                <img src="Content/images/video-images/overlay-logo.png" width="123"
-                                     height="28" alt="" ) " />
+                                <img src="@Url.Content("~/Content/images/video-images/overlay-logo.png")" width="123"
+                                     height="28"  )  />
                             </a>
                             <video class="otplayer" preload="auto"
-                                   poster="Content/video/video-screen.png">
-                                <source src="Content/video/sintel-2048-surround.mp4"
+                                   poster="Content/video/video-screen.png")")">
+                                <source src="@Url.Content("~/Content/video/sintel-2048-surround.mp4")"
                                         type="video/mp4">
                                 <div id="videofallback">Loading the player...</div>
                             </video>
@@ -440,16 +437,16 @@
                 </div>
                 <div class="video-slider-meta">
                     <div class="video-slider-info right">
-                        <a href="video-detail.html" class="meta-click">
+                        <a href="#" class="meta-click">
                             <i class="fa fa-comments"></i> <strong>283</strong> Bình luận
-                        </a> <a href="video-detail.html" class="meta-click">
+                        </a> <a href="#" class="meta-click">
                             <i class="fa fa-eye"></i> <strong>829</strong> Lượt xem
                         </a> <a href="index.html#" class="ot-like-button">
                             <i class="fa fa-heart"></i> Thích
                         </a>
                     </div>
                     <h3>
-                        <a href="video-detail.html">Sintel</a>
+                        <a href="#">Sintel</a>
                     </h3>
                 </div>
                 <!-- END .wrapper -->
@@ -495,21 +492,21 @@
                         <!-- BEGIN .item -->
                         <div class="item">
                             <div class="item-header">
-                                <a href="video-detail.html"
+                                <a href="#"
                                    class="img-hover-effect loadingvideo">
-                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
                                          height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/168/404/1684044_640.jpg" alt="" ) " />
+                                         rel="http://b.vimeocdn.com/ts/168/404/1684044_640.jpg")" />
                                 </a>
                             </div>
                             <div class="item-content">
                                 <h3>
-                                    <a href="video-detail.html">Veil</a>
+                                    <a href="#">Veil</a>
                                 </h3>
                                 <span class="video-meta">
-                                    <a href="video-detail.html">
+                                    <a href="#">
                                         <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
+                                    </a> <a href="#">
                                         <i class="fa fa-eye"></i>829
                                     </a> <a href="index.html#">
                                         <i class="fa fa-heart"></i>95
@@ -528,21 +525,21 @@
                         <!-- BEGIN .item -->
                         <div class="item">
                             <div class="item-header">
-                                <a href="video-detail.html"
+                                <a href="#"
                                    class="img-hover-effect loadingvideo">
-                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
                                          height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/633/842/6338426_640.jpg" alt="" ) " />
+                                         rel="http://b.vimeocdn.com/ts/633/842/6338426_640.jpg")"/>
                                 </a>
                             </div>
                             <div class="item-content">
                                 <h3>
-                                    <a href="video-detail.html">Morphing</a>
+                                    <a href="#">Morphing</a>
                                 </h3>
                                 <span class="video-meta">
-                                    <a href="video-detail.html">
+                                    <a href="#">
                                         <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
+                                    </a> <a href="#">
                                         <i class="fa fa-eye"></i>829
                                     </a> <a href="index.html#">
                                         <i class="fa fa-heart"></i>95
@@ -561,21 +558,21 @@
                         <!-- BEGIN .item -->
                         <div class="item">
                             <div class="item-header">
-                                <a href="video-detail.html"
+                                <a href="#"
                                    class="img-hover-effect loadingvideo">
-                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
                                          height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/300/148/30014869_640.jpg" alt="" ) " />
+                                         rel="http://b.vimeocdn.com/ts/300/148/30014869_640.jpg")"   />
                                 </a>
                             </div>
                             <div class="item-content">
                                 <h3>
-                                    <a href="video-detail.html">Flightpattern</a>
+                                    <a href="#">Flightpattern</a>
                                 </h3>
                                 <span class="video-meta">
-                                    <a href="video-detail.html">
+                                    <a href="#">
                                         <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
+                                    </a> <a href="#">
                                         <i class="fa fa-eye"></i>829
                                     </a> <a href="index.html#">
                                         <i class="fa fa-heart"></i>95
@@ -594,21 +591,21 @@
                         <!-- BEGIN .item -->
                         <div class="item">
                             <div class="item-header">
-                                <a href="video-detail.html"
+                                <a href="#"
                                    class="img-hover-effect loadingvideo">
-                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
                                          height="9" class="aspect-px"
-                                         rel="https://i1.ytimg.com/vi/dYw4meRWGd4/hqdefault.jpg" alt="" ) " />
+                                         rel="https://i1.ytimg.com/vi/dYw4meRWGd4/hqdefault.jpg")"   />
                                 </a>
                             </div>
                             <div class="item-content">
                                 <h3>
-                                    <a href="video-detail.html">GoPro: Red Bull Stratos</a>
+                                    <a href="#">GoPro: Red Bull Stratos</a>
                                 </h3>
                                 <span class="video-meta">
-                                    <a href="video-detail.html">
+                                    <a href="#">
                                         <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
+                                    </a> <a href="#">
                                         <i class="fa fa-eye"></i>829
                                     </a> <a href="index.html#">
                                         <i class="fa fa-heart"></i>95
@@ -627,21 +624,21 @@
                         <!-- BEGIN .item -->
                         <div class="item">
                             <div class="item-header">
-                                <a href="video-detail.html"
+                                <a href="#"
                                    class="img-hover-effect loadingvideo">
-                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
                                          height="9" class="aspect-px"
-                                         rel="https://i1.ytimg.com/vi/MNCzSfv4hX8/hqdefault.jpg" alt="" ) " />
+                                         rel="https://i1.ytimg.com/vi/MNCzSfv4hX8/hqdefault.jpg")"   />
                                 </a>
                             </div>
                             <div class="item-content">
                                 <h3>
-                                    <a href="video-detail.html">GoPro: Lions</a>
+                                    <a href="#">GoPro: Lions</a>
                                 </h3>
                                 <span class="video-meta">
-                                    <a href="video-detail.html">
+                                    <a href="#">
                                         <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
+                                    </a> <a href="#">
                                         <i class="fa fa-eye"></i>829
                                     </a> <a href="index.html#">
                                         <i class="fa fa-heart"></i>95
@@ -660,21 +657,21 @@
                         <!-- BEGIN .item -->
                         <div class="item">
                             <div class="item-header">
-                                <a href="video-detail.html"
+                                <a href="#"
                                    class="img-hover-effect loadingvideo">
-                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
                                          height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/146/971/146971214_640.jpg" alt="" ) " />
+                                         rel="http://b.vimeocdn.com/ts/146/971/146971214_640.jpg")"   />
                                 </a>
                             </div>
                             <div class="item-content">
                                 <h3>
-                                    <a href="video-detail.html">Breakfast Interrupted</a>
+                                    <a href="#">Breakfast Interrupted</a>
                                 </h3>
                                 <span class="video-meta">
-                                    <a href="video-detail.html">
+                                    <a href="#">
                                         <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
+                                    </a> <a href="#">
                                         <i class="fa fa-eye"></i>829
                                     </a> <a href="index.html#">
                                         <i class="fa fa-heart"></i>95
@@ -713,20 +710,20 @@
                         <!-- BEGIN .item -->
                         <div class="item">
                             <div class="item-header">
-                                <a href="video-detail.html" class="video-thumb loadingvideo">
-                                    <img src="Content/images/video-images/aspect-px.png" width="16"
+                                <a href="#" class="video-thumb loadingvideo">
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
                                          height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/160/609/160609628_640.jpg" alt="" ) " />
+                                         rel="http://b.vimeocdn.com/ts/160/609/160609628_640.jpg")"   />
                                 </a>
                             </div>
                             <div class="item-content">
                                 <h3>
-                                    <a href="video-detail.html">Manhattan in motion</a><a href="index.html#"><span class="marker">HD Videos</span></a>
+                                    <a href="#">Manhattan in motion</a><a href="index.html#"><span class="marker">HD Videos</span></a>
                                 </h3>
                                 <span class="video-meta">
-                                    <a href="video-detail.html">
+                                    <a href="#">
                                         <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
+                                    </a> <a href="#">
                                         <i class="fa fa-eye"></i>829
                                     </a> <a href="index.html#">
                                         <i class="fa fa-heart"></i>95
@@ -774,7 +771,7 @@
                     <div class="col-md-4">
 
                         <div class="widget widget-about">
-                            <img class="img-responsive" src="Content/images/slider/1.png"
+                            <img class="img-responsive" src="@Url.Content("~/Content/images/slider/1.png")"
                                  style="max-width: 80%;">
                             <h1>
                                 <strong>Mom's </strong>World

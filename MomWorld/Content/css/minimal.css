@@ -5327,7 +5327,7 @@ menu .btn .fa {
 }
 
 .navbar .navbar-nav.quick-actions > li.user {  
-  padding-left: 50px;
+  /* padding-left: 50px; */
 }
 
 .navbar .navbar-nav.quick-actions .label {
