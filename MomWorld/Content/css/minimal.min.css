@@ -2130,6 +2130,7 @@ section.twitter-holder .twitter-feed .tweet_list > li a {
     background: #418bca;
 }
 .mix-grid .mix {
+    width: 100%;
     display: none;
     position: relative;
     overflow: hidden;

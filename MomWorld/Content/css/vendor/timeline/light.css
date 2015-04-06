@@ -228,7 +228,7 @@
 }
 .timelineLight .item .read_more {
 	padding:2px 8px 2px 10px;
-	font-size:20px;
+	/* font-size:20px; */
 	float: right;
 	margin-right: 25%;
 	color:#ffffff;
