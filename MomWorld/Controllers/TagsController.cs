@@ -14,6 +14,7 @@ namespace MomWorld.Controllers
     public class TagsController : Controller
     {
         private ArticleDb db = new ArticleDb();
+        private CommentDb commentDb = new CommentDb();
 
         // GET: Tags
         public ActionResult Index()
@@ -33,6 +34,11 @@ namespace MomWorld.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Tags = db.Tags.ToList();
+            ViewBag.Tag = tag;
+            ViewBag.Articles = db.Articles.ToList().FindAll(a => a.Tags!= null && a.Tags.Contains(id));
+            ViewBag.Comments = commentDb.Comments.ToList();
+
             return View(tag);
         }
 
@@ -46,17 +52,16 @@ namespace MomWorld.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] Tag tag)
+        public JsonResult Create([Bind(Include = "Id,Name,Description")] Tag tag)
         {
             if (ModelState.IsValid)
             {
                 db.Tags.Add(tag);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(tag);
             }
 
-            return View(tag);
+            return Json(null);
         }
 
         // GET: Tags/Edit/5
