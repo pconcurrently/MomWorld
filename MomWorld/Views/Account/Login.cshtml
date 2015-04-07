@@ -31,7 +31,7 @@
         }
     </style>
 </head>
-<body class="bg-1">
+<body class="bg-2">
     <!-- Wrap all page content here -->
     <div id="wrap">
         <!-- Make page fluid -->
@@ -77,13 +77,13 @@
                             </div>
                             <a href="password-recovery.html#">Quên mật khẩu ?</a>
                         </section>
-                        
-                        
-                        
+
+    <section class="log-in">
+        <button type="submit" class="btn btn-greensea"><i class="fa fa-sign-in"></i> Đăng nhập</button>
+    </section>
+
                     }
-                    <section class="log-in">
-                        <button type="submit" class="btn btn-greensea"><i class="fa fa-sign-in"></i> Đăng nhập</button>
-                    </section>
+                    
                     <section class="log-in">
                         <h4>ĐĂNG NHẬP BẰNG</h4>
                         @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
