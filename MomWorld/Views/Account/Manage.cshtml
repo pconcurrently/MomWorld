@@ -461,14 +461,29 @@
                                 <!-- /tile widget -->
                                 <!-- tile body -->
                                 <div class="tile-body color transparent-black textured rounded-bottom-corners">
-                                    <ul class="inline divided social-feed text-center">
+                                    <ul class="inline text-center">
 
-                                        <li style="display: inline-block; width: 100%; font-size: 20px;">
-                                            <h4>
-                                                <img alt="" src="Content/images/armorial/1.png"
-                                                     style="height: 50px; width: 50px;">
-                                            </h4> Number One
+                                        <li>
+                                            <img alt="" src="@Url.Content("~/Content/images/badge/dinhduong.png")"
+                                                 style="height: 50px; width: 50px;">                                            
                                         </li>
+                                        <li>
+                                            <img alt="" src="@Url.Content("~/Content/images/badge/yte.png")"
+                                                 style="height: 50px; width: 50px;">
+                                        </li>
+                                        <li>
+                                            <img alt="" src="@Url.Content("~/Content/images/badge/mangthai.png")"
+                                                 style="height: 50px; width: 50px;">
+                                        </li>
+                                        <li>
+                                            <img alt="" src="@Url.Content("~/Content/images/badge/suckhoe.png")"
+                                                 style="height: 50px; width: 50px;">
+                                        </li>
+                                        <li>
+                                            <img alt="" src="@Url.Content("~/Content/images/badge/treem.png")"
+                                                 style="height: 50px; width: 50px;">
+                                        </li>
+                                        
 
                                     </ul>
                                 </div>
@@ -741,7 +756,7 @@
                                                     </ul>
                                                 </div>
 
-                                                
+
 
                                             </div>
 
@@ -902,14 +917,14 @@
                                                     <div class="row" ng-repeat="badge in badgeFire"
                                                          style="border: 3px solid rgba(0, 0, 0, 0.5);">
                                                         <div ng-if="badge.Status == 'done'">
-                                                        	<div class="col-xs-6 col-md-2">
-                                                        	    <img alt="" ng-src="{{badge.Image}}"
-                                                        	         style="height: 80px; width: 80px;">
-                                                        	</div>
-                                                        	<div class="col-xs-6 col-md-10">
-                                                        	    <h4>{{badge.Name}}</h4>
-                                                        	    Chúc mừng, bạn là một người tuyệt vời
-                                                        	</div>
+                                                            <div class="col-xs-6 col-md-2">
+                                                                <img alt="" ng-src="{{badge.Image}}"
+                                                                     style="height: 80px; width: 80px;">
+                                                            </div>
+                                                            <div class="col-xs-6 col-md-10">
+                                                                <h4>{{badge.Name}}</h4>
+                                                                Chúc mừng, bạn là một người tuyệt vời
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -1369,13 +1384,6 @@
 
     </div>
     <!-- Wrap all page content end -->
-
-
-
-   
-
-
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="@Url.Content("~/Content/js/vendor/jquery/jquery.js")"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
