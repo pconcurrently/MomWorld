@@ -72,7 +72,7 @@ namespace MomWorld.Controllers
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
-                    if (user.Status == (int)IdentityStatus.Locked)
+                    if (user.Status == (int)IdentityStatus.Locked || user.EmailConfirmed)
                     {
                         return RedirectToAction("LockedUser");
                     }
@@ -126,20 +126,22 @@ namespace MomWorld.Controllers
                 UserManager.AddToRole(user.Id, "Users");
                 if (result.Succeeded)
                 {
-                    await SignInAsync(user, isPersistent: false);
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
 
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(
+                        new System.Net.Mail.MailAddress("momworld.notreply@gmail.com", "Mom's World"),
+                        new System.Net.Mail.MailAddress(user.Email));
+                    m.Subject = "Mom's World Email confirmation";
+                    m.Body = "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>";
+                    m.IsBodyHtml = true;
+                    System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");
+                    smtp.Credentials = new System.Net.NetworkCredential("momworld.notreply@gmail.com", "Abcd1234@");
+                    smtp.EnableSsl = true;
+                    smtp.Send(m);
+                    return View("DisplayEmail");
                 }
-                else
-                {
-                    AddErrors(result);
-                }
+                AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
@@ -185,10 +187,10 @@ namespace MomWorld.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                var user = await UserManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    ModelState.AddModelError("", "The user either does not exist or is not confirmed.");
+                    ModelState.AddModelError("", "Tài khoản không tồn tại hoặc chưa được xác nhận email");
                     return View();
                 }
 
@@ -196,7 +198,17 @@ namespace MomWorld.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(
+     new System.Net.Mail.MailAddress("momworld.notreply@gmail.com", "Mom's World"),
+     new System.Net.Mail.MailAddress(user.Email));
+                m.Subject = "Mom's World Reset password";
+                m.Body = "Please reset your password at this: <a href=\"" + callbackUrl + "\">link</a>";
+                m.IsBodyHtml = true;
+                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");
+                smtp.Credentials = new System.Net.NetworkCredential("momworld.notreply@gmail.com", "Abcd1234@");
+                smtp.EnableSsl = true;
+                smtp.Send(m);
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
@@ -233,10 +245,10 @@ namespace MomWorld.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                var user = await UserManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "No user found.");
+                    ModelState.AddModelError("", "Không tồn tại tải khoản này");
                     return View();
                 }
                 IdentityResult result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
@@ -653,10 +665,19 @@ namespace MomWorld.Controllers
             return Json("Successfully");
         }
 
+        [AllowAnonymous]
         public ActionResult LockedUser()
         {
             return View();
         }
+
+        [AllowAnonymous]
+        public ActionResult DisplayEmail()
+        {
+            return View();
+        }
+
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins
