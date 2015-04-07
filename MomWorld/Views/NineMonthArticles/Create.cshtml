@@ -325,6 +325,40 @@
                             </div>
                         </div>
 
+                      
+
+
+
+                        <div class="form-group">
+                            <label for="colorpicker-rgb" class="col-md-4 " style="font-size: 18px;">
+                                Ảnh hiển thị <span class="required">*</span>
+                            </label>
+
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" readonly="">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            <i class="fa fa-upload"></i><input type="file" multiple="">
+                                        </span>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="title" class="col-md-4 " style="font-size: 18px;">
+                                Giới thiệu <span class="required">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="" rows="6"></textarea>
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
                             <label for="title" class="col-md-4 " style="font-size: 20px;">
                                 Thẻ <span class="required">*</span>
@@ -601,6 +635,34 @@
         });
     </script>*@
 
+
+    @*JS for upload*@
+    <script>
+        //initialize file upload button function
+        $(document)
+          .on('change', '.btn-file :file', function () {
+              var input = $(this),
+              numFiles = input.get(0).files ? input.get(0).files.length : 1,
+              label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+              input.trigger('fileselect', [numFiles, label]);
+          });
+
+        //initialize file upload button
+        $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
+
+            var input = $(this).parents('.input-group').find(':text'),
+                log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+            console.log(log);
+
+            if (input.length) {
+                input.val(log);
+            } else {
+                if (log) alert(log);
+            }
+
+        });
+    </script>
 
 </body>
 </html>
