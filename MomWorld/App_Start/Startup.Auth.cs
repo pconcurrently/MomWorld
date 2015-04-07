@@ -49,14 +49,14 @@ namespace MomWorld
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "584613688346569",
-               appSecret: "7cb4c2da348759b7ab0f1c72e151d281");
+               appId: "777176635730748",
+               appSecret: "d1e4662332ba845f30b8d121595b224f");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "985570050011-6v7hd2gkt2hs8ri26adiq0061pd32vii.apps.googleusercontent.com",
+                ClientSecret = "DKJGL5MINYnCye_QxgS4wbnO"
+            });
         }
     }
 }
