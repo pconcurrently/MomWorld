@@ -330,7 +330,7 @@
                 {
                     <div class="item" data-id="@currentUser.DatePregnancy.Value.AddDays(item.Date).ToString("dd/MM/yyyy")" data-name="@currentUser.DatePregnancy.Value.AddDays(item.Date).ToString("dd")"
                          data-description="Ngày thứ @item.Date">
-                        <a class="image_rollover_bottom con_borderImage" href="#" data-id="@item.Id">
+                        <a class="image_rollover_bottom con_borderImage" href="#">
                             <img src="@Url.Content("~/Content/images/page-images/4.jpg")" class="img-responsive"
                                  alt="" />
                             
@@ -339,7 +339,7 @@
                         <span>
                             @item.Description
                         </span>
-                        <button class="btn btn-red btn-xs">Xem thêm</button>
+                        <button class="btn btn-red btn-xs" data-id="@item.Id">Xem thêm</button>
                         <div class="read_more btn-xs" data-id="@item.Id">Bài viết liên quan</div>
                     </div>
                     <div class="item_open" data-id="@currentUser.DatePregnancy.Value.AddDays(item.Date)"
@@ -536,11 +536,14 @@
             var month = date.getUTCMonth();
             var day = date.getUTCDate();
 
+            //day 2 digits
+            day = "0" + day;
+
             //month 2 digits
-            month = ("0" + (month + 1)).slice(-2)
+            month = ("0" + (month + 1)).slice(-2);
 
             //year 2 digits
-            year = year.toString()
+            year = year.toString();
 
             startDate = day + '/' + month + "/" + year;
             // light
@@ -587,7 +590,7 @@
 
     <script>
         $(window).ready(function () {
-            $('.image_rollover_bottom.con_borderImage').click(function () {
+            $('.btn.btn-red.btn-xs').click(function () {
                 var id = $(this).attr('data-id');
                 $.ajax({
                     url: "/NineMonthArticles/GetContent/" + id,
