@@ -126,7 +126,7 @@
             $scope.badgeFirebase = $firebaseObject(userTmp);
 
             // Give user badge
-            $scope.badgeFirebase.Image = 'http://localhost:4444/App/images/badge/' + $scope.quizNameTemp + '.png';
+            $scope.badgeFirebase.Image = 'http://localhost:4444/Content/images/badge/' + $scope.quizNameTemp + '.png';
             $scope.badgeFirebase.Score = score;
             $scope.badgeFirebase.Status = 'done';
             $scope.badgeFirebase.createdDate = Firebase.ServerValue.TIMESTAMP;
@@ -135,7 +135,7 @@
                   $('#modalCompletedQuizz').modal('show')
             )
         } else {
-            alert('Fail vcc test 1' + $scope.currentUsername);
+            alert('Fail ' + $scope.currentUsername);
         }
         
         // Display Result Mode
