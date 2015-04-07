@@ -77,25 +77,21 @@
                             </div>
                             <a href="password-recovery.html#">Quên mật khẩu ?</a>
                         </section>
+                        
+                        
+                        
                     }
                     <section class="log-in">
-                        <button type="submit" class="btn btn-greensea btn-lg"><i class="fa fa-sign-in"></i> Đăng nhập</button>
+                        <button type="submit" class="btn btn-greensea"><i class="fa fa-sign-in"></i> Đăng nhập</button>
                     </section>
                     <section class="log-in">
                         <h4>ĐĂNG NHẬP BẰNG</h4>
                         @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
-                        <a href="/signin-facebook" class="btn btn-cyan btn-lg"
-                           style="margin-right: 20px;">
-                            <i class="fa fa-facebook-square"
-                               style="font-size: 40px;"></i>
-                        </a> <a href="~/#"
-                                class="btn btn-red btn-lg" style="margin-left: 20px;">
-                            <i class="fa fa-google-plus-square" style="font-size: 40px;"></i>
-                        </a>
+                        
                     </section>
                     <section class="log-in text-right">
                         <span>Chưa có tài khoản</span>
-                        <button type="button" class="btn btn-orange" title="Đăng kí" onclick="location.href='@Url.Action("Register", "Account")'">
+                        <button type="button" class="btn btn-orange btn-sm" title="Đăng kí" onclick="location.href='@Url.Action("Register", "Account")'">
                             <i class="fa fa-user-plus"></i> Đăng
                             kí
                         </button>

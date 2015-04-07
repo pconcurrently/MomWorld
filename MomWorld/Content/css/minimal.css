@@ -1327,10 +1327,12 @@ color: rgba(255, 0, 0, 1);
   color: white;
   text-decoration: none;
 }
-#content.full-page .inside-block form section.log-in {
-  margin-top: 20px;
+
+#content.full-page .inside-block section.log-in {
+  padding: 20px 0;
   border-top: 5px dashed rgba(0, 0, 0, 0.1);
 }
+
 #content.full-page .inside-block form section.log-in .btn {
   display: inline-block;
   margin-top: 20px;
