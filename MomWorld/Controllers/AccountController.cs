@@ -121,7 +121,7 @@ namespace MomWorld.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Status = (int)IdentityStatus.Normal };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 UserManager.AddToRole(user.Id, "Users");
                 if (result.Succeeded)
@@ -591,7 +591,10 @@ namespace MomWorld.Controllers
                 user.Email = model.Email;
                 UserManager.RemoveFromRole(user.Id, identityDb.Roles.ToList().FirstOrDefault(r => r.Id.Equals(user.Roles.ToList()[0].RoleId)).Name);
                 UserManager.AddToRole(user.Id, model.Role);
-
+                if (model.Role.Equals("Admins"))
+                {
+                    user.Status = (int)IdentityStatus.Normal;
+                }
 
                 if (model.Password != null)
                     user.PasswordHash = myPasswordHasher.HashPassword(model.Password);
@@ -614,7 +617,7 @@ namespace MomWorld.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Phone = model.Phone };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Phone = model.Phone, Status = (int)IdentityStatus.Normal };
                 IdentityResult result = UserManager.Create(user, model.Password);
                 UserManager.AddToRole(user.Id, model.Role);
                 return Json("Successfully");
