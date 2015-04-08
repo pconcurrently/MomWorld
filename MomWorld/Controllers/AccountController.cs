@@ -77,9 +77,10 @@ namespace MomWorld.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
+                var adminRole = identityDb.Roles.FirstOrDefault(ro => ro.Name.Equals("Admins")).Id;
                 if (user != null)
                 {
-                    if (user.Status == (int)IdentityStatus.Locked || user.EmailConfirmed)
+                    if (((user.Status == (int)IdentityStatus.Locked) || !user.EmailConfirmed) && !user.Roles.ToList()[0].RoleId.Equals(adminRole))
                     {
                         return RedirectToAction("LockedUser");
                     }
@@ -690,28 +691,27 @@ namespace MomWorld.Controllers
         [Authorize(Roles = "Admins")]
         public ActionResult SMSManager()
         {
-
-            //Input numbers
-            string[] inputs = new string[] { "COM1", "9600", "8", "300", "300" };
-            try
-            {
-                objSMS.OpenPort(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4]);
-                if (port != null)
-                {
-                    ViewBag.Connected = "Connected";
-                }
-                else
-                {
-                    ViewBag.Connected = "NotConnected";
-                }
-            }
-            catch (Exception) { }
-
             return View();
         }
 
         public JsonResult SendSMS(SendSMSViewModel model)
         {
+            //Input numbers
+            string[] inputs = new string[] { "COM3", "9600", "8", "300", "300" };
+            try
+            {
+                port = objSMS.OpenPort(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4]);
+                if (port == null)
+                {
+                    return Json(null);
+                }
+            }
+            catch (Exception)
+            {
+                objSMS.ClosePort(this.port);
+                return Json(null);
+            }
+
             try
             {
 
@@ -728,6 +728,10 @@ namespace MomWorld.Controllers
             catch (Exception)
             {
                 return Json(null);
+            }
+            finally
+            {
+                objSMS.ClosePort(this.port);
             }
         }
 
