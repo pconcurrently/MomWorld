@@ -1206,7 +1206,7 @@ color: rgba(255, 0, 0, 1);
 #content.full-page .inside-block h1 {
   text-transform: uppercase;
   font-size: 26px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 #content.full-page .inside-block h1 strong {
   position: relative;
