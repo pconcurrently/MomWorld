@@ -436,7 +436,7 @@
                                             <strong>{{user.FirstName + " " + user.LastName}}</strong>
                                         </h3>
                                         <ul class="profile-controls inline">
-                                            <li class="mailto"><a href="#"><i class="fa fa-envelope"></i> Gửi tin nhắn</a></li>
+                                            <li class="mailto"><a ng-href="../../Chat/{{viewUsername}}"><i class="fa fa-envelope"></i> Gửi tin nhắn</a></li>
                                             <li class="avatar">
                                                 <img ng-src="{{user.ProfilePicture}}" 
                                                      class="img-circle profile-photo">
@@ -745,7 +745,7 @@
 
                                     </div>
 
-                                    <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge('user1')">
+                                    <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge()">
                                         <div class="tile text-center">
 
                                             <div class="">

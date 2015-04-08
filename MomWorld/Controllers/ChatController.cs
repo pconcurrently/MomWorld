@@ -9,7 +9,13 @@ namespace MomWorld.Controllers
     public class ChatController : Controller
     {
         // GET: Chat
-        public ActionResult Index()
+        public ActionResult Index(string username)
+        {
+            ViewData["ViewUsername"] = username;
+            return View();
+        }
+
+        public ActionResult ChatWith(string id)
         {
             return View();
         }

@@ -16,16 +16,32 @@ namespace MomWorld.Controllers
         [Authorize]
         public ActionResult Index(string id)
         {
-            return View();
+            if (id != null)
+            {
+                ApplicationUser GetUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(id));
+                ViewData["ViewUsername"] = GetUser.UserName;
+                return View();
+            }
+            else
+            {
+                return Redirect("http://localhost:4444/Account/Manage");
+            }
+            
         }
 
         [Authorize]
         public ActionResult GetProfile(string id)
         {
-            ApplicationUser GetUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(id));
-            ViewData["ViewUsername"] = GetUser.UserName;
-
-            return View();
+            if (id != null)
+            {
+                ApplicationUser GetUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(id));
+                ViewData["ViewUsername"] = GetUser.UserName;
+                return View();
+            }
+            else
+            {
+                return Redirect("http://localhost:4444/Account/Manage");
+            }
         }
     }
 }
