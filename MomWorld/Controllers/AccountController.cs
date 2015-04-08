@@ -20,6 +20,7 @@ using FireSharp.Interfaces;
 using FireSharp;
 using FireSharp.Response;
 using System.Data.Entity;
+using System.IO.Ports;
 
 namespace MomWorld.Controllers
 {
@@ -29,6 +30,12 @@ namespace MomWorld.Controllers
         private ApplicationUserManager _userManager;
         private ArticleDb articleDb = new ArticleDb();
         private IdentityDb identityDb = new IdentityDb();
+
+        #region SMS
+        SerialPort port = new SerialPort();
+        SMS objSMS = new SMS();
+        ShortMessageCollection objShortMessageCollection = new ShortMessageCollection();
+        #endregion
 
         public AccountController()
         {
@@ -680,7 +687,49 @@ namespace MomWorld.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admins")]
+        public ActionResult SMSManager()
+        {
 
+            //Input numbers
+            string[] inputs = new string[] { "COM1", "9600", "8", "300", "300" };
+            try
+            {
+                objSMS.OpenPort(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4]);
+                if (port != null)
+                {
+                    ViewBag.Connected = "Connected";
+                }
+                else
+                {
+                    ViewBag.Connected = "NotConnected";
+                }
+            }
+            catch (Exception) { }
+
+            return View();
+        }
+
+        public JsonResult SendSMS(SendSMSViewModel model)
+        {
+            try
+            {
+
+                if (objSMS.sendMsg(this.port, model.PhoneNumber, model.Message))
+                {
+                    return Json("Sent SMS successfully");
+                }
+                else
+                {
+                    return Json(null);
+                }
+
+            }
+            catch (Exception)
+            {
+                return Json(null);
+            }
+        }
 
         #region Helpers
         // Used for XSRF protection when adding external logins
