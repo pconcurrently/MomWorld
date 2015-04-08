@@ -462,29 +462,10 @@
                                 <!-- tile body -->
                                 <div class="tile-body color transparent-black textured rounded-bottom-corners">
                                     <ul class="inline text-center">
-
-                                        <li>
-                                            <img alt="" src="@Url.Content("~/Content/images/badge/dinhduong.png")"
+                                        <li ng-repeat="badge in badgeFire">
+                                            <img alt="" ng-src="{{badge.Image}}"
                                                  style="height: 50px; width: 50px;">                                            
                                         </li>
-                                        <li>
-                                            <img alt="" src="@Url.Content("~/Content/images/badge/yte.png")"
-                                                 style="height: 50px; width: 50px;">
-                                        </li>
-                                        <li>
-                                            <img alt="" src="@Url.Content("~/Content/images/badge/mangthai.png")"
-                                                 style="height: 50px; width: 50px;">
-                                        </li>
-                                        <li>
-                                            <img alt="" src="@Url.Content("~/Content/images/badge/suckhoe.png")"
-                                                 style="height: 50px; width: 50px;">
-                                        </li>
-                                        <li>
-                                            <img alt="" src="@Url.Content("~/Content/images/badge/treem.png")"
-                                                 style="height: 50px; width: 50px;">
-                                        </li>
-                                        
-
                                     </ul>
                                 </div>
                                 <!-- /tile body -->

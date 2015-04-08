@@ -13,11 +13,13 @@ namespace MomWorld.Controllers
         private IdentityDb identityDb = new IdentityDb();
 
         // GET: Profile
+        [Authorize]
         public ActionResult Index(string id)
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult GetProfile(string id)
         {
             ApplicationUser GetUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(id));
