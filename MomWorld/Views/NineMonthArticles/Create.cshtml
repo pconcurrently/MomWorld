@@ -306,6 +306,20 @@
     <!-- post PAGE -->
     <section class="section">
         <div class="container">
+            @if (User.IsInRole("Admins"))
+            {
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button data-target="#modalCreateTag"
+                                data-toggle="modal" class="btn btn-warning">
+                            <i class="fa fa-plus-circle"></i> Thêm thẻ
+                        </button>
+                    </div>
+                </div>
+    <hr class="post-divider">
+            }
+            
+
             <div class="row">
                 <!-- post POSTS -->
                 <div class="col-sm-9 post-posts">
@@ -480,17 +494,7 @@
         <div class="footer-main">
             <div class="container">
 
-                @if (User.IsInRole("Admins"))
-                {
-                    <div class="row">
-                        <div class="col-md-12 text-right">
-                            <button data-target="#modalCreateTag"
-                                    data-toggle="modal" class="btn btn-warning">
-                                <i class="fa fa-plus-circle"></i> Thêm thẻ
-                            </button>
-                        </div>
-                    </div>
-                }
+                
 
                 <div class="row">
                     <div class="col-md-4">
