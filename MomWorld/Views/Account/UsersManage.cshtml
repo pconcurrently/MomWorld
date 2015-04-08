@@ -83,7 +83,7 @@
     <script src="@Url.Content("~/Content/js/vendor/datatables/tabletools/ZeroClipboard.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datatables/tabletools/dataTables.tableTools.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datatables/dataTables.bootstrap.js")"></script>
-
+     
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
 </head>
 <body class="bg-2">
@@ -726,7 +726,7 @@
                                 </div>
                                 <!-- /tile header -->
                                 <!-- tile body -->
-                                <div class="tile-body color transparent-white rounded-corners">
+                                <div class="tile-body color bg-transparent-black-5 rounded-corners">
                                     <div class="table-responsive">
                                         <table class="table table-datatable table-custom"
                                                id="inlineEditDataTable">
@@ -1330,7 +1330,7 @@
 							});
 
             // Append add row button to table
-            var addRowLink = '<a href="#" id="addUser" class="btn btn-white btn-xs add-row"><i class="fa fa-user-plus"></i> Thêm mới</a>'
+            var addRowLink = '<a href="#" id="addUser" class="btn btn-green btn-xs add-row"><i class="fa fa-user-plus"></i> Thêm mới</a>'
             $('#inlineEditDataTable_wrapper').append(addRowLink);
 
             var nEditing = null;
