@@ -1243,8 +1243,8 @@ color: rgba(255, 0, 0, 1);
   margin-bottom: 5px;
 }
 #content.full-page .inside-block form {
-  margin-top: 50px;
-  margin-bottom: 40px;
+  /* margin-top: 50px; */
+  /* margin-bottom: 40px; */
 }
 #content.full-page .inside-block form.form-unlock {
   margin-top: 20px;
@@ -1329,13 +1329,13 @@ color: rgba(255, 0, 0, 1);
 }
 
 #content.full-page .inside-block section.log-in {
-  padding: 20px 0;
+  padding: 15px 0;
   border-top: 5px dashed rgba(0, 0, 0, 0.1);
 }
 
 #content.full-page .inside-block form section.log-in .btn {
   display: inline-block;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 #content.full-page .inside-block form section.log-in span {
   display: inline-block;
