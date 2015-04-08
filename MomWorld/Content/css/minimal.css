@@ -7921,7 +7921,7 @@ select.form-control.input-lg + .chosen-container .chosen-choices .search-field i
 [class^="tile"].color .dataTables_paginate.paging_custombootstrap .pagination > .disabled > span:hover,
 [class^="tile"].color .dataTables_paginate.paging_custombootstrap .pagination > .disabled > a:focus,
 [class^="tile"].color .dataTables_paginate.paging_custombootstrap .pagination > .disabled > span:focus {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.4);
   background-color: rgba(255, 255, 255, 0.2);
   border: 0;
 }
