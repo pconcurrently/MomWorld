@@ -2,7 +2,7 @@
     ViewBag.Title = "Timeline";
     Layout = null;
     string setPopup = "false";
-    MomWorld.Models.ApplicationUser currentUser = ViewData["CurrentUser"] as MomWorld.Models.ApplicationUser;
+    MomWorld.Models.ApplicationUser currentUser = ViewBag.CurrentUser as MomWorld.Models.ApplicationUser;
     if (currentUser.DatePregnancy == null)
     {
         setPopup = "true";

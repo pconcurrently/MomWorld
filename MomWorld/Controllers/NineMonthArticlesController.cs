@@ -203,7 +203,7 @@ namespace MomWorld.Controllers
         {
             ViewData["NineMonthArticles"] = db.NineMonthArticles.OrderBy(o => o.Date).ToList();
             ApplicationUser currentUser = identityDb.Users.FirstOrDefault(x => x.UserName.Equals(User.Identity.Name));
-            ViewData["CurrentUser"] = currentUser;
+            ViewBag.CurrentUser= currentUser;
             return View();
         }
 

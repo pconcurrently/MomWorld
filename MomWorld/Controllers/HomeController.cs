@@ -24,12 +24,13 @@ namespace MomWorld.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
-                ViewData["CurrentUser"] = user;
+                ViewBag.CurrentUser = user;
+                ViewBag.ProfilePicture = user.ProfilePicture;
             }
             else
             {
                 //Fix sau
-                ViewData["CurrentUser"] = new ApplicationUser();
+                ViewBag.CurrentUser= new ApplicationUser();
             }
 
             return View();

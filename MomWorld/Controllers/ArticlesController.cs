@@ -79,7 +79,7 @@ namespace MomWorld.Controllers
                 ViewData["Comments"] = comments;
                 ViewData["ArticleLikes"] = articleLikes;
                 ViewData["IsLike"] = isLike;
-
+                ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
 
                 return View();
             }
@@ -97,6 +97,7 @@ namespace MomWorld.Controllers
             ViewBag.TagsList = db.Tags.ToList();
             ViewData["Tags"] = GetTags(null);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             return View();
         }
 
@@ -189,6 +190,7 @@ namespace MomWorld.Controllers
                 throw new HttpException(404, "Not Found");
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", article.CategoryId);
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             if (article.Tags != null)
             {
                 ViewBag.Tags2 = GetTags(article.Tags.Split(new string[] { ", " }, StringSplitOptions.None));

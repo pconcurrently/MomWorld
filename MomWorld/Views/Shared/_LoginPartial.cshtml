@@ -33,7 +33,7 @@
                data-300="padding: 0px 5px 0px;border-bottom-width:0px;"
                class="dropdown-toggle" data-toggle="dropdown">
                 <div class="profile-photo">
-                    <img class="img-circle" src="@Url.Content("~/Content/images/profile-photo.jpg")"
+                    <img class="img-circle" src="@Url.Content(ViewBag.CurrentUser.ProfilePicture)"
                          data-0="padding: 0px;" data-300="padding: 3px;" />
                 </div> <span>@User.Identity.GetUserName()</span> <i class="fa fa-caret-down"></i>
             </a>

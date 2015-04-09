@@ -57,7 +57,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             // Create user Admin
             if (UserManager.FindByName("admin") == null)
             {
-                var adminUser = new ApplicationUser { Email = "admin@momworld.com", UserName = "admin" };
+                var adminUser = new ApplicationUser { Email = "admin@momworld.com", UserName = "admin", ProfilePicture = "~/App/uploads/avatar/default.png" };
                 UserManager.Create(adminUser, "12345678");
                 UserManager.AddToRole(adminUser.Id, "Admins");
             }
@@ -65,7 +65,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             // Create normal user
             if (UserManager.FindByName("user1") == null)
             {
-                var user1 = new ApplicationUser { Email = "user1@momworld.com", UserName = "user1", DatePregnancy = DateTime.Now };
+                var user1 = new ApplicationUser { Email = "user1@momworld.com", UserName = "user1", DatePregnancy = DateTime.Now, ProfilePicture = "~/App/uploads/avatar/default.png" };
                 UserManager.Create(user1, "12345678");
                 UserManager.AddToRole(user1.Id, "Users");
             }

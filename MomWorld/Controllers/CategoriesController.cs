@@ -37,7 +37,7 @@ namespace MomWorld.Controllers
                     ViewData["IsPopup"] = "false";
                 }
             }
-
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u=>u.UserName.Equals(User.Identity.Name));
             return View();
         }
 

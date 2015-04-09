@@ -15,6 +15,7 @@ namespace MomWorld.Controllers
     {
         private ArticleDb db = new ArticleDb();
         private CommentDb commentDb = new CommentDb();
+        private IdentityDb identityDb = new IdentityDb();
 
         // GET: Tags
         public ActionResult Index()
@@ -37,6 +38,7 @@ namespace MomWorld.Controllers
             ViewBag.Tags = db.Tags.ToList();
             ViewBag.Tag = tag;
             ViewBag.Articles = db.Articles.ToList().FindAll(a => a.Tags!= null && a.Tags.Contains(id));
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             ViewBag.Comments = commentDb.Comments.ToList();
 
             return View(tag);

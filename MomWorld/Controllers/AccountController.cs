@@ -89,15 +89,15 @@ namespace MomWorld.Controllers
                         await SignInAsync(user, model.RememberMe);
 
                         // Sync User to Firebase
-                        IFirebaseConfig config = new FirebaseConfig
-                        {
-                            AuthSecret = "MQN9HDJakBgjQy2mxTDig01jgcVaHXRRILop7hPe",
-                            BasePath = "https://momworld.firebaseio.com/"
-                        };
-                        IFirebaseClient client = new FirebaseClient(config);
+                        //IFirebaseConfig config = new FirebaseConfig
+                        //{
+                        //    AuthSecret = "MQN9HDJakBgjQy2mxTDig01jgcVaHXRRILop7hPe",
+                        //    BasePath = "https://momworld.firebaseio.com/"
+                        //};
+                        //IFirebaseClient client = new FirebaseClient(config);
 
-                        client.Update("User/" + user.UserName, user);
-                        client.Update("User/" + user.UserName + "/badge", user);
+                        //client.Update("User/" + user.UserName, user);
+                        //client.Update("User/" + user.UserName + "/badge", user);
 
                         return RedirectToLocal(returnUrl);
                     }
@@ -129,7 +129,7 @@ namespace MomWorld.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Status = (int)IdentityStatus.Normal };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Status = (int)IdentityStatus.Normal, ProfilePicture =  "~/App/uploads/avatar/default.png"};
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 UserManager.AddToRole(user.Id, "Users");
                 if (result.Succeeded)
@@ -625,7 +625,7 @@ namespace MomWorld.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Phone = model.Phone, Status = (int)IdentityStatus.Normal };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Phone = model.Phone, Status = (int)IdentityStatus.Normal, ProfilePicture = "~/App/uploads/avatar/default.png", EmailConfirmed = true };
                 IdentityResult result = UserManager.Create(user, model.Password);
                 UserManager.AddToRole(user.Id, model.Role);
                 return Json("Successfully");
