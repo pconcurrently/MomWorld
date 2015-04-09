@@ -1,5 +1,7 @@
 ﻿@{
     Layout = null;
+    var chatUsername = ViewData["ChatUsername"] as string;
+    
 }
 
 <!DOCTYPE html>
@@ -59,7 +61,7 @@
 
 
 </head>
-<body class="bg-1" ng-app="chatApp" ng-controller="chatCtrl" ng-init="initChat()">
+<body class="bg-1" id="chatYolo" ng-app="chatApp" ng-controller="chatCtrl">
 
     <!-- Preloader -->
     <div class="mask">
@@ -494,7 +496,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <p class="media-heading">
-                                                            {{chat.Name}} <span class="time">12:44</span>
+                                                            {{chat.Username}} <span class="time">12:44</span>
                                                         </p>
                                                         <span class="message">
                                                             {{chat.Content[0]}}
@@ -535,7 +537,7 @@
                                     <ul class="chat-nav side-nav inline">
                                         <li>
                                             <h3>
-                                                <strong>Ing. Imrich</strong> Kamarel
+                                                <strong></strong>
                                             </h3>
                                         </li>
                                         <li class="pull-right">
@@ -1148,8 +1150,16 @@
     <!-- Wrap all page content end -->
 
 
-
+    <a href="" id="chatUsername" data-id = "@chatUsername"></a>
     <script src="@Url.Content("~/App/js/chatCtrl.js")"></script>
+
+    <script>
+        $(document).ready(function () {
+            angular.element($("#chatYolo")).scope().initChat($("#chatUsername").attr("data-id"));
+        });
+
+    </script>
+
 
     <script>
         $(function () {

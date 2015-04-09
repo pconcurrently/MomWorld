@@ -5,24 +5,26 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
 
         /* ------------------- Init variables --------------------- */
         
-        
-
-        
         // Get User from local storage
         $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         var currentUsername = $scope.currentUser.Username;
-
+        $scope.chatUsername = {};
 
         // Get Chat of User from Firebase
         var userFireTmp = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername);
         $scope.chatFire = $firebaseObject(userFireTmp);
 
-        
         /* Init Chat */
-        $scope.initChat = function () {
+        $scope.initChat = function (chatUser) {
             // Set closest coversation
+            $scope.chatUsername = chatUser;
+
+            // Set Chat conversation with chatUser
+            $scope.getChatFrom(chatUser);
 
         }
+
+
 
         /* Get Chat between User with Receiver */
         $scope.getChatFrom = function (receiver) {
@@ -34,6 +36,8 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
             // Get Chat content from Sender and Receiver
             var senderFire = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername+ "/" + receiver + "/Content");
             $scope.chatContent = $firebaseArray(senderFire);
+
+            console.log("Chat :  " + $scope.chatContent);
 
             var receiverFire = new Firebase("https://momworld.firebaseio.com/Chat/" + receiver + "/" + currentUsername + "/Content");
             $scope.receiverContent = $firebaseArray(receiverFire);
