@@ -35,7 +35,7 @@
         }
     </style>
 </head>
-<body class="bg-1">
+<body class="bg-2">
     <!-- Wrap all page content here -->
     <div id="wrap">
         <!-- Make page fluid -->
@@ -58,14 +58,14 @@
 
 
 
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "color-red" })
 
-                        <p class="text-info">
+                        <p>
                             Bạn đã được xác thực thành công với <strong>@ViewBag.LoginProvider</strong>. Vui lòng nhập một tên người dùng cho trang web này dưới đây và nhấn nút Đăng kí để hoàn tất đăng nhập.
 
                         </p>
 
-                        <section>
+                        <section class="log-in">
                             <div class="input-group">
 
                                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control", name = "email", placeholder = "Email" })
@@ -80,7 +80,7 @@
                         <section class="log-in">
                             <input type="submit" class="btn btn-greensea" value="Đăng kí" />
                         </section>
-                                                
+
                     }
 
 

@@ -1,4 +1,9 @@
-﻿'use strict';
+﻿/* 
+* TrungNM - View other Profile Controller
+* 
+*/
+
+'use strict';
 
 var otherProfileApp = angular.module('otherProfileApp', ['angular-md5', 'firebase', 'angularFileUpload']);
 
@@ -8,20 +13,22 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
     // Get User from Local Storage
     $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     $scope.currentUsername = $scope.currentUser.Username;
-
     $scope.viewUsername = "";
-
-    $scope.user = {
-    }
+    $scope.user = {};
 
 
-
+    /* ---------------- Initial Functions ----------------------- */
+    // Load Profile
     $scope.loadProfile = function (username) {
-        /* Get user Profile from User API */
+
+        // Set viewUsername Scope   
         $scope.viewUsername = username;
+
+        // Get user Status from Firebase
         var userStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.viewUsername);
         $scope.statusFirebase = $firebaseArray(userStatus);
 
+        // Get user Profile from User API
         $http.get("http://localhost:4444/api/User/Get/" + username).
               success(function (data, status, headers, config) {
                   $scope.user = data;
@@ -31,6 +38,14 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
               });
     }
 
+    // Load Badge From Firebase
+    $scope.getBadge = function () {
+        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.viewUsername + "/Badge/");
+        $scope.badgeFire = $firebaseArray(userFireTmp);
+    }
+
+
+    /* ---------------- Functional Method ----------------------- */
 
     /* Update Profile  */
     $scope.updateProfile = function () {
@@ -57,14 +72,10 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
     
 
-    /* Retrive all Status from API */
-    $scope.loadStatus = function () {
-
-    }
-
-    /* Create new Status using Status API */
+    /* Create new Status using Firebase API */
     $scope.createStatus = function () {
 
+        //  Prepare data
         var sentData = {
             Content: $scope.Content,
             CreatorName: $scope.currentUser.FirstName + " " + $scope.currentUser.LastName,
@@ -73,6 +84,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
             createdDate: Firebase.ServerValue.TIMESTAMP
         }
 
+        // Add new Status to Firebase
         $scope.statusFirebase.$add(sentData).then(
              $scope.Content = ""
         );
@@ -81,6 +93,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
     /* Remove Selected Status using Status API */
     $scope.removeStatus = function (_status) {
+
         $scope.statusFirebase.$remove(_status).then(
 
         );
@@ -91,6 +104,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
     /* Create new Commment using Status API */
     $scope.addComment = function (_status, _comment) {
 
+        // Prepare data
         var sentData = {
             Content: _comment,
             CreatorName: $scope.currentUser.FirstName + " " + $scope.currentUser.LastName,
@@ -98,9 +112,12 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
             CreatorAvatar: "http://localhost:4444/App/uploads/avatar/" + $scope.currentUsername + ".png",
             createdDate: Firebase.ServerValue.TIMESTAMP
         }
+
+        // Get Status's comments from Firebase API 
         var commentStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.viewUsername + "/" +_status.$id + "/Comment");
         var commentFirebase = $firebaseArray(commentStatus);
 
+        // Add comment to Firebase
         commentFirebase.$add(sentData).then(
              $scope.commentContent = ""
         );
@@ -109,20 +126,19 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
     /* Delete Selected Commment*/
     $scope.removeComment = function (_user, _status) {
-
+        
+        // Get Comment from Firebase
         var commentStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.viewUsername + "/" + _status.$id + "/Comment");
         var commentFirebase = $firebaseArray(commentStatus);
 
+        // Remove comment using Firebase
         commentFirebase.$remove(_status).then(
 
         );
 
     }
 
-    $scope.getBadge = function (username) {
-        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + username + "/Badge/");
-        $scope.badgeFire = $firebaseArray(userFireTmp);
-    }
+    
 
     /* ------------------- Upload File Helper Methods ------------------------------*/
     var uploader = $scope.uploader = new FileUploader({
@@ -147,7 +163,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
     /* Update Profile  */
     $scope.updateAvatar = function () {
-
+        // Prepare data
         var sentData = {
             FirstName: $scope.user.FirstName,
             LastName: $scope.user.LastName,
@@ -155,6 +171,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
         }
 
+        // Update avatar link using Firebase
         $scope.uploader.uploadAll(function () {
 
         });
@@ -163,6 +180,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
 }]);
 
+/* ----------- Directives ---------------------*/
 otherProfileApp.directive('ngThumb', ['$window', function ($window) {
     var helper = {
         support: !!($window.FileReader && $window.CanvasRenderingContext2D),

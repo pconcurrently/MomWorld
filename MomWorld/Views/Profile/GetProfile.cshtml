@@ -436,7 +436,7 @@
                                             <strong>{{user.FirstName + " " + user.LastName}}</strong>
                                         </h3>
                                         <ul class="profile-controls inline">
-                                            <li class="mailto"><a href="#"><i class="fa fa-envelope"></i> Gửi tin nhắn</a></li>
+                                            <li class="mailto"><a ng-href="../../Chat/{{viewUsername}}"><i class="fa fa-envelope"></i> Gửi tin nhắn</a></li>
                                             <li class="avatar">
                                                 <img ng-src="{{user.ProfilePicture}}" 
                                                      class="img-circle profile-photo">
@@ -454,10 +454,7 @@
                                                 <i class="fa fa-facebook-square"></i>
                                             </a> <a ng-href="{{user.social.facebook}}">
                                                 <i class="fa fa-google-plus-square"></i>
-                                            </a> <a href="personal-page.html#"><i class="fa fa-twitter"></i></a>
-                                            <a href="personal-page.html#">
-                                                <i class="fa fa-github-square"></i>
-                                            </a> <a href="personal-page.html#"><i class="fa fa-dribbble"></i></a>
+                                            </a>
                                         </div>
                                     </div>
 
@@ -467,28 +464,11 @@
                                 <div class="tile-body color transparent-black textured rounded-bottom-corners">
                                     <ul class="inline text-center">
 
-                                        <li>
-                                            <img alt="" src="@Url.Content("~/Content/images/badge/dinhduong.png")"
+                                        <li ng-repeat="badge in badgeFire">
+                                            <img alt="" src="{{badge.Image}}"
                                                  style="height: 50px; width: 50px;">
                                         </li>
-                                        <li>
-                                            <img alt="" src="@Url.Content("~/Content/images/badge/yte.png")"
-                                                 style="height: 50px; width: 50px;">
-                                        </li>
-                                        <li>
-                                            <img alt="" src="@Url.Content("~/Content/images/badge/mangthai.png")"
-                                                 style="height: 50px; width: 50px;">
-                                        </li>
-                                        <li>
-                                            <img alt="" src="@Url.Content("~/Content/images/badge/suckhoe.png")"
-                                                 style="height: 50px; width: 50px;">
-                                        </li>
-                                        <li>
-                                            <img alt="" src="@Url.Content("~/Content/images/badge/treem.png")"
-                                                 style="height: 50px; width: 50px;">
-                                        </li>
-
-
+                                       
                                     </ul>
                                 </div>
                                 <!-- /tile body -->
@@ -765,7 +745,7 @@
 
                                     </div>
 
-                                    <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge('user1')">
+                                    <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge()">
                                         <div class="tile text-center">
 
                                             <div class="">
