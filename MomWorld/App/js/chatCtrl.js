@@ -29,16 +29,43 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         /* Get Chat between User with Receiver */
         $scope.getChatFrom = function (receiver) {
 
-            // Set Current Revercier
-            var r = new Firebase("https://momworld.firebaseio.com/User/" + receiver);
-            $scope.currentReceiver = $firebaseObject(r);
+            // Set Profile of Sender
+            var u = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername + "/" + receiver);
+            
+
+            $scope.sUser = $firebaseObject(u);
+            
+
+            // If this is 1st time --> Add receiver informationth
+            if ($scope.sUser.Username == "") {
+                $scope.sUser.Username = receiver;
+                $scope.sUser.Avatar = "http://localhost:4444/App/uploads/avatar/" + receiver + ".png";
+                $scope.sUser.$save();
+            }
+
+            var r = new Firebase("https://momworld.firebaseio.com/Chat/" + receiver + "/" + currentUsername);
+            $scope.rUser = $firebaseObject(r);
+            console.log($scope.rUser);
+
+            if ($scope.rUser.Username == "") {
+                $scope.rUser.Username = currentUsername;
+                $scope.rUser.Avatar = "http://localhost:4444/App/uploads/avatar/" + currentUsername + ".png";
+                $scope.rUser.$save();
+            }
+           
+           
 
             // Get Chat content from Sender and Receiver
             var senderFire = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername+ "/" + receiver + "/Content");
             $scope.chatContent = $firebaseArray(senderFire);
+            $scope.chatContent.$loaded()
+                .then(function (data) {
+                    
 
-            console.log("Chat :  " + $scope.chatContent);
-
+                })
+                .catch(function (error) {
+                    alert(error);
+                });
             var receiverFire = new Firebase("https://momworld.firebaseio.com/Chat/" + receiver + "/" + currentUsername + "/Content");
             $scope.receiverContent = $firebaseArray(receiverFire);
   
@@ -55,7 +82,9 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
             }
 
             // Add data to Coversation content
-            $scope.chatContent.$add(sentData);
+            $scope.chatContent.$add(sentData).then(function () {
+                $scope.replyMess = "";
+            });
             $scope.receiverContent.$add(sentData);
         }
         
