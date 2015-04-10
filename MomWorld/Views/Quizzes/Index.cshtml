@@ -259,7 +259,7 @@
                                     <div class="thumbnail">
                                         <a ng-href="/Quizzes/DoQuiz/{{quiz.id}}">
                                             
-                                            <img class="exam-thumbnail" ng-class="{'desaturate' : badgeFire.{{quiz.quizName}}.Status != 'done' }"
+                                            <img class="exam-thumbnail" ng-class="{'opacity' : badgeFire.{{quiz.quizName}}.Status != 'done' }"
                                                  ng-src="http://localhost:4444/Content/images/badge/{{quiz.quizName}}.png"
                                                  alt="...">
                                             <div class="caption">
