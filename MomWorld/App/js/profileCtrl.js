@@ -149,7 +149,7 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
     }
 
-    $scope.getBadge = function (username) {
+    $scope.getBadge = function () {
         var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/");
         $scope.badgeFire = $firebaseArray(userFireTmp);
     }

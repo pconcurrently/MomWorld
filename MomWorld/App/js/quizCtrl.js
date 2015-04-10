@@ -5,50 +5,59 @@
         $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         $scope.currentUsername = $scope.currentUser.Username;
 
-    $scope.initQuizShow = function () {
-
-        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/");
-        $scope.badgeFire = $firebaseArray(userFireTmp);
-    }
-
-    $scope.quizData = [
+        // Get QuizData
+        $scope.quizData = [
     {
         "id": "0",
         "name": "Dinh Dưỡng",
         "quizData": "../../app/js/data/dinhduong.js",
         "quizName": "dinhduong",
-        "status": "done"
+        "message": "Bạn rất giỏi về dinh dưỡng đó, hihi"
     },
     {
         "id": "1",
-        "name": "sinh con",
+        "name": "Mang thai",
         "quizData": "../../app/js/data/sinhcon.js",
-        "quizName": "sinhcon",
-        "status": "new"
+        "quizName": "mangthai",
+        "message": "Bạn rất giỏi về dinh dưỡng đó, hihi"
     },
     {
         "id": "2",
-        "name": "Chăm sóc",
+        "name": "Sức khỏe",
         "quizData": "../../app/js/data/chamsoc.js",
-        "quizName": "chamsoc",
-        "status": "new"
+        "quizName": "suckhoe",
+        "message": "Sức khỏe rất quan trọng, và bạn đã làm chủ được "
     },
     {
         "id": "3",
         "name": "Y Tế",
         "quizData": "../../app/js/data/yte.js",
         "quizName": "yte",
-        "status": "new"
+        "message": "Giờ bạn đã là một bác sỹ rồi"
     },
     {
         "id": "4",
         "name": "Giới Tính",
         "quizData": "../../app/js/data/gioitinh.js",
         "quizName": "gioitinh",
-        "status": "new"
+        "message": "Message cho giới tính ...."
+    },
+    {
+        "id": "5",
+        "name": "Thể thao",
+        "quizData": "../../app/js/data/gioitinh.js",
+        "quizName": "thethao"
     }];
 
+        /* Init Quiz List Page */
+        $scope.initQuizShow = function () {
+            var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge");
+            $scope.badgeFire = $firebaseObject(userFireTmp);
+        }
 
+   
+
+    
     $scope.defaultConfig = {
         'allowBack': true,
         'allowReview': true,
@@ -65,18 +74,20 @@
     }
 
     $scope.initQuiz = function () {
-        var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/badge/" + $scope.quizNameTemp);
+        var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/" + $scope.quizNameTemp);
         $scope.badgeFirebase = $firebaseObject(userTmp);
     }
 
     $scope.initQuizDo = function (quizId, username) {
-        $scope.quizName = $scope.quizData[quizId].quizData;
+        // Get Initial Information
+        var quizData = $scope.quizData[quizId].quizData;
         $scope.quizNameTemp = $scope.quizData[quizId].quizName;
         $scope.quizNameReal = $scope.quizData[quizId].name;
-
+        $scope.quizMess = $scope.quizData[quizId].message;
         $scope.currentQuizId = quizId;
-
-        $scope.loadQuiz($scope.quizName);
+        
+        // Load Quiz
+        $scope.loadQuiz(quizData);
 
     }
 
@@ -122,20 +133,23 @@
         var score = correctAns / answers.length * 100;
         // TODO: Code Huan Chuong
         if (score >= 75) {
-            var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/" + $scope.currentQuizId);
+            var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/" + $scope.quizNameTemp);
             $scope.badgeFirebase = $firebaseObject(userTmp);
 
-            // Give user badge
+            // Prepare Badge Information to save in Firebase
+            $scope.badgeFirebase.Id = $scope.quizNameTemp;
+            $scope.badgeFirebase.Name = $scope.quizNameReal;
             $scope.badgeFirebase.Image = 'http://localhost:4444/Content/images/badge/' + $scope.quizNameTemp + '.png';
             $scope.badgeFirebase.Score = score;
             $scope.badgeFirebase.Status = 'done';
+            $scope.badgeFirebase.Message = $scope.quizMess;
             $scope.badgeFirebase.createdDate = Firebase.ServerValue.TIMESTAMP;
 
             $scope.badgeFirebase.$save().then(
                   $('#modalCompletedQuizz').modal('show')
             )
         } else {
-            alert('Fail ' + $scope.currentUsername);
+            $('#modalCompletedQuizzFail').modal('show')
         }
         
         // Display Result Mode

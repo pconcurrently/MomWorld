@@ -258,16 +258,16 @@
                                 <div ng-repeat="quiz in quizData" class="col-xs-12 col-sm-6 col-lg-4 col-md-6 exam-item">
                                     <div class="thumbnail">
                                         <a ng-href="/Quizzes/DoQuiz/{{quiz.id}}">
-                                            <img class="exam-thumbnail"
-                                                 ng-src="{{badgeFire[$index].Image}}"
+                                            
+                                            <img class="exam-thumbnail" ng-class="{'desaturate' : badgeFire.{{quiz.quizName}}.Status != 'done' }"
+                                                 ng-src="http://localhost:4444/Content/images/badge/{{quiz.quizName}}.png"
                                                  alt="...">
                                             <div class="caption">
                                                 <span class="exam-category text-danger">{{quiz.name}}</span>
                                                 <p class="exam-title">{{quiz.name}}</p>
                                                 <p>
                                                     <time class="total-question">10 Câu hỏi</time>
-                                                </p>
-                                                <div class="exam-duration">02:30 Phút</div>
+                                                </p> 
                                                 <button class="btn btn-cyan" ng-click="startQuiz(quiz.id)">Bắt đầu</button>
                                                 <p></p>
                                             </div>
