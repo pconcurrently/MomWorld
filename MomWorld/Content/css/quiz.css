@@ -71,9 +71,20 @@
 }
 
 .exam-thumbnail {
-	height: 200px !important;
-	width: 80% !important;
-	padding: 10px;
+	min-height: 256px !important;
+	/* width: 80% !important; */
+	padding: 20px;                    
+}
+
+.exam-thumbnail.opacity {
+	min-height: 256px !important;
+	/* width: 80% !important; */
+	padding: 20px;
+	opacity: 0.5;                    
+}
+
+.exam-thumbnail:hover {
+	opacity: 1 !important;            
 }
 
 .thumbnail span.exam-category {
