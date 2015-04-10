@@ -1,22 +1,18 @@
 ﻿@{
     Layout = "~/Views/Shared/_MWLayout.cshtml";
+    ViewBag.Title = "Home";
+  
+    
     var top5Articles = ViewData["Top5Articles"] as List<MomWorld.Entities.Article>;
     var currentUser = ViewBag.CurrentUser as MomWorld.Models.ApplicationUser;
 }
 
+<head>
+    <title>@ViewBag.Title.</title>
+</head>
 
 <body>
 
-
-
-
-
-
-    <!-- Preloader -->
-    <div class="mask">
-        <div id="loader"></div>
-    </div>
-    <!--/Preloader -->
     <!-- BEGIN SLIDER -->
     <div id="slider" class="slider bg-2">
 
@@ -904,6 +900,7 @@
             var newtop = $('.bootstrap-datetimepicker-widget').position().top - 45;
             $('.bootstrap-datetimepicker-widget').css('top', newtop + 'px');
         });
+
     </script>
     <script>
         /* Add User to Local Storage */
