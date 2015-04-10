@@ -779,7 +779,7 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="username">Tên đăng nhập</label> <input type="text" class="form-control" id="username"
-                                                                                                       value="khoahn" readonly>
+                                                                                                       value="{{user.currentUsername}}" readonly>
                                                 </div>
 
 
@@ -865,7 +865,7 @@
 
                                     </div>
 
-                                    <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge('user1')">
+                                    <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge()">
                                         <div class="tile text-center">
 
                                             <div class="">
@@ -904,7 +904,7 @@
                                                             </div>
                                                             <div class="col-xs-6 col-md-10">
                                                                 <h4>{{badge.Name}}</h4>
-                                                                Chúc mừng, bạn là một người tuyệt vời
+                                                                {{badge.Message}}
                                                             </div>
                                                         </div>
                                                     </div>
