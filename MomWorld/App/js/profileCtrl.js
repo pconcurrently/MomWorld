@@ -198,3 +198,9 @@ profileApp.directive('ngThumb', ['$window', function ($window) {
         }
     };
 }]);
+
+profileApp.filter('reverse', function () {
+    return function (items) {
+        return items.slice().reverse();
+    };
+});

@@ -88,31 +88,6 @@ namespace MomWorld.Controllers
 
         }
 
-        private static readonly string ServerUploadFolder = "~/App/uploads/video/";
-
-        // POST: api/User/UploadVideo
-        //[HttpPost]
-        //[DisableCors]
-        //[Route("api/User/UploadVideo")]
-        //public void uploadnow(HttpPostedFileBase file)
-        //{
-        //    var streamProvider = new MultipartFormDataStreamProvider(ServerUploadFolder);
-        //    await Request.Content.ReadAsMultipartAsync(streamProvider);
-
-        //    return new FileResult
-        //    {
-        //        FileNames = streamProvider.FileData.Select(entry => entry.LocalFileName),
-        //        Names = streamProvider.FileData.Select(entry => entry.Headers.ContentDisposition.FileName),
-        //        ContentTypes = streamProvider.FileData.Select(entry => entry.Headers.ContentType.MediaType),
-        //        Description = streamProvider.FormData["description"],
-        //        CreatedTimestamp = DateTime.UtcNow,
-        //        UpdatedTimestamp = DateTime.UtcNow,
-        //        DownloadLink = "TODO, will implement when file is persisited"
-        //    };
-        //}
-
-
-
 
         [HttpPost]
         [Route("api/User/UploadVideo")]
@@ -125,16 +100,14 @@ namespace MomWorld.Controllers
                 foreach (string file in httpRequest.Files)
                 {
                     var postedFile = httpRequest.Files[0];
-                    // var name = httpRequest.Form.Get(0);
+                    var Username = httpRequest.Form.Get(0);
+                    var VideoName = httpRequest.Form.Get(1);
+                    var VideoID = httpRequest.Form.Get(2);
+                    var Content = httpRequest.Form.Get(3);
 
                     // Save file to Responsitory
-                    var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/" + postedFile.FileName);
+                    var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/" + VideoID);
                     postedFile.SaveAs(filePath);
-
-                    // Change User ProfilePiture in Database
-                    //var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(name));
-                    //user.ProfilePicture = "http://localhost:4444/App/uploads/video/" + name + ".3pg";
-                    //identityDb.SaveChanges();
 
                 }
                 result = Request.CreateResponse(HttpStatusCode.Created);

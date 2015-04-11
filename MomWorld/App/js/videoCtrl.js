@@ -36,6 +36,7 @@ function ($scope, $http, FileUploader, $window) {
     /* Update Profile  */
     $scope.uploadVideo = function () {
 
+        alert("YOlo");
         var sentData = {
             FirstName: $scope.user.FirstName,
             LastName: $scope.user.LastName,
