@@ -1,37 +1,28 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Mom's World</title>
+    <title>Mom's World - @ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
-
-    
-
     <link rel="icon" type="image/ico" href="@Url.Content("~/Content/images/favicon.png")" />
-    <!-- Bootstrap -->
-    <link href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap.min.css")"
-          rel="stylesheet">
-    <link href="@Url.Content("~/Content/css/vendor/font-awesome-4.2.0/css/font-awesome.min.css")"
-          rel="stylesheet">
-    <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/animate/animate.css")">
-    <link type="text/css" rel="stylesheet" media="all"
-          href="@Url.Content("~/Content/js/vendor/mmenu/css/jquery.mmenu.all.css")" />
-    <link rel="stylesheet"
-          href="@Url.Content("~/Content/js/vendor/videobackground/css/jquery.videobackground.css")">
-    <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/bootstrap-checkbox.css")">
-    <link rel="stylesheet"
-          href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap-dropdown-multilevel.css")">
 
-    <link rel="stylesheet"
-          href="@Url.Content("~/Content/js/vendor/chosen/css/chosen.min.css")">
-    <link rel="stylesheet"
-          href="@Url.Content("~/Content/js/vendor/chosen/css/chosen-bootstrap.css")">
-    <link rel="stylesheet"
-          href="@Url.Content("~/Content/js/vendor/datatables/css/dataTables.bootstrap.css")">
-    <link rel="stylesheet"
-          href="@Url.Content("~/Content/js/vendor/datatables/css/ColVis.css")">
-    <link rel="stylesheet"
-          href="@Url.Content("~/Content/js/vendor/datatables/css/TableTools.css")">
+
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/font-awesome-4.2.0/css/font-awesome.min.css")">
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/animate/animate.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/js/vendor/mmenu/css/jquery.mmenu.all.css")" />
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/bootstrap-checkbox.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap-dropdown-multilevel.css")">
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/js/vendor/chosen/css/chosen.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/js/vendor/chosen/css/chosen-bootstrap.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/js/vendor/datatables/css/dataTables.bootstrap.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/js/vendor/datatables/css/ColVis.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/js/vendor/datatables/css/TableTools.css")">
+
 
     <link href="@Url.Content("~/Content/css/minimal.css")" rel="stylesheet">
 
@@ -44,26 +35,25 @@
 
 
 
-
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="@Url.Content("~/Content/js/vendor/jquery/jquery.js")"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="@Url.Content("~/Content/js/vendor/bootstrap/bootstrap.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/bootstrap/bootstrap-dropdown-multilevel.js")"></script>
 
-    <script type="text/javascript"
-            src="@Url.Content("~/Content/js/vendor/mmenu/js/jquery.mmenu.min.js")"></script>
-    <script type="text/javascript"
-            src="@Url.Content("~/Content/js/vendor/sparkline/jquery.sparkline.min.js")"></script>
-    <script type="text/javascript"
-            src="@Url.Content("~/Content/js/vendor/nicescroll/jquery.nicescroll.min.js")"></script>
-    <script type="text/javascript"
-            src="@Url.Content("~/Content/js/vendor/animate-numbers/jquery.animateNumbers.js")"></script>
-    <script type="text/javascript"
-            src="@Url.Content("~/Content/js/vendor/videobackground/jquery.videobackground.js")"></script>
-    <script type="text/javascript"
-            src="@Url.Content("~/Content/js/vendor/blockui/jquery.blockUI.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/mmenu/js/jquery.mmenu.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/sparkline/jquery.sparkline.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/nicescroll/jquery.nicescroll.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/animate-numbers/jquery.animateNumbers.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/videobackground/jquery.videobackground.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/blockui/jquery.blockUI.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/chosen/chosen.jquery.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/summernote/summernote.min.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/vendor/momentjs/moment-with-langs.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/datepicker/bootstrap-datetimepicker.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/colorpicker/bootstrap-colorpicker.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/vendor/colorpalette/bootstrap-colorpalette.js")"></script>
 
     <script src="@Url.Content("~/Content/js/vendor/datatables/jquery.dataTables.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datatables/ColReorderWithResize.js")"></script>
@@ -72,13 +62,11 @@
     <script src="@Url.Content("~/Content/js/vendor/datatables/tabletools/dataTables.tableTools.min.js")"></script>
     <script src="@Url.Content("~/Content/js/vendor/datatables/dataTables.bootstrap.js")"></script>
 
-    <script src="@Url.Content("~/Content/js/vendor/chosen/chosen.jquery.min.js")"></script>
-
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
 
 
 </head>
-<body class="solid-bg-1">
+<body class="bg-2">
 
     <!-- Preloader -->
     <div class="mask">
