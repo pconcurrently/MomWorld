@@ -38,8 +38,6 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
         }
 
-        console.log(JSON.stringify(sentData));
-
         $http.put("http://localhost:4444/api/User/Put/" + $scope.currentUsername, sentData).
               success(function (data, status, headers, config) {
                   alert("Update Ok");

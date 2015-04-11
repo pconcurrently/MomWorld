@@ -881,7 +881,7 @@
         </a>
     </div>
     <!-- END SCROLL TOP -->
-    <a hidden id="username" data-id="@currentUser.UserName.ToLower()"></a>
+    <a hidden id="username" data-id="@currentUser.UserName"></a>
     <a hidden id="firstname" data-id="@currentUser.FirstName"></a>
     <a hidden id="lastname" data-id="@currentUser.LastName"></a>
 
@@ -903,6 +903,7 @@
 
     </script>
     <script>
+
         /* Add User to Local Storage */
         var u = {
             Username: $('#username').attr('data-id'),
