@@ -54,14 +54,20 @@
 
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
 
+    <!--Logic Dependencies -->
     <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
+
+    <script src="http://localhost:4444/App/bower_components/moment/min/moment-with-locales.min.js"></script>
+    <script src="http://localhost:4444/App/bower_components/moment/locale/vi.js"></script>
+    <script src="http://localhost:4444/App/bower_components/angular-moment/angular-moment.min.js"></script>
+
     <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
 
 
 
 </head>
-<body class="bg-1" id="chatYolo" ng-app="chatApp" ng-controller="chatCtrl">
+<body class="bg-2" id="chatYolo" ng-app="chatApp" ng-controller="chatCtrl">
 
     <!-- Preloader -->
     <div class="mask">
@@ -518,11 +524,13 @@
                         </div>
 
 
+
+
                         <div class="col-lg-8 col-md-7 col-sm-6">
 
 
                             <!-- tile -->
-                            <section class="tile transparent">
+                            <section class="tile color bg-transparent-black-5">
 
 
                                 <!-- tile header -->
@@ -560,10 +568,10 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <!-- /tile header -->
 
+                                <!-- /tile header -->
                                 <!-- Chat Conversation -->
-                                <div class="tile-body transparent nopadding">                                    
+                                <div class="tile-body transparent nopadding">
                                     <div class="chat-content" id="chat-content">
                                         <ul class="chat-list">
 
@@ -573,21 +581,21 @@
                                                 <div class="media">
                                                     <div class="pull-left user-avatar">
                                                         <img ng-if="message.Sender == currentUser.Username" class="media-object img-circle"
-                                                             ng-src="{{currentUser.ProfileImage}}">
+                                                             ng-src="{{sUser.Avatar}}">
                                                         <img ng-if="message.Sender != currentUser.Username" class="media-object img-circle"
-                                                             ng-src="{{currentReceiver.ProfileImage}}">
+                                                             ng-src="{{rUser.Avatar}}">
                                                     </div>
                                                     <div class="media-body">
                                                         <p class="media-heading">
-                                                            <a href="chat.html#">{{message.Sender}}</a> <span class="time">26.3.2014 18:36</span>
+                                                            <a href="chat.html#">{{message.Sender}}</a> <span class="time"><span am-time-ago="message.CreatedDate"></span></span>
                                                         </p>
                                                         {{message.Content}}
                                                     </div>
                                                 </div>
                                             </li>
-                                            
-                                            
-                                            
+
+
+
 
                                         </ul>
                                     </div>
@@ -599,7 +607,7 @@
 
                                     <div class="chat-reply" id="chat-reply">
                                         <textarea ng-model="replyMess" placeholder="Nội dung tin nhắn ..." class="form-control"></textarea>
-                                        <div class="btn-group btn-group-sm">                                            
+                                        <div class="btn-group btn-group-sm">
                                             <button type="button"
                                                     class="btn btn-transparent-white last-in-group">
                                                 <i class="fa fa-camera"></i> Thêm ảnh
