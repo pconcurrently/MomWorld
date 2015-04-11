@@ -83,9 +83,6 @@
 	opacity: 0.2;                    
 }
 
-.exam-thumbnail:hover {
-	opacity: 1 !important;            
-}
 
 .thumbnail span.exam-category {
 	font-family: Arial, sans-serif;
