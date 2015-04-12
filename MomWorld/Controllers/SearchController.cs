@@ -10,9 +10,12 @@ namespace MomWorld.Controllers
     public class SearchController : Controller
     {
         private ArticleDb db = new ArticleDb();
+        private IdentityDb identityDb = new IdentityDb();
+        
         // GET: Search
         public ActionResult Index()
         {
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             return View();
         }
 

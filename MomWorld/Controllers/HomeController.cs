@@ -17,11 +17,14 @@ namespace MomWorld.Controllers
         
 
         public ActionResult Index()
-        {            
+        {
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+
             List<Article> articles = articleDb.Articles.OrderBy(art=>art.PostedDate).Take(5).ToList();
             ViewData["Top5Articles"] = articles;
 
             if (User.Identity.IsAuthenticated)
+            
             {
                 var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
                 ViewBag.CurrentUser = user;
