@@ -414,18 +414,18 @@
                                                         <div class="item appear-el" data-animation="fadeIn">
                                                             <figure>
                                                                 <div class="img-view">
-                                                                    @if (@article.DescriptionImage != null)
+                                                                    @if (@article.DescriptionImage != string.Empty)
                                                                     {
                                                                         <img src="@article.DescriptionImage"
                                                                              alt="Place description here"> }
                                                                     else
                                                                     {
-                                                                        <img src="@Url.Content("~/Content/images/post/1.jpg")"
+                                                                        <img src="@Url.Content("~/Content/images/post/default.jpg")"
                                                                              alt="Place description here">
                                                                     }
                                                                     <div class="overlay">
                                                                         <div class="overlay-controls">
-                                                                            @if (@article.DescriptionImage != null)
+                                                                            @if (@article.DescriptionImage != string.Empty)
                                                                             {
                                                                                 <a href="@article.DescriptionImage" data-nivobox="true"
                                                                                    data-lightbox-gallery="gallery1">
@@ -434,7 +434,7 @@
                                                                             }
                                                                             else
                                                                             {
-                                                                                <a href="@Url.Content("~/Content/images/post/1.jpg")" data-nivobox="true"
+                                                                                <a href="@Url.Content("~/Content/images/post/default.jpg")" data-nivobox="true"
                                                                                    data-lightbox-gallery="gallery1">
                                                                                     <i class="fa fa-arrows-alt"></i>
                                                                                 </a>

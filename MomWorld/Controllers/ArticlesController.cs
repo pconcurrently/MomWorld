@@ -131,7 +131,7 @@ namespace MomWorld.Controllers
             article.ViewNumber = 0;
             article.Title = model.Title;
             article.Content = model.Content;
-            article.Description = ParseHtml(model.Content);
+            article.Description = model.Description;
             article.DescriptionImage = GetDescriptionImage(model.Content);
             article.CategoryId = model.CategoryId;
             article.Phase = id;

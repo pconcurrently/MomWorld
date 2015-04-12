@@ -17,6 +17,8 @@ namespace MomWorld.Models
         public string[] Tags { get; set; }
 
         public string Phase { get; set; }
+
+        public string Description { get; set; }
     }
 
     public class EditArticleViewModel
