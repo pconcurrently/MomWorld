@@ -308,6 +308,7 @@ namespace MomWorld.Controllers
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)
         {
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
