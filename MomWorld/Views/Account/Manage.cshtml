@@ -6,623 +6,479 @@
 
 }
 
-
 <head>
     <title>@ViewBag.Title.</title>
-    
+
     <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
     <script src="@Url.Content("~/Scripts/angular-md5.min.js")"></script>
     <script src="@Url.Content("~/App/scripts/angular-file-upload/angular-file-upload.min.js")"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
-
 </head>
 <body class="bg-2" ng-app="profileApp" ng-controller="profileCtrl" ng-init="loadProfile()">
-
-   
-
-
+    <!-- Page content -->
+    <div id="content" class="col-md-12">
 
 
-           
-            <!-- Page content -->
-            <div id="content" class="col-md-12">
+        <!-- page header -->
+        <div class="pageheader">
+
+            <h2>
+                <i class="fa fa-user" style="line-height: 46px; padding-left: 0;"></i>
+                Thông tin cá nhân
+            </h2>
+        </div>
+        <!-- /page header -->
+        <!-- content main container -->
+        <div class="main">
+
+            <!-- row -->
+            <div class="row">
 
 
+                <!-- col 4 -->
+                <div class="col-md-4">
+
+                    <!-- tile -->
+                    <section class="tile transparent">
 
 
+                        <!-- tile header -->
+                        <div class="tile-header nopadding">
+                            <div class="controls">
+                                <a href="personal-page.html#" class="minimize">
+                                    <i class="fa fa-chevron-down"></i>
+                                </a> <a href="personal-page.html#"
+                                        class="refresh"><i class="fa fa-refresh"></i></a> <a href="personal-page.html#" class="remove">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /tile header -->
+                        <!-- tile widget -->
+                        <div class="tile-widget color transparent-white rounded-top-corners">
+                            <div class="user-card">
+                                <h3>
+                                    <strong ng-if="user.FirstName">{{user.FirstName}}</strong>
+                                    <strong ng-if="user.LastName">{{user.LastName}}</strong>
+                                </h3>
+                                <ul class="profile-controls inline">
+                                    <li class="avatar">
+                                        <img ng-src="{{user.ProfilePicture}}"
+                                             class="img-circle profile-photo">
+                                    </li>
+                                </ul>
+                                <h5 ng-if="user.Firstname">{{user.FirstName}}</h5>
+                                <h5 ng-if="user.LastName">{{user.LastName}}</h5>
+                                <div class="social-networks">
+                                    <a ng-href="{{user.social.facebook}}">
+                                        <i class="fa fa-facebook-square"></i>
+                                    </a>
+                                    <a ng-href="{{user.social.google}}">
+                                        <i class="fa fa-google-plus-square"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /tile widget -->
+                        <!-- tile body -->
+                        <div class="tile-body color transparent-black textured rounded-bottom-corners">
+                            <ul class="inline text-center">
+                                <li ng-repeat="badge in badgeFire">
+                                    <img alt="" ng-src="{{badge.Image}}"
+                                         style="height: 50px; width: 50px;">
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /tile body -->
+
+                    </section>
+                    <!-- /tile -->
+                    <!-- tile -->
+                    <section class="tile color transparent-black">
 
 
+                        <!-- tile header -->
+                        <div class="tile-header">
+                            <h1>
+                                Giới thiệu<strong> Bản Thân</strong>
+                            </h1>
+                            <div class="controls">
+                                <a href="personal-page.html#" class="minimize">
+                                    <i class="fa fa-chevron-down"></i>
+                                </a> <a href="personal-page.html#"
+                                        class="refresh"><i class="fa fa-refresh"></i></a> <a href="personal-page.html#" class="remove">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /tile header -->
+                        <!-- tile body -->
+                        <div class="tile-body padding-top-0">
+                            <p class="about-me">
+                                {{user.Description}}
+                            </p>
+                        </div>
+                        <!-- /tile body -->
 
-
-
-                <!-- page header -->
-                <div class="pageheader">
-
-
-                    <h2>
-                        <i class="fa fa-user" style="line-height: 46px; padding-left: 0;"></i>
-                        Thông tin cá nhân
-                    </h2>
-
+                    </section>
+                    <!-- /tile -->
                 </div>
-                <!-- /page header -->
-                <!-- content main container -->
-                <div class="main">
+                <!-- /col 4 -->
+                <!-- col 8 -->
+                <div class="col-md-8">
 
-
-
-                    <!-- row -->
-                    <div class="row">
-
-
-
-
-                        <!-- col 4 -->
-                        <div class="col-md-4">
-
-
-                            <!-- tile -->
-                            <section class="tile transparent">
-
-
-
-
-                                <!-- tile header -->
-                                <div class="tile-header nopadding">
-                                    <div class="controls">
-                                        <a href="personal-page.html#" class="minimize">
-                                            <i class="fa fa-chevron-down"></i>
+                    <!-- tile -->
+                    <section class="tile transparent">
+                        <!-- tile widget -->
+                        <div class="tile-widget nopadding color transparent-black rounded-top-corners">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs tabdrop">
+                                <li class="active">
+                                    <a href="personal-page.html#feed-tab"
+                                       data-toggle="tab">Trạng thái</a>
+                                </li>
+                                <li>
+                                    <a href="personal-page.html#settings-tab"
+                                       data-toggle="tab">Thông tin cá nhân</a>
+                                </li>
+                                <li>
+                                    <a href="personal-page.html#trophies-tab"
+                                       data-toggle="tab">Danh hiệu</a>
+                                </li>
+                            </ul>
+                            <!-- / Nav tabs -->
+                        </div>
+                        <!-- /tile widget -->
+                        <!-- tile body -->
+                        <div class="tile-body tab-content rounded-bottom-corners">
+                            <!-- Tab panes -->
+                            <div id="feed-tab" ng-init="loadStatus()" class="tab-pane fade in active">
+                                <div class="feed-form">
+                                    <textarea ng-model="Content" class="form-control"
+                                              placeholder="Bạn đang nghĩ gì ?" rows="5"></textarea>
+                                    <div class="post-toolbar">
+                                        <a href="personal-page.html#" title="Đính kèm file">
+                                            <i class="fa fa-paperclip"></i>
                                         </a> <a href="personal-page.html#"
-                                                class="refresh"><i class="fa fa-refresh"></i></a> <a href="personal-page.html#" class="remove">
-                                            <i class="fa fa-times"></i>
+                                                title="Thêm ảnh"><i class="fa fa-camera"></i></a>
+                                        <a href="" ng-click="createStatus()" title="Đăng!" class="pull-right">
+                                            <i class="fa fa-share"></i>
                                         </a>
                                     </div>
                                 </div>
-                                <!-- /tile header -->
-                                <!-- tile widget -->
-                                <div class="tile-widget color transparent-white rounded-top-corners">
-
-                                    <div class="user-card">
-                                        <h3>
-                                            <strong ng-if="user.FirstName">{{user.FirstName}}</strong>
-                                            <strong ng-if="user.LastName">{{user.LastName}}</strong>
-                                        </h3>
-                                        <ul class="profile-controls inline">
-                                            <li class="avatar">
-                                                <img ng-src="{{user.ProfilePicture}}" 
-                                                     class="img-circle profile-photo">
-                                            </li>
-                                        </ul>
-                                        <h5 ng-if="user.Firstname">{{user.FirstName}}</h5>
-                                        <h5 ng-if="user.LastName">{{user.LastName}}</h5>
-                                        <div class="social-networks">
-                                            <a ng-href="{{user.social.facebook}}">
-                                                <i class="fa fa-facebook-square"></i></a> 
-                                            <a ng-href="{{user.social.google}}">
-                                                <i class="fa fa-google-plus-square"></i>
+                                <div class="feed-list">
+                                    <article ng-repeat="status in statusFirebase | reverse" class="feed-post">
+                                        <aside class="profile-photo">
+                                            <a href="personal-page.html#">
+                                                <img src="{{status.CreatorAvatar}}" alt=""
+                                                     class="img-circle">
                                             </a>
-                                        
+                                        </aside>
+                                        <div class="feed-container">
+                                            <header>
+                                                <div class="author">
+                                                    <a href="personal-page.html#">{{status.CreatorUsername}}</a> đã cập nhật một
+                                                    trạng thái mới <small>{{status.CreatedDate}}</small>
+                                                </div>
+                                            </header>
+                                            <div class="feed-content">
+                                                <p>{{status.Content}}</p>
+                                            </div>
+                                            <footer>
+                                                <a href="personal-page.html#" class="liked">
+                                                    <i class="fa fa-heart"></i> Thích <span>(14)</span>
+                                                </a> <a href="personal-page.html#">
+                                                    <i class="fa fa-comment"></i> Bình luận <span>(26)</span>
+                                                </a> <a ng-click="removeStatus(status)" href="">
+                                                    <i class="fa fa-close"></i>
+                                                    Xóa
+                                                </a>
+                                                <ul class="comments">
+                                                    <li ng-repeat="comment in status.Comment">
+                                                        <div class="profile-photo">
+                                                            <img ng-src="{{comment.CreatorAvatar}}" alt=""
+                                                                 class="img-circle">
+                                                        </div>
+                                                        <div class="comment-container">
+                                                            <a href="personal-page.html#" class="comment-author">
+                                                                {{comment.CreatorUsername}}
+                                                            </a> {{comment.Content}}
+                                                            <div class="comment-meta">
+                                                                <a href="personal-page.html#" class="comment-date">
+                                                                    {{comment.CreatedDate}}
+                                                                </a> <i class="fa fa-circle"></i> <a href="personal-page.html#">
+                                                                    <i class="fa fa-heart"></i> Thích <span>(2)</span>
+                                                                </a> <i class="fa fa-circle"></i> <a href="personal-page.html#">
+                                                                    <i class="fa fa-reply"></i> Trả lời
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="comment-form">
+                                                        <div class="profile-photo">
+                                                            <img ng-src="{{comment.CreatorAvatar}}" alt=""
+                                                                 class="img-circle">
+                                                        </div>
+                                                        <div class="new-comment-container">
+                                                            <textarea ng-model="comment" class="form-control"
+                                                                      placeholder="Add a comment..." rows="2"></textarea>
+                                                            <div class="post-toolbar">
+                                                                <a href="" ng-click="addComment(user, status, comment)" title="Add it!">
+                                                                    <i class="fa fa-share"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </footer>
                                         </div>
-                                    </div>
-
-                                </div>
-                                <!-- /tile widget -->
-                                <!-- tile body -->
-                                <div class="tile-body color transparent-black textured rounded-bottom-corners">
-                                    <ul class="inline text-center">
-                                        <li ng-repeat="badge in badgeFire">
-                                            <img alt="" ng-src="{{badge.Image}}"
-                                                 style="height: 50px; width: 50px;">                                            
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- /tile body -->
+                                    </article>
 
 
-
-                            </section>
-                            <!-- /tile -->
-                            <!-- tile -->
-                            <section class="tile color transparent-black">
-
-
-
-
-                                <!-- tile header -->
-                                <div class="tile-header">
-                                    <h1>
-                                        Giới thiệu<strong> Bản Thân</strong>
-                                    </h1>
-                                    <div class="controls">
-                                        <a href="personal-page.html#" class="minimize">
-                                            <i class="fa fa-chevron-down"></i>
-                                        </a> <a href="personal-page.html#"
-                                                class="refresh"><i class="fa fa-refresh"></i></a> <a href="personal-page.html#" class="remove">
-                                            <i class="fa fa-times"></i>
+                                    <div class="text-center">
+                                        <a href="personal-page.html#" class="btn btn-default">
+                                            Xem thêm
                                         </a>
                                     </div>
                                 </div>
-                                <!-- /tile header -->
-                                <!-- tile body -->
-                                <div class="tile-body padding-top-0">
-                                    <p class="about-me">
-                                        {{user.Description}}
-                                    </p>
-                                </div>
-                                <!-- /tile body -->
+                            </div>
+                            <div id="settings-tab" class="tab-pane fade in">
 
-
-
-                            </section>
-                            <!-- /tile -->
-
-                        </div>
-                        <!-- /col 4 -->
-                        <!-- col 8 -->
-                        <div class="col-md-8">
-
-
-
-                            <!-- tile -->
-                            <section class="tile transparent">
-
-                                <!-- tile widget -->
-                                <div class="tile-widget nopadding color transparent-black rounded-top-corners">
-                                    <!-- Nav tabs -->
-                                    <ul class="nav nav-tabs tabdrop">
-                                        <li class="active">
-                                            <a href="personal-page.html#feed-tab"
-                                               data-toggle="tab">Trạng thái</a>
-                                        </li>
-                                        <li>
-                                            <a href="personal-page.html#settings-tab"
-                                               data-toggle="tab">Thông tin cá nhân</a>
-                                        </li>
-                                        <li>
-                                            <a href="personal-page.html#trophies-tab"
-                                               data-toggle="tab">Danh hiệu</a>
-                                        </li>
-                                    </ul>
-                                    <!-- / Nav tabs -->
-                                </div>
-                                <!-- /tile widget -->
-                                <!-- tile body -->
-                                <div class="tile-body tab-content rounded-bottom-corners">
-
-                                    <!-- Tab panes -->
-                                    <div id="feed-tab" ng-init="loadStatus()" class="tab-pane fade in active">
-
-                                        <div class="feed-form">
-                                            <textarea ng-model="Content" class="form-control"
-                                                      placeholder="Bạn đang nghĩ gì ?" rows="5"></textarea>
-                                            <div class="post-toolbar">
-                                                <a href="personal-page.html#" title="Đính kèm file">
-                                                    <i class="fa fa-paperclip"></i>
-                                                </a> <a href="personal-page.html#"
-                                                        title="Thêm ảnh"><i class="fa fa-camera"></i></a>
-
-                                                <a href="" ng-click="createStatus()" title="Đăng!" class="pull-right">
-                                                    <i class="fa fa-share"></i>
-                                                </a>
-                                            </div>
+                                <form class="profile-settings">
+                                    <div class="row">
+                                        <div class="form-group col-md-12 legend">
+                                            <h4>
+                                                Thông tin <strong>Cá nhân</strong>
+                                            </h4>
+                                            <p>Thiết lập tài khoản cá nhân của bạn</p>
                                         </div>
-
-                                        <div class="feed-list">
-
-                                            <article ng-repeat="status in statusFirebase | reverse" class="feed-post">
-
-                                                <aside class="profile-photo">
-                                                    <a href="personal-page.html#">
-                                                        <img src="{{status.CreatorAvatar}}" alt=""
-                                                             class="img-circle">
-                                                    </a>
-                                                </aside>
-
-                                                <div class="feed-container">
-
-                                                    <header>
-
-                                                        <div class="author">
-                                                            <a href="personal-page.html#">{{status.CreatorUsername}}</a> đã cập nhật một
-                                                            trạng thái mới <small>{{status.CreatedDate}}</small>
-                                                        </div>
-
-                                                    </header>
-
-                                                    <div class="feed-content">
-                                                        <p>{{status.Content}}</p>
-                                                    </div>
-
-                                                    <footer>
-                                                        <a href="personal-page.html#" class="liked">
-                                                            <i class="fa fa-heart"></i> Thích <span>(14)</span>
-                                                        </a> <a href="personal-page.html#">
-                                                            <i class="fa fa-comment"></i> Bình luận <span>(26)</span>
-                                                        </a> <a ng-click="removeStatus(status)" href="">
-                                                            <i class="fa fa-close"></i>
-                                                            Xóa
-                                                        </a>
-
-                                                        <ul class="comments">
-                                                            <li ng-repeat="comment in status.Comment">
-                                                                <div class="profile-photo">
-                                                                    <img ng-src="{{comment.CreatorAvatar}}" alt=""
-                                                                         class="img-circle">
-                                                                </div>
-
-                                                                <div class="comment-container">
-
-                                                                    <a href="personal-page.html#" class="comment-author">
-                                                                        {{comment.CreatorUsername}}
-                                                                    </a> {{comment.Content}}
-
-                                                                    <div class="comment-meta">
-
-                                                                        <a href="personal-page.html#" class="comment-date">
-                                                                            {{comment.CreatedDate}}
-                                                                        </a> <i class="fa fa-circle"></i> <a href="personal-page.html#">
-                                                                            <i class="fa fa-heart"></i> Thích <span>(2)</span>
-                                                                        </a> <i class="fa fa-circle"></i> <a href="personal-page.html#">
-                                                                            <i class="fa fa-reply"></i> Trả lời
-                                                                        </a>
-                                                                    </div>
-
-                                                                </div>
-                                                            </li>
-
-                                                            <li class="comment-form">
-                                                                <div class="profile-photo">
-                                                                    <img ng-src="{{comment.CreatorAvatar}}" alt=""
-                                                                         class="img-circle">
-                                                                </div>
-
-                                                                <div class="new-comment-container">
-
-                                                                    <textarea ng-model="comment" class="form-control"
-                                                                              placeholder="Add a comment..." rows="2"></textarea>
-                                                                    <div class="post-toolbar">
-                                                                        <a href="" ng-click="addComment(user, status, comment)" title="Add it!">
-                                                                            <i class="fa fa-share"></i>
-                                                                        </a>
-                                                                    </div>
-
-                                                                </div>
-                                                            </li>
-
-                                                        </ul>
-
-                                                    </footer>
-
-                                                </div>
-
-                                            </article>
-
-
-
-
-                                            <div class="text-center">
-                                                <a href="personal-page.html#" class="btn btn-default">
-                                                    Xem thêm
-                                                </a>
-                                            </div>
-
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="first-name">Họ</label> <input type="text"
+                                                                                      class="form-control" id="first-name" ng-model="user.FirstName">
                                         </div>
-
+                                        <div class="form-group col-sm-6">
+                                            <label for="last-name">Tên</label> <input type="text"
+                                                                                      class="form-control" id="last-name" ng-model="user.LastName">
+                                        </div>
                                     </div>
 
-                                    <div id="settings-tab" class="tab-pane fade in">
-
-
-                                        <form class="profile-settings">
-
-                                            <div class="row">
-                                                <div class="form-group col-md-12 legend">
-                                                    <h4>
-                                                        Thông tin <strong>Cá nhân</strong>
-                                                    </h4>
-                                                    <p>Thiết lập tài khoản cá nhân của bạn</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="first-name">Họ</label> <input type="text"
-                                                                                              class="form-control" id="first-name" ng-model="user.FirstName">
-                                                </div>
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="last-name">Tên</label> <input type="text"
-                                                                                              class="form-control" id="last-name" ng-model="user.LastName">
-                                                </div>
-
-                                            </div>
-
-
-
-                                            <div class="row">
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="email">E-mail</label> <input type="email"
-                                                                                             class="form-control" id="email" ng-model="user.Email"
-                                                                                             readonly>
-                                                </div>
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="avatar">Ảnh đại diện</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-btn">
-                                                            <span class="btn btn-primary btn-file">
-                                                                <i class="fa fa-upload"></i><input type="file" nv-file-select uploader="uploader" />
-                                                            </span>
-                                                        </span> <input type="text" class="form-control" readonly=""
-                                                                       id="avatar">
-                                                    </div>
-                                                    <span class="help-block">
-                                                        File cho phép: gif, png,
-                                                        jpg. Kích thước tối đa 1Mb
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="email">E-mail</label> <input type="email"
+                                                                                     class="form-control" id="email" ng-model="user.Email"
+                                                                                     readonly>
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="avatar">Ảnh đại diện</label>
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <span class="btn btn-primary btn-file">
+                                                        <i class="fa fa-upload"></i><input type="file" nv-file-select uploader="uploader" />
                                                     </span>
-                                                </div>
-
+                                                </span> <input type="text" class="form-control" readonly=""
+                                                               id="avatar">
                                             </div>
+                                            <span class="help-block">
+                                                File cho phép: gif, png,
+                                                jpg. Kích thước tối đa 1Mb
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="phone">Số điện thoại</label> <input type="text"
+                                                                                            class="form-control" id="phone" ng-model="user.PhoneNumber">
+                                            <span class="help-block">+(84)1655757445</span>
 
-                                            <div class="row">
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="phone">Số điện thoại</label> <input type="text"
-                                                                                                    class="form-control" id="phone" ng-model="user.PhoneNumber">
-                                                    <span class="help-block">+(84)1655757445</span>
-
-
-                                                </div>
-
-                                                <div class="form-group col-sm-6">
-                                                    <ul id="thumbPic">
-                                                        <li ng-repeat="item in uploader.queue">
-                                                            <div ng-thumb="{ file: item._file, height: 100 }"></div><br />
-                                                            <button ng-click="updateAvatar()">upload</button>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-
-
-                                            </div>
-
-
-                                            <div class="row">
-                                                <div class="form-group col-md-12 legend">
-                                                    <h4>
-                                                        Thiết lập <strong>mạng xã hội</strong>
-                                                    </h4>
-                                                    <p>kết nối với hồ sơ mạng xã hội của bạn</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="facebook">Facebook</label> <input type="text"
-                                                                                                  class="form-control" id="facebook" value="{{user.Social.Facebook}}">
-                                                </div>
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="google-plus">Google+</label> <input type="text"
-                                                                                                    class="form-control" id="google-plus" value="{{user.Social.Google}}">
-                                                </div>
-
-                                            </div>
-
-
-                                            <div class="row">
-                                                <div class="form-group col-md-12 legend">
-                                                    <h4>
-                                                        Thiết lập <strong>Bảo mật</strong>
-                                                    </h4>
-                                                    <p>Bảo vệ tài khoản của bạn</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="username">Tên đăng nhập</label> <input type="text" class="form-control" id="username"
-                                                                                                       value="{{user.currentUsername}}" readonly>
-                                                </div>
-
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="password">Mật khẩu cũ</label> <input type="password" class="form-control" id="password"
-                                                                                                     value="123456" readonly>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="row">
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="new-password">Mật khẩu mới</label> <input type="password" class="form-control" id="new-password">
-                                                </div>
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="new-password-repeat">
-                                                        Nhập lại mật khẩu
-                                                        mới
-                                                    </label> <input type="password" class="form-control"
-                                                                    id="new-password-repeat">
-                                                </div>
-
-                                            </div>
-
-                                            <div class="row">
-
-                                                <div class="form-group col-sm-6">
-                                                    <label for="new-password">Xem thông tin</label>
-                                                    <div class="radio">
-                                                        <input type="radio" name="optionsRadios"
-                                                               id="optionsRadios1" value="option1" checked=""> <label for="optionsRadios1">Mọi người</label>
-                                                    </div>
-                                                    <div class="radio">
-                                                        <input type="radio" name="optionsRadios"
-                                                               id="optionsRadios3" value="option3"> <label for="optionsRadios3">Chỉ mình tôi</label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-sm-6">
-                                                    <ul class="nolisttypes inlineSelect rowSelect">
-                                                        <li class="title"><h5>Thông báo</h5></li>
-                                                        <li>
-                                                            <div class="checkbox">
-                                                                <input type="checkbox" checked="checked" value="1"
-                                                                       id="opt01"> <label for="opt01">
-                                                                    Thông
-                                                                    báo công việc mới
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="checkbox">
-                                                                <input type="checkbox" value="1" id="opt03"> <label for="opt03">Thông báo tin nhắn mới</label>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                            </div>
-
-
-
-                                            <div class="row">
-
-                                                <div class="form-group col-md-12 text-right">
-                                                    <button class="btn btn-cyan start btn-md" ng-click="updateProfile()">
-                                                        <i class="fa fa-refresh"></i> <span> Cập nhật</span>
-                                                    </button>
-
-
-                                                    <button class="btn btn-red cancel btn-md">
-                                                        <i class="fa fa-times"></i> <span> Hủy</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-
-
-
-                                        </form>
-
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <ul id="thumbPic">
+                                                <li ng-repeat="item in uploader.queue">
+                                                    <div ng-thumb="{ file: item._file, height: 100 }"></div><br />
+                                                    <button ng-click="updateAvatar()">upload</button>
+                                                </li>
+                                            </ul>
+                                        </div>
 
                                     </div>
 
-                                    <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge()">
-                                        <div class="tile text-center">
-
-                                            <div class="">
-
-                                                <div class="text-center">
-
-                                                    <img alt="" src="Content/images/armorial/1.png"
-                                                         style="height: 200px; width: 200px;">
-                                                    <h1>Number One</h1>
-                                                    <p>Chúc mừng, bạn là một người tuyệt vời</p>
-                                                </div>
-
-                                            </div>
-
+                                    <div class="row">
+                                        <div class="form-group col-md-12 legend">
+                                            <h4>
+                                                Thiết lập <strong>mạng xã hội</strong>
+                                            </h4>
+                                            <p>kết nối với hồ sơ mạng xã hội của bạn</p>
                                         </div>
-
-                                        <div class="">
-
-                                            <!-- tile header -->
-                                            <div class="tile-header ">
-                                                <h1>
-                                                    Các <strong>DANH HIỆU</strong> đã đạt được
-                                                </h1>
-                                            </div>
-                                            <!-- /tile header -->
-                                            <!-- tile body -->
-                                            <div class="tile-body">
-                                                <div class="panel-heading"></div>
-                                                <div class="panel-body">
-                                                    <div class="row" ng-repeat="badge in badgeFire"
-                                                         style="border: 3px solid rgba(0, 0, 0, 0.5);">
-                                                        <div ng-if="badge.Status == 'done'">
-                                                            <div class="col-xs-6 col-md-2">
-                                                                <img alt="" ng-src="{{badge.Image}}"
-                                                                     style="height: 80px; width: 80px;">
-                                                            </div>
-                                                            <div class="col-xs-6 col-md-10">
-                                                                <h4>{{badge.Name}}</h4>
-                                                                {{badge.Message}}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <!-- /tile body -->
-
-
-
-
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="facebook">Facebook</label> <input type="text"
+                                                                                          class="form-control" id="facebook" value="{{user.Social.Facebook}}">
                                         </div>
-
-
-
+                                        <div class="form-group col-sm-6">
+                                            <label for="google-plus">Google+</label> <input type="text"
+                                                                                            class="form-control" id="google-plus" value="{{user.Social.Google}}">
+                                        </div>
                                     </div>
 
-                                    <!-- / Tab panes -->
+                                    <div class="row">
+                                        <div class="form-group col-md-12 legend">
+                                            <h4>
+                                                Thiết lập <strong>Bảo mật</strong>
+                                            </h4>
+                                            <p>Bảo vệ tài khoản của bạn</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="username">Tên đăng nhập</label> <input type="text" class="form-control" id="username"
+                                                                                               value="{{user.currentUsername}}" readonly>
+                                        </div>
+
+                                        <div class="form-group col-sm-6">
+                                            <label for="password">Mật khẩu cũ</label> <input type="password" class="form-control" id="password"
+                                                                                             value="123456" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="new-password">Mật khẩu mới</label> <input type="password" class="form-control" id="new-password">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="new-password-repeat">
+                                                Nhập lại mật khẩu
+                                                mới
+                                            </label> <input type="password" class="form-control"
+                                                            id="new-password-repeat">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="new-password">Xem thông tin</label>
+                                            <div class="radio">
+                                                <input type="radio" name="optionsRadios"
+                                                       id="optionsRadios1" value="option1" checked=""> <label for="optionsRadios1">Mọi người</label>
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" name="optionsRadios"
+                                                       id="optionsRadios3" value="option3"> <label for="optionsRadios3">Chỉ mình tôi</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <ul class="nolisttypes inlineSelect rowSelect">
+                                                <li class="title"><h5>Thông báo</h5></li>
+                                                <li>
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" checked="checked" value="1"
+                                                               id="opt01"> <label for="opt01">
+                                                            Thông
+                                                            báo công việc mới
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" value="1" id="opt03"> <label for="opt03">Thông báo tin nhắn mới</label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-12 text-right">
+                                            <button class="btn btn-cyan start btn-md" ng-click="updateProfile()">
+                                                <i class="fa fa-refresh"></i> <span> Cập nhật</span>
+                                            </button>
+
+                                            <button class="btn btn-red cancel btn-md">
+                                                <i class="fa fa-times"></i> <span> Hủy</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge()">
+                                <div class="tile text-center">
+                                    <div class="">
+                                        <div class="text-center">
+                                            <img alt="" src="Content/images/armorial/1.png"
+                                                 style="height: 200px; width: 200px;">
+                                            <h1>Number One</h1>
+                                            <p>Chúc mừng, bạn là một người tuyệt vời</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <!-- tile header -->
+                                    <div class="tile-header ">
+                                        <h1>
+                                            Các <strong>DANH HIỆU</strong> đã đạt được
+                                        </h1>
+                                    </div>
+                                    <!-- /tile header -->
+                                    <!-- tile body -->
+                                    <div class="tile-body">
+                                        <div class="panel-heading"></div>
+                                        <div class="panel-body">
+                                            <div class="row" ng-repeat="badge in badgeFire"
+                                                 style="border: 3px solid rgba(0, 0, 0, 0.5);">
+                                                <div ng-if="badge.Status == 'done'">
+                                                    <div class="col-xs-6 col-md-2">
+                                                        <img alt="" ng-src="{{badge.Image}}"
+                                                             style="height: 80px; width: 80px;">
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-10">
+                                                        <h4>{{badge.Name}}</h4>
+                                                        {{badge.Message}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /tile body -->
+
 
                                 </div>
-                                <!-- /tile body -->
 
-
-
-                            </section>
-                            <!-- /tile -->
-
-
-
+                            </div>
+                            <!-- / Tab panes -->
                         </div>
-                        <!-- /col 8 -->
+                        <!-- /tile body -->
 
-
-
-                    </div>
-                    <!-- /row -->
-
-
-
+                    </section>
+                    <!-- /tile -->
 
                 </div>
-                <!-- /content container -->
-
-
-
-
-
+                <!-- /col 8 -->
 
             </div>
-            <!-- Page content end -->
+            <!-- /row -->
 
 
+        </div>
+        <!-- /content container -->
 
-
-
-
+    </div>
+    <!-- Page content end -->
     <script src="@Url.Content("~/App/js/profileCtrl.js")"></script>
-
     <script>
         //initialize file upload button function
         $(document).on(
-				'change',
-				'.btn-file :file',
-				function () {
-				    var input = $(this), numFiles = input.get(0).files ? input
-							.get(0).files.length : 1, label = input.val()
-							.replace(/\\/g, '/').replace(/.*\//, '');
-				    input.trigger('fileselect', [numFiles, label]);
-				});
+                'change',
+                '.btn-file :file',
+                function () {
+                    var input = $(this), numFiles = input.get(0).files ? input
+                            .get(0).files.length : 1, label = input.val()
+                            .replace(/\\/g, '/').replace(/.*\//, '');
+                    input.trigger('fileselect', [numFiles, label]);
+                });
 
         $(function () {
 
@@ -661,24 +517,23 @@
 
             //initialize file upload button
             $('.btn-file :file').on(
-					'fileselect',
-					function (event, numFiles, label) {
+                    'fileselect',
+                    function (event, numFiles, label) {
 
-					    var input = $(this).parents('.input-group').find(
-								':text'), log = numFiles > 1 ? numFiles
-								+ ' files selected' : label;
+                        var input = $(this).parents('.input-group').find(
+                                ':text'), log = numFiles > 1 ? numFiles
+                                + ' files selected' : label;
 
-					    console.log(log);
+                        console.log(log);
 
-					    if (input.length) {
-					        input.val(log);
-					    } else {
-					        if (log)
-					            alert(log);
-					    }
-					});
+                        if (input.length) {
+                            input.val(log);
+                        } else {
+                            if (log)
+                                alert(log);
+                        }
+                    });
 
         })
     </script>
 </body>
-

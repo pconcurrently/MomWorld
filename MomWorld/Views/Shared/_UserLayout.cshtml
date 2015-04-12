@@ -8,7 +8,6 @@
 
 
 
-
     <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap.min.css")">
     <link rel="stylesheet" href="@Url.Content("~/Content/css/vendor/font-awesome-4.2.0/css/font-awesome.min.css")">
 
@@ -85,7 +84,6 @@
 
 </head>
 <body class="bg-2">
-
     <!-- Preloader -->
     <div class="mask">
         <div id="loader"></div>
@@ -95,20 +93,13 @@
     <div id="wrap">
 
 
-
-
         <!-- Make page fluid -->
         <div class="row">
-
-
-
 
 
             <!-- Fixed navbar -->
             <div class="navbar navbar-default navbar-fixed-top navbar-transparent-black mm-fixed-top collapsed"
                  role="navigation" id="navbar">
-
-
 
                 <!-- Branding -->
                 <div class="navbar-header col-md-2">
@@ -124,7 +115,6 @@
                 <!-- Branding end -->
                 <!-- .nav-collapse -->
                 <div class="navbar-collapse">
-
                     <!-- Page refresh -->
                     <ul class="nav navbar-nav refresh">
                         <li class="divided">
@@ -136,11 +126,9 @@
                     <!-- Quick Actions -->
                     <ul class="nav navbar-nav quick-actions">
 
-
                         <!-- USE AFTER LOGIN -->
                         @Html.Partial("_LoginPartialManage")
                         <!--/.navbar-collapse -->
-
 
                         <li>
                             <a href="#mmenu"><i class="fa fa-users"></i></a>
@@ -149,7 +137,6 @@
                     <!-- /Quick Actions -->
                     <!-- Sidebar -->
                     <ul class="nav navbar-nav side-nav" id="sidebar">
-
                         <li class="collapsed-content">
                             <ul>
                                 <li class="search">
@@ -157,13 +144,11 @@
                                 </li>
                             </ul>
                         </li>
-
                         <li class="navigation" id="navigation">
                             <a href="#"
                                class="sidebar-toggle" data-toggle="#navigation">
                                 Trang quản lí <i class="fa fa-angle-up"></i>
                             </a>
-
                             <ul class="menu">
                                 <li>
                                     <a href="#">
@@ -193,11 +178,7 @@
                                         <i class="fa fa-pencil-square-o"></i> Quản lí bài viết
                                     </a>
                                 </li>
-
                             </ul>
-
-
-
 
 
 
@@ -205,34 +186,20 @@
                     <!-- Sidebar end -->
 
 
-
-
-
                 </div>
                 <!--/.nav-collapse -->
 
 
-
-
-
             </div>
             <!-- Fixed navbar end -->
-            <!-- Page content -->
-            <div id="Content" class="col-md-12">
-
-
-
-                <!-- content main container -->
-                <div class="main">@RenderBody()</div>
-                <!-- /content container -->
 
 
 
 
 
 
-            </div>
-            <!-- Page content end -->
+            @RenderBody()
+
 
 
 
@@ -242,23 +209,20 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs nav-justified">
                     <li class="active"><a href="index.html#mmenu-users" data-toggle="tab"><i class="fa fa-users"></i></a></li>
-
                 </ul>
-
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="mmenu-users">
-                        <ul class="users-list">                            
+                        <ul class="users-list">
                             <li class="online text-center">
                                 <div class="input-group">
-                                    <input type="text" ng-model="searchUser"  class="form-control" name="username" placeholder="Tìm kiếm tài khoản">
+                                    <input type="text" ng-model="searchUser" class="form-control" name="username" placeholder="Tìm kiếm tài khoản">
                                     <div class="input-group-addon ">
                                         <i class="fa fa-search color-cyan"></i>
                                     </div>
                                 </div>
                             </li>
                         </ul>
-
                         <h5></h5>
                         <ul class="users-list">
                             <li class="online" ng-repeat="userL in listUser | filter:searchUser">
@@ -276,20 +240,14 @@
                         </ul>
                     </div>
 
-
                 </div><!-- tab-content -->
             </div>
-
-
 
         </div>
         <!-- Make page fluid-->
 
 
-
-
     </div>
 
-    
 </body>
 </html>

@@ -742,6 +742,7 @@ namespace MomWorld.Controllers
 
         public ActionResult Dashboard()
         {
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             return View();
         }
         
