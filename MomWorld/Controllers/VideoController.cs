@@ -18,6 +18,21 @@ namespace MomWorld.Controllers
             return View();
         }
 
+        // View Video detail
+        public ActionResult Detail(string id)
+        {
+            if (id != null)
+            {
+                
+                
+                return View();
+            }
+            else
+            {
+                return Redirect("http://localhost:4444/Video");
+            }
+        }
+
         
     }
 }
