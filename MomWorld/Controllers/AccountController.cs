@@ -692,7 +692,9 @@ namespace MomWorld.Controllers
 
         [Authorize(Roles = "Admins")]
         public ActionResult SMSManager()
+        
         {
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             return View();
         }
 
