@@ -15,6 +15,8 @@ namespace MomWorld.Models
         public string CategoryId { get; set; }
 
         public string[] Tags { get; set; }
+
+        public string Phase { get; set; }
     }
 
     public class EditArticleViewModel
@@ -43,5 +45,7 @@ namespace MomWorld.Models
         public string[] Tags { get; set; }
 
         public string DescriptionImage { get; set; }
+
+        public string Phase { get; set; }
     }
 }

@@ -12,6 +12,8 @@
         idDictionary.Add(item.Id, string.Format("category{0}", count));
         count += 1;
     }
+
+    var phase = ViewBag.Phase as int?;
 }
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -92,43 +94,7 @@
 
 </head>
 <body>
-    <a hidden id="isPopup" data-id="@isPopup"></a>
-    <!--modal chờ phê duyệt -->
-    <div class="modal fade" id="modalWaitingApproved" tabindex="-1"
-         role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
-         style="background: rgba(0, 0, 0, 0.75); top: 0px;">
-        <div class="modal-dialog" style="margin-top: 100px;">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">
-                        Thoát
-                    </button>
-                    <img src="@Url.Content("~/Content/images/approval.png")" style="width:300px;" />
-                    <h3 class="modal-title" id="modalConfirmLabel">
-                        <strong>Kiểm duyệt</strong>
-                    </h3>
-                </div>
-                <div class="modal-body">
-                    <!-- The file upload form used as target for the file upload widget -->
-                    <form class="form-horizontal">
-                        <div class="form-group">
-
-                        </div>
-                        <div class="form-group form-footer">
-                            <div class="text-center">
-                                <h3>Bài viết của bạn đang được chờ kiểm duyệt.</h3>
-                                <span>Cảm ơn bạn đã chia sẽ những thông tin bổ ích với chúng tôi</span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
+    <hidden id="phase">@phase</hidden>
     <!-- Modal create category -->
     <div class="modal fade" id="modalCreateCategory" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -785,14 +751,6 @@
   
 
     <script>
-        $(window).ready(function () {
-            var isPopup = $('#isPopup').attr("data-id");
-            if (isPopup == "true") {
-                $('#modalWaitingApproved').modal('show');
-            }
-
-        });
-
         $('#submitCategory').click(function (e) {
             e.preventDefault();
             var name = $('#categoryName').val();
@@ -863,7 +821,8 @@
         });
 
         $('#addArticle').click(function () {
-            window.location.href = "/Articles/Create";
+            var phase = $('#phase').val();
+            window.location.href = "/Articles/Create/"+phase;
         });
         
     </script>

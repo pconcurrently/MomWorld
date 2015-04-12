@@ -15,7 +15,5 @@ namespace MomWorld.DataContexts
         }
 
         public DbSet<Comment> Comments { get; set; }
-
-        public DbSet<Article> Articles { get; set; }
     }
 }

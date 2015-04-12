@@ -28,7 +28,6 @@ namespace MomWorld.Controllers
         // GET: Comments/Create
         public ActionResult Create()
         {
-            ViewBag.ArticleId = new SelectList(db.Articles, "Id", "Name");
             return View();
         }
 
