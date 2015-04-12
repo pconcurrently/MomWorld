@@ -732,19 +732,7 @@
 
     <script>
         //initialize datepicker
-        $('#datepicker').datetimepicker({
-            icons: {
-                time: "fa fa-clock-o",
-                date: "fa fa-calendar",
-                up: "fa fa-arrow-up",
-                down: "fa fa-arrow-down"
-            }
-        });
-
-        $("#datepicker").on("dp.show", function (e) {
-            var newtop = $('.bootstrap-datetimepicker-widget').position().top - 45;
-            $('.bootstrap-datetimepicker-widget').css('top', newtop + 'px');
-        });
+        $('#datepicker').datetimepicker();
     </script>
 
 
