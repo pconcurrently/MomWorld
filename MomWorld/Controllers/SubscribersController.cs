@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MomWorld.DataContexts;
+using MomWorld.Entities;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,6 +11,8 @@ namespace MomWorld.Controllers
 {
     public class SubscribersController : Controller
     {
+        private SubscriberDb db = new SubscriberDb();
+
         // GET: Subscribers
         public ActionResult Index()
         {
@@ -20,26 +25,16 @@ namespace MomWorld.Controllers
             return View();
         }
 
-        // GET: Subscribers/Create
-        public ActionResult Create()
+        public JsonResult Create(Subscriber model)
         {
-            return View();
-        }
-
-        // POST: Subscribers/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                db.Entry(model).State = EntityState.Added;
+                db.SaveChanges();
+                return Json("Successfully");
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return Json(null);
         }
 
         // GET: Subscribers/Edit/5

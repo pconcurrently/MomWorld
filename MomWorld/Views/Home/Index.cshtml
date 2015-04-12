@@ -390,14 +390,14 @@
                             <form class="form-horizontal" role="form">
 
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Số điện thoại">
+                                    <input type="text" class="form-control" placeholder="Số điện thoại" id="phone">
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
                                 </div>
 
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Email">
+                                    <input type="text" class="form-control" placeholder="Email" id="email">
                                     <div class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </div>
@@ -414,7 +414,7 @@
 
                                 <div class="form-group form-footer">
                                     <div class="col-sm-offset-4 col-sm-8">
-                                        <button type="submit" class="btn btn-warning">Đăng kí</button>
+                                        <button type="submit" class="btn btn-warning" id="subscribe">Đăng kí</button>
                                     </div>
                                 </div>
 
@@ -983,5 +983,29 @@
 						});
     </script>
 
+
+    <script>
+        $('#subscribe').click(function (e) {
+            e.preventDefault();
+            var email = $('#email').val();
+            var phone = $('#phone').val();
+            var date = $('#datepicker').val();
+
+            $.ajax({
+                url: '/Subscribers/Create',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ model: { Email: email, PhoneNumber: phone, DatePregnancy : date } }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    window.location.reload(true);
+                },
+            });
+        });
+
+    </script>
 
 </body>
