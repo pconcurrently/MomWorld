@@ -50,4 +50,20 @@ namespace MomWorld.Models
         [Description("Bình thường")]
         Normal = 2
     }
+
+    public class TopUsersModel
+    {
+        public string Id { get; set; }
+
+        public int ArticlesNumber { get; set; }
+
+        public int LikesNumber { get; set; }
+
+        public TopUsersModel(string id, int arts, int likes )
+        {
+            Id = id;
+            ArticlesNumber = arts;
+            LikesNumber = likes;
+        }
+    }
 }

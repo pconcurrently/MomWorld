@@ -13,5 +13,7 @@ namespace MomWorld.Models
         public string Content { get; set; }
 
         public string[] Tags { get; set; }
+
+        public string Description { get; set; }
     }
 }

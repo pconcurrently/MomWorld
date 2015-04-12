@@ -14,17 +14,49 @@ namespace MomWorld.Controllers
 
         private ArticleDb articleDb = new ArticleDb();
         private IdentityDb identityDb = new IdentityDb();
-        
+
 
         public ActionResult Index()
         {
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
 
-            List<Article> articles = articleDb.Articles.OrderBy(art=>art.PostedDate).Take(5).ToList();
+            var users = identityDb.Users.ToList();
+            Dictionary<string, int> listUsers = new Dictionary<string, int>();
+            int artsCount = 0;
+            int likesCount = 0;
+            var top5Users = new List<ApplicationUser>();
+            var listUserLikeArticle = new List<TopUsersModel>();
+            foreach (var u in users)
+            {
+                var arts = articleDb.Articles.ToList().FindAll(a => a.UserId.Equals(u.Id));
+                artsCount = arts.Count;
+                foreach (var art in arts)
+                {
+                    likesCount += articleDb.ArticleLikes.ToList().FindAll(a => a.ArticleId.Equals(art.Id)).Count;
+                }
+                listUsers.Add(u.Id, artsCount * 10 + likesCount);
+                listUserLikeArticle.Add(new TopUsersModel(u.Id, artsCount, likesCount));
+                artsCount = 0;
+                likesCount = 0;
+            }
+            var values = listUsers.Values.ToList().OrderByDescending(i=>i).ToList();
+
+            foreach (var value in values)
+            {
+                var user = users.FirstOrDefault(u => u.Id.Equals(listUsers.FirstOrDefault(l => l.Value == value).Key));
+                if (top5Users.Count <= 4)
+                {
+                    top5Users.Add(user);
+                    users.Remove(user);
+                    listUsers.Remove(user.Id);
+                }
+            }
+            ViewBag.Top5Users = top5Users;
+            ViewBag.ListUserLikeArticle = listUserLikeArticle;
+            List<Article> articles = articleDb.Articles.OrderBy(art => art.PostedDate).Take(5).ToList();
             ViewData["Top5Articles"] = articles;
 
             if (User.Identity.IsAuthenticated)
-            
             {
                 var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
                 ViewBag.CurrentUser = user;
@@ -33,7 +65,7 @@ namespace MomWorld.Controllers
             else
             {
                 //Fix sau
-                ViewBag.CurrentUser= new ApplicationUser();
+                ViewBag.CurrentUser = new ApplicationUser();
             }
 
             return View();

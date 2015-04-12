@@ -365,10 +365,10 @@
 
                         <div class="form-group">
                             <label for="title" class="col-md-4 " style="font-size: 18px;">
-                                Giới thiệu <span class="required">*</span>
+                                Mô tả <span class="required">*</span>
                             </label>
                             <div class="col-md-8">
-                                <textarea class="form-control" id="" rows="6"></textarea>
+                                @Html.TextAreaFor(model => model.Description, htmlAttributes: new {@class="form-control", id="", rows="6" })
                             </div>
                         </div>
 

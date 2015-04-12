@@ -2,9 +2,10 @@
     Layout = "~/Views/Shared/_MWLayout.cshtml";
     ViewBag.Title = "Home";
 
-
+    var top5Users = ViewBag.Top5Users as List<MomWorld.Models.ApplicationUser>;
     var top5Articles = ViewData["Top5Articles"] as List<MomWorld.Entities.Article>;
     var currentUser = ViewBag.CurrentUser as MomWorld.Models.ApplicationUser;
+    var listUserLikeArticle = ViewBag.ListUserLikeArticle as List<MomWorld.Models.TopUsersModel>;
 }
 
 <head>
@@ -441,95 +442,24 @@
 
                             <form class="form-horizontal" role="form">
                                 <ul class="media-list recent-posts sidebar-widget">
-
-                                    <li class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="@Url.Content("~/Content/images/profile-photo.jpg")" alt="">
-                                        </a>
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                <a href="#">Khoahn</a>
-                                                <span class="badge" style="float:right;">1</span>
-                                            </h5>
-
-                                            <ul class="post-details">
-                                                <li><i class="fa fa-edit "></i> 210 Bài viết</li>
-                                                <li><i class="fa fa-heart color-red"></i> 500 Lượt cảm ơn</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="@Url.Content("~/Content/images/arnold-avatar.jpg")" alt="">
-                                        </a>
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                <a href="#">PhoHT</a>
-                                                <span class="badge" style="float:right;">2</span>
-                                            </h5>
-
-                                            <ul class="post-details">
-                                                <li><i class="fa fa-edit "></i> 210 Bài viết</li>
-                                                <li><i class="fa fa-heart  color-red"></i> 500 Lượt cảm ơn</li>
-                                            </ul>
-
-                                        </div>
-                                    </li>
-
-                                    <li class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="@Url.Content("~/Content/images/george-avatar.jpg")" alt="">
-                                        </a>
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                <a href="#">Khoapc</a>
-                                                <span class="badge" style="float:right;">3</span>
-                                            </h5>
-
-                                            <ul class="post-details">
-                                                <li><i class="fa fa-edit "></i> 210 Bài viết</li>
-                                                <li><i class="fa fa-heart color-red"></i> 500 Lượt cảm ơn</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="@Url.Content("~/Content/images/ici-avatar.jpg")" alt="">
-                                        </a>
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                <a href="#">TrungNM</a>
-                                                <span class="badge" style="float:right;">4</span>
-                                            </h5>
-
-                                            <ul class="post-details">
-                                                <li><i class="fa fa-edit"></i> 210 Bài viết</li>
-                                                <li><i class="fa fa-heart color-red"></i> 500 Lượt cảm ơn</li>
-                                            </ul>
-
-                                        </div>
-                                    </li>
-
-                                    <li class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="@Url.Content("~/Content/images/peter-avatar.jpg")" alt="">
-                                        </a>
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                <a href="#">ĐạtNT</a>
-                                                <span class="badge" style="float:right;">5</span>
-                                            </h5>
-
-                                            <ul class="post-details">
-                                                <li><i class="fa fa-edit "></i> 210 Bài viết</li>
-                                                <li><i class="fa fa-heart color-red"></i> 500 Lượt cảm ơn</li>
-                                            </ul>
-
-                                        </div>
-                                    </li>
-
+                                    @for (int index = 0; index <= 4; index++)
+                                    {
+                                        <li class="media">
+                                            <a class="pull-left" href="#">
+                                                <img class="media-object" src="@Url.Content(top5Users[index].ProfilePicture)" alt="">
+                                            </a>
+                                            <div class="media-body">
+                                                <h5 class="media-heading">
+                                                    <a href="@Url.Action("GetProfile", "Profile", routeValues: new { id = top5Users[index].UserName })">@top5Users[index].UserName</a>
+                                                    <span class="badge" style="float:right;">@(index+1)</span>
+                                                </h5>
+                                                <ul class="post-details">
+                                                    <li><i class="fa fa-edit "></i> @listUserLikeArticle.FirstOrDefault(ll => ll.Id.Equals(top5Users[index].Id)).ArticlesNumber Bài viết</li>
+                                                    <li><i class="fa fa-heart color-red"></i> @listUserLikeArticle.FirstOrDefault(ll => ll.Id.Equals(top5Users[index].Id)).LikesNumber Lượt cảm ơn</li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    }
                                 </ul>
                             </form>
 
@@ -887,7 +817,7 @@
 
     <script>
         //initialize datepicker
-        $('#datepicker').datetimepicker();        
+        $('#datepicker').datetimepicker();
     </script>
     <script>
 
