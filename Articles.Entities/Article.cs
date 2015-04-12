@@ -55,6 +55,8 @@ namespace MomWorld.Entities
         public string[] Tags2 { get; set; }
 
         public string DescriptionImage { get; set; }
+
+        public string Phase { get; set; }
     }
 
     public enum ArticleStatus

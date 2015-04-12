@@ -185,23 +185,6 @@
                         </button>
 
                     </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="pre-pregnancy.html">Mong con</a></li>
-                            <li><a href="pregnancy.html">Mang thai</a></li>
-                            <li><a href="infant.html">Trẻ sơ sinh</a></li>
-                            <li><a href="child-rearing.html">Nuôi dạy trẻ</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="quiz-page.html" data-placement="bottom"
-                                   title="Kiểm tra kiến thức">
-                                    <i class="fa  fa-university hidden-md hidden-lg"></i> <span class="hidden-sm">Kiểm tra kiến thức</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
                 </div>
             </nav>
 
@@ -243,6 +226,7 @@
                         @Html.HiddenFor(model => model.ViewNumber)
                         @Html.HiddenFor(model => model.Description)
                         @Html.HiddenFor(model => model.Status)
+                        @Html.HiddenFor(model => model.Phase)
                         <div class="form-group">
                             @Html.Label("Tiêu đề", htmlAttributes: new { @for = "title", @class = "col-md-4 ", style = "font-size: 20px;" })
                             <div class="col-md-8">

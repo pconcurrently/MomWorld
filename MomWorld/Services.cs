@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MomWorld
 {
-    public class Serives
+    public class Services
     {
     }
 }

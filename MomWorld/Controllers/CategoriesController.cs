@@ -21,22 +21,19 @@ namespace MomWorld.Controllers
         // GET: Categories
         public ActionResult Index(string id)
         {
-            List<Article> articles = articleDb.Articles.ToList();
-            articles.RemoveAll(art => art.Status== (int)ArticleStatus.Pending || art.Status == (int) ArticleStatus.Bad);
-            ViewData["Categories"] = db.Categories.ToList();
-            ViewData["Articles"] = articles;
-            if (id != null)
+            if (id == null || (!id.Equals("MongCon") && !id.Equals("MangThai") && !id.Equals("TreSoSinh") && !id.Equals("NuoiDayTre")))
             {
-                Article popupArticle = articles.FirstOrDefault(a => a.Id.Equals(id));
-                if ((popupArticle.Status == (int)MomWorld.Entities.ArticleStatus.Pending) && popupArticle.UserId == (identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id))
-                {
-                    ViewData["IsPopup"] = "true";
-                }
-                else
-                {
-                    ViewData["IsPopup"] = "false";
-                }
+                throw new Exception("Bad request");
             }
+            else
+            {
+                List<Article> articles = articleDb.Articles.ToList();
+                articles.RemoveAll(art => art.Status == (int)ArticleStatus.Pending || art.Status == (int)ArticleStatus.Bad);
+                ViewData["Categories"] = db.Categories.ToList();
+                var categoryArticles = articles.FindAll(a => a.Phase.Equals(id));
+                ViewData["Articles"] = categoryArticles;   
+            }
+            ViewBag.Phase = id;
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u=>u.UserName.Equals(User.Identity.Name));
             return View();
         }

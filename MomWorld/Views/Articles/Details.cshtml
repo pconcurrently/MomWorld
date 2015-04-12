@@ -35,6 +35,8 @@
 </head>
 
 <body>
+    <hidden id="phase" data-id="@article.Phase"></hidden>
+
     <!-- modal Report -->
     <div class="modal fade" id="modalReport" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -130,10 +132,10 @@
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="pre-pregnancy.html">Mong con</a></li>
-                            <li><a href="pregnancy.html">Mang thai</a></li>
-                            <li><a href="infant.html">Trẻ sơ sinh</a></li>
-                            <li><a href="child-rearing.html">Nuôi dạy trẻ</a></li>
+                            <li id="MongCon"><a href="@Url.Action("Index", "Categories", routeValues: new { id = "MongCon" })">Mong con</a></li>
+                            <li id="MangThai"><a href="@Url.Action("Index", "Categories", routeValues: new { id = "MangThai" })">Mang thai</a></li>
+                            <li id="TreSoSinh"><a href="@Url.Action("Index", "Categories", routeValues: new { id = "TreSoSinh" })">Trẻ sơ sinh</a></li>
+                            <li id="NuoiDayTre"><a href="@Url.Action("Index", "Categories", routeValues: new { id = "NuoiDayTre" })">Nuôi dạy trẻ</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
@@ -146,17 +148,6 @@
                     </div>
                 </div>
             </nav>
-            <ol class="breadcrumb">
-                <li>
-                    <a href="index.html">
-                        <i class="fa fa-home"></i> Trang
-                        chủ
-                    </a>
-                </li>
-                <li><a href="pre-pregnancy.html"> Mong con</a></li>
-                <li>@category.Name</li>
-                <li class="active">@article.Title</li>
-            </ol>
             <h2>
                 <strong>@article.Title</strong>
             </h2>
@@ -499,6 +490,12 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+
+
+            var liId = "#" + $('#phase').attr('data-id');
+            //$('.nav.navbar-nav li').siblings("li").removeClass('active');
+            $(liId).addClass('active');
+
             $("#submitComment").click(function () {
                 var articleId = $("#articleId").val();
                 var username = $("#userName").val();

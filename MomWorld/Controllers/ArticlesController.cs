@@ -92,13 +92,22 @@ namespace MomWorld.Controllers
         }
 
         // GET: Articles/Create
-        public ActionResult Create()
+        public ActionResult Create(string id)
         {
-            ViewBag.TagsList = db.Tags.ToList();
-            ViewData["Tags"] = GetTags(null);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
-            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
-            return View();
+            if (id == null || (!id.Equals("MongCon") && !id.Equals("MangThai") && !id.Equals("TreSoSinh") && !id.Equals("NuoiDayTre")))
+            {
+                throw new Exception("Bad request");
+            }
+            else
+            {
+                ViewBag.Phase = id;
+                ViewBag.TagsList = db.Tags.ToList();
+                ViewData["Tags"] = GetTags(null);
+                ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+                ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+                return View();
+
+            }
         }
 
         // POST: Articles/Create
@@ -107,7 +116,7 @@ namespace MomWorld.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create(ArticleViewModel model)
+        public ActionResult Create(ArticleViewModel model, string id)
         {
             Article article = new Article();
             var store = new UserStore<ApplicationUser>(new IdentityDb());
@@ -125,6 +134,7 @@ namespace MomWorld.Controllers
             article.Description = ParseHtml(model.Content);
             article.DescriptionImage = GetDescriptionImage(model.Content);
             article.CategoryId = model.CategoryId;
+            article.Phase = id;
 
             if (model.Tags != null)
             {
@@ -167,7 +177,7 @@ namespace MomWorld.Controllers
                 {
                     return RedirectToAction("Details", "Articles", routeValues: new { id = article.Id });
                 }
-                return RedirectToAction("Index", "Categories", routeValues: new { id = article.Id });
+                return RedirectToAction("Index", "Categories", routeValues: new { id = article.Phase });
             }
             catch (Exception)
             {
