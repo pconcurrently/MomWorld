@@ -1,18 +1,478 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_MWLayout.cshtml";
+    ViewBag.Title = "Video-Detail";
 }
 
-<!DOCTYPE html>
 
-<html>
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Detail</title>
+
+  
+    <title>@ViewBag.Title.</title>
+
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/video.css")" />
+
+    <!-- Videos -->
+    <script src="@Url.Content("~/Content/js/video.js")"></script>
+    <script src="@Url.Content("~/Content/js/jwplayer.js")"></script>
+
+
 </head>
+
 <body>
-    <div> 
-        VIdeo Detai;l
+
+
+    
+    <!-- BEGIN BREADCRUMBS -->
+    <div id="breadcrumbs" class="breadcrumbs bg-1">
+        <div class="container">
+
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i> Trang
+                        chủ
+                    </a>
+                </li>
+                <li class="active">Video</li>
+            </ol>
+
+            <h2>
+                <strong>Video</strong>
+            </h2>
+
+        </div>
     </div>
+    <!-- END BREADCRUMBS -->
+    <!-- BEGIN .header -->
+    <header class="header dark">
+
+
+        <!-- BEGIN .video-slider -->
+        <div class="video-slider">
+            <!-- BEGIN .wrapper -->
+            <div class="wrapper">
+                <div class="slider-controls">
+                    <div class="video-slider-inline">
+
+                        <div class="otplayer-wrapper">
+                            <a href="index.html" class="video-overlay-logo">
+                                <img src="@Url.Content("~/Content/images/video-images/overlay-logo.png")" width="123"
+                                     height="28" alt="" />
+                            </a>
+                            <video class="otplayer" preload="auto"
+                                   poster="@Url.Content("~/Content/video/video-screen.png")">
+                                <source src="@Url.Content("~/Content/video/sintel-2048-surround.mp4")"
+                                        type="video/mp4">
+                                <div id="videofallback">Loading the player...</div>
+                            </video>
+
+                            <div class="otplayer-controls">
+                                <div class="ot-inline-playpause">
+                                    <i class="fa fa-play"></i><i class="fa fa-pause"></i>
+                                </div>
+                                <div class="ot-inline-slider">
+                                    <div></div>
+                                </div>
+                                <div class="ot-inline-time">00:00</div>
+                                <div class="ot-inline-volume-controls">
+                                    <div class="ot-inline-volume">
+                                        <i class="fa fa-volume-up"></i> <i class="fa fa-volume-off"></i>
+                                    </div>
+                                    <div class="ot-inline-volume-slider">
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="ot-inline-fullscreen">
+                                    <i class="fa fa-desktop"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="video-slider-meta">
+                    <div class="video-slider-info right">
+                        <a href="index.html#"
+                           class="ot-like-button"><i class="fa fa-heart"></i>Thích</a> <a href="post.html" class="meta-click">
+                            <i class="fa fa-comments"></i> <strong>283</strong> Bình luận
+                        </a> <a href="post.html" class="meta-click">
+                            <i class="fa fa-eye"></i>
+                            <strong>829</strong> Lượt xem
+                        </a> <a href="index.html#"
+                                class="meta-click"><i class="fa fa-exclamation-triangle"></i>Báo xấu</a> <a href="index.html#"
+                                                                                                            class="meta-click"><i class="fa fa-close"></i>Xóa</a>
+                    </div>
+                    <h3>
+                        <a href="post.html">Sintel</a>
+                    </h3>
+                </div>
+                <!-- END .wrapper -->
+            </div>
+
+        </div>
+
+        <!-- END .header -->
+    </header>
+
+    <!-- BEGIN Content -->
+    <section class="Content">
+
+        <!-- BEGIN .wrapper -->
+        <div class="wrapper">
+
+            <hr class="post-divider">
+            <!-- BEGIN .with-sidebar-layout -->
+            <div class="with-sidebar-layout left">
+                <div class="Content-panel">
+                    <div class="panel-title">
+                        <h2>Videos cùng Chủ đề</h2>
+                    </div>
+                    <div class="panel-block video-list grid">
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="post.html" class="img-hover-effect loadingvideo">
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/282/542/282542993_640.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="post.html">SubWars</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="post.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="post.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="post.html" class="img-hover-effect loadingvideo">
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://i1.ytimg.com/vi/crm79j1qeqA/hqdefault.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="post.html">JULIAN SMITH - Car Phone!</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="post.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="post.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="post.html" class="img-hover-effect loadingvideo">
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/222/957/222957241_640.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="post.html">tribute to drive</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="post.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="post.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="post.html" class="img-hover-effect loadingvideo">
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/282/542/282542993_640.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="post.html">SubWars</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="post.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="post.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="post.html" class="img-hover-effect loadingvideo">
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://i1.ytimg.com/vi/crm79j1qeqA/hqdefault.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="post.html">JULIAN SMITH - Car Phone!</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="post.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="post.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="post.html" class="img-hover-effect loadingvideo">
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/222/957/222957241_640.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="post.html">tribute to drive</a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="post.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="post.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                                <p>
+                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
+                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
+                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
+                                    illud quidam labitur, eu adhuc clita quo.
+                                </p>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+
+                        <div class="clear-list-button">
+                            <a href="browse.html" class="back-button">Xem thêm videos</a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- END .with-sidebar-layout -->
+            </div>
+
+            <!-- BEGIN #sidebar -->
+            <aside id="sidebar" class="right">
+
+
+                <!-- BEGIN .widget -->
+                <div class="widget">
+                    <h3>Videos nổi bật</h3>
+                    <div class="widget-videos">
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="post.html" class="video-thumb loadingvideo">
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/160/609/160609628_640.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="post.html">Manhattan in motion</a><a href="index.html#"><span class="marker">HD Videos</span></a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="post.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="post.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="post.html" class="video-thumb loadingvideo">
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/180/758/180758636_640.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="post.html">EAT</a><a href="index.html#">
+                                        <span class="marker">Travel &amp; Events</span>
+                                    </a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="post.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="post.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="post.html" class="video-thumb loadingvideo">
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="http://b.vimeocdn.com/ts/991/220/99122029_640.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="post.html">Above Everything Else</a><a href="index.html#">
+                                        <span class="marker">
+                                            Creative
+                                            Stuff
+                                        </span>
+                                    </a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="post.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="post.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                        <!-- BEGIN .item -->
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="post.html" class="video-thumb loadingvideo">
+                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
+                                         height="9" class="aspect-px"
+                                         rel="https://v.cdn.vine.co/r/thumbs/ADE6833A651053105159867662336_1c25aa1ad3a.3.2.mp4.jpg?versionId=ra78JOE8884XFoa6zhhkfTp1EYrcvAWn"
+                                         alt="" />
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="post.html">Surprised my girlfriend</a><a href="index.html#"><span class="marker">Vines</span></a>
+                                </h3>
+                                <span class="video-meta">
+                                    <a href="post.html">
+                                        <i class="fa fa-comment"></i>283
+                                    </a> <a href="post.html">
+                                        <i class="fa fa-eye"></i>829
+                                    </a> <a href="index.html#">
+                                        <i class="fa fa-heart"></i>95
+                                    </a>
+                                </span>
+                            </div>
+                            <!-- END .item -->
+                        </div>
+
+                    </div>
+                    <!-- END .widget -->
+                </div>
+
+
+
+
+                <!-- END #sidebar -->
+            </aside>
+
+            <!-- END .wrapper -->
+        </div>
+
+        <!-- BEGIN Content -->
+    </section>
+
+
 </body>
-</html>
