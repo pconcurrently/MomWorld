@@ -21,6 +21,7 @@ namespace MomWorld.Controllers
         // GET: Quizzes
         public ActionResult Index()
         {
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             var quizzes = db.Quizzes.Include(q => q.QuizQuestion);
             ApplicationUser CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             ViewData["UserName"] = CurrentUser.UserName;
@@ -49,7 +50,7 @@ namespace MomWorld.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             ApplicationUser CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
 
             ViewData["QuizId"] = id;
