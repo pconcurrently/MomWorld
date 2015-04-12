@@ -2716,11 +2716,9 @@ ul.inbox > li.msg.active {
 }
 .user-card .profile-controls .profile-photo {
   width: 120px;
-  border: 5px solid white;
+  border: 2px solid white;
   position: relative;
   z-index: 99;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 .user-card .profile-controls > li {
   vertical-align: middle;

@@ -103,7 +103,7 @@
 
                 <!-- Branding -->
                 <div class="navbar-header col-md-2">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                         <strong>Mom's</strong>World
                     </a>
                     <div class="sidebar-collapse">
@@ -115,14 +115,7 @@
                 <!-- Branding end -->
                 <!-- .nav-collapse -->
                 <div class="navbar-collapse">
-                    <!-- Page refresh -->
-                    <ul class="nav navbar-nav refresh">
-                        <li class="divided">
-                            <a href="index.html"
-                               class="page-refresh"><i class="fa fa-home"></i></a>
-                        </li>
-                    </ul>
-                    <!-- /Page refresh -->
+                    
                     <!-- Quick Actions -->
                     <ul class="nav navbar-nav quick-actions">
 
@@ -150,30 +143,31 @@
                                 Trang quản lí <i class="fa fa-angle-up"></i>
                             </a>
                             <ul class="menu">
-                                <li>
-                                    <a href="#">
+                                <li class='@Html.IsActive("Account", "Dashboard")'>
+                                    <a href="@Url.Action("Dashboard", "Account")">
                                         <i class="fa fa-tachometer"></i> Thống kê
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
+                                <li class='@Html.IsActive("Account", "Manage")'>
+                                    <a href="@Url.Action("Manage","Account")">
                                         <i class="fa fa-user"></i>
                                         Thông tin cá nhân
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
+                                <li class='@Html.IsActive("Chat", "Index")'>
+                                    <a href="@Url.Action("Index", "Chat")">
                                         <i class="fa fa-envelope-o"></i>
                                         Tin nhắn <span class="badge badge-red">2</span>
                                     </a>
                                 </li>
-                                <li class="active">
+                                <li class='@Html.IsActive("Account", "UsersManage")'>
+
                                     <a href="@Url.Action("UsersManage", "Account")">
                                         <i class="fa fa-users"></i>
                                         Quản lí người dùng
                                     </a>
                                 </li>
-                                <li>
+                                <li class='@Html.IsActive("Account", "PostsManage")'>
                                     <a href="@Url.Action("PostsManage", "Account")">
                                         <i class="fa fa-pencil-square-o"></i> Quản lí bài viết
                                     </a>
@@ -198,6 +192,7 @@
 
 
 
+
             @RenderBody()
 
 
@@ -208,7 +203,7 @@
             <div id="mmenu" class="right-panel">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs nav-justified">
-                    <li class="active"><a href="index.html#mmenu-users" data-toggle="tab"><i class="fa fa-users"></i></a></li>
+                    <li class="active"><a href="#mmenu-users" data-toggle="tab"><i class="fa fa-users"></i></a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
