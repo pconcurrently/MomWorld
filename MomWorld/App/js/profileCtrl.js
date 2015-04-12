@@ -11,6 +11,9 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
     var userStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername);
     $scope.statusFirebase = $firebaseArray(userStatus);
 
+    var ut = new Firebase("https://momworld.firebaseio.com/User");
+    $scope.listUser = $firebaseArray(ut);
+
     $scope.user = {
     }
 

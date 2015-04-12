@@ -8,7 +8,8 @@ function ($scope, $http, $window, $firebaseArray) {
     // Get User from Local Storage
     $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     $scope.currentUsername = $scope.currentUser.Username;
-    alert("sds");
+
+    alert("2 " + $scope.videoID2);
 
     var tmp = new Firebase("https://momworld.firebaseio.com/Video");
     $scope.videoFire = $firebaseArray(tmp);
@@ -20,6 +21,12 @@ function ($scope, $http, $window, $firebaseArray) {
         error(function (data, status, headers, config) {
 
         });
+
+    $scope.initVideoDetail = function (tmp) {
+        alert("sss");
+        $scope.videoID = tmp;
+        alert("22" +  $scope.videoID);
+    }
    
 
 

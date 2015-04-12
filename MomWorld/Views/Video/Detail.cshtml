@@ -2,15 +2,15 @@
 @{
     Layout = "~/Views/Shared/_MWLayout.cshtml";
     ViewBag.Title = "Video-Detail";
+    var videoID = ViewData["VideoID"] as string; 
+
 }
 
 
 
 <head>
 
-  
     <title>@ViewBag.Title.</title>
-
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="@Url.Content("~/Content/css/video.css")" />
@@ -19,13 +19,25 @@
     <script src="@Url.Content("~/Content/js/video.js")"></script>
     <script src="@Url.Content("~/Content/js/jwplayer.js")"></script>
 
+    <!-- Dependencies -->
+    <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
+
+    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+
+    <script src="http://localhost:4444/App/scripts/uuid/angular-uuid2.min.js"></script>
+    <!-- The main application script -->
+
+    
+
 
 </head>
 
-<body>
-
-
+<body id="yolo" ng-app="videoApp2" ng-controller="videoCtrl2">
     
+    
+
+
     <!-- BEGIN BREADCRUMBS -->
     <div id="breadcrumbs" class="breadcrumbs bg-1">
         <div class="container">
@@ -119,7 +131,7 @@
     </header>
 
     <!-- BEGIN Content -->
-    <section class="Content">
+    <section class="csssontent">
 
         <!-- BEGIN .wrapper -->
         <div class="wrapper">
@@ -345,7 +357,6 @@
                 <div class="widget">
                     <h3>Videos nổi bật</h3>
                     <div class="widget-videos">
-
                         <!-- BEGIN .item -->
                         <div class="item">
                             <div class="item-header">
@@ -474,5 +485,19 @@
         <!-- BEGIN Content -->
     </section>
 
+    <a hidden id="videoTMP" data-id="@videoID"></a>
+
+
+    <script src="@Url.Content("~/App/js/videoCtrl.js")"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            angular.element($('#yolo')).scope().initVideoDetail($('#videoTMP').attr('data-id'));
+        });
+    </script>
+
+
 
 </body>
+

@@ -33,6 +33,7 @@
 
                 var tmp = new Firebase("https://momworld.firebaseio.com/Video");
                 $scope.videoFire = $firebaseArray(tmp);
+                $scope.videoName = "";
 
                 $http.get("http://localhost:4444/api/User/Get/" + $scope.currentUsername).
                     success(function (data, status, headers, config) {
@@ -47,7 +48,15 @@
                     url: url,
                 };
 
-                $scope.uuid = uuid2.newuuid() ;
+                $scope.uuid = uuid2.newuuid();
+
+                $scope.uploadData = {
+                    Username: $scope.currentUsername,
+                    VideoName: $scope.videoName,
+                    VideoID: $scope.uuid,
+                    VideoURL: "http://localhost:4444/App/uploads/video/" + $scope.uuid + ".mp4",
+                    Content: "Content Ne"
+                }
 
                 $scope.$on('fileuploadsubmit', function (event, files) {
                     
@@ -61,16 +70,10 @@
                             };
                         });
 
-                        $scope.uploadData = {
-                            Username: "TrungNM4",
-                            VideoName: "Video Name",
-                            VideoID: $scope.uuid,
-                            VideoURL: "http://localhost:4444/App/uploads/video/" + $scope.uuid + ".mp4",
-                            Content: "Content Ne"
-                        }
+                        
 
                         $scope.videoFire.$add($scope.uploadData).then(function () {
-                            alert("Da Firebase 1")
+                            
                         });
                 });
 

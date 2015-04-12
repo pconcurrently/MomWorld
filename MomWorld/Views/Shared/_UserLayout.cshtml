@@ -64,6 +64,13 @@
 
     <script src="@Url.Content("~/Content/js/minimal.js")"></script>
 
+    <!-- Logic dependences -->
+    @*<script src="@Url.Content("~/Scripts/angular.min.js")"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>*@
+
+
+
 
 </head>
 <body class="bg-2">
@@ -115,7 +122,6 @@
                         </li>
                     </ul>
                     <!-- /Page refresh -->
-                   
                     <!-- Quick Actions -->
                     <ul class="nav navbar-nav quick-actions">
 
@@ -225,16 +231,16 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs nav-justified">
                     <li class="active"><a href="index.html#mmenu-users" data-toggle="tab"><i class="fa fa-users"></i></a></li>
-                    
+
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="mmenu-users">
-                        <ul class="users-list">
+                        <ul class="users-list">                            
                             <li class="online text-center">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="username" placeholder="Tìm kiếm tài khoản">
+                                    <input type="text" ng-model="searchUser"  class="form-control" name="username" placeholder="Tìm kiếm tài khoản">
                                     <div class="input-group-addon ">
                                         <i class="fa fa-search color-cyan"></i>
                                     </div>
@@ -244,14 +250,14 @@
 
                         <h5></h5>
                         <ul class="users-list">
-                            <li class="online">
+                            <li class="online" ng-repeat="userL in listUser | filter:searchUser">
                                 <div class="media">
-                                    <a class="pull-left profile-photo" href="index.html#">
-                                        <img class="media-object" src="assets/images/ici-avatar.jpg" >
+                                    <a class="pull-left profile-photo" ng-href="http://localhost:4444/Profile/GetProfile/{{userL.UserName | lowercase}}">
+                                        <img class="media-object" src="{{userL.ProfilePicture}}">
                                     </a>
                                     <div class="media-body">
-                                        <h6 class="media-heading">Ing. Imrich <strong>Kamarel</strong></h6>
-                                        <small><i class="fa fa-map-marker"></i> Ulaanbaatar, Mongolia</small>
+                                        <h6 class="media-heading"><strong>{{userL.UserName}}</strong></h6>
+                                        <small><i class="fa fa-map-marker"></i>CLGT</small>
                                         <span class="badge badge-outline status"></span>
                                     </div>
                                 </div>
@@ -273,5 +279,6 @@
 
     </div>
 
+    
 </body>
 </html>

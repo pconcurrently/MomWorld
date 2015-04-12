@@ -23,9 +23,9 @@ namespace MomWorld.Controllers
         {
             if (id != null)
             {
-                
-                
+                ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
                 return View();
+                
             }
             else
             {
