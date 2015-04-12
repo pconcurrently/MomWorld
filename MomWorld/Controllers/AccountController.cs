@@ -526,6 +526,7 @@ namespace MomWorld.Controllers
         [Authorize(Roles = "Admins")]
         public ActionResult UsersManage()
         {
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             var users = UserManager.Users.ToList() as List<ApplicationUser>;
 
             Dictionary<string, string> userRoles = new Dictionary<string, string>();
@@ -548,6 +549,7 @@ namespace MomWorld.Controllers
         [Authorize(Roles = "Admins")]
         public ActionResult PostsManage()
         {
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             var articles = articleDb.Articles.ToList() as List<Article>;
 
             Dictionary<string, string> postedUsers = new Dictionary<string, string>();
@@ -735,6 +737,11 @@ namespace MomWorld.Controllers
             }
         }
 
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+        
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

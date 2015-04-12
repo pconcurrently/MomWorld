@@ -5290,7 +5290,17 @@ menu .btn .fa {
 .navbar .navbar-header .sidebar-collapse a:hover {
   color: white;
 }
-.navbar .navbar-nav > li > a {
+
+.navbar .navbar-nav > li > a.login {
+ background-color: #a2d200;
+  color: #f2f2f2;
+}
+.navbar .navbar-nav > li > a.login:hover, .navbar .navbar-nav > li > a .login :focus {
+    background-color: #8eb800;
+  color: white;
+}
+
+.navbar .navbar-nav > li > a, .navbar .navbar-nav > li > form a.dropdown-toggle {
   color: rgba(255, 255, 255, 0.7);
   line-height: 45px;
   padding: 0 15px;
@@ -5301,6 +5311,11 @@ menu .btn .fa {
 .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
   color: white;
 }
+
+
+
+
+
 .navbar .navbar-nav > li.divided > a {
   display: inline-block;
   vertical-align: top;

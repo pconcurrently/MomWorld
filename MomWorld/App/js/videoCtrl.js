@@ -1,54 +1,26 @@
 ﻿'use strict';
 
-var videoApp = angular.module('videoApp', ['angularFileUpload']);
+var videoApp = angular.module('videoApp2', ['firebase']);
 
-videoApp.controller('videoCtrl', ['$scope', '$http', 'FileUploader', '$window',
-function ($scope, $http, FileUploader, $window) {
+videoApp.controller('videoCtrl2', ['$scope', '$http',  '$window','$firebaseArray',
+function ($scope, $http, $window, $firebaseArray) {
 
-    /* */
+    // Get User from Local Storage
+    $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    $scope.currentUsername = $scope.currentUser.Username;
+    alert("sds");
 
-    $scope.user = {
-    }
+    var tmp = new Firebase("https://momworld.firebaseio.com/Video");
+    $scope.videoFire = $firebaseArray(tmp);
 
-    var uploader = $scope.uploader = new FileUploader({
-        url: "http://localhost:4444/api/User/UploadVideo",
-        formData: [{ Username: "user1" }]
-    });
-
-    uploader.onSuccessItem = function (fileItem, response, status, headers) {
-        console.info('onSuccessItem', fileItem, response, status, headers);
-
-
-
-        $window.location.reload();
-
-    };
-
-    uploader.onCompleteAll = function () {
-        console.info('onCompleteAll');
-    };
-
-    uploader.onErrorItem = function (fileItem, response, status, headers) {
-        console.info('onErrorItem', fileItem, response, status, headers);
-    };
-
-
-    /* Update Profile  */
-    $scope.uploadVideo = function () {
-
-        alert("YOlo");
-        var sentData = {
-            FirstName: $scope.user.FirstName,
-            LastName: $scope.user.LastName,
-            PhoneNumber: $scope.user.PhoneNumber,
-
-        }
-
-        $scope.uploader.uploadAll(function () {
+    $http.get("http://localhost:4444/api/User/Get/" + $scope.currentUsername).
+        success(function (data, status, headers, config) {
+            $scope.user = data;
+        }).
+        error(function (data, status, headers, config) {
 
         });
-
-    }
+   
 
 
 

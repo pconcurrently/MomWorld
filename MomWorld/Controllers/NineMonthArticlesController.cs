@@ -22,7 +22,9 @@ namespace MomWorld.Controllers
         // GET: NineMonthArticles
         public ActionResult Index()
         {
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             return View(db.NineMonthArticles.ToList());
+           
         }
 
         // GET: NineMonthArticles/Details/5

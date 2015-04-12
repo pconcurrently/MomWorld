@@ -37,10 +37,11 @@
             '$scope', '$http', '$filter', '$window',
             function ($scope, $http) {
 
-                alert("SS");
                 $scope.options = {
                     url: url
                 };
+
+
                 /*if (!isOnGitHub) {
                     $scope.loadingFiles = true;
                     $http.get(url)

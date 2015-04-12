@@ -49,8 +49,13 @@
     <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.fileupload-validate.js")"></script>
     <!-- The File Upload Angular JS module -->
     <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.fileupload-angular.js")"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+
+    <script src="http://localhost:4444/App/scripts/uuid/angular-uuid2.min.js"></script>
     <!-- The main application script -->
-    <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/app.js")"></script>
+    
+    <script src="@Url.Content("~/App/js/videoApp.js")"></script>
 
     <script src="@Url.Content("~/Content/js/minimal.min.js")"></script>
 
@@ -63,7 +68,8 @@
 
 </head>
 
-<body>
+<body data-ng-app="demo"
+      data-ng-controller="DemoFileUploadController">
 
     <!-- Modal -->
     <div class="modal fade" id="modalAddNewVideo" tabindex="-1"
@@ -71,34 +77,19 @@
          style="background: rgba(0, 0, 0, 0.75); top: 0px;">
         <div class="modal-dialog modal-lg" style="margin-top: 100px;">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">
-                        Thoát
-                    </button>
-                    <h3 class="modal-title" id="modalConfirmLabel">
-                        <strong>Thêm</strong> Video
-                    </h3>
-                </div>
+
                 <div class="modal-body">
 
                     <!-- The file upload form used as target for the file upload widget -->
                     <form class="form-horizontal" id="fileupload"
-                          action="//jquery-file-upload.appspot.com/" method="POST"
-                          enctype="multipart/form-data" data-ng-app="demo"
-                          data-ng-controller="DemoFileUploadController"
+                          action="http://localhost:4444/api/User/UploadVideo" method="POST"
+                          enctype="multipart/form-data"
                           data-file-upload="options"
                           data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
-                        <!-- Redirect browsers with JavaScript disabled to the origin page -->
-                        <noscript>
-                            <input type="hidden" name="redirect"
-                                   value="https://blueimp.github.io/jQuery-File-Upload/">
-                        </noscript>
 
                         <div class="form-group" style="padding: 0 15px;">
-                            <label for="videoTitle">Tên video</label> <input type="text"
-                                                                             class="form-control" id="videoTitle"
-                                                                             placeholder="Nhập tên video ...">
+                            <label for="videoTitle">Tên video</label>
+                            <input type="text" class="form-control" id="videoTitle" placeholder="Nhập tên video ...">
                         </div>
 
 
@@ -228,77 +219,10 @@
     </div>
     <!-- END BREADCRUMBS -->
     <!-- BEGIN .header -->
-    <header class="header dark">
-
-
-        <!-- BEGIN .video-slider -->
-        <div class="video-slider">
-            <!-- BEGIN .wrapper -->
-            <div class="wrapper">
-                <div class="slider-controls">
-                    <div class="video-slider-inline">
-
-                        <div class="otplayer-wrapper">
-                            <a href="index.html" class="video-overlay-logo">
-                                <img src="@Url.Content("~/Content/images/video-images/overlay-logo.png")" width="123"
-                                     height="28" alt="" />
-                            </a>
-                            <video class="otplayer" preload="auto"
-                                   poster="Content/video/video-screen.png" )">
-                                <source src="@Url.Content("~/Content/video/sintel-2048-surround.mp4")"
-                                        type="video/mp4">
-                                <div id="videofallback">Loading the player...</div>
-                            </video>
-
-                            <div class="otplayer-controls">
-                                <div class="ot-inline-playpause">
-                                    <i class="fa fa-play"></i><i class="fa fa-pause"></i>
-                                </div>
-                                <div class="ot-inline-slider">
-                                    <div></div>
-                                </div>
-                                <div class="ot-inline-time">00:00</div>
-                                <div class="ot-inline-volume-controls">
-                                    <div class="ot-inline-volume">
-                                        <i class="fa fa-volume-up"></i> <i class="fa fa-volume-off"></i>
-                                    </div>
-                                    <div class="ot-inline-volume-slider">
-                                        <div></div>
-                                    </div>
-                                </div>
-                                <div class="ot-inline-fullscreen">
-                                    <i class="fa fa-desktop"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="video-slider-meta">
-                    <div class="video-slider-info right">
-                        <a href="video-detail.html" class="meta-click">
-                            <i class="fa fa-comments"></i> <strong>283</strong> Bình luận
-                        </a> <a href="video-detail.html" class="meta-click">
-                            <i class="fa fa-eye"></i> <strong>829</strong> Lượt xem
-                        </a> <a href="index.html#" class="ot-like-button">
-                            <i class="fa fa-heart"></i> Thích
-                        </a>
-                    </div>
-                    <h3>
-                        <a href="video-detail.html">Sintel</a>
-                    </h3>
-                </div>
-                <!-- END .wrapper -->
-            </div>
-
-        </div>
-
-        <!-- END .header -->
-    </header>
+   
 
     <!-- BEGIN .content -->
     <section class="content">
-
         <!-- BEGIN .wrapper -->
         <div class="wrapper">
 
@@ -325,21 +249,21 @@
                     <div class="panel-block video-list grid">
 
                         <!-- BEGIN .item -->
-                        <div class="item">
+                        <div class="item" ng-repeat="video in videoFire">
                             <div class="item-header">
-                                <a href="video-detail.html"
+                                <a ng-href="http://localhost:4444/Video/Detail/{{video.VideoID}}"
                                    class="img-hover-effect loadingvideo">
                                     <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
                                          height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/282/542/282542993_640.jpg" )" alt="" />
+                                         rel="{{video.ImageURL}}" ) alt="" />
                                 </a>
                             </div>
                             <div class="item-content">
                                 <h3>
-                                    <a href="video-detail.html">SubWars</a>
+                                    <a ng-href="http://localhost:4444/Video/Detail/{{video.VideoID}}">{{video.VideoName}}</a>
                                 </h3>
                                 <span class="video-meta">
-                                    <a href="video-detail.html">
+                                    <a href="#">
                                         <i class="fa fa-comment"></i>283
                                     </a> <a href="video-detail.html">
                                         <i class="fa fa-eye"></i>829
@@ -348,378 +272,14 @@
                                     </a>
                                 </span>
                                 <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
+                                    {{video.Content}}
                                 </p>
                             </div>
                             <!-- END .item -->
                         </div>
 
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://i1.ytimg.com/vi/crm79j1qeqA/hqdefault.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">JULIAN SMITH - Car Phone!</a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                                <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
-                                </p>
-                            </div>
-                            <!-- END .item -->
-                        </div>
 
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/222/957/222957241_640.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">tribute to drive</a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                                <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
-                                </p>
-                            </div>
-                            <!-- END .item -->
-                        </div>
 
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/629/174/62917463_640.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">Hair Conditioner</a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                                <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
-                                </p>
-                            </div>
-                            <!-- END .item -->
-                        </div>
-
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://s2.dmcdn.net/D9VIi/x240-Vra.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">Obama Knock-Knock Jokes</a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                                <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
-                                </p>
-                            </div>
-                            <!-- END .item -->
-                        </div>
-
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://static-cdn.jtvnw.net/jtv.thumbs/archive-514984957-320x240.jpg" )"
-                                         alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">VanillaTV - Sweden</a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                                <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
-                                </p>
-                            </div>
-                            <!-- END .item -->
-                        </div>
-
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/168/404/1684044_640.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">Veil</a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                                <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
-                                </p>
-                            </div>
-                            <!-- END .item -->
-                        </div>
-
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/633/842/6338426_640.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">Morphing</a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                                <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
-                                </p>
-                            </div>
-                            <!-- END .item -->
-                        </div>
-
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/300/148/30014869_640.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">Flightpattern</a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                                <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
-                                </p>
-                            </div>
-                            <!-- END .item -->
-                        </div>
-
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="https://i1.ytimg.com/vi/dYw4meRWGd4/hqdefault.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">GoPro: Red Bull Stratos</a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                                <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
-                                </p>
-                            </div>
-                            <!-- END .item -->
-                        </div>
-
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="https://i1.ytimg.com/vi/MNCzSfv4hX8/hqdefault.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">GoPro: Lions</a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                                <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
-                                </p>
-                            </div>
-                            <!-- END .item -->
-                        </div>
-
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/146/971/146971214_640.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">Breakfast Interrupted</a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                                <p>
-                                    Inani vocent feugait cu eam, his et impetus indoctum, mea
-                                    euismod salutandi. Mel consequat moderatius intellegeb at an,
-                                    appareat pertinacia no pro, noster aperiam blandit vim. Ne mei
-                                    illud quidam labitur, eu adhuc clita quo.
-                                </p>
-                            </div>
-                            <!-- END .item -->
-                        </div>
 
                         <div class="clear-list-button">
                             <a href="browse.html" class="back-button">Xem Thêm Videos</a>
@@ -740,60 +300,6 @@
                 <div class="widget">
                     <h3>Videos nổi bật</h3>
                     <div class="widget-videos">
-
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html" class="video-thumb loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/160/609/160609628_640.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">Manhattan in motion</a><a href="index.html#"><span class="marker">HD Videos</span></a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                            </div>
-                            <!-- END .item -->
-                        </div>
-
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html" class="video-thumb loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/180/758/180758636_640.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">EAT</a><a href="index.html#">
-                                        <span class="marker">Travel &amp; Events</span>
-                                    </a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                            </div>
-                            <!-- END .item -->
-                        </div>
 
                         <!-- BEGIN .item -->
                         <div class="item">
@@ -826,32 +332,7 @@
                             <!-- END .item -->
                         </div>
 
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html" class="video-thumb loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="https://v.cdn.vine.co/r/thumbs/ADE6833A651053105159867662336_1c25aa1ad3a.3.2.mp4.jpg?versionId=ra78JOE8884XFoa6zhhkfTp1EYrcvAWn"
-                                         alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">Surprised my girlfriend</a><a href="index.html#"><span class="marker">Vines</span></a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                            </div>
-                            <!-- END .item -->
-                        </div>
+
 
                     </div>
                     <!-- END .widget -->
