@@ -18,6 +18,7 @@ namespace MomWorld.Controllers
         {
             if (id != null)
             {
+                ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
                 ApplicationUser GetUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(id));
                 ViewData["ViewUsername"] = GetUser.UserName;
                 return View();
@@ -34,6 +35,7 @@ namespace MomWorld.Controllers
         {
             if (id != null)
             {
+                ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
                 ApplicationUser GetUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(id));
                 ViewData["ViewUsername"] = GetUser.UserName;
                 return View();
