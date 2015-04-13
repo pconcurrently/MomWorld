@@ -57,17 +57,25 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             // Create user Admin
             if (UserManager.FindByName("admin") == null)
             {
-                var adminUser = new ApplicationUser { Email = "admin@momworld.com", UserName = "admin", ProfilePicture = "~/App/uploads/avatar/default.png" };
+                var adminUser = new ApplicationUser { Email = "admin@momworld.com", UserName = "admin", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
                 UserManager.Create(adminUser, "12345678");
                 UserManager.AddToRole(adminUser.Id, "Admins");
             }
 
             // Create normal user
-            if (UserManager.FindByName("user1") == null)
+            if (UserManager.FindByName("phoht") == null)
             {
-                var user1 = new ApplicationUser { Email = "user1@momworld.com", UserName = "user1", DatePregnancy = DateTime.Now, ProfilePicture = "~/App/uploads/avatar/default.png" };
+                var user1 = new ApplicationUser { Email = "phoht@momworld.com", UserName = "phoht", DatePregnancy = DateTime.Now, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
                 UserManager.Create(user1, "12345678");
                 UserManager.AddToRole(user1.Id, "Users");
+            }
+
+            // Create normal user
+            if (UserManager.FindByName("khoapc") == null)
+            {
+                var user2 = new ApplicationUser { Email = "phoht@momworld.com", UserName = "phoht", DatePregnancy = DateTime.Now, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+                UserManager.Create(user2, "khoapc");
+                UserManager.AddToRole(user2.Id, "khoapc");
             }
         }
     }

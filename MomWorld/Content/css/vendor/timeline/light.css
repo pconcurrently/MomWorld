@@ -224,7 +224,12 @@
 .timelineLight .item span{
 	display:block;
 	margin:0px 20px 10px;
-	height:150px;
+	min-height: 140px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	-webkit-line-clamp: 7;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
 }
 .timelineLight .item .read_more {
 	padding:2px 8px 2px 10px;

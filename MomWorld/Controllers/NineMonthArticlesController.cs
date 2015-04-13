@@ -83,6 +83,7 @@ namespace MomWorld.Controllers
         [Authorize(Roles = "Admins")]
         public ActionResult Create()
         {
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             ViewBag.TagsList = articleDb.Tags.ToList();
             ViewData["Tags"] = GetTags(null);
             return View();
@@ -100,7 +101,7 @@ namespace MomWorld.Controllers
             NineMonthArticle article = new NineMonthArticle();
             article.Date = model.Date;
             article.Content = model.Content;
-            article.Description = ParseHtml(model.Content);
+            article.Description = model.Description;
             article.DescriptionImage = GetDescriptionImage(model.Content);
 
             if (model.Tags != null)

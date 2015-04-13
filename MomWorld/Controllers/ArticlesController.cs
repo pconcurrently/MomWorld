@@ -47,7 +47,7 @@ namespace MomWorld.Controllers
                 throw new HttpException(404, "Not Found");
             }
             if ((article.Status == (int)ArticleStatus.Approved || article.Status == (int)ArticleStatus.CreatedByAdmins
-                || article.Status == (int)ArticleStatus.Normal || article.Status == (int)ArticleStatus.Reported) || User.Identity.Name.Equals("admin"))
+                || article.Status == (int)ArticleStatus.Normal || article.Status == (int)ArticleStatus.Reported) || User.IsInRole("Admins"))
             {
                 article.ViewNumber += 1;
                 db.SaveChanges();
@@ -158,7 +158,7 @@ namespace MomWorld.Controllers
             {
                 article.Tags = string.Empty;
             }
-            if (!User.Identity.Name.Equals("admin"))
+            if (!User.IsInRole("Admins"))
             {
                 article.Status = (int)ArticleStatus.Pending;
             }

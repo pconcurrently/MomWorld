@@ -30,7 +30,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/ico" href="@Url.Content("~/Content/images/favicon.png")" />
-    <link href="@Url.Content("~/Content/css/vendor/bootstrap/bootstrap.min.css")"
+    <link href="@Url.Content("~/Content/css/vendor/bootstrap/css/bootstrap.min.css")"
           rel="stylesheet">
     <link rel="stylesheet"
           href="@Url.Content("~/Content/css/vendor/flexslider/flexslider.css")">
@@ -371,7 +371,7 @@
                     </div>
                     @foreach (var category in categories)
                     {
-                        if (category.Articles.Count != 0 || User.Identity.Name.Equals("admin"))
+                        if (category.Articles.Count != 0 || User.IsInRole("Admins"))
                         {
                             <div id="@idDictionary[category.Id]" class=" row content-category">
                                 <div class="category">
