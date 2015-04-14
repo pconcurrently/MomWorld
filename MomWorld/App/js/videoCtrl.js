@@ -2,14 +2,18 @@
 
 var videoApp = angular.module('videoApp2', ['firebase']);
 
-videoApp.controller('videoCtrl2', ['$scope', '$http',  '$window','$firebaseArray',
-function ($scope, $http, $window, $firebaseArray) {
+videoApp.controller('videoCtrl2', ['$scope', '$http',  '$window','$firebaseArray', '$location',
+function ($scope, $http, $window, $firebaseArray, $location) {
 
     // Get User from Local Storage
     $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     $scope.currentUsername = $scope.currentUser.Username;
 
-    alert("2 " + $scope.videoID2);
+    var url = $location.absUrl().substring(35, $location.absUrl().length);
+
+    $scope.videoURL = "http://localhost:4444/App/uploads/video/" + url + ".mp4";
+
+    alert($scope.videoURL);
 
     var tmp = new Firebase("https://momworld.firebaseio.com/Video");
     $scope.videoFire = $firebaseArray(tmp);
@@ -23,9 +27,7 @@ function ($scope, $http, $window, $firebaseArray) {
         });
 
     $scope.initVideoDetail = function (tmp) {
-        alert("sss");
         $scope.videoID = tmp;
-        alert("22" +  $scope.videoID);
     }
    
 
