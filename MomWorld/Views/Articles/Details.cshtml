@@ -3,6 +3,8 @@
 
 @{
     Layout = "~/Views/Shared/_MWLayout.cshtml";
+    ViewBag.Title = "Article";
+    
     var postedUser = ViewData["PostedUser"] as MomWorld.Models.ApplicationUser;
     var article = ViewData["Article"] as MomWorld.Entities.Article;
     var category = ViewData["Category"] as MomWorld.Entities.Category;
@@ -14,23 +16,9 @@
     var userArticles = ViewData["UserArticles"] as int?;
 }
 
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
 <head>
 
-    <!-- BASICS -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-    <title>Mom's World - Bài viết</title>
-
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title.</title>
 
 </head>
 
@@ -584,4 +572,3 @@
 
 
 </body>
-</html>
