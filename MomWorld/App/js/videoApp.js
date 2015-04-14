@@ -23,8 +23,8 @@
         ])
 
         .controller('DemoFileUploadController', [
-            '$scope', '$http', '$filter', '$window', 'uuid2', '$firebaseArray',
-            function ($scope, $http, $filter, $window, uuid2, $firebaseArray) {
+            '$scope', '$http', '$filter', '$window', 'uuid2', '$firebaseArray', '$firebaseObject',
+            function ($scope, $http, $filter, $window, uuid2, $firebaseArray, $firebaseObject) {
 
                 // Get User from Local Storage
                 $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -50,13 +50,19 @@
 
                 $scope.uuid = uuid2.newuuid();
 
-                $scope.uploadData = {
+                var uploadData = {
                     Username: $scope.currentUsername,
                     VideoName: $scope.videoName,
                     VideoID: $scope.uuid,
                     VideoURL: "http://localhost:4444/App/uploads/video/" + $scope.uuid + ".mp4",
-                    Content: "Content Ne"
+                    VideoThumbnail: "http://localhost:4444/App/uploads/video/thumbnail/" + $scope.uuid + ".png"
                 }
+
+                $scope.$on('fileuploaddone', function (event, files) {
+
+                    alert("YOlo 1");
+
+                });
 
                 $scope.$on('fileuploadsubmit', function (event, files) {
                     
@@ -64,18 +70,29 @@
                             files.formData = {
                                 Username: $scope.currentUsername,
                                 VideoName: "Video Name",
-                                VideoID: $scope.uuid,
-                                Content: "Content Ne",
-
+                                VideoID: $scope.uuid
                             };
                         });
-
                         
+                        // Add File URL to Firebase
+                        if (files.files[0].type == "video/mp4") {
+                            var a = new Firebase("https://momworld.firebaseio.com/Video/" + $scope.uuid);
+                            var v = $firebaseObject(a);
+                            v.Username = $scope.currentUsername;
+                            v.VideoName = $scope.videoName;
+                            v.VideoID = $scope.uuid;
+                            v.VideoURL = "http://localhost:4444/App/uploads/video/" + $scope.uuid + ".mp4";
+                            v.VideoThumbnail = "http://localhost:4444/App/uploads/video/thumbnail/" + $scope.uuid + ".png";
 
-                        $scope.videoFire.$add($scope.uploadData).then(function () {
-                            
-                        });
+                            v.$save().then(function () { 
+                                $scope.files = "";
+                            }, function (err) {
+
+                            });
+                        }        
                 });
+
+                
 
             }
         ])

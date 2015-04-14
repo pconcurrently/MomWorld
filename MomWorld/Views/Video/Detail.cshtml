@@ -1,8 +1,7 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_MWLayout.cshtml";
     ViewBag.Title = "Video-Detail";
-    var videoID = ViewData["VideoID"] as string; 
+    var videoID = ViewData["VideoID"] as string;
 
 }
 
@@ -22,20 +21,27 @@
     <!-- Dependencies -->
     <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
 
+    <!--Videogoular -->
+    <script src="@Url.Content("~/App/bower_components/angular-sanitize/angular-sanitize.min.js")"></script>
+    <script src="@Url.Content("~/App/bower_components/videogular/videogular.js")"></script>
+    <script src="@Url.Content("~/App/bower_components/videogular-poster/vg-poster.js")"></script>
+    <script src="@Url.Content("~/App/bower_components/videogular-controls/vg-controls.js")"></script>
+
+
+    <!--Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
-
     <script src="http://localhost:4444/App/scripts/uuid/angular-uuid2.min.js"></script>
     <!-- The main application script -->
 
-    
+
 
 
 </head>
 
-<body id="yolo" ng-app="videoApp2" ng-controller="videoCtrl2">
-    
-    
+<body id="yolo" ng-app="videoApp2" ng-controller="videoCtrl2 as controller">
+
+
 
 
     <!-- BEGIN BREADCRUMBS -->
@@ -67,48 +73,39 @@
         <div class="video-slider">
             <!-- BEGIN .wrapper -->
             <div class="wrapper">
+
                 <div class="slider-controls">
+
                     <div class="video-slider-inline">
+                        <videogular vg-theme="controller.config.theme">
+                                <vg-media vg-src="controller.config.sources"
+                                          vg-tracks="controller.config.tracks">
+                                </vg-media>
 
-                        <div class="otplayer-wrapper">
-                            <a href="index.html" class="video-overlay-logo">
-                                <img src="@Url.Content("~/Content/images/video-images/overlay-logo.png")" width="123"
-                                     height="28" alt="" />
-                            </a>
-                            <video class="otplayer" preload="auto"
-                                   poster="@Url.Content("~/Content/video/video-screen.png")">
+                                <vg-controls>
+                                    <vg-play-pause-button></vg-play-pause-button>
+                                    <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+                                    <vg-scrub-bar>
+                                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                                    </vg-scrub-bar>
+                                    <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+                                    <vg-volume>
+                                        <vg-mute-button></vg-mute-button>
+                                        <vg-volume-bar></vg-volume-bar>
+                                    </vg-volume>
+                                    <vg-fullscreen-button></vg-fullscreen-button>
+                                </vg-controls>
 
-                                <source src="http://localhost:4444/App/uploads/video/9b74ed78-4971-4510-8ccb-e84dcd830229.mp4"
-                                        type="video/mp4">
+                                <vg-overlay-play></vg-overlay-play>
+                                <vg-poster vg-url='controller.config.plugins.poster'></vg-poster>
+                            </videogular>
 
-                                <div id="videofallback">Loading the player...</div>
 
-                            </video>
-
-                            <div class="otplayer-controls">
-                                <div class="ot-inline-playpause">
-                                    <i class="fa fa-play"></i><i class="fa fa-pause"></i>
-                                </div>
-                                <div class="ot-inline-slider">
-                                    <div></div>
-                                </div>
-                                <div class="ot-inline-time">00:00</div>
-                                <div class="ot-inline-volume-controls">
-                                    <div class="ot-inline-volume">
-                                        <i class="fa fa-volume-up"></i> <i class="fa fa-volume-off"></i>
-                                    </div>
-                                    <div class="ot-inline-volume-slider">
-                                        <div></div>
-                                    </div>
-                                </div>
-                                <div class="ot-inline-fullscreen">
-                                    <i class="fa fa-desktop"></i>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
+
+
                 <div class="video-slider-meta">
                     <div class="video-slider-info right">
                         <a href="index.html#"
