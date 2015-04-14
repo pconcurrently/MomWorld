@@ -1,0 +1,447 @@
+﻿@{    
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewBag.Title = "EventCalendar";
+}
+
+
+<head>
+    <title>@ViewBag.Title.</title>
+</head>
+<body class="bg-2">
+
+  
+
+
+            <!-- Page content -->
+            <div id="content" class="col-md-12">
+
+
+
+
+
+
+
+
+
+                <!-- page header -->
+                <div class="pageheader">
+
+
+                    <h2><i class="fa fa-calendar-o" style="line-height: 48px;padding-left: 0;"></i> Calendar</h2>
+
+
+
+                </div>
+                <!-- /page header -->
+                <!-- content main container -->
+                <div class="main as-table">
+
+
+
+                    <div class="col-md-4 tile color transparent-black rounded-left-corners">
+                        <div class="tile-body">
+
+                            <div class="cal-options">
+
+                                <div class="date-info">
+                                    <h2 class="text-center">
+                                        <i class="fa fa-angle-left pull-left" id="cal-prev"></i>
+                                        <span id="cal-current-date"></span>
+                                        <i class="fa fa-angle-right pull-right" id="cal-next"></i>
+                                    </h2>
+                                    <h3 class="large-thin text-center" id="cal-current-day"></h3>
+                                </div>
+
+                                <div id="event-delete"><i class="fa fa-trash-o fa-4x"></i></div>
+
+                                <div id="external-events" class="events-wrapper">
+
+                                    <h4 class="thin events">
+                                        <strong>Draggable</strong> Events
+                                        <a class="new-event pull-right" data-toggle="modal" href="calendar.html#cal-new-event"><i class="fa fa-plus"></i></a>
+                                    </h4>
+                                    <div class="external-event" data-color="red">The Custom Event #1</div>
+                                    <div class="external-event" data-color="cyan">The Custom Event #2</div>
+                                    <div class="external-event" data-color="orange">The Custom Event #3</div>
+                                    <div class="external-event" data-color="amethyst">The Custom Event #4</div>
+                                    <div class="external-event" data-color="drank">The Custom Event #5</div>
+                                    <div class="external-event">The Custom Event #6</div>
+
+                                    <div class="checkbox check-transparent">
+                                        <input type="checkbox" value="1" id="drop-remove">
+                                        <label for="drop-remove">Remove after drop</label>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-8 tile nopadding transparent">
+
+
+                        <!-- tile widget -->
+                        <div class="tile-widget nopadding color transparent-black rounded-top-right-corner">
+                            <div class="cal-header">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="calendar.html#" id="change-view-month" data-toggle="tab">Month</a></li>
+                                    <li><a href="calendar.html#" id="change-view-week" data-toggle="tab">Week</a></li>
+                                    <li><a href="calendar.html#" id="change-view-day" data-toggle="tab">Day</a></li>                                    
+                                </ul>
+                                <!-- / Nav tabs -->
+                            </div>
+                        </div>
+                        <!-- /tile widget -->
+
+
+                        <div class="tile-body rounded-bottom-right-corner">
+                            <div id='calendar'></div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- modal -->
+                    <div class="modal fade" id="cal-new-event" tabindex="-1" role="dialog" aria-labelledby="new-event" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    <h3 class="modal-title thin" id="new-event">Add New Event</h3>
+                                </div>
+                                <form role="form" id="add-event" parsley-validate>
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label class="control-label">Event title *</label>
+                                            <input type="text" class="form-control" id="event-title" name="event-title" parsley-trigger="change" parsley-required="true" parsley-minlength="4" parsley-validation-minlength="1">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">Color</label>
+                                            <div class="input-group event-color">
+                                                <input type="text" class="form-control" id="event-color" name="event-color" readonly="">
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn btn-greensea dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tint"></i></button>
+                                                    <ul class="dropdown-menu pull-right">
+                                                        <li>
+                                                            <div id="event-colorpalette" data-return-color="#event-color"></div>
+                                                        </li>
+                                                    </ul>
+                                                </div><!-- /btn-group -->
+                                            </div><!-- /input-group -->
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-red" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                        <button type="submit" class="btn btn-green">Add event</button>
+                                    </div>
+                                </form>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                    <!-- modal event edit-->
+                    <div class="modal fade" id="edit-event" tabindex="-1" role="dialog" aria-labelledby="new-event" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    <h3 class="modal-title thin">Edit Event: <small class="text-muted"></small></h3>
+                                </div>
+                                <form role="form" parsley-validate>
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label class="control-label">Event title *</label>
+                                            <input type="text" class="form-control" id="edit-event-title" name="event-title" parsley-trigger="change" parsley-required="true" parsley-minlength="4" parsley-validation-minlength="1">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">Color</label>
+                                            <div class="input-group event-color">
+                                                <input type="text" class="form-control" id="edit-event-color" name="event-color" readonly="">
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn btn-greensea dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tint"></i></button>
+                                                    <ul class="dropdown-menu pull-right">
+                                                        <li>
+                                                            <div id="edit-event-colorpalette" data-return-color="#edit-event-color"></div>
+                                                        </li>
+                                                    </ul>
+                                                </div><!-- /btn-group -->
+                                            </div><!-- /input-group -->
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-green" id="save-event">Save</button>
+                                        <button class="btn btn-red" data-dismiss="modal" aria-hidden="true" id="remove-event">Delete</button>
+                                        <button class="btn btn-blue" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                    </div>
+                                </form>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal event edit -->
+
+
+
+                </div>
+                <!-- /content container -->
+
+
+
+
+
+
+            </div>
+            <!-- Page content end -->
+
+
+
+    <script>
+    $(function(){
+
+      // Initialize external events
+
+      $('#external-events div.external-event').each(function() {
+
+        // Make events draggable using jQuery UI
+        $(this).draggable({
+          zIndex: 999,
+          revert: true,
+          revertDuration: 0,
+          drag: function() {
+            $('.cal-options .date-info').addClass('out')
+            $('.cal-options #event-delete').addClass('in')
+          },
+          stop: function() {
+            $('.cal-options .date-info').removeClass('out')
+            $('.cal-options #event-delete').removeClass('in')
+          }
+        });
+
+      });
+
+
+      // Initialize the calendar
+
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+        },
+        editable: true,
+        droppable: true,
+        drop: function(date, allDay) {
+          var  copiedEventObject = {
+            title: $(this).text(),
+            start: date,
+            allDay: allDay,
+            color: $(this).css('border-left-color')
+          };
+          $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+          // is the "remove after drop" checkbox checked?
+          if ($('#drop-remove').is(':checked')) {
+            // if so, remove the element from the "Draggable Events" list
+            $(this).remove();
+          }
+        },
+        eventClick: function(calEvent, jsEvent, view) {
+
+          var editModal = $('#edit-event'),
+              eventTitle = calEvent.title,
+              eventColor = calEvent.color;
+
+          editModal.find('.modal-title small').text(eventTitle);
+          editModal.find('#edit-event-title').val(eventTitle);
+          editModal.find('#edit-event-color').css("border-bottom", '2px solid' + ' ' + eventColor).val(eventColor);
+          editModal.modal('show')
+
+          // Submitting save event form
+
+          $('#save-event').off('click')
+          .on('click', function(e){
+            e.preventDefault();
+
+            var form = $(this).parents('form');
+
+            if(form.parsley('isValid')) {
+
+              calEvent.title = $('#edit-event-title').val();
+              calEvent.color = $('#edit-event-color').val();
+              $('#edit-event').modal('hide');
+              $('#calendar').fullCalendar('updateEvent',calEvent);
+
+
+            } else {
+
+              $('#edit-event-title').focus();
+              return false;
+
+            }
+          });
+
+          // Remove event
+          $('#remove-event').off('click')
+          .on('click', function(e){
+            e.preventDefault();
+
+            $('#calendar').fullCalendar('removeEvents',calEvent._id);
+            $('#edit-event').modal('hide');
+          });
+        }
+      });
+
+      // Hide default header
+      $('.fc-header').hide();
+
+      // Show current date
+      var currentDate = $('#calendar').fullCalendar('getDate');
+
+      $('#cal-current-day').html($.fullCalendar.formatDate(currentDate, "dddd"));
+      $('#cal-current-date').html($.fullCalendar.formatDate(currentDate, "MMM yyyy"));
+
+      // Previous month action
+      $('#cal-prev').click(function(){
+        $('#calendar').fullCalendar( 'prev' );
+        currentDate = $('#calendar').fullCalendar('getDate');
+        $('#cal-current-day').html($.fullCalendar.formatDate(currentDate, "dddd"));
+        $('#cal-current-date').html($.fullCalendar.formatDate(currentDate, "MMM yyyy"));
+      });
+
+      // Next month action
+      $('#cal-next').click(function(){
+        $('#calendar').fullCalendar( 'next' );
+        currentDate = $('#calendar').fullCalendar('getDate');
+        $('#cal-current-day').html($.fullCalendar.formatDate(currentDate, "dddd"));
+        $('#cal-current-date').html($.fullCalendar.formatDate(currentDate, "MMM yyyy"));
+      });
+
+      // Change to month view
+      $('#change-view-month').click(function(){
+        $('#calendar').fullCalendar('changeView', 'month');
+
+        // safari fix
+        $('#content .main').fadeOut(0, function() {
+          setTimeout( function() {
+            $('#content .main').css({'display':'table'});
+          }, 0);
+        });
+
+      });
+
+      // Change to week view
+      $('#change-view-week').click(function(){
+        $('#calendar').fullCalendar( 'changeView', 'agendaWeek');
+
+        // safari fix
+        $('#content .main').fadeOut(0, function() {
+          setTimeout( function() {
+            $('#content .main').css({'display':'table'});
+          }, 0);
+        });
+
+      });
+
+      // Change to day view
+      $('#change-view-day').click(function(){
+        $('#calendar').fullCalendar( 'changeView','agendaDay');
+
+        // safari fix
+        $('#content .main').fadeOut(0, function() {
+          setTimeout( function() {
+            $('#content .main').css({'display':'table'});
+          }, 0);
+        });
+
+      });
+
+      // Change to today view
+      $('#change-view-today').click(function(){
+        $('#calendar').fullCalendar('today');
+        currentDate = $('#calendar').fullCalendar('getDate');
+        $('#cal-current-day').html($.fullCalendar.formatDate(currentDate, "dddd"));
+        $('#cal-current-date').html($.fullCalendar.formatDate(currentDate, "MMM yyyy"));
+      });
+
+      // Initialize colorpalette
+      $('#event-colorpalette, #edit-event-colorpalette').colorPalette({
+        colors:[['#428bca', '#5cb85c', '#5bc0de', '#f0ad4e' ,'#d9534f', '#ff4a43', '#22beef', '#a2d200', '#ffc100', '#cd97eb', '#16a085', '#FF0066', '#A40778', '#1693A5', '#418bca', '#d9544f', '#3f4e62']]
+      }).on('selectColor', function(e) {
+        var data = $(this).data();
+
+        $(data.returnColor).val(e.color);
+        $(this).parents(".input-group").find('input').css("border-bottom", '2px solid' + ' ' + e.color);
+      });
+
+
+      // Submitting new event form
+      $('#add-event').submit(function(e){
+        e.preventDefault();
+        var form = $(this);
+
+        if(form.parsley('isValid')) {
+
+          var newEvent = $('<div class="external-event" data-color="'+$("#event-color").val()+'">'+$('#event-title').val() +'</div>');
+
+          newEvent.css({'border-left-color': $("#event-color").val() || "#717171"});
+
+          if ($('#external-events .external-event').length > 0) {
+            $('#external-events .external-event:last').after(newEvent);
+          } else {
+            $('#external-events .events').after(newEvent);
+          };
+
+          $('#external-events .external-event:last').after(newEvent);
+
+          $('#external-events .external-event').draggable({
+            zIndex: 999,
+            revert: true,
+            revertDuration: 0,
+            drag: function() {
+              $('.cal-options .date-info').addClass('out')
+              $('.cal-options #event-delete').addClass('in')
+            },
+            stop: function() {
+              $('.cal-options .date-info').removeClass('out')
+              $('.cal-options #event-delete').removeClass('in')
+            }
+          });
+
+          form[0].reset();
+
+          $('#cal-new-event').modal('hide');
+
+        } else {
+
+          $('#event-title').focus();
+          return false;
+
+        }
+
+      });
+
+      // Event deleting function
+      $('.cal-options #event-delete').droppable({
+        accept: "#external-events .external-event",
+        hoverClass: "active",
+        drop: function(event, ui) {
+          ui.draggable.remove();
+          $(this).removeClass( "active in" );
+          $('.cal-options .date-info').removeClass('out')
+        }
+      });
+
+    })
+
+    </script>
+</body>
+
+
+
