@@ -323,7 +323,62 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-3 post-sidebar">
+                    <section class="tile color transparent-white">
+
+                        <!-- tile header -->
+                        <div class="tile-header color greensea rounded-top-corners">
+                            <h2>
+                                Đăng kí nhận tin
+                            </h2>
+                        </div>
+                        <!-- /tile header -->
+                        <!-- tile body -->
+                        <div class="tile-body">
+
+                            <form class="form-horizontal" role="form">
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Số điện thoại" id="phone">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Email" id="email">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <input type="text" id="datepicker" class="form-control" placeholder="Ngày mang thai">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group form-footer">
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-warning" id="subscribe">Đăng kí</button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                        <!-- /tile body -->
+
+                    </section>
+
+
+
+                </div>
+
+                <div class="col-md-6">
                     <div class="flexslider">
                         <ul class="slides">
                             <li>
@@ -376,65 +431,15 @@
                 </div>
 
                 <div class="col-md-3 post-sidebar">
-                    <section class="tile color transparent-white">
-
-                        <!-- tile header -->
-                        <div class="tile-header color greensea rounded-top-corners">
-                            <h4>
-                                <strong>Đăng kí</strong> nhận tin
-                            </h4>
-                        </div>
-                        <!-- /tile header -->
-                        <!-- tile body -->
-                        <div class="tile-body">
-
-                            <form class="form-horizontal" role="form">
-
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Số điện thoại" id="phone">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-phone"></i>
-                                    </div>
-                                </div>
-
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Email" id="email">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
-                                    </div>
-                                </div>
-
-                                <div class="input-group">
-                                    <input type="text" id="datepicker" class="form-control" placeholder="Ngày mang thai">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="form-group form-footer">
-                                    <div class="col-sm-offset-4 col-sm-8">
-                                        <button type="submit" class="btn btn-warning" id="subscribe">Đăng kí</button>
-                                    </div>
-                                </div>
-
-                            </form>
-
-                        </div>
-                        <!-- /tile body -->
-
-                    </section>
-
 
                     <!-- CATEGORIES -->
                     <section class="tile color transparent-white">
 
                         <!-- tile header -->
                         <div class="tile-header color redbrown rounded-top-corners">
-                            <h4>
-                                <strong>Thành viên </strong>nổi bật trong tuần
-                            </h4>
+                            <h2>
+                                Thành viên nổi bật trong tuần
+                            </h2>
                         </div>
                         <!-- /tile header -->
                         <!-- tile body -->
@@ -451,7 +456,7 @@
                                             <div class="media-body">
                                                 <h5 class="media-heading">
                                                     <a href="@Url.Action("GetProfile", "Profile", routeValues: new { id = top5Users[index].UserName })">@top5Users[index].UserName</a>
-                                                    <span class="badge" style="float:right;">@(index+1)</span>
+                                                    <span class="badge" style="float:right;">@(index + 1)</span>
                                                 </h5>
                                                 <ul class="post-details">
                                                     <li><i class="fa fa-edit "></i> @listUserLikeArticle.FirstOrDefault(ll => ll.Id.Equals(top5Users[index].Id)).ArticlesNumber Bài viết</li>
@@ -510,10 +515,7 @@
                                         <div class="overlay">
 
                                             <div class="overlay-controls">
-                                                <a href="@Url.Content("~/Content/images/post/1.jpg")" )" data-nivobox="true"
-                                                   data-lightbox-gallery="gallery1">
-                                                    <i class="fa fa-arrows-alt"></i>
-                                                </a> <a href="@Url.Action("Details", "Articles", new {id = item.Id })"><i class="fa fa-chain"></i></a>
+                                                <a href="@Url.Action("Details", "Articles", new {id = item.Id })"><i class="fa fa-search"></i></a>
                                             </div>
 
                                         </div>
@@ -533,284 +535,363 @@
                 </div>
 
             </div>
+
+
+            <div class="row">
+
+                <div class="col-md-3"></div>
+
+                <div class="col-md-6">
+                    <div class="">
+
+                        <!-- tile widget -->
+                        <div class="tile-widget nopadding color greensea rounded-top-corners">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs nav-separated nav-justified">
+                                <li class="active"><a href="#tab-1" data-toggle="tab" class="filled redbrown">Mong con</a></li>
+                                <li><a href="#tab-2" data-toggle="tab" class="filled orange">Mang thai</a></li>
+                                <li><a href="#tab-3" data-toggle="tab" class="filled cyan">Trẻ sơ sinh</a></li>
+                                <li><a href="#tab-4" data-toggle="tab" class="filled greensea">Nuôi dạy trẻ</a></li>
+
+                            </ul>
+                            <!-- / Nav tabs -->
+                        </div>
+                        <!-- /tile widget -->
+                        <!-- tile body -->
+                        <div class="tile-body tab-content rounded-bottom-corners">
+
+                            <!-- Tab panes -->
+                            <div id="tab-1" class="tab-pane fade active in">
+
+
+                                <article class="newsCenter">
+                                    <div class="autNewsCt row">
+                                        <div class="top-box-article">
+                                            <span class="avatarNews col-md-2 col-sm-2 col-xs-3 ol-lg-5">
+                                                <a href=""><img class="" src="@Url.Content("~/Content/images/arnold-avatar.jpg")"></a>
+                                            </span>
+
+                                            <span class="ctnAutCt col-md-10 col-sm-10 col-xs-9 col-lg-5">
+                                                <a href="">admin</a>
+                                                <span class="date-post">
+                                                    3 ngày trước
+                                                </span>
+                                            </span>
+                                            <div class="icon-list-btn col-lg-6">
+                                                <ul>
+                                                    <li>
+                                                        <span class="fa fa-thumbs-up icon-box-article"></span>
+                                                        <br>
+                                                        <span class="value-btn">6.9K</span>
+                                                    </li>
+                                                    <li>
+                                                        <a title="Chia sẻ" class="btn-shareface" rel="nofollow" target="_blank" href="">
+                                                            <span class="fa fa-eye icon-box-article"></span>
+                                                            <br>
+                                                            <span class="value-btn">255</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <span title="Bình luận" class="fa fa-comment icon-box-article"></span>
+                                                        <br>
+                                                        <span class="value-btn">9</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="bottom-box-article">
+                                            <h3>
+                                                <a href="">
+                                                    Đàn ông cần một người phụ nữ như thế nào?
+                                                </a>
+                                            </h3>
+                                            <span>
+                                                Điều làm đàn ông không chịu nổi là sự lảm nhảm của người vợ, nước mắt của người tình và sự hiểu lầm của hồng nhan tri kỷ. Đàn ông cả đời đi tìm không phải vợ, cũng không phải người tình mà là hồng...
+                                            </span>
+                                            <div class="imgArtCt">
+
+                                                <a href="">
+                                                    <img class="img-responsive" src="@Url.Content("~/Content/images/post/1.jpg")">
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </article>
+
+                            </div>
+
+                            <div id="tab-2" class="tab-pane fade">
+
+                                <article class="newsCenter">
+                                    <div class="autNewsCt row">
+                                        <div class="top-box-article">
+                                            <span class="avatarNews col-md-2 col-sm-2 col-xs-3 ol-lg-5">
+                                                <a href=""><img class="" src="@Url.Content("~/Content/images/arnold-avatar.jpg")"></a>
+                                            </span>
+
+                                            <span class="ctnAutCt col-md-10 col-sm-10 col-xs-9 col-lg-5">
+                                                <a href="">admin</a>
+                                                <span class="date-post">
+                                                    3 ngày trước
+                                                </span>
+                                            </span>
+                                            <div class="icon-list-btn col-lg-6">
+                                                <ul>
+                                                    <li>
+                                                        <span class="fa fa-thumbs-up icon-box-article"></span>
+                                                        <br>
+                                                        <span class="value-btn">6.9K</span>
+                                                    </li>
+                                                    <li>
+                                                        <a title="Chia sẻ" class="btn-shareface" rel="nofollow" target="_blank" href="">
+                                                            <span class="fa fa-eye icon-box-article"></span>
+                                                            <br>
+                                                            <span class="value-btn">255</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <span title="Bình luận" class="fa fa-comment icon-box-article"></span>
+                                                        <br>
+                                                        <span class="value-btn">9</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="bottom-box-article">
+                                            <h3>
+                                                <a href="">
+                                                    Đàn ông cần một người phụ nữ như thế nào?
+                                                </a>
+                                            </h3>
+                                            <span>
+                                                Điều làm đàn ông không chịu nổi là sự lảm nhảm của người vợ, nước mắt của người tình và sự hiểu lầm của hồng nhan tri kỷ. Đàn ông cả đời đi tìm không phải vợ, cũng không phải người tình mà là hồng...
+                                            </span>
+                                            <div class="imgArtCt">
+
+                                                <a href="">
+                                                    <img class="img-responsive" src="@Url.Content("~/Content/images/post/2.jpg")">
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </article>
+                            </div>
+
+
+                            <div id="tab-3" class="tab-pane fade">
+
+                                <article class="newsCenter">
+                                    <div class="autNewsCt row">
+                                        <div class="top-box-article">
+                                            <span class="avatarNews col-md-2 col-sm-2 col-xs-3 ol-lg-5">
+                                                <a href=""><img class="" src="@Url.Content("~/Content/images/arnold-avatar.jpg")"></a>
+                                            </span>
+
+                                            <span class="ctnAutCt col-md-10 col-sm-10 col-xs-9 col-lg-5">
+                                                <a href="">admin</a>
+                                                <span class="date-post">
+                                                    3 ngày trước
+                                                </span>
+                                            </span>
+                                            <div class="icon-list-btn col-lg-6">
+                                                <ul>
+                                                    <li>
+                                                        <span class="fa fa-thumbs-up icon-box-article"></span>
+                                                        <br>
+                                                        <span class="value-btn">6.9K</span>
+                                                    </li>
+                                                    <li>
+                                                        <a title="Chia sẻ" class="btn-shareface" rel="nofollow" target="_blank" href="">
+                                                            <span class="fa fa-eye icon-box-article"></span>
+                                                            <br>
+                                                            <span class="value-btn">255</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <span title="Bình luận" class="fa fa-comment icon-box-article"></span>
+                                                        <br>
+                                                        <span class="value-btn">9</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="bottom-box-article">
+                                            <h3>
+                                                <a href="">
+                                                    Đàn ông cần một người phụ nữ như thế nào?
+                                                </a>
+                                            </h3>
+                                            <span>
+                                                Điều làm đàn ông không chịu nổi là sự lảm nhảm của người vợ, nước mắt của người tình và sự hiểu lầm của hồng nhan tri kỷ. Đàn ông cả đời đi tìm không phải vợ, cũng không phải người tình mà là hồng...
+                                            </span>
+                                            <div class="imgArtCt">
+
+                                                <a href="">
+                                                    <img class="img-responsive" src="@Url.Content("~/Content/images/post/3.jpg")">
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </article>
+                            </div>
+
+
+                            <div id="tab-4" class="tab-pane fade">
+
+                                <article class="newsCenter">
+                                    <div class="autNewsCt row">
+                                        <div class="top-box-article">
+                                            <span class="avatarNews col-md-2 col-sm-2 col-xs-3 ol-lg-5">
+                                                <a href=""><img class="" src="@Url.Content("~/Content/images/arnold-avatar.jpg")"></a>
+                                            </span>
+
+                                            <span class="ctnAutCt col-md-10 col-sm-10 col-xs-9 col-lg-5">
+                                                <a href="">admin</a>
+                                                <span class="date-post">
+                                                    3 ngày trước
+                                                </span>
+                                            </span>
+                                            <div class="icon-list-btn col-lg-6">
+                                                <ul>
+                                                    <li>
+                                                        <span class="fa fa-thumbs-up icon-box-article"></span>
+                                                        <br>
+                                                        <span class="value-btn">6.9K</span>
+                                                    </li>
+                                                    <li>
+                                                        <a title="Chia sẻ" class="btn-shareface" rel="nofollow" target="_blank" href="">
+                                                            <span class="fa fa-eye icon-box-article"></span>
+                                                            <br>
+                                                            <span class="value-btn">255</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <span title="Bình luận" class="fa fa-comment icon-box-article"></span>
+                                                        <br>
+                                                        <span class="value-btn">9</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="bottom-box-article">
+                                            <h3>
+                                                <a href="">
+                                                    Đàn ông cần một người phụ nữ như thế nào?
+                                                </a>
+                                            </h3>
+                                            <span>
+                                                Điều làm đàn ông không chịu nổi là sự lảm nhảm của người vợ, nước mắt của người tình và sự hiểu lầm của hồng nhan tri kỷ. Đàn ông cả đời đi tìm không phải vợ, cũng không phải người tình mà là hồng...
+                                            </span>
+                                            <div class="imgArtCt">
+
+                                                <a href="">
+                                                    <img class="img-responsive" src="@Url.Content("~/Content/images/post/4.jpg")">
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </article>
+                            </div>
+                            <!-- / Tab panes -->
+
+                        </div>
+                        <!-- /tile body -->
+
+
+
+                    </div>
+                </div>
+
+                <div id="sidebar" class="col-md-3 hidden-xs hidden-sm post-sidebar">
+
+                    <!-- RECENT POSTS -->
+                    <section class="tile color transparent-white">
+
+                        <!-- tile header -->
+                        <div class="tile-header color greensea rounded-top-corners">
+                            <h2>
+                                Bài viết nổi bật
+                            </h2>
+                        </div>
+                        <!-- /tile header -->
+                        <!-- tile body -->
+                        <div class="tile-body">
+
+                            <form class="form-horizontal" role="form">
+
+                                <ul class="media-list recent-posts sidebar-widget">
+
+                                    <li class="media">
+                                        <a class="pull-left" href="post-item.html">
+                                            <img class="media-object" src="Content/images/post/2.jpg" alt="">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <a href="post-item.html">40 Tuần mang thai</a>
+                                            </h5>
+                                            <p>
+                                                Con thân yêu trong bụng mẹ đang phát triển như thế nào
+                                                nhỉ?
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                    <li class="media">
+                                        <a class="pull-left" href="post-item.html">
+                                            <img class="media-object" src="Content/images/post/4.jpg" alt="">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <a href="post-item.html">Hành trình năm đầu đời</a>
+                                            </h5>
+                                            <p>
+                                                Con đã chào đời trong niềm yêu thương vô bờ bến của
+                                                cha mẹ.
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                    <li class="media">
+                                        <a class="pull-left" href="post-item.html">
+                                            <img class="media-object" src="Content/images/post/3.jpg" alt="">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <a href="post-item.html">Nuôi dạy con</a>
+                                            </h5>
+                                            <p>Nếu mang thai, sinh con là một hành trình đáng nhớ</p>
+                                        </div>
+                                    </li>
+
+                                </ul>
+
+                            </form>
+
+                        </div>
+                        <!-- /tile body -->
+
+                    </section>
+                    <!-- END RECENT POSTS -->
+
+                </div>
+
+            </div>
         </div>
     </section>
     <!-- END LATEST PROJECTS-->
-    <!-- TWITTER FEED -->
-    <section id="twitter-parallax"
-             class="section section-bg-1 twitter-holder parallax">
-        <div class="section-overlay black">
-            <div class="container">
-                <div class="row">
 
-                    <div class="col-md-12">
-                        <a href="index.html#" class="icon-rounded">
-                            <i class="fa fa-users"></i> <span class="twitter-author">
-                                THÀNH
-                                VIÊN
-                            </span>
-                        </a>
 
-                    </div>
 
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END TWITTER FEED -->
-    <!-- OUR CLIENTS -->
-    <section class="section" id="our-clients">
-        <div class="container">
-            <div class="row">
 
-                <div class="col-md-3">
 
-                    <div class="btn-group custom-navigation circle-navigation with-heading no-top-margin">
-                        <h3 class="no-top-margin uppercase">Chúng tôi</h3>
-                        <button type="button" class="btn prev">
-                            <i class="fa fa-angle-left"></i>
-                        </button>
-                        <button type="button" class="btn next">
-                            <i class="fa fa-angle-right"></i>
-                        </button>
-                    </div>
-                    <p>Điền giới thiệu vào đây</p>
-
-                    <div class="text-center">
-                        <a href="about.html" class="btn btn-cyan">
-                            Xem thêm <span class="btn-side"><i class="fa fa-chevron-right"></i></span>
-                        </a>
-                    </div>
-
-                </div>
-
-                <div class="col-md-9">
-
-                    <div class="owl-carousel owl-theme">
-
-                        <div class="item appear-el" data-animation="fadeIn">
-                            <div class="team-avatar">
-                                <img src="@Url.Content("~/Content/images/clients/random-avatar1.jpg")" )" alt=""
-                                     class="img-responsive">
-                                <h4>
-                                    <strong>Name</strong>
-                                </h4>
-                                <span>Code thuê</span>
-                            </div>
-                            <div class="team-note">
-                                <p>Điền mô tả vào đây</p>
-                                <div class="social">
-                                    <a href="about.html#" style="padding-left: 14px">
-                                        <i class="fa fa-facebook"></i>
-                                    </a> <a href="about.html#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a> <a href="about.html#">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item appear-el" data-animation="fadeIn">
-                            <div class="team-avatar">
-                                <img src="@Url.Content("~/Content/images/clients/random-avatar2.jpg")" )" alt=""
-                                     class="img-responsive">
-                                <h4>
-                                    <strong>Name</strong>
-                                </h4>
-                                <span>Code thuê</span>
-                            </div>
-                            <div class="team-note">
-                                <p>Điền mô tả vào đây</p>
-                                <div class="social">
-                                    <a href="about.html#" style="padding-left: 14px">
-                                        <i class="fa fa-facebook"></i>
-                                    </a> <a href="about.html#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a> <a href="about.html#">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item appear-el" data-animation="fadeIn">
-                            <div class="team-avatar">
-                                <img src="@Url.Content("~/Content/images/clients/random-avatar3.jpg")" )" alt=""
-                                     class="img-responsive">
-                                <h4>
-                                    <strong>Name</strong>
-                                </h4>
-                                <span>Code thuê</span>
-                            </div>
-                            <div class="team-note">
-                                <p>Điền mô tả vào đây</p>
-                                <div class="social">
-                                    <a href="about.html#" style="padding-left: 14px">
-                                        <i class="fa fa-facebook"></i>
-                                    </a> <a href="about.html#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a> <a href="about.html#">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item appear-el" data-animation="fadeIn">
-                            <div class="team-avatar">
-                                <img src="@Url.Content("~/Content/images/clients/random-avatar4.jpg")" )" alt=""
-                                     class="img-responsive">
-                                <h4>
-                                    <strong>Name</strong>
-                                </h4>
-                                <span>Code thuê</span>
-                            </div>
-                            <div class="team-note">
-                                <p>Điền mô tả vào đây</p>
-                                <div class="social">
-                                    <a href="about.html#" style="padding-left: 14px">
-                                        <i class="fa fa-facebook"></i>
-                                    </a> <a href="about.html#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a> <a href="about.html#">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item appear-el" data-animation="fadeIn">
-                            <div class="team-avatar">
-                                <img src="@Url.Content("~/Content/images/clients/random-avatar5.jpg")" )" alt=""
-                                     class="img-responsive">
-                                <h4>
-                                    <strong>Name</strong>
-                                </h4>
-                                <span>Code thuê</span>
-                            </div>
-                            <div class="team-note">
-                                <p>Điền mô tả vào đây</p>
-                                <div class="social">
-                                    <a href="about.html#" style="padding-left: 14px">
-                                        <i class="fa fa-facebook"></i>
-                                    </a> <a href="about.html#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a> <a href="about.html#">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- END OUR CLIENTS -->
-    <!-- MAP -->
-    <section class="section" id="map-canvas"></section>
-    <!-- END MAP -->
-    <!-- CONTACT -->
-    <section class="section">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-8">
-
-                    <div class="block appear-el" data-animation="fadeInLeft">
-
-                        <h3 class="uppercase no-top-margin">
-                            <strong>Góp ý</strong> của bạn
-                        </h3>
-
-                        <p>
-                            Ý kiến của bạn sẽ giúp chũng tôi hoàn thiện hơn. Xin cảm
-                            ơn!
-                        </p>
-
-                        <form role="form">
-
-                            <div class="form-group">
-                                <label for="name">Tên</label> <input type="text"
-                                                                     class="form-control" id="name">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">Địa chỉ Email</label> <input type="email"
-                                                                                class="form-control" id="email">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="message">Nội dung</label>
-                                <textarea class="form-control" rows="5" id="message"></textarea>
-                            </div>
-
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-green uppercase"><i class="fa fa-paper-plane"></i> Gửi</button>
-                                <button type="reset" class="btn uppercase"><i class="fa fa-times"></i> Hủy</button>
-                            </div>
-                        </form>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4">
-
-                    <div class="block appear-el" data-animation="fadeInRight">
-
-                        <h3 class="uppercase no-top-margin">
-                            Văn phòng của <strong>Chúng Tôi</strong>
-                        </h3>
-
-                        <address>
-                            <strong>Địa chỉ :</strong> FPT_University - Đà Nẵng<br> <strong>
-                                Điện
-                                thoại :
-                            </strong> +84 01655757445<br> <strong>Email:</strong> <a href="mailto:exc-group@gmail.com">exc-group@gmail.com</a><br>
-
-                            <div class="social">
-                                <a href="contacts.html#" style="padding-left: 13px">
-                                    <i class="fa fa-facebook"></i>
-                                </a> <a href="contacts.html#">
-                                    <i class="fa fa-twitter"></i>
-                                </a> <a href="contacts.html#">
-                                    <i class="fa fa-google-plus"></i>
-                                </a> <a href="contacts.html#">
-                                    <i class="fa fa-flickr"></i>
-                                </a> <a href="contacts.html#">
-                                    <i class="fa fa-dribbble"></i>
-                                </a>
-                            </div>
-                        </address>
-
-                        <h3 class="uppercase no-top-margin">
-                            Giờ <strong>Hành Chính</strong>
-                        </h3>
-                        <address>
-                            <strong>Thứ 2 - Thứ 6:</strong> 8:00 AM - 17:00 PM<br /> <strong>
-                                Thứ
-                                7:
-                            </strong> 8:00 AM - 12:00 PM<br /> <strong>Chủ nhật:</strong> Đóng cửa
-                        </address>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- END CONTACT -->
-    <!-- SCROLL TOP -->
-    <div class="scroll-top">
-        <a href="index.html#">
-            <i class="fa fa-angle-up"></i>
-        </a>
-    </div>
-    <!-- END SCROLL TOP -->
     <a hidden id="username" data-id="@currentUser.UserName"></a>
     <a hidden id="firstname" data-id="@currentUser.FirstName"></a>
     <a hidden id="lastname" data-id="@currentUser.LastName"></a>
@@ -925,6 +1006,13 @@
             });
         });
 
+    </script>
+
+
+
+
+    <script type="text/javascript">
+    $('#sidebar').scrollToFixed({ dontSetWidth: true });
     </script>
 
 </body>
