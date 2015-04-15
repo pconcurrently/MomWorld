@@ -102,7 +102,7 @@ namespace MomWorld.Controllers
             article.Date = model.Date;
             article.Content = model.Content;
             article.Description = model.Description;
-            article.DescriptionImage = GetDescriptionImage(model.Content);
+            article.DescriptionImage = model.DescriptionImage;
 
             if (model.Tags != null)
             {

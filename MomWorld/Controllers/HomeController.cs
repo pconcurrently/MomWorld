@@ -14,6 +14,7 @@ namespace MomWorld.Controllers
 
         private ArticleDb articleDb = new ArticleDb();
         private IdentityDb identityDb = new IdentityDb();
+        private ImageDb imageDb = new ImageDb();
 
 
         public ActionResult Index()
@@ -86,14 +87,28 @@ namespace MomWorld.Controllers
         }
 
         [HttpPost]
-        public void uploadnow(HttpPostedFileWrapper upload)
+        public JsonResult UploadImage()
         {
-            if (upload != null)
+            if (HttpContext.Request.Files.AllKeys.Any())
             {
-                string ImageName = upload.FileName;
-                string path = System.IO.Path.Combine(Server.MapPath("~/Images/uploads"), ImageName);
-                upload.SaveAs(path);
+                var httpPostedFile = HttpContext.Request.Files["UploadedImage"];
+                if (httpPostedFile != null)
+                {
+                    Image img = new Image();
+                    string imageName = httpPostedFile.FileName;
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Images/uploads"), img.Id) + imageName.Substring(imageName.LastIndexOf('.'));
+
+                    httpPostedFile.SaveAs(path);
+
+                    string imgUrl = "~/Images/uploads/" + img.Id + imageName.Substring(imageName.LastIndexOf('.'));
+                    img.Url = imgUrl;
+                    imageDb.Entry(img).State = System.Data.Entity.EntityState.Added;
+                    imageDb.SaveChanges();
+
+                    return Json(imgUrl);
+                }
             }
+            return Json(null);
         }
     }
 }

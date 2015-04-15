@@ -102,8 +102,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    
-   
     <!-- BEGIN BREADCRUMBS -->
     <div id="breadcrumbs" class="breadcrumbs bg-1">
         <div class="container">
@@ -151,9 +149,17 @@
                     <div class="item" data-id="@currentUser.DatePregnancy.Value.AddDays(item.Date).ToString("dd/MM/yyyy")" data-name="@currentUser.DatePregnancy.Value.AddDays(item.Date).ToString("dd")"
                          data-description="Ngày thứ @item.Date">
                         <a class="image_rollover_bottom con_borderImage" href="#">
-                            <img src="@Url.Content("~/Content/images/page-images/4.jpg")" class="img-responsive"
-                                 alt="" />
-
+                            @if (item.DescriptionImage != null)
+                            {
+                                <img class="img-responsive"
+                                     src="@Url.Content(item.DescriptionImage)" alt="" />
+                            }
+                            else
+                            {
+                                //hình mặc định
+                                <img src="@Url.Content("~/Content/images/page-images/4.jpg")" class="img-responsive"
+                                     alt="" />
+                            }
                         </a>
                         <h2>Ngày thứ @item.Date</h2>
                         <span>
@@ -176,7 +182,7 @@
     </section>
 
 
-  
+
     <!-- Modal -->
     <div class="modal fade" id="setDateModal" tabindex="-1" role="dialog"
          aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -206,7 +212,7 @@
                                         placeholder="Ngày mang thai dự định" type="text"
                                         onfocus="(this.type='date')" onblur="(this.type='text')"
                                         id="date" aria-describedby="basic-addon1">*@
-                                    <input type="text" class="form-control" id="datepicker" placeholder="Ngày mang thai">
+                                    ><input type="text" class="form-control" id="datepicker" placeholder="Ngày mang thai">
                                 </div>
                             </div>
                         </div>
@@ -335,4 +341,3 @@
         });</script>
 
 </body>
-

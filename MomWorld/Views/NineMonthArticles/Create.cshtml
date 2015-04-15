@@ -6,7 +6,7 @@
 }
 
 <head>
-   
+
     <title>@ViewBag.Title.</title>
 
 
@@ -67,9 +67,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- Modal create TAG -->
-
-
-  
     <!-- BEGIN BREADCRUMBS -->
     <div id="breadcrumbs" class="breadcrumbs bg-1">
         <div class="container">
@@ -130,9 +127,9 @@
                         </button>
                     </div>
                 </div>
-    <hr class="post-divider">
+                <hr class="post-divider">
             }
-            
+
 
             <div class="row">
                 <!-- post POSTS -->
@@ -141,8 +138,10 @@
                         <i class="fa fa-pencil-square-o"></i> <strong> Bài viết </strong>
                         mới
                     </h1>
-                    <form class="form-horizontal" role="form" method="POST" action="@Url.Action("Create", "NineMonthArticles")">
+                    <form class="form-horizontal" id="articleForm" role="form" method="POST" action="@Url.Action("Create", "NineMonthArticles")">
                         @Html.AntiForgeryToken()
+
+                        @Html.HiddenFor(model => model.DescriptionImage)
                         <div class="form-group">
                             <label for="title" class="col-md-4 " style="font-size: 20px;">
                                 Ngày thứ <span class="required">*</span>
@@ -153,7 +152,7 @@
                             </div>
                         </div>
 
-                      
+
 
 
 
@@ -167,7 +166,7 @@
                                     <input type="text" class="form-control" readonly="">
                                     <span class="input-group-btn">
                                         <span class="btn btn-primary btn-file">
-                                            <i class="fa fa-upload"></i><input type="file" multiple="">
+                                            <i class="fa fa-upload"></i><input type="file" id="fileUpload" accept="image/*">
                                         </span>
                                     </span>
 
@@ -182,7 +181,7 @@
                                 Mô tả <span class="required">*</span>
                             </label>
                             <div class="col-md-8">
-                                @Html.TextAreaFor(model => model.Description, htmlAttributes: new {@class="form-control", id="", rows="6" })
+                                @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control", id = "", rows = "6" })
                             </div>
                         </div>
 
@@ -303,7 +302,7 @@
         </div>
     </section>
     <!-- END post PAGE -->
-  
+
 
 
 
@@ -323,53 +322,66 @@
 
 
     <script>
-    $('#submitTag').click(function (e) {
-        e.preventDefault();
-        var name = $('#tagName').val();
-        var description = $('#tagDescription').val();
-        $.ajax({
-            url: '/Tags/Create',
-            dataType: "json",
-            type: "POST",
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({ tag: { name: name, description: description } }),
-            async: true,
-            processData: false,
-            cache: false,
-            success: function (data) {
-                window.location.reload(true);
-            },
+        $('#submitTag').click(function (e) {
+            e.preventDefault();
+            var name = $('#tagName').val();
+            var description = $('#tagDescription').val();
+            $.ajax({
+                url: '/Tags/Create',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ tag: { name: name, description: description } }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    window.location.reload(true);
+                },
+            });
         });
-    });
     </script>
 
 
 
 
 
-    @*<script>
+    <script>
         $(document).ready(function () {
-            $('#submitArticle').click(function () {
-                var date = $('#date').val();
-                var content = $('#edit').html();
-                alert(content);
-                var tags = $('#tags').val() + "";
-                $.ajax({
-                    url: '/NineMonthArticles/Create',
+            $('#submitArticle').click(function (e) {
+                e.preventDefault();
+
+                var data = new FormData();
+                var files = $('#fileUpload').get(0).files;
+                if (files.length > 0) {
+                    data.append("UploadedImage", files[0]);
+                }
+
+                var ajaxUpload = $.ajax({
+                    url: '/Home/UploadImage',
                     type: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify({ model: { date: date, content: content, tags: tags } }),
-                    async: true,
+                    async: false,
+                    contentType: false,
                     processData: false,
                     cache: false,
-                    success: function (data) {
-                        alert(data);
+                    data: data
+                });
+
+                ajaxUpload.done(function (xhr, textStatus) {
+                    //$('#imageLink').val(xhr);
+                    if (textStatus == "success") {
+                        document.getElementById('DescriptionImage').value = xhr;
                     }
+                    else {
+                        document.getElementById('DescriptionImage').value = null;
+                    }
+
+                    $('#articleForm').submit();
+
                 });
             });
         });
-    </script>*@
+    </script>
 
 
     @*JS for upload*@
@@ -401,4 +413,3 @@
     </script>
 
 </body>
-</html>

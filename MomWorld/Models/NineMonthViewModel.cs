@@ -15,5 +15,7 @@ namespace MomWorld.Models
         public string[] Tags { get; set; }
 
         public string Description { get; set; }
+
+        public string DescriptionImage { get; set; }
     }
 }
