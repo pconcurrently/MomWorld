@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "moment": "~2.9.0",
-    "angular-moment": "~0.10.0"
+    "angular-moment": "~0.10.0",
+    "videogular-themes-default": "~1.2.0"
   }
 }

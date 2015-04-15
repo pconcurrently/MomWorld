@@ -95,19 +95,33 @@ namespace MomWorld.Controllers
         {
             HttpResponseMessage result = null;
             var httpRequest = HttpContext.Current.Request;
+
             if (httpRequest.Files.Count > 0)
             {
                 foreach (string file in httpRequest.Files)
                 {
+
                     var postedFile = httpRequest.Files[0];
                     var Username = httpRequest.Form.Get(0);
                     var VideoName = httpRequest.Form.Get(1);
                     var VideoID = httpRequest.Form.Get(2);
-                    var Content = httpRequest.Form.Get(3);
 
-                    // Save file to Responsitory
-                    var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/" + VideoID);
-                    postedFile.SaveAs(filePath);
+                    if (postedFile.ContentType == "image/png")
+                    {
+                        // Save Thumbnail to Responsitory
+                        var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/thumbnail/" + VideoID + ".png");
+                        postedFile.SaveAs(filePath);
+                    }
+                    else
+                    {
+                        // Save Video to Responsitory
+                        var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/" + VideoID + ".mp4");
+                        postedFile.SaveAs(filePath);
+                    }
+                    
+                    
+
+                    
 
                 }
                 result = Request.CreateResponse(HttpStatusCode.Created);

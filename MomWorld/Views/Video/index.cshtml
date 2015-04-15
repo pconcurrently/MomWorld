@@ -68,8 +68,8 @@
 
 </head>
 
-<body data-ng-app="demo"
-      data-ng-controller="DemoFileUploadController">
+<body ng-app="demo"
+      ng-controller="DemoFileUploadController">
 
     <!-- Modal -->
     <div class="modal fade" id="modalAddNewVideo" tabindex="-1"
@@ -98,7 +98,12 @@
                                 <!-- The fileinput-button span is used to style the file input field as button -->
                                 <span class="btn btn-success fileinput-button"
                                       ng-class="{disabled: disabled}">
-                                    <i class="glyphicon glyphicon-plus"></i> <span>Chọn video</span> <input type="file" name="files[]" multiple ng-disabled="disabled">
+                                    <i class="glyphicon glyphicon-plus"></i> <span>Chọn video</span> <input type="file" name="files[]" ng-disabled="disabled">
+                                </span>
+
+                                <span class="btn btn-success fileinput-button"
+                                      ng-class="{disabled: disabled}">
+                                    <i class="glyphicon glyphicon-plus"></i> <span>Chọn Hinh Anh</span> <input type="file" name="files2[]" ng-disabled="disabled">
                                 </span>
 
                                 <!-- The global file processing state -->
@@ -175,8 +180,15 @@
 
                         <div class="form-group form-footer">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button type="submit" class="btn btn-green">Tải lên</button>
-                                <button type="reset" class="btn btn-red">Hủy</button>
+                                <button type="button" class="btn btn-primary start" data-ng-click="submit()">
+                                    <i class="glyphicon glyphicon-upload"></i>
+                                    <span>Start upload</span>
+                                </button>
+
+                                <button type="button" class="btn btn-warning cancel" data-ng-click="cancel()">
+                                    <i class="glyphicon glyphicon-ban-circle"></i>
+                                    <span>Cancel upload</span>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -243,10 +255,9 @@
                         <div class="item" ng-repeat="video in videoFire">
                             <div class="item-header">
                                 <a ng-href="http://localhost:4444/Video/Detail/{{video.VideoID}}"
-                                   class="img-hover-effect loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="{{video.ImageURL}}" ) alt="" />
+                                   class="loadingvideo">
+                                    <img ng-src="{{video.VideoThumbnail}}" width=" 16"
+                                         height="9" class="aspect-px" alt="" />
                                 </a>
                             </div>
                             <div class="item-content">
