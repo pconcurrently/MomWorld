@@ -132,7 +132,7 @@ namespace MomWorld.Controllers
             article.Title = model.Title;
             article.Content = model.Content;
             article.Description = model.Description;
-            article.DescriptionImage = GetDescriptionImage(model.Content);
+            article.DescriptionImage = model.DescriptionImage;
             article.CategoryId = model.CategoryId;
             article.Phase = id;
 
