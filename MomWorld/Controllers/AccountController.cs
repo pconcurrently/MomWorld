@@ -757,6 +757,12 @@ namespace MomWorld.Controllers
             return View();
         }
 
+
+        public ActionResult Task()
+        {
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+            return View();
+        }
         
         #region Helpers
         // Used for XSRF protection when adding external logins
