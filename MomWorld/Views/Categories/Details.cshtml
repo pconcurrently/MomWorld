@@ -1,1 +1,485 @@
-﻿
+﻿@{
+    Layout = "~/Views/Shared/_MWLayout.cshtml";
+    ViewBag.Title = "Category-Article";
+}
+
+<head>
+    <title>@ViewBag.Title.</title>
+</head>
+
+<body>
+
+
+
+
+
+
+
+   
+    <!-- BEGIN BREADCRUMBS -->
+    <div id="breadcrumbs" class="breadcrumbs bg-1">
+        <div class="container">
+            <nav class="navbar-category">
+                <div class="container navbar-menu-category">
+                    <div class="navbar-header">
+
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#myNavbar"
+                                style="float: none; text-align: center; margin: 0;">
+                            <span class="sr-only">Toggle navigation</span> <img class="img-responsive" alt=""
+                                                                                src="@Url.Content("~/Content/images/page-icon/navbar-toggle.png")"
+                                                                                style="width: 50px;">
+                        </button>
+
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="pre-pregnancy.html">Mong con</a></li>
+                            <li><a href="pregnancy.html">Mang thai</a></li>
+                            <li><a href="infant.html">Trẻ sơ sinh</a></li>
+                            <li><a href="child-rearing.html">Nuôi dạy trẻ</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="quiz-page.html" data-placement="bottom"
+                                   title="Kiểm tra kiến thức">
+                                    <i class="fa  fa-university hidden-md hidden-lg"></i> <span class="hidden-sm">Kiểm tra kiến thức</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i> Trang
+                        chủ
+                    </a>
+                </li>
+                <li><a href="pre-pregnancy.html"> Mong con</a></li>
+                <li class="active">Sức khoẻ</li>
+            </ol>
+
+            <h2>
+                <strong>Sức khoẻ</strong>
+            </h2>
+        </div>
+    </div>
+    <!-- END BREADCRUMBS -->
+    <!-- post PAGE -->
+    <section class="section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 text-left">
+                    <ul class="mix-filter">
+                        <li data-filter="all" class="filter active">Tất cả</li>
+                        <li data-filter=".category_1" class="filter">
+                            Kinh nghiệm cần
+                            thiết
+                        </li>
+                        <li data-filter=".category_2" class="filter">
+                            Người dùng chia
+                            sẻ
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 text-right">
+                    <a href="@Url.Action("Create","Articles")" class="btn btn-warning">
+                        <i class="fa fa-plus-circle"></i> Thêm bài viết
+                    </a>
+                </div>
+            </div>
+            <hr class="post-divider">
+            <div class="row">
+                <!-- post POSTS -->
+                <div class="col-sm-9 post-posts">
+
+                    <div class="row mix-grid" id="gallery">
+
+                        <div class="mix category_1 mix_all">
+                            <div class="row">
+
+                                <div class="col-sm-4">
+                                    <img class="img-responsive" alt=""
+                                         src="@Url.Content("~/Content/images/post/2.jpg")">
+                                </div>
+
+                                <div class="col-md-8 col-sm-8">
+                                    <h3>
+                                        <a href="post-item.html">
+                                            10 thói quen xấu cần bỏ ngay nếu
+                                            muốn có thai
+                                        </a>
+                                    </h3>
+                                    <ul class="post-details">
+                                        <li><i class="fa fa-calendar-o"></i> 16.07.2014</li>
+                                        <li><i class="fa fa-comments"></i> 5</li>
+                                        <li><i class="fa fa-tags"></i> Mong con</li>
+                                    </ul>
+                                    <p>
+                                        Bạn đang lên kế hoạch có con? Vậy hãy mau tạm biệt những
+                                        thói quen xấu có thể ảnh hưởng đến khả năng thụ thai cũng như
+                                        suốt quá trình mang thai sau này nhé!
+                                    </p>
+                                    <a href="post-item.html" class="read-more">
+                                        <i class="fa fa-angle-right"></i> Xem thêm
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="mix category_2 mix_all">
+                            <div class="row">
+
+                                <div class="col-sm-4">
+                                    <img class="img-responsive" alt=""
+                                         src="@Url.Content("~/Content/images/post/3.jpg")">
+                                </div>
+
+                                <div class="col-md-8 col-sm-8">
+                                    <h3>
+                                        <a href="post-item.html">
+                                            Mang thai tuổi 40: thuận lợi và
+                                            bất lợi
+                                        </a>
+                                    </h3>
+                                    <ul class="post-details">
+                                        <li><i class="fa fa-calendar-o"></i> 16.07.2014</li>
+                                        <li><i class="fa fa-comments"></i> 5</li>
+                                        <li><i class="fa fa-tags"></i> Mong con</li>
+                                    </ul>
+                                    <p>
+                                        Bước sang tuổi tứ tuần, bạn biết rằng mình không còn trẻ
+                                        để mang thai sinh con dễ dàng như những mẹ khác. Nhưng đừng bi
+                                        quan, mong muốn làm mẹ luôn chính đáng, và cuộc đời vẫn dành
+                                        cho bạn những lợi thế riêng mà không lứa tuổi nào có được.Bước
+                                        sang tuổi tứ tuần, bạn biết rằng mình không còn trẻ để mang
+                                        thai sinh con dễ dàng như những mẹ khác. Nhưng đừng bi quan,
+                                        mong muốn làm mẹ luôn chính đáng, và cuộc đời vẫn dành cho bạn
+                                        những lợi thế riêng mà không lứa tuổi nào có được.Bước sang
+                                        tuổi tứ tuần, bạn biết rằng mình không còn trẻ để mang thai
+                                        sinh con dễ dàng như những mẹ khác. Nhưng đừng bi quan, mong
+                                        muốn làm mẹ luôn chính đáng, và cuộc đời vẫn dành cho bạn
+                                        những lợi thế riêng mà không lứa tuổi nào có được.
+                                    </p>
+                                    <a href="post-item.html" class="read-more">
+                                        <i class="fa fa-angle-right"></i> Xem thêm
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="mix category_1 mix_all">
+                            <div class="row">
+
+                                <div class="col-sm-4">
+                                    <img class="img-responsive" alt=""
+                                         src="@Url.Content("~/Content/images/post/4.jpg")">
+                                </div>
+
+                                <div class="col-md-8 col-sm-8">
+                                    <h3>
+                                        <a href="post-item.html">
+                                            7 cách tự nhiên giúp tăng khả
+                                            năng thụ thai
+                                        </a>
+                                    </h3>
+                                    <ul class="post-details">
+                                        <li><i class="fa fa-calendar-o"></i> 16.07.2014</li>
+                                        <li><i class="fa fa-comments"></i> 5</li>
+                                        <li><i class="fa fa-tags"></i> Mong con</li>
+                                    </ul>
+                                    <p>
+                                        Bạn cảm thấy mình đã sẵn sàng làm mẹ? Hãy làm theo 7
+                                        cách sau đây để giúp tăng khả năng cũng như cơ hội mang thai
+                                        một cách tự nhiên nhé!
+                                    </p>
+                                    <a href="post-item.html" class="read-more">
+                                        <i class="fa fa-angle-right"></i> Xem thêm
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="mix category_2 mix_all">
+                            <div class="row">
+
+                                <div class="col-sm-4">
+                                    <img class="img-responsive" alt=""
+                                         src="@Url.Content("~/Content/images/post/1.jpg")">
+                                </div>
+
+                                <div class="col-md-8 col-sm-8">
+                                    <h3>
+                                        <a href="post-item.html">
+                                            10 căn bệnh nguy hiểm đối với phụ
+                                            nữ
+                                        </a>
+                                    </h3>
+                                    <ul class="post-details">
+                                        <li><i class="fa fa-calendar-o"></i> 16.07.2014</li>
+                                        <li><i class="fa fa-comments"></i> 5</li>
+                                        <li><i class="fa fa-tags"></i> Mong con</li>
+                                    </ul>
+                                    <p>
+                                        Dưới đây là 10 mối đe dọa hàng đầu đối với sức khỏe của
+                                        phụ nữ, may mắn là chị em có thể phòng ngừa. Tìm hiểu các
+                                        triệu chứng và cách phòng ngừa để cải thiện sức khỏe của bạn
+                                        ngay từ hôm nay.
+                                    </p>
+                                    <a href="post-item.html" class="read-more">
+                                        <i class="fa fa-angle-right"></i> Xem thêm
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="mix category_1 mix_all">
+                            <div class="row">
+
+                                <div class="col-sm-4">
+                                    <img class="img-responsive" alt=""
+                                         src="@Url.Content("~/Content/images/post/5.jpg")">
+                                </div>
+
+                                <div class="col-md-8 col-sm-8">
+                                    <h3>
+                                        <a href="post-item.html">
+                                            Các thói quen xấu sẽ di truyền từ
+                                            mẹ sang thai nhi
+                                        </a>
+                                    </h3>
+                                    <ul class="post-details">
+                                        <li><i class="fa fa-calendar-o"></i> 16.07.2014</li>
+                                        <li><i class="fa fa-comments"></i> 5</li>
+                                        <li><i class="fa fa-tags"></i> Mong con</li>
+                                    </ul>
+                                    <p>
+                                        Từ lúc tôi cấn bầu, mẹ chồng tôi thường nhắc thay đổi
+                                        một vài thói quen không tốt. Bà lo lắng rằng, những thói quen
+                                        đó không chỉ có hại cho sức khỏe của cả tôi và con, mà ít
+                                        nhiều còn “di truyền” sang bé. Kinh nghiệm của một bà mẹ hai
+                                        con của tôi phần nào chứng minh nỗi lo của mẹ chồng là có cơ
+                                        sở.
+                                    </p>
+                                    <a href="post-item.html" class="read-more">
+                                        <i class="fa fa-angle-right"></i> Xem thêm
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-center">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="blog.html#" style="padding-left: 10px">
+                                        <i class="fa fa-chevron-left"></i>
+                                    </a>
+                                </li>
+                                <li><a href="blog.html#">1</a></li>
+                                <li><a href="blog.html#">2</a></li>
+                                <li><span>3</span></li>
+                                <li><a href="blog.html#">4</a></li>
+                                <li><a href="blog.html#">5</a></li>
+                                <li>
+                                    <a href="blog.html#" style="padding-left: 14px">
+                                        <i class="fa fa-chevron-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+                <!-- END post POSTS -->
+                <!-- post SIDEBAR -->
+                <div class="col-sm-3 post-sidebar">
+
+                    <!-- CATEGORIES -->
+                    <section class="tile color transparent-white">
+
+                        <!-- tile header -->
+                        <div class="tile-header color redbrown rounded-top-corners">
+                            <h1>
+                                <strong>Các mục </strong>nên xem
+                            </h1>
+                        </div>
+                        <!-- /tile header -->
+                        <!-- tile body -->
+                        <div class="tile-body">
+
+                            <form class="form-horizontal" role="form">
+                                <ul class="nav categories sidebar-widget">
+                                    <li><a href="post.html#">Sức khỏe sinh sản <em>(26)</em></a></li>
+                                    <li class="active">
+                                        <a href="post.html#">
+                                            40 tuần mang
+                                            thai <em>(40)</em>
+                                        </a>
+                                    </li>
+                                    <li><a href="post.html#">Sức khỏe trong thai kỳ <em>(15)</em></a></li>
+                                    <li><a href="post.html#">Dinh dưỡng thai kỳ <em>(2)</em></a></li>
+                                    <li><a href="post.html#">Kỹ năng làm mẹ <em>(8)</em></a></li>
+                                </ul>
+                            </form>
+
+                        </div>
+                        <!-- /tile body -->
+
+                    </section>
+                    <!-- END CATEGORIES -->
+                    <!-- RECENT POSTS -->
+                    <section class="tile color transparent-white">
+
+                        <!-- tile header -->
+                        <div class="tile-header color greensea rounded-top-corners">
+                            <h1>
+                                Bài viết<strong> nổi bật</strong>
+                            </h1>
+                        </div>
+                        <!-- /tile header -->
+                        <!-- tile body -->
+                        <div class="tile-body">
+
+                            <form class="form-horizontal" role="form">
+
+                                <ul class="media-list recent-posts sidebar-widget">
+
+                                    <li class="media">
+                                        <a class="pull-left"
+                                           href="post-item.html">
+                                            <img class="media-object"
+                                                 src="@Url.Content("~/Content/images/post/2.jpg")" alt="">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <a href="post-item.html">40 Tuần mang thai</a>
+                                            </h5>
+                                            <p>
+                                                Con thân yêu trong bụng mẹ đang phát triển như thế nào
+                                                nhỉ?
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                    <li class="media">
+                                        <a class="pull-left"
+                                           href="post-item.html">
+                                            <img class="media-object"
+                                                 src="@Url.Content("~/Content/images/post/4.jpg")" alt="">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <a href="post-item.html">Hành trình năm đầu đời</a>
+                                            </h5>
+                                            <p>
+                                                Con đã chào đời trong niềm yêu thương vô bờ bến của
+                                                cha mẹ.
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                    <li class="media">
+                                        <a class="pull-left"
+                                           href="post-item.html">
+                                            <img class="media-object"
+                                                 src="@Url.Content("~/Content/images/post/3.jpg")" alt="">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <a href="post-item.html">Nuôi dạy con</a>
+                                            </h5>
+                                            <p>Nếu mang thai, sinh con là một hành trình đáng nhớ</p>
+                                        </div>
+                                    </li>
+
+                                </ul>
+
+                            </form>
+
+                        </div>
+                        <!-- /tile body -->
+
+                    </section>
+                    <!-- END RECENT POSTS -->
+                    <!-- TAGS -->
+                    <section class="tile color transparent-white">
+                        <!-- TAGS -->
+                        <div class="tile-header color cyan rounded-top-corners">
+                            <h1>Các thẻ</h1>
+                        </div>
+                        <div class="tile-body">
+                            <ul class="tags sidebar-widget">
+                                <li>
+                                    <a href="post.html#">
+                                        <i class="fa fa-tags"></i>
+                                        Mong con
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="post.html#">
+                                        <i class="fa fa-tags"></i>
+                                        Mang thai
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="post.html#">
+                                        <i class="fa fa-tags"></i> Trẻ
+                                        sơ sinh
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="post.html#">
+                                        <i class="fa fa-tags"></i>
+                                        Nuôi dạy con
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- END TAGS -->
+                </div>
+                <!-- END post SIDEBAR -->
+
+            </div>
+        </div>
+    </section>
+    <!-- END post PAGE -->
+   
+
+    <script>
+        $(function () {
+            // Instantiate MixItUp:
+
+            $('#gallery').mixItUp();
+        })
+    </script>
+
+</body>
