@@ -701,43 +701,7 @@ namespace MomWorld.Controllers
 
         public JsonResult SendSMS(SendSMSViewModel model)
         {
-            //Input numbers
-            string[] inputs = new string[] { "COM3", "9600", "8", "300", "300" };
-            try
-            {
-                port = objSMS.OpenPort(inputs[0], inputs[1], inputs[2], inputs[3], inputs[4]);
-                if (port == null)
-                {
-                    return Json(null);
-                }
-            }
-            catch (Exception)
-            {
-                objSMS.ClosePort(this.port);
-                return Json(null);
-            }
-
-            try
-            {
-
-                if (objSMS.sendMsg(this.port, model.PhoneNumber, model.Message))
-                {
-                    return Json("Sent SMS successfully");
-                }
-                else
-                {
-                    return Json(null);
-                }
-
-            }
-            catch (Exception)
-            {
-                return Json(null);
-            }
-            finally
-            {
-                objSMS.ClosePort(this.port);
-            }
+            return Json(SMSServices.Send(model));
         }
 
 

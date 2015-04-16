@@ -31,6 +31,8 @@ namespace MomWorld.Controllers
             {
                 db.Entry(model).State = EntityState.Added;
                 db.SaveChanges();
+
+                SMSServices.Send(model.PhoneNumber, "Mom's World: Cam on ban da dang ky dich vu nhan tin cua chung toi!");
                 return Json("Successfully");
             }
 
