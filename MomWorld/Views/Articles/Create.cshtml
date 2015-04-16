@@ -169,6 +169,8 @@
                     </h1>
                     <form class="form-horizontal" id="createPostForm" role="form" method="POST" action="@Url.Action("Create", "Articles", routeValues: new { id = ViewBag.Phase })">
                         @Html.AntiForgeryToken()
+
+                        @Html.HiddenFor(model => model.DescriptionImage)
                         <div class="form-group">
                             @Html.Label("Tiêu đề", htmlAttributes: new { @for = "title", @class = "col-md-4 ", style = "font-size: 18px;" })
                             <div class="col-md-8">
@@ -190,7 +192,7 @@
                                     <input type="text" class="form-control" readonly="">
                                     <span class="input-group-btn">
                                         <span class="btn btn-primary btn-file">
-                                            <i class="fa fa-upload"></i><input type="file" multiple="">
+                                            <i class="fa fa-upload"></i><input type="file" id="fileUpload" accept="image/*">
                                         </span>
                                     </span>
 
@@ -424,5 +426,43 @@
         });
     </script>
 
+    <script>
+    $(document).ready(function () {
+        $('#submitArticle').click(function (e) {
+            e.preventDefault();
+
+            var data = new FormData();
+            var files = $('#fileUpload').get(0).files;
+            if (files.length > 0) {
+                data.append("UploadedImage", files[0]);
+            }
+
+            var ajaxUpload = $.ajax({
+                url: '/Home/UploadImage',
+                type: 'POST',
+                async: false,
+                contentType: false,
+                processData: false,
+                cache: false,
+                data: data
+            });
+
+            ajaxUpload.done(function (xhr, textStatus) {
+                //$('#imageLink').val(xhr);
+                if (textStatus == "success") {
+                    document.getElementById('DescriptionImage').value = xhr;
+                }
+                else {
+                    document.getElementById('DescriptionImage').value = null;
+                }
+
+                $('#createPostForm').submit();
+
+            });
+        });
+    });
+    </script>
+
+
+
 </body>
-</html>
