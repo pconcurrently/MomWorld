@@ -1,7 +1,7 @@
 ﻿var chatApp = angular.module('chatApp', ['firebase', 'angularMoment']);
 
-chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseObject', 'amMoment',
-    function ($scope, $http, $firebaseArray, $firebaseObject, amMoment) {
+chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseObject', 'amMoment', '$anchorScroll', '$location',
+    function ($scope, $http, $firebaseArray, $firebaseObject, amMoment, $anchorScroll, $location) {
         amMoment.changeLocale('vn');
 
         /* ------------------- Init variables --------------------- */
@@ -9,10 +9,13 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         // Get User from local storage
         $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         var currentUsername = $scope.currentUser.Username;
+
         
         // Get Chat of User from Firebase
         var userFireTmp = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername);
         $scope.chatFire = $firebaseObject(userFireTmp);
+
+        
 
         /* Init Chat */
         $scope.initChat = function (chatUser) {
@@ -25,12 +28,16 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
                       // Set Chat conversation with chatUser
                       $scope.getChatFrom(chatUser);
 
+                      // Watch change to Scroll down
+                      $scope.chatContent.$watch(function () { $("#chat-content").animate({ scrollTop: 1000000000000000 }, 1000); });
+
                   }).
                   error(function (data, status, headers, config) {
 
                   });
            
         }
+
 
 
 
@@ -71,9 +78,13 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
             $scope.chatContent.$add(sentData).then(function () {
                 // Empty Reply Message Box
                 $scope.replyMess = "";
+
             });
             $scope.receiverContent.$add(sentData);
         }
+
+        
+
         
         /* ---------------------- Helper Methods ------------------------ */
         var checkSUser = function () {
@@ -92,5 +103,9 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
                 $scope.rUser.$save();
             }
         }
+
+        /* ------------- Panel Methods ---------------------- */
+        var o = new Firebase("https://momworld.firebaseio.com/UserList/");
+        $scope.listUser = $firebaseArray(o);
     
   }]); 

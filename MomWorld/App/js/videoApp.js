@@ -35,15 +35,6 @@
                 $scope.videoFire = $firebaseArray(tmp);
                 $scope.videoName = "";
 
-                $http.get("http://localhost:4444/api/User/Get/" + $scope.currentUsername).
-                    success(function (data, status, headers, config) {
-                        $scope.user = data;
-                    }).
-                    error(function (data, status, headers, config) {
-
-                    });
-
-
                 $scope.options = {
                     url: url,
                 };
@@ -57,12 +48,6 @@
                     VideoURL: "http://localhost:4444/App/uploads/video/" + $scope.uuid + ".mp4",
                     VideoThumbnail: "http://localhost:4444/App/uploads/video/thumbnail/" + $scope.uuid + ".png"
                 }
-
-                $scope.$on('fileuploaddone', function (event, files) {
-
-                    alert("YOlo 1");
-
-                });
 
                 $scope.$on('fileuploadsubmit', function (event, files) {
                     

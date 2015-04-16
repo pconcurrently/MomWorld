@@ -12,7 +12,7 @@
     
     
 </head>
-<body class="bg-2" ng-app="profileApp" ng-controller="profileCtrl" ng-init="loadProfile()">
+<body class="bg-2" id="profileBody" ng-app="profileApp" ng-controller="profileCtrl" ng-init="loadProfile()">
     <!-- Page content -->
     <div id="content" class="col-md-12">
 
@@ -151,8 +151,11 @@
                         <!-- tile body -->
                         <div class="tile-body tab-content rounded-bottom-corners">
                             <!-- Tab panes -->
-                            <div id="feed-tab" ng-init="loadStatus()" class="tab-pane fade in active">
+                            <div id="feed-tab" class="tab-pane fade in active">
                                 <div class="feed-form">
+
+
+
                                     <textarea ng-model="Content" class="form-control"
                                               placeholder="Bạn đang nghĩ gì ?" rows="5"></textarea>
                                     <div class="post-toolbar">
@@ -165,8 +168,13 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="feed-list">
-                                    <article ng-repeat="status in statusFirebase | reverse" class="feed-post">
+                                {{currentStatus}}
+                                {{currentUserStatus}}
+                                <button ng-click="alertDi()">ss</button>
+                                <div class="feed-list" infinite-scroll="statusFirebase.scroll.next(3)" infinite-scroll-distance="1">
+                                    <article ng-repeat="status in statusFirebase | reverse" class="feed-post" t>
+
+                                        @*<article ng-repeat="status in statusFirebase | reverse" class="feed-post">*@
                                         <aside class="profile-photo">
                                             <a href="personal-page.html#">
                                                 <img src="{{status.CreatorAvatar}}" alt=""
@@ -233,9 +241,8 @@
                                         </div>
                                     </article>
 
-
                                     <div class="text-center">
-                                        <a href="personal-page.html#" class="btn btn-default">
+                                        <a href="#" ng-click="items.scroll.next(3)" class="btn btn-default">
                                             Xem thêm
                                         </a>
                                     </div>
@@ -464,16 +471,16 @@
 
     </div>
     <!-- Page content end -->
-    <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
-
-    <script src="@Url.Content("~/Scripts/angular-md5.min.js")"></script>
-    <script src="@Url.Content("~/App/scripts/angular-file-upload/angular-file-upload.min.js")"></script>
-    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
 
     <script src="@Url.Content("~/App/js/profileCtrl.js")"></script>
+
+
+
+
+    
+    
+    
     <script>
-        //initialize file upload button function
         $(document).on(
                 'change',
                 '.btn-file :file',

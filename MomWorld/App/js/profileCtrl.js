@@ -1,19 +1,19 @@
 ﻿'use strict';
 
-var profileApp = angular.module('profileApp', ['angular-md5', 'firebase', 'angularFileUpload']);
+var profileApp = angular.module('profileApp', ['firebase', 'angularFileUpload', 'infinite-scroll']);
 
-profileApp.controller('profileCtrl', ['$scope', '$http', 'md5', '$firebaseObject', '$firebaseArray', 'FileUploader', '$window',
-function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $window) {
+profileApp.controller('profileCtrl', ['$scope', '$http', '$firebaseObject', '$firebaseArray', 'FileUploader', '$window', '$scrollArray', 
+function ($scope, $http, $firebaseObject, $firebaseArray, FileUploader, $window, $scrollArray) {
     // Get User from Local Storage
     $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     $scope.currentUsername = $scope.currentUser.Username;
 
     var userStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername);
-    $scope.statusFirebase = $firebaseArray(userStatus);
-
-    var ut = new Firebase("https://momworld.firebaseio.com/User");
-    $scope.listUser = $firebaseArray(ut);
-
+    /*  $scope.statusFirebase = $firebaseArray(userStatus); */
+    var scrollRef = new Firebase.util.Scroll(userStatus, 'createdDate');
+    $scope.statusFirebase = $firebaseArray(scrollRef);
+    $scope.statusFirebase.scroll = scrollRef.scroll;
+    
     $scope.user = {
     }
 
@@ -29,7 +29,6 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
               });
     }
-
 
     /* Update Profile  */
     $scope.updateProfile = function () {
@@ -90,7 +89,6 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
 
     /* Retrive all Status from API */
     $scope.loadStatus = function () {
-
     }
 
     /* Create new Status using Status API */
@@ -117,7 +115,6 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
         );
 
     }
-
 
     /* Create new Commment using Status API */
     $scope.addComment = function (_user, _status, _comment) {
@@ -155,7 +152,31 @@ function ($scope, $http, md5, $firebaseObject, $firebaseArray, FileUploader, $wi
         $scope.badgeFire = $firebaseArray(userFireTmp);
     }
 
+
+    /* ------------- Helper Methods ---------------------- */
+    $scope.loadMore = function () {
+
+    }
+
+    /* ------------- Panel Methods ---------------------- */
+    var o = new Firebase("https://momworld.firebaseio.com/UserList/");
+    $scope.listUser = $firebaseArray(o);
+    
+/*  $scope.statusFirebase = $firebaseArray(userStatus); */
 }]);
+
+profileApp.factory('$scrollArray', function ($firebaseArray) {
+    return function (ref, field) {
+        // create a special scroll ref
+        var scrollRef = new Firebase.util.Scroll(ref, field);
+        // generate a synchronized array with the ref
+        var list = $firebaseArray(scrollRef);
+        // store the scroll namespace on the array for easy ref
+        list.scroll = scrollRef.scroll;
+
+        return list;
+    }
+});
 
 profileApp.directive('ngThumb', ['$window', function ($window) {
     var helper = {
@@ -200,10 +221,32 @@ profileApp.directive('ngThumb', ['$window', function ($window) {
             }
         }
     };
-}]);
+}])
+// just some scroll magic to show the bottom of the list as new records are loaded
+
+.directive('scrollToBottom', function () {
+    var unbind;
+    return {
+        restrict: 'A',
+        scope: { scrollToBottom: "=" },
+        link: function (scope, element) {
+            if (unbind) { unbind(); }
+            unbind = scope.$watchCollection('scrollToBottom', function () {
+                // assumes we have jQuery, which handles the pretty animation
+                // otherwise, just use this code instead:
+                // element[0].scrollTop = element[0].scrollHeight;
+                $(element).animate({ scrollTop: element[0].scrollHeight });
+            });
+        }
+    }
+});
+
 
 profileApp.filter('reverse', function () {
     return function (items) {
         return items.slice().reverse();
     };
 });
+
+
+

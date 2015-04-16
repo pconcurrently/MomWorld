@@ -10,15 +10,11 @@
     <title>@ViewBag.Title.</title>
 
     <!--Logic Dependencies -->
-    <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
-
     <script src="http://localhost:4444/App/bower_components/moment/min/moment-with-locales.min.js"></script>
     <script src="http://localhost:4444/App/bower_components/moment/locale/vi.js"></script>
     <script src="http://localhost:4444/App/bower_components/angular-moment/angular-moment.min.js"></script>
 
-    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
-
+  
 
 
 </head>
@@ -188,9 +184,9 @@
                                                 <div class="media">
                                                     <div class="pull-left user-avatar">
                                                         <img ng-if="message.Sender == currentUser.Username" class="media-object img-circle"
-                                                             ng-src="{{sUser.Avatar}}">
-                                                        <img ng-if="message.Sender != currentUser.Username" class="media-object img-circle"
                                                              ng-src="{{rUser.Avatar}}">
+                                                        <img ng-if="message.Sender != currentUser.Username" class="media-object img-circle"
+                                                             ng-src="{{sUser.Avatar}}">
                                                     </div>
                                                     <div class="media-body">
                                                         <p class="media-heading">
