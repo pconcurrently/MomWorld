@@ -73,12 +73,21 @@ namespace MomWorld.Controllers
                 {
                     likesNumber += db.ArticleLikes.ToList().FindAll(a => a.ArticleId.Equals(item.Id)).Count;
                 }
+                Dictionary<string, string> profilePictures = new Dictionary<string, string>();
+                foreach(var item in comments)
+                {
+                    profilePictures.Add(item.UserName, identityDb.Users.FirstOrDefault(u => u.UserName.Equals(item.UserName)).ProfilePicture);
+                }
+
                 ViewData["UserLikes"] = likesNumber;
                 ViewData["Article"] = article;
                 ViewData["Category"] = category;
                 ViewData["Comments"] = comments;
                 ViewData["ArticleLikes"] = articleLikes;
                 ViewData["IsLike"] = isLike;
+                ViewData["TagsList"] = db.Tags.ToList();
+                ViewData["ProfilePictures"] = profilePictures;
+
                 ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
 
                 return View();

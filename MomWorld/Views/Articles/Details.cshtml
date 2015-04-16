@@ -14,6 +14,8 @@
     var tags = ViewData["Tags"] as List<MomWorld.Entities.Tag>;
     var likesNumber = ViewData["UserLikes"] as int?;
     var userArticles = ViewData["UserArticles"] as int?;
+    var tagsList = ViewData["TagsList"] as List<MomWorld.Entities.Tag>;
+    var profilePictures = ViewData["ProfilePictures"] as Dictionary<string, string>;
 }
 
 <head>
@@ -170,7 +172,7 @@
                         <div class="col-md-2 col-sm-4">
                             <a href="#">
                                 <img class="img-responsive img-circle avatar-post"
-                                     src="@Url.Content("~/Content/images/arnold-avatar.jpg")">
+                                     src="@Url.Content(postedUser.ProfilePicture)">
                             </a>
                         </div>
 
@@ -271,7 +273,7 @@
 
                                 <aside class="profile-photo">
                                     <a href="#">
-                                        <img src="@Url.Content("~/Content/images/clients/random-avatar1.jpg")" class="img-circle">
+                                        <img src="@Url.Content(profilePictures[item.UserName])" class="img-circle">
                                     </a>
                                 </aside>
 
@@ -280,7 +282,7 @@
                                     <header>
 
                                         <div class="author">
-                                            <a href="#">@postedUser.UserName</a> đã bình luận
+                                            <a href="#">@item.UserName</a> đã bình luận
                                             <small>
                                                 @item.Date
                                             </small>
@@ -432,31 +434,15 @@
                         </div>
                         <div class="tile-body">
                             <ul class="tags sidebar-widget">
-                                <li>
-                                    <a href="post.html#">
-                                        <i class="fa fa-tags"></i>
-                                        Mong con
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post.html#">
-                                        <i class="fa fa-tags"></i>
-                                        Mang thai
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post.html#">
-                                        <i class="fa fa-tags"></i> Trẻ
-                                        sơ sinh
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post.html#">
-                                        <i class="fa fa-tags"></i>
-                                        Nuôi dạy con
-                                    </a>
-                                </li>
-
+                                @foreach (var item in tagsList)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Details", "Tags", routeValues: new { id = item.Id })">
+                                            <i class="fa fa-tags"></i>
+                                            @item.Name
+                                        </a>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </section>
