@@ -37,8 +37,8 @@ function ($scope, $http, $firebaseObject, $firebaseArray, FileUploader, $window,
             FirstName: $scope.user.FirstName,
             LastName: $scope.user.LastName,
             PhoneNumber: $scope.user.PhoneNumber,
-            Facebook: $scope.user.Social.Facebook,
-            Google: $scope.user.Social.Google
+            Facebook: $scope.user.Facebook || "",
+            Google: $scope.user.Google || ""
 
         }
 

@@ -38,6 +38,7 @@ namespace MomWorld.Controllers
             return user;
         }
 
+        // TODO: Update user profile
         // PUT: api/User/{{UserName}}
         public void Put(string id, UpdateProfileViewModel userPro)
         {
@@ -45,6 +46,8 @@ namespace MomWorld.Controllers
             user.FirstName = userPro.FirstName;
             user.LastName = userPro.LastName;
             user.PhoneNumber = userPro.PhoneNumber;
+            //user.Facebook = userPro.Facebook;
+            //user.Google = userPro.Google;
 
             // Add Social to Firebase
             IFirebaseConfig config = new FirebaseConfig

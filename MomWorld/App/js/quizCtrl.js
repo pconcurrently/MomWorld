@@ -56,7 +56,6 @@
         }
 
    
-
     
     $scope.defaultConfig = {
         'allowBack': true,
@@ -78,7 +77,7 @@
         $scope.badgeFirebase = $firebaseObject(userTmp);
     }
 
-    $scope.initQuizDo = function (quizId, username) {
+    $scope.initQuizDo = function (quizId) {
         // Get Initial Information
         var quizData = $scope.quizData[quizId].quizData;
         $scope.quizNameTemp = $scope.quizData[quizId].quizName;

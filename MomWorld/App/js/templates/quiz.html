@@ -1,5 +1,5 @@
 ﻿<div id="quiz">
-    <h1 class="center">{{quiz.name}}</h1>
+    <h1 class="center">{{quizNameReal}}</h1>
     
     <div ng-show="mode=='quiz'">
         <!-- <div ng-repeat="question in filteredQuestions"> -->
@@ -33,7 +33,7 @@
                         </label>
                     </div>
                 </div>
-                <h4 class="alert {{ isCorrect(question) == 'correct'? 'alert-success': 'alert-danger'}}">Câu trả lời của bạn là {{isCorrect(question)}}.</h4>
+                <h4 class="alert {{ isCorrect(question) == 'correct'? 'alert-success': 'alert-danger'}}">Câu trả lời của bạn là  <b ng-if="isCorrect(question) == 'correct'">Chính xác</b><b ng-if="isCorrect(question) == 'wrong' ">Sai</b></h4>
             </div>
         </div>
     </div>
