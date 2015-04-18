@@ -16,6 +16,29 @@
     <!-- Page content -->
     <div id="content" class="col-md-12">
 
+        <!--modal Success  -->
+        <div class="modal fade" id="modalSuccess" tabindex="-1"
+             role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
+             style="background: rgba(0, 0, 0, 0.75); top: 0px;">
+            <div class="modal-dialog" style="margin-top: 100px;">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">
+                            Thoát
+                        </button>
+                        <img style="max-width:300px; display:inline-block" class="img-responsive" src="@Url.Content("~/Content/images/success.png")" />
+                        <h3 class="modal-title" id="modalConfirmLabel">
+                            <strong>Cập nhật thông tin thành công</strong>
+                        </h3>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
 
         <!-- page header -->
         <div class="pageheader">
