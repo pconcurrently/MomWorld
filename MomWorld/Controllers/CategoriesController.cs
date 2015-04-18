@@ -29,12 +29,13 @@ namespace MomWorld.Controllers
             {
                 List<Article> articles = articleDb.Articles.ToList();
                 articles.RemoveAll(art => art.Status == (int)ArticleStatus.Pending || art.Status == (int)ArticleStatus.Bad);
-                ViewData["Categories"] = db.Categories.ToList();
+                ViewData["Categories"] = db.Categories.ToList().FindAll(c=>c.Phase.Equals(id));
                 var categoryArticles = articles.FindAll(a => a.Phase.Equals(id));
                 ViewData["Articles"] = categoryArticles;   
             }
             ViewBag.Phase = id;
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u=>u.UserName.Equals(User.Identity.Name));
+            ViewBag.TagsList = articleDb.Tags.ToList();
             return View();
         }
 
@@ -138,6 +139,7 @@ namespace MomWorld.Controllers
                 Category cate = new Category();
                 cate.Name = category.Name;
                 cate.Description = category.Description;
+                cate.Phase = category.Phase;
 
                 try
                 {

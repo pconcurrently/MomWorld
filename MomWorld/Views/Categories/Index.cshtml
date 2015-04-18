@@ -15,7 +15,8 @@
         count += 1;
     }
 
-    var phase = ViewBag.Phase as int?;
+    var phase = ViewBag.Phase as string;
+    var tagsList = ViewBag.TagsList as List<MomWorld.Entities.Tag>;
 }
 
 <head>
@@ -25,7 +26,7 @@
 
 </head>
 <body>
-    <hidden id="phase">@phase</hidden>
+    <hidden id="phase" data-id="@phase"></hidden>
     <!-- Modal create category -->
     <div class="modal fade" id="modalCreateCategory" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -150,8 +151,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    
-  
     <!-- BEGIN BREADCRUMBS -->
     <div id="breadcrumbs" class="breadcrumbs bg-1">
     </div>
@@ -273,7 +272,7 @@
                                                                 <div class="img-view">
                                                                     @if (@article.DescriptionImage != string.Empty)
                                                                     {
-                                                                        <img src="@article.DescriptionImage"
+                                                                        <img src="@Url.Content(article.DescriptionImage)"
                                                                              alt="Place description here"> }
                                                                     else
                                                                     {
@@ -414,34 +413,19 @@
                     <section class="tile color transparent-white">
                         <!-- TAGS -->
                         <div class="tile-header color cyan rounded-top-corners">
-                            <h4>Các thẻ</h4>
+                            <h1>Các thẻ</h1>
                         </div>
                         <div class="tile-body">
                             <ul class="tags sidebar-widget">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-tags"></i>
-                                        Mong con
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-tags"></i>
-                                        Mang thai
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-tags"></i> Trẻ
-                                        sơ sinh
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-tags"></i>
-                                        Nuôi dạy con
-                                    </a>
-                                </li>
+                                @foreach (var item in tagsList)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Details", "Tags", routeValues: new { id = item.Id })">
+                                            <i class="fa fa-tags"></i>
+                                            @item.Name
+                                        </a>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </section>
@@ -452,7 +436,7 @@
         </div>
     </section>
     <!-- END PRE-PREGNANCY PAGE -->
-    
+
 
     <script type="text/javascript">
         var c1 = $("#category1 .owl-carousel");
@@ -594,13 +578,14 @@
         $('#submitCategory').click(function (e) {
             e.preventDefault();
             var name = $('#categoryName').val();
+            var phase = $('#phase').attr('data-id');
             var description = $('#categoryDescription').val();
             $.ajax({
                 url: '/Categories/CreateCategory',
                 dataType: "json",
                 type: "POST",
                 contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify({ category: { name: name, description: description } }),
+                data: JSON.stringify({ category: { name: name, description: description, phase: phase } }),
                 async: true,
                 processData: false,
                 cache: false,
@@ -628,12 +613,13 @@
             var Id = $('#hiddenId').val();
             var description = $("#Description").val();
             var name = $("#Name").val();
+            var phase = $('#phase').val();
             $.ajax({
                 url: '/Categories/Update',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify({ model: { Id: Id, Name: name, Description: description } }),
+                data: JSON.stringify({ model: { Id: Id, Name: name, Description: description, Phase: phase } }),
                 async: true,
                 processData: false,
                 cache: false,
@@ -661,7 +647,7 @@
         });
 
         $('#addArticle').click(function () {
-            var phase = $('#phase').val();
+            var phase = $('#phase').attr('data-id');
             window.location.href = "/Articles/Create/" + phase;
         });
 

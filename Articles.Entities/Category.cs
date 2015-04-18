@@ -21,6 +21,8 @@ namespace MomWorld.Entities
 
         public virtual List<Article> Articles { get; set; }
 
+        public string Phase { get; set; }
+
         public Category()
         {
             Id = Guid.NewGuid().ToString();

@@ -112,7 +112,7 @@ namespace MomWorld.Controllers
                 ViewBag.Phase = id;
                 ViewBag.TagsList = db.Tags.ToList();
                 ViewData["Tags"] = GetTags(null);
-                ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+                ViewBag.CategoryId = new SelectList(db.Categories.ToList().FindAll(c=>c.Phase.Equals(id)), "Id", "Name");
                 ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
                 return View();
 
@@ -179,8 +179,8 @@ namespace MomWorld.Controllers
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             try
             {
-                article.Description = ParseHtml(article.Content);
-                db.Articles.Add(article);
+                article.Description = model.Description;
+                db.Entry(article).State = EntityState.Added;
                 db.SaveChanges();
                 if (article.Status == (int)ArticleStatus.CreatedByAdmins)
                 {
