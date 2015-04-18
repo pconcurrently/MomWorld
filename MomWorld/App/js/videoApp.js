@@ -29,25 +29,16 @@
                 // Get User from Local Storage
                 $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
                 $scope.currentUsername = $scope.currentUser.Username;
-
+                   
 
                 var tmp = new Firebase("https://momworld.firebaseio.com/Video");
                 $scope.videoFire = $firebaseArray(tmp);
-                $scope.videoName = "";
 
                 $scope.options = {
                     url: url,
                 };
 
                 $scope.uuid = uuid2.newuuid();
-
-                var uploadData = {
-                    Username: $scope.currentUsername,
-                    VideoName: $scope.videoName,
-                    VideoID: $scope.uuid,
-                    VideoURL: "http://localhost:4444/App/uploads/video/" + $scope.uuid + ".mp4",
-                    VideoThumbnail: "http://localhost:4444/App/uploads/video/thumbnail/" + $scope.uuid + ".png"
-                }
 
                 $scope.$on('fileuploadsubmit', function (event, files) {
                     
@@ -59,12 +50,13 @@
                             };
                         });
                         
+                        
                         // Add File URL to Firebase
                         if (files.files[0].type == "video/mp4") {
                             var a = new Firebase("https://momworld.firebaseio.com/Video/" + $scope.uuid);
                             var v = $firebaseObject(a);
                             v.Username = $scope.currentUsername;
-                            v.VideoName = $scope.videoName;
+                            v.VideoName = "Hello World";
                             v.VideoID = $scope.uuid;
                             v.VideoURL = "http://localhost:4444/App/uploads/video/" + $scope.uuid + ".mp4";
                             v.VideoThumbnail = "http://localhost:4444/App/uploads/video/thumbnail/" + $scope.uuid + ".png";

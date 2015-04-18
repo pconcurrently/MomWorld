@@ -320,11 +320,11 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-sm-6">
-                                            <label for="facebook">Facebook</label> <input type="text"
-                                                                                          class="form-control" id="facebook" value="{{user.Social.Facebook}}">
+                                            <label for="facebook">Facebook</label> <input type="text" ng-model="user.Social.Facebook"
+                                                                                          class="form-control" id="facebook">
                                         </div>
                                         <div class="form-group col-sm-6">
-                                            <label for="google-plus">Google+</label> <input type="text"
+                                            <label for="google-plus">Google+</label> <input type="text" ng-model="user.Social.Google"
                                                                                             class="form-control" id="google-plus" value="{{user.Social.Google}}">
                                         </div>
                                     </div>
@@ -350,49 +350,17 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-sm-6">
-                                            <label for="new-password">Mật khẩu mới</label> <input type="password" class="form-control" id="new-password">
+                                            <label for="new-password">Mật khẩu mới</label> <input type="password" ng-model="newPassword" class="form-control" id="new-password">
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label for="new-password-repeat">
                                                 Nhập lại mật khẩu
                                                 mới
-                                            </label> <input type="password" class="form-control"
+                                            </label> <input type="password" class="form-control" ng-model="confirmPassword"
                                                             id="new-password-repeat">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label for="new-password">Xem thông tin</label>
-                                            <div class="radio">
-                                                <input type="radio" name="optionsRadios"
-                                                       id="optionsRadios1" value="option1" checked=""> <label for="optionsRadios1">Mọi người</label>
-                                            </div>
-                                            <div class="radio">
-                                                <input type="radio" name="optionsRadios"
-                                                       id="optionsRadios3" value="option3"> <label for="optionsRadios3">Chỉ mình tôi</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <ul class="nolisttypes inlineSelect rowSelect">
-                                                <li class="title"><h5>Thông báo</h5></li>
-                                                <li>
-                                                    <div class="checkbox">
-                                                        <input type="checkbox" checked="checked" value="1"
-                                                               id="opt01"> <label for="opt01">
-                                                            Thông
-                                                            báo công việc mới
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="checkbox">
-                                                        <input type="checkbox" value="1" id="opt03"> <label for="opt03">Thông báo tin nhắn mới</label>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
+                                    
                                     <div class="row">
                                         <div class="form-group col-md-12 text-right">
                                             <button class="btn btn-cyan start btn-md" ng-click="updateProfile()">

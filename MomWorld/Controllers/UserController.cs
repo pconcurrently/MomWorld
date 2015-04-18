@@ -1,4 +1,7 @@
-﻿using MomWorld.DataContexts;
+﻿using FireSharp;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using MomWorld.DataContexts;
 using MomWorld.Models;
 using System;
 using System.Collections.Generic;
@@ -43,6 +46,15 @@ namespace MomWorld.Controllers
             user.LastName = userPro.LastName;
             user.PhoneNumber = userPro.PhoneNumber;
 
+            // Add Social to Firebase
+            IFirebaseConfig config = new FirebaseConfig
+            {
+                AuthSecret = "MQN9HDJakBgjQy2mxTDig01jgcVaHXRRILop7hPe",
+                BasePath = "https://momworld.firebaseio.com/"
+            };
+            IFirebaseClient client = new FirebaseClient(config);
+
+            client.Update("User/" + user.UserName, user);
 
             identityDb.SaveChanges();
 

@@ -37,11 +37,14 @@ function ($scope, $http, $firebaseObject, $firebaseArray, FileUploader, $window,
             FirstName: $scope.user.FirstName,
             LastName: $scope.user.LastName,
             PhoneNumber: $scope.user.PhoneNumber,
+            Facebook: $scope.user.Social.Facebook,
+            Google: $scope.user.Social.Google
 
         }
 
         $http.put("http://localhost:4444/api/User/Put/" + $scope.currentUsername, sentData).
               success(function (data, status, headers, config) {
+                  // TODO: UPdate Css
                   alert("Update Ok");
                   console.log(JSON.stringify(data));
               }).

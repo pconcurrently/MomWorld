@@ -91,7 +91,6 @@
                             <label for="videoTitle">Tên video</label>
                             <input type="text" ng-model="videoName" class="form-control" id="videoTitle" placeholder="Nhập tên video ...">
                         </div>
-
                         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
                         <div class="row fileupload-buttonbar">
                             <div class="col-lg-7">
@@ -155,7 +154,7 @@
                                              data-ng-style="{width: num + '%'}"></div>
                                     </div>
                                 </td>
-                                <td>
+                                @*<td>
                                     <button type="button" class="btn btn-primary start"
                                             data-ng-click="file.$submit()"
                                             data-ng-hide="!file.$submit || options.autoUpload"
@@ -174,7 +173,7 @@
                                             data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
                                         <i class="glyphicon glyphicon-trash"></i> <span>Xóa</span>
                                     </button>
-                                </td>
+                                </td>*@
                             </tr>
                         </table>
 
@@ -182,12 +181,12 @@
                             <div class="col-sm-offset-4 col-sm-8">
                                 <button type="button" class="btn btn-primary start" data-ng-click="submit()">
                                     <i class="glyphicon glyphicon-upload"></i>
-                                    <span>Start upload</span>
+                                    <span>Bắt đầu</span>
                                 </button>
 
                                 <button type="button" class="btn btn-warning cancel" data-ng-click="cancel()">
                                     <i class="glyphicon glyphicon-ban-circle"></i>
-                                    <span>Cancel upload</span>
+                                    <span>Hủy</span>
                                 </button>
                             </div>
                         </div>
@@ -294,59 +293,7 @@
                 <!-- END .with-sidebar-layout -->
             </div>
 
-            <!-- BEGIN #sidebar -->
-            <aside id="sidebar" class="right">
-
-
-                <!-- BEGIN .widget -->
-                <div class="widget">
-                    <h3>Videos nổi bật</h3>
-                    <div class="widget-videos">
-
-                        <!-- BEGIN .item -->
-                        <div class="item">
-                            <div class="item-header">
-                                <a href="video-detail.html" class="video-thumb loadingvideo">
-                                    <img src="@Url.Content("~/Content/images/video-images/aspect-px.png")" width="16"
-                                         height="9" class="aspect-px"
-                                         rel="http://b.vimeocdn.com/ts/991/220/99122029_640.jpg" )" alt="" />
-                                </a>
-                            </div>
-                            <div class="item-content">
-                                <h3>
-                                    <a href="video-detail.html">Above Everything Else</a><a href="index.html#">
-                                        <span class="marker">
-                                            Creative
-                                            Stuff
-                                        </span>
-                                    </a>
-                                </h3>
-                                <span class="video-meta">
-                                    <a href="video-detail.html">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
-                                    </a>
-                                </span>
-                            </div>
-                            <!-- END .item -->
-                        </div>
-
-
-
-                    </div>
-                    <!-- END .widget -->
-                </div>
-
-
-
-
-
-
-                <!-- END #sidebar -->
-            </aside>
+            
 
             <!-- END .wrapper -->
         </div>
