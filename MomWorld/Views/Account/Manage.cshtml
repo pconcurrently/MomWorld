@@ -189,11 +189,8 @@
                                     </div>
                                 </div>
                 
-                                <button ng-click="alertDi()">ss</button>
-                                <div class="feed-list" infinite-scroll="statusFirebase.scroll.next(3)" infinite-scroll-distance="1">
-                                    <article ng-repeat="status in statusFirebase | reverse" class="feed-post" t>
-
-                                        @*<article ng-repeat="status in statusFirebase | reverse" class="feed-post">*@
+                                <div class="feed-list">
+                                    <article ng-repeat="status in statusFirebase | reverse" class="feed-post" >
                                         <aside class="profile-photo">
                                             <a href="personal-page.html#">
                                                 <img src="{{status.CreatorAvatar}}" alt=""
@@ -261,10 +258,11 @@
                                     </article>
 
                                     <div class="text-center">
-                                        <a href="#" ng-click="items.scroll.next(3)" class="btn btn-default">
+                                        <a href="#" ng-click="statusFirebase.scroll.next(3)" class="btn btn-default">
                                             Xem thêm
                                         </a>
                                     </div>
+
                                 </div>
                             </div>
                             <div id="settings-tab" class="tab-pane fade in">

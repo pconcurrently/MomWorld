@@ -5,6 +5,12 @@
         $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         $scope.currentUsername = $scope.currentUser.Username;
 
+        // Create QUiz
+        $scope.createQuizInit = function () {
+            alert("Yolo");
+            $scope.mode = 'create';
+        }
+
         // Get QuizData
         $scope.quizData = [
     {
