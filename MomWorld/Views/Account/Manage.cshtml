@@ -7,10 +7,7 @@
 }
 
 <head>
-    <title>@ViewBag.Title.</title>
-
-    
-    
+    <title>@ViewBag.Title.</title> 
 </head>
 <body class="bg-2" id="profileBody" ng-app="profileApp" ng-controller="profileCtrl" ng-init="loadProfile()">
     <!-- Page content -->
@@ -191,8 +188,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                {{currentStatus}}
-                                {{currentUserStatus}}
+                
                                 <button ng-click="alertDi()">ss</button>
                                 <div class="feed-list" infinite-scroll="statusFirebase.scroll.next(3)" infinite-scroll-distance="1">
                                     <article ng-repeat="status in statusFirebase | reverse" class="feed-post" t>

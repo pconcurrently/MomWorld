@@ -49,7 +49,15 @@
     <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.fileupload-validate.js")"></script>
     <!-- The File Upload Angular JS module -->
     <script src="@Url.Content("~/Content/js/vendor/jquery-file-upload/js/jquery.fileupload-angular.js")"></script>
+
+    <!--Videogoular -->
+    <script src="@Url.Content("~/App/bower_components/angular-sanitize/angular-sanitize.min.js")"></script>
+    <script src="@Url.Content("~/App/bower_components/videogular/videogular.js")"></script>
+    <script src="@Url.Content("~/App/bower_components/videogular-poster/vg-poster.js")"></script>
+    <script src="@Url.Content("~/App/bower_components/videogular-controls/vg-controls.js")"></script>
+
     <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebase-util/0.2.4/firebase-util.min.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
 
     <script src="http://localhost:4444/App/scripts/uuid/angular-uuid2.min.js"></script>
@@ -69,7 +77,7 @@
 </head>
 
 <body ng-app="demo"
-      ng-controller="DemoFileUploadController">
+      ng-controller="DemoFileUploadController as controller">
 
     <!-- Modal -->
     <div class="modal fade" id="modalAddNewVideo" tabindex="-1"
@@ -155,25 +163,25 @@
                                     </div>
                                 </td>
                                 @*<td>
-                                    <button type="button" class="btn btn-primary start"
-                                            data-ng-click="file.$submit()"
-                                            data-ng-hide="!file.$submit || options.autoUpload"
-                                            data-ng-disabled="file.$state() == 'pending' || file.$state() == 'rejected'">
-                                        <i class="glyphicon glyphicon-upload"></i> <span>
-                                            Bắt
-                                            đầu
-                                        </span>
-                                    </button>
-                                    <button type="button" class="btn btn-warning cancel"
-                                            data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
-                                        <i class="glyphicon glyphicon-ban-circle"></i> <span>Hủy</span>
-                                    </button>
-                                    <button data-ng-controller="FileDestroyController"
-                                            type="button" class="btn btn-danger destroy"
-                                            data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
-                                        <i class="glyphicon glyphicon-trash"></i> <span>Xóa</span>
-                                    </button>
-                                </td>*@
+                                        <button type="button" class="btn btn-primary start"
+                                                data-ng-click="file.$submit()"
+                                                data-ng-hide="!file.$submit || options.autoUpload"
+                                                data-ng-disabled="file.$state() == 'pending' || file.$state() == 'rejected'">
+                                            <i class="glyphicon glyphicon-upload"></i> <span>
+                                                Bắt
+                                                đầu
+                                            </span>
+                                        </button>
+                                        <button type="button" class="btn btn-warning cancel"
+                                                data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
+                                            <i class="glyphicon glyphicon-ban-circle"></i> <span>Hủy</span>
+                                        </button>
+                                        <button data-ng-controller="FileDestroyController"
+                                                type="button" class="btn btn-danger destroy"
+                                                data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
+                                            <i class="glyphicon glyphicon-trash"></i> <span>Xóa</span>
+                                        </button>
+                                    </td>*@
                             </tr>
                         </table>
 
@@ -221,12 +229,43 @@
     </div>
     <!-- END BREADCRUMBS -->
     <!-- BEGIN .header -->
-   
-
     <!-- BEGIN .content -->
     <section class="content">
         <!-- BEGIN .wrapper -->
         <div class="wrapper">
+            <div class="row">
+                <div class="videogular-container">
+                    <videogular vg-player-ready="controller.onPlayerReady($API)" vg-complete="controller.onCompleteVideo()" vg-theme="controller.config.theme.url">
+                        <vg-media vg-src="controller.config.sources"
+                                  vg-tracks="controller.config.tracks">
+                        </vg-media>
+
+                        <vg-controls>
+                            <vg-play-pause-button></vg-play-pause-button>
+                            <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+                            <vg-scrub-bar>
+                                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                            </vg-scrub-bar>
+                            <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+                            <vg-volume>
+                                <vg-mute-button></vg-mute-button>
+                                <vg-volume-bar></vg-volume-bar>
+                            </vg-volume>
+                            <vg-fullscreen-button></vg-fullscreen-button>
+                        </vg-controls>
+
+                        <vg-overlay-play></vg-overlay-play>
+                        <vg-buffering></vg-buffering>
+                        <vg-poster vg-url='controller.config.plugins.poster'></vg-poster>
+                    </videogular>
+                </div>
+                <div class="playlist">
+                    <ul>
+                        <li><a ng-click="controller.setVideo(0)">Pale Blue Dot</a></li>
+                        <li><a ng-click="controller.setVideo(1)">Big Buck Bunny</a></li>
+                    </ul>
+                </div>
+            </div>
 
             <div class="row">
 
@@ -253,7 +292,7 @@
                         <!-- BEGIN .item -->
                         <div class="item" ng-repeat="video in videoFire">
                             <div class="item-header">
-                                <a ng-href="http://localhost:4444/Video/Detail/{{video.VideoID}}"
+                                <a href="#" ng-click="controller.setVideo(video.VideoID)"
                                    class="loadingvideo">
                                     <img ng-src="{{video.VideoThumbnail}}" width=" 16"
                                          height="9" class="aspect-px" alt="" />
@@ -279,11 +318,10 @@
                             <!-- END .item -->
                         </div>
 
-
-
-
                         <div class="clear-list-button">
-                            <a href="browse.html" class="back-button">Xem Thêm Videos</a>
+                            <a href="#" ng-click="videoFire.scroll.next(3)"
+                               ng-disabled="!videoFire.scroll.hasNext()"
+                               class="back-button">Xem Thêm Videos</a>
                         </div>
 
                     </div>
@@ -293,7 +331,7 @@
                 <!-- END .with-sidebar-layout -->
             </div>
 
-            
+
 
             <!-- END .wrapper -->
         </div>
@@ -301,7 +339,11 @@
         <!-- BEGIN .content -->
     </section>
 
-
+    <script>
+    $("a").click(function (event) {
+        event.preventDefault();
+    });
+    </script>
 
 
     <script>
