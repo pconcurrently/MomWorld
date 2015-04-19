@@ -4,7 +4,7 @@
 @{
     Layout = "~/Views/Shared/_MWLayout.cshtml";
     ViewBag.Title = "Article";
-    
+
     var postedUser = ViewData["PostedUser"] as MomWorld.Models.ApplicationUser;
     var article = ViewData["Article"] as MomWorld.Entities.Article;
     var category = ViewData["Category"] as MomWorld.Entities.Category;
@@ -16,6 +16,8 @@
     var userArticles = ViewData["UserArticles"] as int?;
     var tagsList = ViewData["TagsList"] as List<MomWorld.Entities.Tag>;
     var profilePictures = ViewData["ProfilePictures"] as Dictionary<string, string>;
+    var categoriesList = ViewBag.CategoriesList as List<MomWorld.Entities.Category>;
+    var allArticles = ViewBag.AllArticle as List<MomWorld.Entities.Article>;
 }
 
 <head>
@@ -333,16 +335,13 @@
 
                             <form class="form-horizontal" role="form">
                                 <ul class="nav categories sidebar-widget">
-                                    <li><a href="post.html#">Sức khỏe sinh sản <em>(26)</em></a></li>
-                                    <li class="active">
-                                        <a href="post.html#">
-                                            40 tuần mang
-                                            thai <em>(40)</em>
-                                        </a>
-                                    </li>
-                                    <li><a href="post.html#">Sức khỏe trong thai kỳ <em>(15)</em></a></li>
-                                    <li><a href="post.html#">Dinh dưỡng thai kỳ <em>(2)</em></a></li>
-                                    <li><a href="post.html#">Kỹ năng làm mẹ <em>(8)</em></a></li>
+                                    @if (categoriesList != null)
+                                    {
+                                        foreach (var cate in categoriesList)
+                                        {
+                                            <li><a href="@Url.Action("Details", "Categories", routeValues: new { id = cate.Id })">@cate.Name <em>(@allArticles.FindAll(a => a.CategoryId.Equals(cate.Id)).Count)</em></a></li>
+                                        }
+                                    }
                                 </ul>
                             </form>
 
@@ -524,7 +523,7 @@
                     processData: false,
                     cache: false,
                     success: function (data) {
-                        
+
                     }
                 });
             });
@@ -548,7 +547,8 @@
                         $('#likeSection').html(spanText);
                     },
                     error: function () {
-                        alert("Error while excuting 'Like'");
+                        var url = window.location.href;
+                        window.location.href = "/Account/Login";
                     }
                 });
             });

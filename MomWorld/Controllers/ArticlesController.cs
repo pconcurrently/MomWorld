@@ -51,7 +51,7 @@ namespace MomWorld.Controllers
             {
                 article.ViewNumber += 1;
                 db.SaveChanges();
-                string userId = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
+
 
                 ApplicationUser postedUser = identityDb.Users.FirstOrDefault(x => x.Id.Equals(article.UserId));
                 Category category = categoryDb.Categories.FirstOrDefault(c => c.Id.Equals(article.CategoryId));
@@ -59,7 +59,6 @@ namespace MomWorld.Controllers
                 comments.OrderBy(cmt => cmt.Date);
                 var articleLikes = db.ArticleLikes.ToList().FindAll(al => al.ArticleId.Equals(article.Id));
 
-                var isLike = db.ArticleLikes.ToList().FirstOrDefault(al => al.ArticleId.Equals(id) && al.UserId.Equals(userId));
                 if (article.Tags != null)
                 {
                     var tags = db.Tags.ToList().FindAll(t => article.Tags.Contains(t.Id));
@@ -84,9 +83,9 @@ namespace MomWorld.Controllers
                 ViewData["Category"] = category;
                 ViewData["Comments"] = comments;
                 ViewData["ArticleLikes"] = articleLikes;
-                ViewData["IsLike"] = isLike;
                 ViewData["TagsList"] = db.Tags.ToList();
                 ViewData["ProfilePictures"] = profilePictures;
+                ViewBag.AllArticle = db.Articles.ToList();
 
                 var currentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
                 ViewBag.CurrentUser = currentUser;
@@ -94,6 +93,10 @@ namespace MomWorld.Controllers
                 //Get UserRoutine
                 if (User.Identity.IsAuthenticated)
                 {
+                    string userId = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
+                    var isLike = db.ArticleLikes.ToList().FirstOrDefault(al => al.ArticleId.Equals(id) && al.UserId.Equals(userId));
+                    ViewData["IsLike"] = isLike;
+
                     var userRoutine = identityDb.UserRoutines.FirstOrDefault(ur => ur.UserId.Equals(currentUser.Id) && ur.Phase.Equals(article.Phase));
                     if (userRoutine != null)
                     {
@@ -106,15 +109,21 @@ namespace MomWorld.Controllers
                         userRoutine = new UserRoutine();
                         userRoutine.Phase = article.Phase;
                         userRoutine.Count = 1;
+                        userRoutine.UserId = currentUser.Id;
                         identityDb.Entry(userRoutine).State = EntityState.Added;
                         identityDb.SaveChanges();
                     }
                     //Suggest categories
-                    var userRoutines = identityDb.UserRoutines.ToList();
+                    var userRoutines = identityDb.UserRoutines.ToList().FindAll(ur => ur.UserId.Equals(currentUser.Id));
                     userRoutines = userRoutines.OrderByDescending(u=>u.Count).ToList();
-                    var mostView = userRoutines.Take(1);
-
-
+                    var mostView = userRoutines.First() as UserRoutine;
+                    var categoriesList = db.Categories.ToList().FindAll(c=>c.Phase.Equals(mostView.Phase));
+                    ViewBag.CategoriesList = categoriesList;
+                }
+                else 
+                {
+                    var categoriesList = db.Categories.ToList().FindAll(c => c.Phase.Equals("MangThai"));
+                    ViewBag.CategoriesList = categoriesList;
                 }
 
                 return View();
