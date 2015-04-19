@@ -174,10 +174,10 @@
                                  src="@Url.Content("~/Content/images/icon-nav/motherhood.png")"> Làm mẹ <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="">Chuẩn bị mang thai</a></li>
-                            <li><a href="">Mang thai</a></li>
-                            <li><a href="">Trẻ sơ sinh</a></li>
-                            <li><a href="">Nuôi dạy trẻ</a></li>                           
+                            <li><a href="@Url.Action("Index", "Categories", routeValues: new {id="MongCon" })">Chuẩn bị mang thai</a></li>
+                            <li><a href="@Url.Action("Index", "Categories", routeValues: new { id = "MangThai" })">Mang thai</a></li>
+                            <li><a href="@Url.Action("Index", "Categories", routeValues: new { id = "TreSoSinh" })">Trẻ sơ sinh</a></li>
+                            <li><a href="@Url.Action("Index", "Categories", routeValues: new { id = "NuoiDayTre" })">Nuôi dạy trẻ</a></li>                           
                         </ul>
 
                     </li>

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using MomWorld.DataContexts;
 using MomWorld.Entities;
 using MomWorld.Models;
+using Microsoft.AspNet.Identity;
 
 namespace MomWorld.Controllers
 {
@@ -17,6 +18,7 @@ namespace MomWorld.Controllers
         private CategoryDb db = new CategoryDb();
         private ArticleDb articleDb = new ArticleDb();
         private IdentityDb identityDb = new IdentityDb();
+        private CommentDb commentDb = new CommentDb();
 
         // GET: Categories
         public ActionResult Index(string id)
@@ -25,32 +27,64 @@ namespace MomWorld.Controllers
             {
                 throw new Exception("Bad request");
             }
-            else
-            {
-                List<Article> articles = articleDb.Articles.ToList();
-                articles.RemoveAll(art => art.Status == (int)ArticleStatus.Pending || art.Status == (int)ArticleStatus.Bad);
-                ViewData["Categories"] = db.Categories.ToList().FindAll(c=>c.Phase.Equals(id));
-                var categoryArticles = articles.FindAll(a => a.Phase.Equals(id));
-                ViewData["Articles"] = categoryArticles;   
-            }
+
+            List<Article> articles = articleDb.Articles.ToList();
+            articles.RemoveAll(art => art.Status == (int)ArticleStatus.Pending || art.Status == (int)ArticleStatus.Bad);
+            ViewData["Categories"] = db.Categories.ToList().FindAll(c => c.Phase.Equals(id));
+            var categoryArticles = articles.FindAll(a => a.Phase.Equals(id));
+            ViewData["Articles"] = categoryArticles;
+
             ViewBag.Phase = id;
-            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u=>u.UserName.Equals(User.Identity.Name));
+            var currentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+            ViewBag.CurrentUser = currentUser;
             ViewBag.TagsList = articleDb.Tags.ToList();
+
+            //Get UserRoutine
+            if (User.Identity.IsAuthenticated)
+            {
+                var userRoutine = identityDb.UserRoutines.FirstOrDefault(ur => ur.UserId.Equals(currentUser.Id) && ur.Phase.Equals(id));
+                if (userRoutine != null)
+                {
+                    userRoutine.Count += 1;
+                    identityDb.Entry(userRoutine).State = EntityState.Modified;
+                    identityDb.SaveChanges();
+                }
+                else
+                {
+                    userRoutine = new UserRoutine();
+                    userRoutine.Phase = id;
+                    userRoutine.Count = 1;
+                    identityDb.Entry(userRoutine).State = EntityState.Added;
+                    identityDb.SaveChanges();
+                }
+            }
+
             return View();
         }
 
         // GET: Categories/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Category category = db.Categories.Find(id);
             if (category == null)
             {
                 throw new HttpException(404, "Not Found");
             }
+
+            var articles = articleDb.Articles.ToList().FindAll(a => a.CategoryId.Equals(id));
+            ViewBag.Articles = articles;
+            ViewBag.TagsList = articleDb.Tags.ToList();
+            ViewBag.Comments = commentDb.Comments.ToList();
+
+            var currentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+            ViewBag.CurrentUser = currentUser;
+
+
             return View(category);
         }
 
@@ -158,12 +192,12 @@ namespace MomWorld.Controllers
 
         public JsonResult Get(string id)
         {
-            return Json(db.Categories.FirstOrDefault(c=>c.Id.Equals(id)), JsonRequestBehavior.AllowGet);
+            return Json(db.Categories.FirstOrDefault(c => c.Id.Equals(id)), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Update([Bind(Include = "Id,Name,Description")]Category model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();

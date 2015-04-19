@@ -74,7 +74,7 @@ namespace MomWorld.Controllers
                     likesNumber += db.ArticleLikes.ToList().FindAll(a => a.ArticleId.Equals(item.Id)).Count;
                 }
                 Dictionary<string, string> profilePictures = new Dictionary<string, string>();
-                foreach(var item in comments)
+                foreach (var item in comments)
                 {
                     profilePictures.Add(item.UserName, identityDb.Users.FirstOrDefault(u => u.UserName.Equals(item.UserName)).ProfilePicture);
                 }
@@ -88,7 +88,34 @@ namespace MomWorld.Controllers
                 ViewData["TagsList"] = db.Tags.ToList();
                 ViewData["ProfilePictures"] = profilePictures;
 
-                ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+                var currentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+                ViewBag.CurrentUser = currentUser;
+
+                //Get UserRoutine
+                if (User.Identity.IsAuthenticated)
+                {
+                    var userRoutine = identityDb.UserRoutines.FirstOrDefault(ur => ur.UserId.Equals(currentUser.Id) && ur.Phase.Equals(article.Phase));
+                    if (userRoutine != null)
+                    {
+                        userRoutine.Count += 1;
+                        identityDb.Entry(userRoutine).State = EntityState.Modified;
+                        identityDb.SaveChanges();
+                    }
+                    else
+                    {
+                        userRoutine = new UserRoutine();
+                        userRoutine.Phase = article.Phase;
+                        userRoutine.Count = 1;
+                        identityDb.Entry(userRoutine).State = EntityState.Added;
+                        identityDb.SaveChanges();
+                    }
+                    //Suggest categories
+                    var userRoutines = identityDb.UserRoutines.ToList();
+                    userRoutines = userRoutines.OrderByDescending(u=>u.Count).ToList();
+                    var mostView = userRoutines.Take(1);
+
+
+                }
 
                 return View();
             }
@@ -112,7 +139,7 @@ namespace MomWorld.Controllers
                 ViewBag.Phase = id;
                 ViewBag.TagsList = db.Tags.ToList();
                 ViewData["Tags"] = GetTags(null);
-                ViewBag.CategoryId = new SelectList(db.Categories.ToList().FindAll(c=>c.Phase.Equals(id)), "Id", "Name");
+                ViewBag.CategoryId = new SelectList(db.Categories.ToList().FindAll(c => c.Phase.Equals(id)), "Id", "Name");
                 ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
                 return View();
 
@@ -220,7 +247,7 @@ namespace MomWorld.Controllers
                 ViewBag.Tags2 = GetTags(null);
             }
 
-            
+
             return View(article);
         }
 
