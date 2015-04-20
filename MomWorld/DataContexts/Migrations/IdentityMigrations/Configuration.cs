@@ -10,7 +10,6 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<MomWorld.DataContexts.IdentityDb>
     {
-        // TrungNM
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
@@ -73,9 +72,25 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             // Create normal user
             if (UserManager.FindByName("khoapc") == null)
             {
-                var user2 = new ApplicationUser { Email = "phoht@momworld.com", UserName = "phoht", DatePregnancy = DateTime.Now, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
-                UserManager.Create(user2, "khoapc");
-                UserManager.AddToRole(user2.Id, "khoapc");
+                var user2 = new ApplicationUser { Email = "khoapc@momworld.com", UserName = "phoht", DatePregnancy = DateTime.Now, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+                UserManager.Create(user2, "12345678");
+                UserManager.AddToRole(user2.Id, "Users");
+            }
+
+            // Create normal user
+            if (UserManager.FindByName("khoahn") == null)
+            {
+                var user3 = new ApplicationUser { Email = "khoahn@momworld.com", UserName = "khoahn", DatePregnancy = DateTime.Now, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+                UserManager.Create(user3, "12345678");
+                UserManager.AddToRole(user3.Id, "Users");
+            }
+
+            // Create normal user
+            if (UserManager.FindByName("datnt") == null)
+            {
+                var user4 = new ApplicationUser { Email = "datnt@momworld.com", UserName = "datnt", DatePregnancy = DateTime.Now, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+                UserManager.Create(user4, "12345678");
+                UserManager.AddToRole(user4.Id, "Users");
             }
         }
     }
