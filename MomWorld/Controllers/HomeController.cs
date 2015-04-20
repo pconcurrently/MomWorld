@@ -15,6 +15,7 @@ namespace MomWorld.Controllers
         private ArticleDb articleDb = new ArticleDb();
         private IdentityDb identityDb = new IdentityDb();
         private ImageDb imageDb = new ImageDb();
+        private CommentDb commentDb = new CommentDb();
 
 
         public ActionResult Index()
@@ -54,8 +55,47 @@ namespace MomWorld.Controllers
             }
             ViewBag.Top5Users = top5Users;
             ViewBag.ListUserLikeArticle = listUserLikeArticle;
-            List<Article> articles = articleDb.Articles.OrderBy(art => art.PostedDate).Take(5).ToList();
+            List<Article> articles = articleDb.Articles.OrderByDescending(art => art.ViewNumber).Take(5).ToList();
             ViewData["Top5Articles"] = articles;
+
+            List<Article> MongCon = articleDb.Articles.ToList().FindAll(a => a.Phase.Equals("MongCon")).OrderByDescending(art => art.PostedDate).Take(5).ToList();
+            List<Article> MangThai = articleDb.Articles.ToList().FindAll(a => a.Phase.Equals("MangThai")).OrderByDescending(art => art.PostedDate).Take(5).ToList();
+            List<Article> TreSoSinh = articleDb.Articles.ToList().FindAll(a => a.Phase.Equals("TreSoSinh")).OrderByDescending(art => art.PostedDate).Take(5).ToList();
+            List<Article> NuoiDayTre = articleDb.Articles.ToList().FindAll(a => a.Phase.Equals("NuoiDayTre")).OrderByDescending(art => art.PostedDate).Take(5).ToList();
+
+            ViewData["MongCon"] = MongCon;
+            ViewData["MangThai"] = MangThai;
+            ViewData["TreSoSinh"] = TreSoSinh;
+            ViewData["NuoiDayTre"] = NuoiDayTre;
+            ViewData["PostedUsers"] = identityDb.Users.ToList();
+
+            Dictionary<string, int> likesNumber = new Dictionary<string, int>();
+            Dictionary<string, int?> viewsNumber = new Dictionary<string, int?>();
+            Dictionary<string, int> commentsNumber = new Dictionary<string, int>();
+            List<Article> all = new List<Article>();
+            all.AddRange(MongCon);
+            all.AddRange(MangThai);
+            all.AddRange(TreSoSinh);
+            all.AddRange(NuoiDayTre);
+
+            foreach(var a in all)
+            {
+                likesNumber.Add(a.Id, articleDb.ArticleLikes.ToList().FindAll(art => art.ArticleId.Equals(a.Id)).Count);
+            }
+
+            foreach (var a in all)
+            {
+                commentsNumber.Add(a.Id, commentDb.Comments.ToList().FindAll(c => c.ArticleId.Equals(a.Id)).Count);
+            }
+
+            foreach (var a in all)
+            {
+                viewsNumber.Add(a.Id, a.ViewNumber);
+            }
+
+            ViewData["LikesNumber"] = likesNumber;
+            ViewData["ViewsNumber"] = viewsNumber;
+            ViewData["CommentsNumber"] = commentsNumber;
 
             if (User.Identity.IsAuthenticated)
             {
