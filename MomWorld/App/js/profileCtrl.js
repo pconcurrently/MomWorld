@@ -1,9 +1,10 @@
 ﻿'use strict';
 
-var profileApp = angular.module('profileApp', ['firebase', 'angularFileUpload', 'infinite-scroll']);
+var profileApp = angular.module('profileApp', ['firebase', 'angularFileUpload', 'infinite-scroll', 'angularMoment']);
 
-profileApp.controller('profileCtrl', ['$scope', '$http', '$firebaseObject', '$firebaseArray', 'FileUploader', '$window', '$scrollArray', 
-function ($scope, $http, $firebaseObject, $firebaseArray, FileUploader, $window, $scrollArray) {
+profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebaseObject', '$firebaseArray', 'FileUploader', '$window', '$scrollArray','amMoment', 
+function ($scope, $firebase, $http, $firebaseObject, $firebaseArray, FileUploader, $window, $scrollArray, amMoment) {
+    amMoment.changeLocale('vn');
     // Get User from Local Storage
     $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     $scope.currentUsername = $scope.currentUser.Username;
@@ -45,8 +46,7 @@ function ($scope, $http, $firebaseObject, $firebaseArray, FileUploader, $window,
         $http.put("http://localhost:4444/api/User/Put/" + $scope.currentUsername, sentData).
               success(function (data, status, headers, config) {
                   // TODO: UPdate Css
-                  alert("Update Ok");
-                  console.log(JSON.stringify(data));
+                  $('#modalSuccess').modal('show');
               }).
               error(function (data, status, headers, config) {
                   alert("Update Fail");
@@ -102,7 +102,12 @@ function ($scope, $http, $firebaseObject, $firebaseArray, FileUploader, $window,
             CreatorName: $scope.user.FirstName + " " + $scope.user.LastName,
             CreatorUsername: $scope.currentUsername,
             CreatorAvatar: "http://localhost:4444/App/uploads/avatar/" + $scope.currentUsername + ".png",
-            createdDate: Firebase.ServerValue.TIMESTAMP
+            CreatedDate: Firebase.ServerValue.TIMESTAMP,
+            NumLike: {
+                Count: 0,
+                User: []
+            },
+            NumComment: 0
         }
 
         $scope.statusFirebase.$add(sentData).then(
@@ -131,6 +136,14 @@ function ($scope, $http, $firebaseObject, $firebaseArray, FileUploader, $window,
         }
         var commentStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername + "/" + _status.$id + "/Comment");
         var commentFirebase = $firebaseArray(commentStatus);
+   
+        // Increase Number of Comment
+        var p = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername + "/" + _status.$id );        
+        var NumComment = p.child('NumComment');
+        NumComment.once('value', function (snapshot) {
+            NumComment.set(snapshot.val() + 1);
+        });
+
 
         commentFirebase.$add(sentData).then(
              $scope.commentContent = ""
@@ -150,6 +163,23 @@ function ($scope, $http, $firebaseObject, $firebaseArray, FileUploader, $window,
 
     }
 
+    // ------- Social Function
+    $scope.like = function (_status) {
+        alert("Like");
+        var p = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername + "/" + _status.$id + "/NumLike");
+        //var NumLike = p.child('NumComment');
+        //NumComment.once('value', function (snapshot) {
+        //    NumComment.set(snapshot.val() + 1);
+        //});
+        var numLike = $firebaseObject(p);
+        numLike.$loaded(function (data) {
+            data.Count++;
+            data.$save().then(alert("Ok"))
+        },
+            function (err) { });
+
+    }
+
     $scope.getBadge = function () {
         var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/");
         $scope.badgeFire = $firebaseArray(userFireTmp);
@@ -165,7 +195,6 @@ function ($scope, $http, $firebaseObject, $firebaseArray, FileUploader, $window,
     var o = new Firebase("https://momworld.firebaseio.com/UserList/");
     $scope.listUser = $firebaseArray(o);
     
-/*  $scope.statusFirebase = $firebaseArray(userStatus); */
 }]);
 
 profileApp.factory('$scrollArray', function ($firebaseArray) {
