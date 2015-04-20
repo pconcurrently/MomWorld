@@ -1,91 +1,153 @@
 ﻿@model MomWorld.Entities.Quiz
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_MWLayout.cshtml";
+    ViewBag.Title = "Kiểm tra kiến thức";
+    
+    var quizId = ViewData["QuizId"] as string;
+    var currentUserName = ViewData["UserName"] as string;
 }
 
-<!DOCTYPE html>
 
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
+    <title>@ViewBag.Title.</title>
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/quiz.css")">   
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/style.css")">
+
+    <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-ui/angular-ui-router.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-route.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-resource.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-ui/ui-bootstrap-tpls.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-md5.min.js")"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+
+
+
 </head>
-<body>
-    @using (Html.BeginForm()) 
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>Quiz</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Intro, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Intro, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Intro, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.LastModifiedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LastModifiedDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LastModifiedDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.QuizQuestionId, "QuizQuestionId", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("QuizQuestionId", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.QuizQuestionId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
+
+<body ng-app="quizApp" ng-controller="createCtrl">
+
+    <!-- BEGIN BREADCRUMBS -->
+    <div id="breadcrumbs" class="breadcrumbs bg-1">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li class="active">Kiểm tra kiến thức</li>
+            </ol>
+            <h2>
+                <strong>Tạo bài kiểm tra</strong>
+            </h2>
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
+    <!-- END BREADCRUMBS -->
+    <!-- QUIZZ -->
+    <section class="section">
+        <!-- content main container -->
+        <div class="col-xs-12 col-sm-9 col-lg-9">
+
+
+        </div>
+
+        <div class="container main">
+            <!-- row -->
+            <div class="row">
+                <div class="quizz-main">
+
+                    <div class="header">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>Tạo bài kiểm tra</h1>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div id="createQuiz" class="create-quiz center">
+                        <center>
+                            <table>
+                                <tr>
+                                    <td><h2>Tên bài kiểm tra:</h2></td>
+                                    <td><input type="text" ng-model="quiz.name" /></td>
+                                </tr>
+                                <tr>
+                                    <td><h2>Mô tả : </h2> </td>
+                                    <td><input type="text" ng-model="quiz.description" /></td>
+                                </tr>
+                                <tr>
+                                    <td><h2>Số câu hỏi: </h2></td>
+                                    <td><input type="text" ng-model="quizNum" /></td>
+                                </tr>
+                            </table>
+                        </center>
+                       
+                         
+                        <hr />
+                        <div ng-show="mode=='quiz'">
+                            <div ng-repeat="question in filteredQuestions">
+                                <div class="question">
+                                    <h3>{{$index + 1}}. <input type="text" ng-model="question.name" /></h3>
+                                    <div class="options">
+                                        <div>
+                                            <input id="{{option.id + $index + 1}}" type="checkbox" ng-model="option.isAnswer" />
+                                            <input type="text" ng-model="option.name" />
+                                        </div>
+                                        <div>
+                                            <input id="{{option.id + $index + 2}}" type="checkbox"  />
+                                            <input type="text" ng-model="option.name" />
+                                        </div>
+                                        <div>
+                                            <input id="{{option.id + $index + 3}}" type="checkbox" />
+                                            <input type="text" ng-model="option.name" />
+                                        </div>
+                                        <div>
+                                            <input id="{{option.id + $index + 4}}" type="checkbox"  />
+                                            <input type="text" ng-model="option.name" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="review" ng-show="mode=='review'">
+                            <h2>Quiz Review</h2>
+                            <div ng-repeat="question in questions">
+                                <div class="result-question">
+                                    <h3>{{$index + 1}}. {{question.Name}}</h3>
+                                    <div class="result-options">
+                                        <div ng-repeat="option in question.options">
+                                            <label ng-click="onSelect(option);" class="{{ (option.selected == option.isAnswer)? 'result-correct': 'result-incorrect' }}">
+                                                <input id="{{option.id}}" type="checkbox" disabled="disabled" readonly="readonly" ng-model="option.selected" />
+                                                {{option.name}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <h4 class="alert {{ isCorrect(question) == 'correct'? 'alert-success': 'alert-danger'}}">Your answer is {{isCorrect(question)}}.</h4>
+                                </div>
+                            </div>
+                            <h4 class="alert alert-info text-center">You may close this window now.</h4>
+                        </div>
+                        <hr />
+                        <div class="" ng-show="mode!='result'">
+                            <button class="btn btn-default" ng-click="mode = 'review'">Xem</button>
+                            <button class="btn btn-default" ng-click="onSave();">Lưu</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /content container -->
+    </section>
+    <!-- QUIZZ -->
+
+    <script src="@Url.Content("~/App/js/app.js")"></script>
+    <script src="@Url.Content("~/App/js/helperService.js")"></script>
+    <script src="@Url.Content("~/App/js/quizCtrl.js")"></script>
+    <script src="@Url.Content("~/App/js/createCtrl.js")"></script>
+
+
 </body>
-</html>

@@ -1,11 +1,14 @@
 ﻿app.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.quizName = 'js/emptyQuiz.js';
+    $scope.quizName = '../../App/js/emptyQuiz.js';
+    $scope.quizNum = "";
     $scope.goTo = function (index) {
         if (index > 0 && index <= $scope.totalItems) {
             $scope.currentPage = index;
             $scope.mode = 'quiz';
         }
     }
+
+    $scope.filteredQuestions = [];
 
     $scope.onSelect = function (option) {
         $scope.questions[$scope.currentPage - 1].selected = option;
@@ -33,11 +36,12 @@
              $scope.currentPage = 1;
              $scope.mode = 'quiz';
 
-             $scope.$watch('currentPage + itemsPerPage', function () {
-                 var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
-                   end = begin + $scope.itemsPerPage;
+             $scope.$watch('quizNum', function () {
 
-                 $scope.filteredQuestions = $scope.questions.slice(begin, end);
+                 for (var i = 0; i < $scope.quizNum; i++) {
+                     $scope.filteredQuestions.push({});
+                 }               
+                
              });
          });
     }

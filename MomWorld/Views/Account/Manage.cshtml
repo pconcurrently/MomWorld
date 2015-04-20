@@ -7,10 +7,7 @@
 }
 
 <head>
-    <title>@ViewBag.Title.</title>
-
-    
-    
+    <title>@ViewBag.Title.</title> 
 </head>
 <body class="bg-2" id="profileBody" ng-app="profileApp" ng-controller="profileCtrl" ng-init="loadProfile()">
     <!-- Page content -->
@@ -191,34 +188,30 @@
                                         </a>
                                     </div>
                                 </div>
-                                {{currentStatus}}
-                                {{currentUserStatus}}
-                                <button ng-click="alertDi()">ss</button>
-                                <div class="feed-list" infinite-scroll="statusFirebase.scroll.next(3)" infinite-scroll-distance="1">
-                                    <article ng-repeat="status in statusFirebase | reverse" class="feed-post" t>
-
-                                        @*<article ng-repeat="status in statusFirebase | reverse" class="feed-post">*@
+                
+                                <div class="feed-list">
+                                    <article ng-repeat="status in statusFirebase | reverse" class="feed-post" >
                                         <aside class="profile-photo">
-                                            <a href="personal-page.html#">
+                                            <a ng-href="http://localhost:4444/Profile/getProfile/{{status.CreatorUsername}}">
                                                 <img src="{{status.CreatorAvatar}}" alt=""
-                                                     class="img-circle">
+                                               class="img-circle">
                                             </a>
                                         </aside>
                                         <div class="feed-container">
                                             <header>
                                                 <div class="author">
                                                     <a href="personal-page.html#">{{status.CreatorUsername}}</a> đã cập nhật một
-                                                    trạng thái mới <small>{{status.CreatedDate}}</small>
+                                                    trạng thái mới <small><span am-time-ago="status.CreatedDate"></span></small>
                                                 </div>
                                             </header>
                                             <div class="feed-content">
                                                 <p>{{status.Content}}</p>
                                             </div>
                                             <footer>
-                                                <a href="personal-page.html#" class="liked">
-                                                    <i class="fa fa-heart"></i> Thích <span>(14)</span>
+                                                <a href="#" ng-click="like(status)" class="liked">
+                                                    <i class="fa fa-heart"></i> Thích <span>({{status.NumLike}})</span>
                                                 </a> <a href="personal-page.html#">
-                                                    <i class="fa fa-comment"></i> Bình luận <span>(26)</span>
+                                                    <i class="fa fa-comment"></i> Bình luận <span>({{Status.NumComment}})</span>
                                                 </a> <a ng-click="removeStatus(status)" href="">
                                                     <i class="fa fa-close"></i>
                                                     Xóa
@@ -230,16 +223,12 @@
                                                                  class="img-circle">
                                                         </div>
                                                         <div class="comment-container">
-                                                            <a href="personal-page.html#" class="comment-author">
+                                                            <a ng-href="http://localhost:4444/Profile/getProfile/{{comment.CreatorUsername}}" class="comment-author">
                                                                 {{comment.CreatorUsername}}
                                                             </a> {{comment.Content}}
                                                             <div class="comment-meta">
                                                                 <a href="personal-page.html#" class="comment-date">
                                                                     {{comment.CreatedDate}}
-                                                                </a> <i class="fa fa-circle"></i> <a href="personal-page.html#">
-                                                                    <i class="fa fa-heart"></i> Thích <span>(2)</span>
-                                                                </a> <i class="fa fa-circle"></i> <a href="personal-page.html#">
-                                                                    <i class="fa fa-reply"></i> Trả lời
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -265,10 +254,11 @@
                                     </article>
 
                                     <div class="text-center">
-                                        <a href="#" ng-click="items.scroll.next(3)" class="btn btn-default">
+                                        <a href="#" ng-click="statusFirebase.scroll.next(3)" class="btn btn-default">
                                             Xem thêm
                                         </a>
                                     </div>
+
                                 </div>
                             </div>
                             <div id="settings-tab" class="tab-pane fade in">

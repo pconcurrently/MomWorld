@@ -62,7 +62,10 @@ namespace MomWorld.Controllers
         // GET: Quizzes/Create
         public ActionResult Create()
         {
-            ViewBag.QuizQuestionId = new SelectList(db.QuizQuestions, "Id", "QuestionId");
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+            var quizzes = db.Quizzes.Include(q => q.QuizQuestion);
+            ApplicationUser CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+            ViewData["UserName"] = CurrentUser.UserName;
             return View();
         }
 
