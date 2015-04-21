@@ -113,33 +113,7 @@
                     </section>
                     <!-- /tile -->
                     <!-- tile -->
-                    <section class="tile color transparent-black">
-
-
-                        <!-- tile header -->
-                        <div class="tile-header">
-                            <h1>
-                                Giới thiệu<strong> Bản Thân</strong>
-                            </h1>
-                            <div class="controls">
-                                <a href="personal-page.html#" class="minimize">
-                                    <i class="fa fa-chevron-down"></i>
-                                </a> <a href="personal-page.html#"
-                                        class="refresh"><i class="fa fa-refresh"></i></a> <a href="personal-page.html#" class="remove">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- /tile header -->
-                        <!-- tile body -->
-                        <div class="tile-body padding-top-0">
-                            <p class="about-me">
-                                {{user.Description}}
-                            </p>
-                        </div>
-                        <!-- /tile body -->
-
-                    </section>
+                    
                     <!-- /tile -->
                 </div>
                 <!-- /col 4 -->
@@ -209,7 +183,7 @@
                                             </div>
                                             <footer>
                                                 <a href="#" ng-click="like(status)" class="liked">
-                                                    <i class="fa fa-heart"></i> Thích <span>({{status.NumLike}})</span>
+                                                    <i class="fa fa-heart"></i> Thích <span>({{status.NumLike.Count}})</span>
                                                 </a> <a href="personal-page.html#">
                                                     <i class="fa fa-comment"></i> Bình luận <span>({{Status.NumComment}})</span>
                                                 </a> <a ng-click="removeStatus(status)" href="">
@@ -389,17 +363,7 @@
                                 </form>
 
                             </div>
-                            <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge()">
-                                <div class="tile text-center">
-                                    <div class="">
-                                        <div class="text-center">
-                                            <img alt="" src="Content/images/armorial/1.png"
-                                                 style="height: 200px; width: 200px;">
-                                            <h1>Number One</h1>
-                                            <p>Chúc mừng, bạn là một người tuyệt vời</p>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge()">                                
                                 <div class="">
                                     <!-- tile header -->
                                     <div class="tile-header ">

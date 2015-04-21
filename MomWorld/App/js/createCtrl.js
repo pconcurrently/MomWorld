@@ -18,7 +18,8 @@
     $scope.onSave = function () {
         var ques = JSON.stringify($scope.questions, undefined, 2);
         //TODO: Code Pop-up quiz
-        alert("Bạn đã tạo quiz thành công, xin đợi người quản lí xác nhận !")
+        modalCreateQuiz
+        $('#modalCreateQuiz').modal('show');
         //$scope.mode = 'result';
     }
     $scope.itemsPerPage = 1;

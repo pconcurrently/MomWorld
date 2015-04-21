@@ -71,9 +71,6 @@
     <script src="@Url.Content("~/Content/js/video.js")"></script>
     <script src="@Url.Content("~/Content/js/jwplayer.js")"></script>
 
-
-
-
 </head>
 
 <body ng-app="demo"
@@ -97,7 +94,7 @@
 
                         <div class="form-group" style="padding: 0 15px;">
                             <label for="videoTitle">Tên video</label>
-                            <input type="text" ng-model="videoName" class="form-control" id="videoTitle" placeholder="Nhập tên video ...">
+                            <input type="text" ng-model="videoName" class="form-control" placeholder="Nhập tên video ...">
                         </div>
                         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
                         <div class="row fileupload-buttonbar">
@@ -187,7 +184,7 @@
 
                         <div class="form-group form-footer">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button type="button" class="btn btn-primary start" data-ng-click="submit()">
+                                <button type="button" class="btn btn-primary start" data-ng-click="uploadToSever(videoName); submit()">
                                     <i class="glyphicon glyphicon-upload"></i>
                                     <span>Bắt đầu</span>
                                 </button>

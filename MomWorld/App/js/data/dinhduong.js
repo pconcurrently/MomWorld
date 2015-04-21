@@ -10,20 +10,20 @@
         "QuestionTypeId": 1,
         "Options": [
             { "Id": 1055, "QuestionId": 1010, "Name": "Rau", "IsAnswer": false },
-            { "Id": 1056, "QuestionId": 1010, "Name": "true", "IsAnswer": true },
-            { "Id": 1057, "QuestionId": 1010, "Name": "Katarina", "IsAnswer": false },
-            { "Id": 1058, "QuestionId": 1010, "Name": "None of the above", "IsAnswer": false }],
+            { "Id": 1056, "QuestionId": 1010, "Name": "Cháo", "IsAnswer": true },
+            { "Id": 1057, "QuestionId": 1010, "Name": "Bún", "IsAnswer": false },
+            { "Id": 1058, "QuestionId": 1010, "Name": "Dưa hấu", "IsAnswer": false }],
         "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
     },
     {
         "Id": 1011,
-        "Name": "sau khi ăn xong thì ăn", 
+        "Name": "Sau khi ăn xong thì ăn", 
         "QuestionTypeId": 1,
         "Options": [
-            { "Id": 1060, "QuestionId": 1011, "Name": "Tình yêu", "IsAnswer": false },
-            { "Id": 1061, "QuestionId": 1011, "Name": "Chó nhỏ", "IsAnswer": false },
-            { "Id": 1062, "QuestionId": 1011, "Name": "True", "IsAnswer": true },
-            { "Id": 1063, "QuestionId": 1011, "Name": "None of the above", "IsAnswer": false }],
+            { "Id": 1060, "QuestionId": 1011, "Name": "Uống nước hoa quả", "IsAnswer": false },
+            { "Id": 1061, "QuestionId": 1011, "Name": "Chạy bộ", "IsAnswer": false },
+            { "Id": 1062, "QuestionId": 1011, "Name": "Ăn sữa chua", "IsAnswer": true },
+            { "Id": 1063, "QuestionId": 1011, "Name": "Học bài", "IsAnswer": false }],
         "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
     },
     {
@@ -31,8 +31,8 @@
         "Name": "Khi nào nên cho trẻ bú bình ?", 
         "QuestionTypeId": 1,
         "Options": [
-            { "Id": 1064, "QuestionId": 1012, "Name": "True", "IsAnswer": true },
-            { "Id": 1065, "QuestionId": 1012, "Name": "Khi trẻ lên 3", "IsAnswer": false },
+            { "Id": 1064, "QuestionId": 1012, "Name": "Khi trẻ lên 3", "IsAnswer": true },
+            { "Id": 1065, "QuestionId": 1012, "Name": "Khi trẻ lên 6", "IsAnswer": false },
             { "Id": 1066, "QuestionId": 1012, "Name": "Khi trẻ lên 5", "IsAnswer": false },
             { "Id": 1067, "QuestionId": 1012, "Name": "Khi thấy thích", "IsAnswer": false }],
         "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
@@ -42,7 +42,7 @@
         "Name": "Loại củ nào có nhiều sắt ?", 
         "QuestionTypeId": 1,
         "Options": [
-            { "Id": 1068, "QuestionId": 1013, "Name": "Củ Trưa", "IsAnswer": true },
+            { "Id": 1068, "QuestionId": 1013, "Name": "Củ Khoai", "IsAnswer": true },
             { "Id": 1069, "QuestionId": 1013, "Name": "Cà rốt", "IsAnswer": false },
             { "Id": 1070, "QuestionId": 1013, "Name": "Củ cải", "IsAnswer": false },
             { "Id": 1071, "QuestionId": 1013, "Name": "Củ cà chua", "IsAnswer": false }],

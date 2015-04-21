@@ -53,8 +53,8 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
             $scope.rUser = $firebaseObject(r);
         
             // Check if this is 1st chat
-            $scope.sUser.$loaded().then(checkSUser);
-            $scope.rUser.$loaded().then(checkRUser);
+            //$scope.sUser.$loaded().then(checkSUser);
+            //$scope.rUser.$loaded().then(checkRUser);
 
             // Get Chat content from Sender and Receiver
             var senderFire = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername + "/" + receiver + "/Content");

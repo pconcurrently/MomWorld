@@ -59,23 +59,10 @@
                                     <ul class="chat-nav main-nav inline">
                                         <li>
                                             <h3>
-                                                <strong>Hộp thư</strong> <span class="badge badge-red">3</span>
+                                                <strong>Hộp thư</strong>
                                             </h3>
                                         </li>
-                                        <li class="pull-right">
-                                            <button type="button"
-                                                    class="btn btn-transparent-white btn-sm dropdown-toggle"
-                                                    data-toggle="dropdown">
-                                                Xem thêm <i class="fa fa-caret-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="chat.html#">Action</a></li>
-                                                <li><a href="chat.html#">Another action</a></li>
-                                                <li><a href="chat.html#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="chat.html#">Separated link</a></li>
-                                            </ul>
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                                 <!-- /tile header -->
@@ -104,9 +91,7 @@
                                                             {{chat.Content[0]}}
                                                         </span>
                                                         <div class="chat-actions">
-                                                            <span class="mark-unread" title="Đánh dấu chưa đọc">
-                                                                <i class="fa fa-circle-o"></i>
-                                                            </span> <span class="archive"
+                                                            <span class="archive"
                                                                           title="Xóa"><i class="fa fa-times"></i></span>
                                                         </div>
                                                     </div>
@@ -146,27 +131,8 @@
                                         </li>
                                         <li class="pull-right">
                                             <div class="btn-group btn-group-sm">
-                                                <button type="button" class="btn btn-transparent-white">
-                                                    <i class="fa fa-plus"></i> Thêm tin nhắn
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-transparent-white dropdown-toggle"
-                                                        data-toggle="dropdown">
-                                                    <i class="fa fa-cog"></i> Hành động <i class="fa fa-caret-down"></i>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="chat.html#">Action</a></li>
-                                                    <li><a href="chat.html#">Another action</a></li>
-                                                    <li><a href="chat.html#">Something else here</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="chat.html#">Separated link</a></li>
-                                                </ul>
-                                                <input type="text" class="form-control input-sm"
-                                                       placeholder="Search..." id="chat-search">
-                                                <button type="button" class="btn btn-transparent-white"
-                                                        id="initialize-search">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
+                                                
+                                                
                                             </div>
                                         </li>
                                     </ul>
@@ -211,11 +177,8 @@
                                     <div class="chat-reply" id="chat-reply">
                                         <textarea ng-model="replyMess" placeholder="Nội dung tin nhắn ..." class="form-control"></textarea>
                                         <div class="btn-group btn-group-sm">
-                                            <button type="button"
-                                                    class="btn btn-transparent-white last-in-group">
-                                                <i class="fa fa-camera"></i> Thêm ảnh
-                                            </button>
-                                            <button ng-click="sendMessage('admin')"
+                                            
+                                            <button ng-click="sendMessage(currentUser.Username)"
                                                     class="btn btn-transparent-white last pull-right">
                                                 Trả lời
                                             </button>

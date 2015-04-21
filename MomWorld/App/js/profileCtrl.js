@@ -18,7 +18,7 @@ function ($scope, $firebase, $http, $firebaseObject, $firebaseArray, FileUploade
     $scope.user = {
     }
 
-
+    $scope.statusFirebase.scroll.next(3);
 
     $scope.loadProfile = function () {
         /* Get user Profile from User API */
@@ -165,7 +165,6 @@ function ($scope, $firebase, $http, $firebaseObject, $firebaseArray, FileUploade
 
     // ------- Social Function
     $scope.like = function (_status) {
-        alert("Like");
         var p = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername + "/" + _status.$id + "/NumLike");
         //var NumLike = p.child('NumComment');
         //NumComment.once('value', function (snapshot) {
@@ -174,7 +173,7 @@ function ($scope, $firebase, $http, $firebaseObject, $firebaseArray, FileUploade
         var numLike = $firebaseObject(p);
         numLike.$loaded(function (data) {
             data.Count++;
-            data.$save().then(alert("Ok"))
+            data.$save().then();
         },
             function (err) { });
 

@@ -58,27 +58,29 @@
     <!-- END BREADCRUMBS -->
     <!-- QUIZZ -->
     <section class="section" ng-init="initQuizShow()">
-
+        
         <!-- content main container -->
         <div class="container main">
-
-
+            <button class="btn btn-cyan" ng-click="startQuiz(quiz.id)" style="
+    margin-bottom: 50px;
+    margin-left: 1000px;
+">
+                Tạo bài kiểm tra
+            </button>
 
             <!-- row -->
             <div class="row">
-
+                
 
 
 
                 <!-- col 12 -->
                 <div class="col-md-12">
-                    <div class="col-xs-12 col-sm-3 col-lg-3">
-                        
-                    </div>
-                    <div class="col-xs-12 col-sm-9 col-lg-9">
+                    
+                    <div class="col-xs-12 col-sm-9 col-lg-12">
                         <div class="row">
                             <div class="exam-list">
-                                <div ng-repeat="quiz in quizData" class="col-xs-12 col-sm-6 col-lg-4 col-md-6 exam-item">
+                                <div ng-repeat="quiz in quizData" class="col-xs-12 col-sm-6 col-lg-4 col-md-9 exam-item">
                                     <div class="thumbnail">
                                         <a ng-href="/Quizzes/DoQuiz/{{quiz.id}}">
 

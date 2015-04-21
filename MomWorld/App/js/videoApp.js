@@ -43,7 +43,7 @@
                 $scope.videoFire.scroll = scrollRef.scroll;
 
                 $scope.videoFire.scroll.next(3);
-
+                $scope.nVideo = "";
                 // ------- Video Upload
 
                 $scope.options = {
@@ -52,13 +52,15 @@
 
                 $scope.uuid = uuid2.newuuid();
 
+                $scope.uploadToSever = function (videoName) {
+                    $scope.nVideo = videoName;
+                }
 
                 $scope.$on('fileuploadsubmit', function (event, files) {
-
                     $.each(files.files, function (index, file) {
                         files.formData = {
                             Username: $scope.currentUsername,
-                            VideoName: "Video Name",
+                            VideoName: $scope.nVideo,
                             VideoID: $scope.uuid
                         };
                     });
@@ -69,7 +71,7 @@
                         var a = new Firebase("https://momworld.firebaseio.com/Video/" + $scope.uuid);
                         var v = $firebaseObject(a);
                         v.Username = $scope.currentUsername;
-                        v.VideoName = "Hello World";
+                        v.VideoName = $scope.nVideo;
                         v.VideoID = $scope.uuid;
                         v.VideoURL = "http://localhost:4444/App/uploads/video/" + $scope.uuid + ".mp4";
                         v.VideoThumbnail = "http://localhost:4444/App/uploads/video/thumbnail/" + $scope.uuid + ".png";
