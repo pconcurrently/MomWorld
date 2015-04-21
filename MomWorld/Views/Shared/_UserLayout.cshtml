@@ -142,7 +142,7 @@
                 <!-- Branding end -->
                 <!-- .nav-collapse -->
                 <div class="navbar-collapse">
-                    
+
                     <!-- Quick Actions -->
                     <ul class="nav navbar-nav quick-actions">
 
@@ -170,11 +170,14 @@
                                 Trang quản lí <i class="fa fa-angle-up"></i>
                             </a>
                             <ul class="menu">
-                                <li class='@Html.IsActive("Account", "Dashboard")'>
-                                    <a href="@Url.Action("Dashboard", "Account")">
-                                        <i class="fa fa-tachometer"></i> Thống kê
-                                    </a>
-                                </li>
+                                @if (User.IsInRole("Admins"))
+                                {
+                                    <li class='@Html.IsActive("Account", "Dashboard")'>
+                                        <a href="@Url.Action("Dashboard", "Account")">
+                                            <i class="fa fa-tachometer"></i> Thống kê
+                                        </a>
+                                    </li>
+                                }
                                 <li class='@Html.IsActive("Account", "Manage")'>
                                     <a href="@Url.Action("Manage","Account")">
                                         <i class="fa fa-user"></i>
@@ -187,18 +190,21 @@
                                         Tin nhắn <span class="badge badge-red">2</span>
                                     </a>
                                 </li>
-                                <li class='@Html.IsActive("Account", "UsersManage")'>
+                                @if (User.IsInRole("Admins"))
+                                {
+                                    <li class='@Html.IsActive("Account", "UsersManage")'>
 
-                                    <a href="@Url.Action("UsersManage", "Account")">
-                                        <i class="fa fa-users"></i>
-                                        Quản lí người dùng
-                                    </a>
-                                </li>
-                                <li class='@Html.IsActive("Account", "PostsManage")'>
-                                    <a href="@Url.Action("PostsManage", "Account")">
-                                        <i class="fa fa-pencil-square-o"></i> Quản lí bài viết
-                                    </a>
-                                </li>
+                                        <a href="@Url.Action("UsersManage", "Account")">
+                                            <i class="fa fa-users"></i>
+                                            Quản lí người dùng
+                                        </a>
+                                    </li>
+                                    <li class='@Html.IsActive("Account", "PostsManage")'>
+                                        <a href="@Url.Action("PostsManage", "Account")">
+                                            <i class="fa fa-pencil-square-o"></i> Quản lí bài viết
+                                        </a>
+                                    </li>
+                                }
                             </ul>
 
 
@@ -213,13 +219,6 @@
 
             </div>
             <!-- Fixed navbar end -->
-
-
-
-
-
-
-
             @RenderBody()
 
 
@@ -269,11 +268,11 @@
 
 
     </div>
-    
-    
+
+
     <script>
 
-        var cc  = JSON.parse(localStorage.getItem('currentUser')).Username;
+        var cc = JSON.parse(localStorage.getItem('currentUser')).Username;
         //$scope.currentUsername = $scope.currentUser.Username;
 
         // Get a reference to the presence data in Firebase.
