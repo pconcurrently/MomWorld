@@ -106,11 +106,11 @@ namespace MomWorld.Controllers
                     }
                     else
                     {
-                        userRoutine = new UserRoutine();
-                        userRoutine.Phase = article.Phase;
-                        userRoutine.Count = 1;
-                        userRoutine.UserId = currentUser.Id;
-                        identityDb.Entry(userRoutine).State = EntityState.Added;
+                        var userRoutine2 = new UserRoutine();
+                        userRoutine2.Phase = article.Phase;
+                        userRoutine2.Count = 1;
+                        userRoutine2.UserId = currentUser.Id;
+                        identityDb.Entry(userRoutine2).State = EntityState.Added;
                         identityDb.SaveChanges();
                     }
                     //Suggest categories

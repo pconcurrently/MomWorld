@@ -28,5 +28,13 @@ namespace MomWorld.Entities
             Id = Guid.NewGuid().ToString();
         }
 
+        public Category(string name, string description, string phase)
+        {
+            Id = Guid.NewGuid().ToString();
+            Name = name;
+            Description = description;
+            Phase = phase;
+        }
+
     }
 }

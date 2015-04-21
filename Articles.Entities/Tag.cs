@@ -22,5 +22,12 @@ namespace MomWorld.Entities
         {
             Id = Guid.NewGuid().ToString();
         }
+
+        public Tag(string name, string description)
+        {
+            Id = Guid.NewGuid().ToString();
+            Name = name;
+            Description = description;
+        }
     }
 }

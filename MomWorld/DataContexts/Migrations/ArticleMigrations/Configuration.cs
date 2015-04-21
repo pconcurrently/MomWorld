@@ -1,6 +1,8 @@
-namespace MomWorld.DataContexts.Migrations.ArticleMigrations
+﻿namespace MomWorld.DataContexts.Migrations.ArticleMigrations
 {
+    using MomWorld.Entities;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -27,6 +29,26 @@ namespace MomWorld.DataContexts.Migrations.ArticleMigrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            var db = new ArticleDb();
+            db.Categories.AddOrUpdate(
+                new Category("Dinh dưỡng", "Dinh dưỡng", "MongCon"),
+                new Category("Tiêm phòng", "Tiêm phòng", "MongCon"),
+                new Category("Dinh dưỡng", "Dinh dưỡng", "MangThai"),
+                new Category("Tiêm phòng", "Tiêm phòng", "MangThai"),
+                new Category("Dinh dưỡng", "Dinh dưỡng", "TreSoSinh"),
+                new Category("Tiêm phòng", "Tiêm phòng", "TreSoSinh"),
+                new Category("Dinh dưỡng", "Dinh dưỡng", "NuoiDayTre"),
+                new Category("Tiêm phòng", "Tiêm phòng", "NuoiDayTre")
+                );
+            db.Tags.AddOrUpdate(
+                new Tag("Tuần 1", "Tuần 1"),
+                new Tag("Tuần 2", "Tuần 2"),
+                new Tag("Dinh dưỡng", "Dinh dưỡng"),
+                new Tag("Tiêm phòng", "Tiêm phòng")
+                );
+
+            db.SaveChanges();
         }
     }
 }
