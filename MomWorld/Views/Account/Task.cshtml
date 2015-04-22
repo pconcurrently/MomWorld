@@ -98,162 +98,131 @@
                                     <li class="group" id="taskList">
                                         <div class="pointer"></div>
                                         <h4><strong>Tất cả các nhắc nhở</strong></h4>
+                                        <h5><i class="fa fa-check-circle-o"></i> <strong>Những nhắc nhở chưa được hoàn thành</strong></h5>
                                         @foreach (var task in userTasks)
                                         {
+                                            if (!task.IsCompleted)
+                                            {
                                         <!-- tasks -->
-                                            <div class="task-group" id="accordion">
-                                                <!-- task -->
-                                                <div class="task panel">
-                                                    <div class="panel-heading">
-                                                        <div class="task-controls">
-                                                            <a href="#" class="mark marked"><i class="fa fa-star-o"></i></a>
+                                                <div class="task-group" id="accordion">
+                                                    <!-- task -->
+                                                    <div class="task panel">
+                                                        <div class="panel-heading">
+                                                            <div class="task-controls">
+                                                                <a href="#" class="mark marked"><i class="fa fa-star-o"></i></a>
+                                                            </div>
+                                                            <div class="heading">
+                                                                <h5>@task.Title</h5>
+                                                                <small>Ngày tạo: @task.CreatedDate</small>
+                                                            </div>
+                                                            <a class="task-toggle" data-toggle="collapse" data-target="#@task.Id" data-parent=".task-group" href="#">
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </a>
                                                         </div>
-                                                        <div class="heading">
-                                                            <h5>@task.Title</h5>
-                                                            <small>Ngày tạo: @task.CreatedDate</small>
-                                                        </div>
-                                                        <a class="task-toggle" data-toggle="collapse" data-target="#@task.Id" data-parent=".task-group" href="#">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div id="@task.Id" class="collapse">
-                                                        <div class="panel-body task-content">
-                                                            <div class="row">
-                                                                <div class="col-lg-10 col-md-8">
-                                                                    <ul class="media-list">
-                                                                        <li class="media">
-                                                                            <i class="pull-left fa fa-clock-o"></i>
-                                                                            <div class="media-body">
-                                                                                <h5 class="media-heading"><strong>Thời gian thực hiện</strong> @task.DueDate</h5>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="media">
-                                                                            <i class="pull-left fa fa-info-circle"></i>
-                                                                            <div class="media-body">
-                                                                                <h5 class="media-heading"><strong>Mô tả</strong></h5>
-                                                                                <p>@task.Description</p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-lg-2 col-md-4 task-controls">
-                                                                    <button class="btn btn-red btn-sm delete" data-id="@task.Id"><i class="fa fa-trash-o"></i> Xóa</button>
-                                                                    <button class="btn btn-green btn-sm completed" data-id="@task.Id">
-                                                                        <i class="fa fa-check"></i> Hoàn thành
-                                                                    </button>
+                                                        <div id="@task.Id" class="collapse">
+                                                            <div class="panel-body task-content">
+                                                                <div class="row">
+                                                                    <div class="col-lg-10 col-md-8">
+                                                                        <ul class="media-list">
+                                                                            <li class="media">
+                                                                                <i class="pull-left fa fa-clock-o"></i>
+                                                                                <div class="media-body">
+                                                                                    <h5 class="media-heading"><strong>Thời gian thực hiện</strong> @task.DueDate</h5>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li class="media">
+                                                                                <i class="pull-left fa fa-info-circle"></i>
+                                                                                <div class="media-body">
+                                                                                    <h5 class="media-heading"><strong>Mô tả</strong></h5>
+                                                                                    <p>@task.Description</p>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-lg-2 col-md-4 task-controls">
+                                                                        <button class="btn btn-red btn-sm delete" data-id="@task.Id"><i class="fa fa-trash-o"></i> Xóa</button>
+                                                                        <button class="btn btn-green btn-sm completed" data-id="@task.Id">
+                                                                            <i class="fa fa-check"></i> Hoàn thành
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- /task -->
+                                                    <!-- /task -->
 
-                                            </div>
+                                                </div>
                                         <!-- tasks -->
+                                            }
                                         }
                                     </li>
                                     <!-- /today tasks -->
-                                    
                                     <!-- completed tasks -->
                                     <li class="group completed">
-                                        <h5><i class="fa fa-check-circle-o"></i> <strong>Completed</strong> Tasks</h5>
-
-                                        <!-- tasks -->
-                                        <div class="task-group" id="accordion02">
-
-                                            <!-- task -->
-                                            <div class="task panel">
-
-                                                <div class="priority priority-normal"></div>
-
-                                                <div class="panel-heading">
-
-                                                    <div class="task-controls">
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" id="task04chck" checked>
-                                                            <label for="task04chck"></label>
-                                                        </div>
-
-                                                        <a href="##" class="mark marked"><i class="fa fa-star-o"></i></a>
-                                                    </div>
-
-                                                    <div class="heading">
-                                                        <h5>Another one completed task in our task list</h5>
-                                                        <small>Added: April 06, 2014</small>
-                                                    </div>
-
-                                                    <span class="label">normal</span>
-
-                                                    <a class="task-toggle" data-toggle="collapse" data-target="#task04" data-parent=".task-group" href="##">
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </a>
-
-                                                </div>
-
-                                                <div id="task04" class="collapse">
-                                                    <div class="panel-body task-content">
-                                                        <div class="row">
-                                                            <div class="col-lg-10 col-md-8">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-thumb-tack"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>ID:</strong> #3694</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Due Date:</strong> April 10, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-user"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Assigned By:</strong> Ing. Imrich Kamarel</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Created At:</strong> April 03, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-info-circle"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Additional Info:</strong></h5>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
+                                        <h5><i class="fa fa-check-circle-o"></i> <strong>Những nhắc nhở đã được hoàn thành</strong></h5>
+                                        @foreach (var task in userTasks)
+                                        {
+                                            if (task.IsCompleted)
+                                            {
+                                       <!-- tasks -->
+                                                <div class="task-group" id="accordion">
+                                                    <!-- task -->
+                                                    <div class="task panel">
+                                                        <div class="panel-heading">
+                                                            <div class="task-controls">
+                                                                <a href="#" class="mark marked"><i class="fa fa-star-o"></i></a>
                                                             </div>
-                                                            <div class="col-lg-2 col-md-4 task-controls">
-                                                                <button class="btn btn-red btn-sm"><i class="fa fa-trash-o"></i> Delete</button>
-                                                                <button class="btn btn-blue btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                                                <button class="btn btn-green btn-sm"><i class="fa fa-check"></i> Complete</button>
+                                                            <div class="heading">
+                                                                <h5>@task.Title</h5>
+                                                                <small>Ngày tạo: @task.CreatedDate</small>
+                                                            </div>
+                                                            <a class="task-toggle" data-toggle="collapse" data-target="#@task.Id" data-parent=".task-group" href="#">
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div id="@task.Id" class="collapse">
+                                                            <div class="panel-body task-content">
+                                                                <div class="row">
+                                                                    <div class="col-lg-10 col-md-8">
+                                                                        <ul class="media-list">
+                                                                            <li class="media">
+                                                                                <i class="pull-left fa fa-clock-o"></i>
+                                                                                <div class="media-body">
+                                                                                    <h5 class="media-heading"><strong>Thời gian thực hiện</strong> @task.DueDate</h5>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li class="media">
+                                                                                <i class="pull-left fa fa-info-circle"></i>
+                                                                                <div class="media-body">
+                                                                                    <h5 class="media-heading"><strong>Mô tả</strong></h5>
+                                                                                    <p>@task.Description</p>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-lg-2 col-md-4 task-controls">
+                                                                        <button class="btn btn-red btn-sm delete" data-id="@task.Id"><i class="fa fa-trash-o"></i> Xóa</button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!-- /task -->
+
                                                 </div>
-
-                                            </div>
-                                            <!-- /task -->
-
-
-                                        </div>
                                         <!-- tasks -->
-
+                                            }
+                                        }
 
                                     </li>
                                     <!-- /completed tasks -->
-                                    
-                                    
-                                    
-                                    <li class="more">
+
+
+
+                                    @*<li class="more">
                                         <div class="pointer"></div>
                                         <button class="btn btn-default">Load More</button>
-                                    </li>
+                                    </li>*@
 
                                 </ol>
                             </div>
