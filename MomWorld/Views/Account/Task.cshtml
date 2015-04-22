@@ -1,16 +1,12 @@
 ﻿@{
     ViewBag.Title = "Task";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
+    var userTasks = ViewBag.UserTasks as List<MomWorld.Entities.UserTask>;
 }
-
 <head>
     <title>@ViewBag.Title.</title>
 </head>
-
 <body class="bg-2">
-
-
-
 
 
     <!-- Page content -->
@@ -19,18 +15,10 @@
 
 
 
-
-
-
-
-
         <!-- page header -->
         <div class="pageheader">
 
-
-            <h2><i class="fa fa-calendar" style="line-height: 46px;padding-left: 0;"></i> Công việc</h2>
-
-
+            <h2><i class="fa fa-calendar" style="line-height: 46px;padding-left: 0;"></i> Nhắc nhở</h2>
 
 
         </div>
@@ -38,778 +26,153 @@
         <!-- content main container -->
         <div class="main">
 
-
-
             <!-- row -->
             <div class="row">
-
                 <div class="col-md-4">
                     <!-- tile -->
                     <section class="tile color transparent-white">
 
-
-
                         <!-- tile header -->
                         <div class="tile-header">
-                            <h1><strong>Thêm </strong> công việc</h1>                            
+                            <h1><strong>Thêm </strong> nhắc nhở</h1>
                         </div>
                         <!-- /tile header -->
                         <!-- tile body -->
                         <div class="tile-body">
-
                             <form class="form-horizontal" role="form">
 
-                                
                                 <div class="form-group">
-                                    <label for="task-name" class="col-sm-4 control-label">Tên công việc</label>
+                                    <label for="task-name" class="col-sm-4 control-label">Tên</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="task-name">
                                     </div>
                                 </div>
-                               
-                                <div class="form-group">
-                                    <label for="content" class="col-sm-4 control-label">Mô tả công việc</label>
-                                    <div class="col-sm-8">
-                                        <textarea class="form-control" id="content" rows="6"></textarea>
-                                    </div>
-                                </div>
-
 
                                 <div class="form-group">
-                                    <label for="datepicker" class="col-sm-4 control-label">Ngày làm</label>
+                                    <label for="datepicker" class="col-sm-4 control-label">Thời gian</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="datepicker">
                                     </div>
                                 </div>
-
-                                
-
-                              
-
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label">Màu hiển thị</label>
+                                    <label for="content" class="col-sm-4 control-label">Mô tả</label>
                                     <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="color" name="color" readonly="">
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-greensea dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tint"></i></button>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <div id="event-colorpalette" data-return-color="#color"></div>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
-                                        </div><!-- /input-group -->
+                                        <textarea class="form-control" id="description" rows="4"></textarea>
                                     </div>
                                 </div>
-
-                                
-
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">Mức độ</label>
-                                    <div class="col-sm-8">
-                                        <div class="radio radio-transparent">
-                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                            <label for="optionsRadios1">Bình thường</label>
-                                        </div>
-                                        <div class="radio radio-transparent">
-                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                            <label for="optionsRadios2">Quan trọng</label>
-                                        </div>                                        
-                                    </div>
-                                </div>
-
                                 <div class="form-group form-footer footer-white">
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-greensea">Thêm</button>
+                                        <button type="submit" class="btn btn-greensea" id="submitTask">Thêm</button>
                                         <button type="reset" class="btn btn-red">Hủy</button>
                                     </div>
                                 </div>
-
                             </form>
-
                         </div>
                         <!-- /tile body -->
-
-
 
 
                     </section>
                     <!-- /tile -->
                 </div>
 
-
                 <!-- col 12 -->
                 <div class="col-md-8">
-
-
 
                     <!-- tile -->
                     <section class="tile transparent">
 
-
                         <!-- tile body -->
                         <div class="tile-body tab-content rounded-bottom-corners">
 
-
-
                             <div id="tasks-tab" class="tab-pane fade in active">
+                                @*<div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
+                                        <button type="button" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
+                                    </div>
 
-                                <div class="btn-group btn-group-sm">
-                                    <button type="button" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
-                                </div>
-
-                                <h4 class="inline"><strong>April 10</strong>, 2014</h4>
-
-                                
+                                    <h4 class="inline"><strong>April 10</strong>, 2014</h4>*@
 
 
                                 <ol class="task-list" id="task-list">
-
                                     <!-- today tasks -->
-                                    <li class="group">
+                                    <li class="group" id="taskList">
                                         <div class="pointer"></div>
-                                        <h4><strong>Today</strong> April 10, 2014</h4>
-
+                                        <h4><strong>Tất cả các nhắc nhở</strong></h4>
+                                        @foreach (var task in userTasks)
+                                        {
                                         <!-- tasks -->
-                                        <div class="task-group" id="accordion">
-
-                                            <!-- task -->
-                                            <div class="task panel">
-
-                                                <div class="priority priority-high"></div>
-
-                                                <div class="panel-heading">
-
-                                                    <div class="task-controls">
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" id="task01chck">
-                                                            <label for="task01chck"></label>
+                                            <div class="task-group" id="accordion">
+                                                <!-- task -->
+                                                <div class="task panel">
+                                                    <div class="panel-heading">
+                                                        <div class="task-controls">
+                                                            <a href="#" class="mark marked"><i class="fa fa-star-o"></i></a>
                                                         </div>
-
-                                                        <a href="##" class="mark marked"><i class="fa fa-star-o"></i></a>
+                                                        <div class="heading">
+                                                            <h5>@task.Title</h5>
+                                                            <small>Ngày tạo: @task.CreatedDate</small>
+                                                        </div>
+                                                        <a class="task-toggle" data-toggle="collapse" data-target="#@task.Id" data-parent=".task-group" href="#">
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </a>
                                                     </div>
-
-                                                    <div class="heading">
-                                                        <h5>Responsive tweaks on another admin template</h5>
-                                                        <small>Added: April 06, 2014</small>
-                                                    </div>
-
-                                                    <span class="label label-red">high</span>
-
-                                                    <a class="task-toggle" data-toggle="collapse" data-target="#task01" data-parent=".task-group" href="##">
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </a>
-
-                                                </div>
-
-                                                <div id="task01" class="collapse">
-                                                    <div class="panel-body task-content">
-                                                        <div class="row">
-                                                            <div class="col-lg-10 col-md-8">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-thumb-tack"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>ID:</strong> #3694</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Due Date:</strong> April 10, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-user"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Assigned By:</strong> Ing. Imrich Kamarel</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Created At:</strong> April 03, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-info-circle"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Additional Info:</strong></h5>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-lg-2 col-md-4 task-controls">
-                                                                <button class="btn btn-red btn-sm"><i class="fa fa-trash-o"></i> Delete</button>
-                                                                <button class="btn btn-blue btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                                                <button class="btn btn-green btn-sm"><i class="fa fa-check"></i> Complete</button>
+                                                    <div id="@task.Id" class="collapse">
+                                                        <div class="panel-body task-content">
+                                                            <div class="row">
+                                                                <div class="col-lg-10 col-md-8">
+                                                                    <ul class="media-list">
+                                                                        <li class="media">
+                                                                            <i class="pull-left fa fa-clock-o"></i>
+                                                                            <div class="media-body">
+                                                                                <h5 class="media-heading"><strong>Thời gian thực hiện</strong> @task.DueDate</h5>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li class="media">
+                                                                            <i class="pull-left fa fa-info-circle"></i>
+                                                                            <div class="media-body">
+                                                                                <h5 class="media-heading"><strong>Mô tả</strong></h5>
+                                                                                <p>@task.Description</p>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-lg-2 col-md-4 task-controls">
+                                                                    <button class="btn btn-red btn-sm delete" data-id="@task.Id"><i class="fa fa-trash-o"></i> Xóa</button>
+                                                                    <button class="btn btn-green btn-sm completed" data-id="@task.Id">
+                                                                        <i class="fa fa-check"></i> Hoàn thành
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <!-- /task -->
 
                                             </div>
-                                            <!-- /task -->
-                                            <!-- task -->
-                                            <div class="task panel active">
-
-                                                <div class="priority priority-low"></div>
-
-                                                <div class="panel-heading">
-
-                                                    <div class="task-controls">
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" id="task02chck">
-                                                            <label for="task02chck"></label>
-                                                        </div>
-
-                                                        <a href="##" class="mark"><i class="fa fa-star-o"></i></a>
-                                                    </div>
-
-                                                    <div class="heading">
-                                                        <h5>Another one task in our task list</h5>
-                                                        <small>Added: April 03, 2014</small>
-                                                    </div>
-
-                                                    <span class="label label-green">low</span>
-
-                                                    <a class="task-toggle" data-toggle="collapse" data-target="#task02" data-parent=".task-group" href="##">
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </a>
-
-                                                </div>
-
-                                                <div id="task02" class="collapse in">
-                                                    <div class="panel-body task-content">
-                                                        <div class="row">
-                                                            <div class="col-lg-10 col-md-8">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-thumb-tack"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>ID:</strong> #3694</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Due Date:</strong> April 10, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-user"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Assigned By:</strong> Ing. Imrich Kamarel</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Created At:</strong> April 03, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-info-circle"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Additional Info:</strong></h5>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-lg-2 col-md-4 task-controls">
-                                                                <button class="btn btn-red btn-sm"><i class="fa fa-trash-o"></i> Delete</button>
-                                                                <button class="btn btn-blue btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                                                <button class="btn btn-green btn-sm"><i class="fa fa-check"></i> Complete</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <!-- /task -->
-                                            <!-- task -->
-                                            <div class="task panel">
-
-                                                <div class="priority priority-medium"></div>
-
-                                                <div class="panel-heading">
-
-                                                    <div class="task-controls">
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" id="task03chck">
-                                                            <label for="task03chck"></label>
-                                                        </div>
-
-                                                        <a href="##" class="mark"><i class="fa fa-star-o"></i></a>
-                                                    </div>
-
-                                                    <div class="heading">
-                                                        <h5>Another one task in our task list</h5>
-                                                        <small>Added: April 02, 2014</small>
-                                                    </div>
-
-                                                    <span class="label label-orange">medium</span>
-
-                                                    <a class="task-toggle" data-toggle="collapse" data-target="#task03" data-parent=".task-group" href="##">
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </a>
-
-                                                </div>
-
-                                                <div id="task03" class="collapse">
-                                                    <div class="panel-body task-content">
-                                                        <div class="row">
-                                                            <div class="col-lg-10 col-md-8">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-thumb-tack"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>ID:</strong> #3694</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Due Date:</strong> April 10, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-user"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Assigned By:</strong> Ing. Imrich Kamarel</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Created At:</strong> April 03, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-info-circle"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Additional Info:</strong></h5>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-lg-2 col-md-4 task-controls">
-                                                                <button class="btn btn-red btn-sm"><i class="fa fa-trash-o"></i> Delete</button>
-                                                                <button class="btn btn-blue btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                                                <button class="btn btn-green btn-sm"><i class="fa fa-check"></i> Complete</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <!-- /task -->
-
-
-                                        </div>
                                         <!-- tasks -->
-
-
+                                        }
                                     </li>
                                     <!-- /today tasks -->
-                                    <!-- completed tasks -->
-                                    <li class="group completed">
-                                        <h5><i class="fa fa-check-circle-o"></i> <strong>Completed</strong> Tasks</h5>
-
-                                        <!-- tasks -->
-                                        <div class="task-group" id="accordion02">
-
-                                            <!-- task -->
-                                            <div class="task panel">
-
-                                                <div class="priority priority-normal"></div>
-
-                                                <div class="panel-heading">
-
-                                                    <div class="task-controls">
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" id="task04chck" checked>
-                                                            <label for="task04chck"></label>
-                                                        </div>
-
-                                                        <a href="##" class="mark marked"><i class="fa fa-star-o"></i></a>
-                                                    </div>
-
-                                                    <div class="heading">
-                                                        <h5>Another one completed task in our task list</h5>
-                                                        <small>Added: April 06, 2014</small>
-                                                    </div>
-
-                                                    <span class="label">normal</span>
-
-                                                    <a class="task-toggle" data-toggle="collapse" data-target="#task04" data-parent=".task-group" href="##">
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </a>
-
-                                                </div>
-
-                                                <div id="task04" class="collapse">
-                                                    <div class="panel-body task-content">
-                                                        <div class="row">
-                                                            <div class="col-lg-10 col-md-8">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-thumb-tack"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>ID:</strong> #3694</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Due Date:</strong> April 10, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-user"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Assigned By:</strong> Ing. Imrich Kamarel</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Created At:</strong> April 03, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-info-circle"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Additional Info:</strong></h5>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-lg-2 col-md-4 task-controls">
-                                                                <button class="btn btn-red btn-sm"><i class="fa fa-trash-o"></i> Delete</button>
-                                                                <button class="btn btn-blue btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                                                <button class="btn btn-green btn-sm"><i class="fa fa-check"></i> Complete</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <!-- /task -->
-
-
-                                        </div>
-                                        <!-- tasks -->
-
-
-                                    </li>
-                                    <!-- /completed tasks -->
-                                    <!-- yesterday tasks -->
-                                    <li class="group">
-                                        <div class="pointer"></div>
-                                        <h4><strong>Yesterday</strong> April 09, 2014</h4>
-
-                                        <!-- tasks -->
-                                        <div class="task-group" id="accordion03">
-
-                                            <!-- task -->
-                                            <div class="task panel">
-
-                                                <div class="priority priority-medium"></div>
-
-                                                <div class="panel-heading">
-
-                                                    <div class="task-controls">
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" id="task05chck">
-                                                            <label for="task05chck"></label>
-                                                        </div>
-
-                                                        <a href="##" class="mark marked"><i class="fa fa-star-o"></i></a>
-                                                    </div>
-
-                                                    <div class="heading">
-                                                        <h5>Another one task in our task list</h5>
-                                                        <small>Added: April 02, 2014</small>
-                                                    </div>
-
-                                                    <span class="label label-orange">medium</span>
-
-                                                    <a class="task-toggle" data-toggle="collapse" data-target="#task05" data-parent=".task-group" href="##">
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </a>
-
-                                                </div>
-
-                                                <div id="task05" class="collapse">
-                                                    <div class="panel-body task-content">
-                                                        <div class="row">
-                                                            <div class="col-lg-10 col-md-8">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-thumb-tack"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>ID:</strong> #3694</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Due Date:</strong> April 10, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-user"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Assigned By:</strong> Ing. Imrich Kamarel</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Created At:</strong> April 03, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-info-circle"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Additional Info:</strong></h5>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-lg-2 col-md-4 task-controls">
-                                                                <button class="btn btn-red btn-sm"><i class="fa fa-trash-o"></i> Delete</button>
-                                                                <button class="btn btn-blue btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                                                <button class="btn btn-green btn-sm"><i class="fa fa-check"></i> Complete</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <!-- /task -->
-
-
-                                        </div>
-                                        <!-- tasks -->
-
-
-                                    </li>
-                                    <!-- /today tasks -->
-                                    <!-- completed tasks -->
-                                    <li class="group completed">
-                                        <h5><i class="fa fa-check-circle-o"></i> <strong>Completed</strong> Tasks</h5>
-
-                                        <!-- tasks -->
-                                        <div class="task-group" id="accordion04">
-
-                                            <!-- task -->
-                                            <div class="task panel">
-
-                                                <div class="priority priority-normal"></div>
-
-                                                <div class="panel-heading">
-
-                                                    <div class="task-controls">
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" id="task06chck" checked>
-                                                            <label for="task06chck"></label>
-                                                        </div>
-
-                                                        <a href="##" class="mark marked"><i class="fa fa-star-o"></i></a>
-                                                    </div>
-
-                                                    <div class="heading">
-                                                        <h5>Another one completed task in our task list</h5>
-                                                        <small>Added: April 06, 2014</small>
-                                                    </div>
-
-                                                    <span class="label label-default">normal</span>
-
-                                                    <a class="task-toggle" data-toggle="collapse" data-target="#task06" data-parent=".task-group" href="##">
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </a>
-
-                                                </div>
-
-                                                <div id="task06" class="collapse">
-                                                    <div class="panel-body task-content">
-                                                        <div class="row">
-                                                            <div class="col-lg-10 col-md-8">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-thumb-tack"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>ID:</strong> #3694</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Due Date:</strong> April 10, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-user"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Assigned By:</strong> Ing. Imrich Kamarel</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Created At:</strong> April 03, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-info-circle"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Additional Info:</strong></h5>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-lg-2 col-md-4 task-controls">
-                                                                <button class="btn btn-red btn-sm"><i class="fa fa-trash-o"></i> Delete</button>
-                                                                <button class="btn btn-blue btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                                                <button class="btn btn-green btn-sm"><i class="fa fa-check"></i> Complete</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <!-- /task -->
-                                            <!-- task -->
-                                            <div class="task panel">
-
-                                                <div class="priority priority-high"></div>
-
-                                                <div class="panel-heading">
-
-                                                    <div class="task-controls">
-                                                        <div class="checkbox">
-                                                            <input type="checkbox" id="task07chck" checked>
-                                                            <label for="task07chck"></label>
-                                                        </div>
-
-                                                        <a href="##" class="mark marked"><i class="fa fa-star-o"></i></a>
-                                                    </div>
-
-                                                    <div class="heading">
-                                                        <h5>Another one completed task in our task list</h5>
-                                                        <small>Added: April 06, 2014</small>
-                                                    </div>
-
-                                                    <span class="label label-red">high</span>
-
-                                                    <a class="task-toggle" data-toggle="collapse" data-target="#task07" data-parent=".task-group" href="##">
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </a>
-
-                                                </div>
-
-                                                <div id="task07" class="collapse">
-                                                    <div class="panel-body task-content">
-                                                        <div class="row">
-                                                            <div class="col-lg-10 col-md-8">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-thumb-tack"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>ID:</strong> #3694</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Due Date:</strong> April 10, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-user"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Assigned By:</strong> Ing. Imrich Kamarel</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-clock-o"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Created At:</strong> April 03, 2014</h5>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="pull-left fa fa-info-circle"></i>
-                                                                        <div class="media-body">
-                                                                            <h5 class="media-heading"><strong>Additional Info:</strong></h5>
-                                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-lg-2 col-md-4 task-controls">
-                                                                <button class="btn btn-red btn-sm"><i class="fa fa-trash-o"></i> Delete</button>
-                                                                <button class="btn btn-blue btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                                                <button class="btn btn-green btn-sm"><i class="fa fa-check"></i> Complete</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <!-- /task -->
-
-
-                                        </div>
-                                        <!-- tasks -->
-
-
-                                    </li>
-                                    <!-- /completed tasks -->
-
-
                                     <li class="more">
                                         <div class="pointer"></div>
                                         <button class="btn btn-default">Load More</button>
                                     </li>
 
-
                                 </ol>
-
                             </div>
-
-
-
 
 
                         </div>
                         <!-- /tile body -->
 
-
-
                     </section>
                     <!-- /tile -->
-
-
 
                 </div>
                 <!-- /col 8 -->
 
-
-
             </div>
             <!-- /row -->
-
-
 
 
         </div>
@@ -817,14 +180,8 @@
 
 
 
-
-
-
     </div>
     <!-- Page content end -->
-
-
-
 
 
 
@@ -891,93 +248,147 @@
 
     </script>
 
-
-
     <script>
-    $(function(){
+        $(function () {
 
-    //load wysiwyg editor
-    $('#input06').summernote({
-    toolbar: [
-    //['style', ['style']], // no style button
-    ['style', ['bold', 'italic', 'underline', 'clear']],
-    ['fontsize', ['fontsize']],
-    ['color', ['color']],
-    ['para', ['ul', 'ol', 'paragraph']],
-    ['height', ['height']],
-    //['insert', ['picture', 'link']], // no insert buttons
-    //['table', ['table']], // no table button
-    //['help', ['help']] //no help button
-    ],
-    height: 137   //set editable area's height
-    });
+            //load wysiwyg editor
+            $('#input06').summernote({
+                toolbar: [
+                //['style', ['style']], // no style button
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                //['insert', ['picture', 'link']], // no insert buttons
+                //['table', ['table']], // no table button
+                //['help', ['help']] //no help button
+                ],
+                height: 137   //set editable area's height
+            });
 
-    //chosen select input
-    $(".chosen-select").chosen({disable_search_threshold: 10});
+            //chosen select input
+            $(".chosen-select").chosen({ disable_search_threshold: 10 });
 
-    //initialize datepicker
-    $('#datepicker').datetimepicker({
-    icons: {
-    time: "fa fa-clock-o",
-    date: "fa fa-calendar",
-    up: "fa fa-arrow-up",
-    down: "fa fa-arrow-down"
-    }
-    });
+            //initialize datepicker
+            $('#datepicker').datetimepicker({
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+            });
 
-    $("#datepicker").on("dp.show",function (e) {
-    var newtop = $('.bootstrap-datetimepicker-widget').position().top - 45;
-    $('.bootstrap-datetimepicker-widget').css('top', newtop + 'px');
-    });
+            $("#datepicker").on("dp.show", function (e) {
+                var newtop = $('.bootstrap-datetimepicker-widget').position().top - 45;
+                $('.bootstrap-datetimepicker-widget').css('top', newtop + 'px');
+            });
 
-    //initialize colorpicker
-    $('#colorpicker').colorpicker();
+            //initialize colorpicker
+            $('#colorpicker').colorpicker();
 
-    $('#colorpicker').colorpicker().on('showPicker', function(e){
-    var newtop = $('.dropdown-menu.colorpicker.colorpicker-visible').position().top - 45;
-    $('.dropdown-menu.colorpicker.colorpicker-visible').css('top', newtop + 'px');
-    });
+            $('#colorpicker').colorpicker().on('showPicker', function (e) {
+                var newtop = $('.dropdown-menu.colorpicker.colorpicker-visible').position().top - 45;
+                $('.dropdown-menu.colorpicker.colorpicker-visible').css('top', newtop + 'px');
+            });
 
-    //initialize colorpicker RGB
-    $('#colorpicker-rgb').colorpicker({
-    format: 'rgb'
-    });
+            //initialize colorpicker RGB
+            $('#colorpicker-rgb').colorpicker({
+                format: 'rgb'
+            });
 
-    $('#colorpicker-rgb').colorpicker().on('showPicker', function(e){
-    var newtop = $('.dropdown-menu.colorpicker.colorpicker-visible').position().top - 45;
-    $('.dropdown-menu.colorpicker.colorpicker-visible').css('top', newtop + 'px');
-    });
+            $('#colorpicker-rgb').colorpicker().on('showPicker', function (e) {
+                var newtop = $('.dropdown-menu.colorpicker.colorpicker-visible').position().top - 45;
+                $('.dropdown-menu.colorpicker.colorpicker-visible').css('top', newtop + 'px');
+            });
 
-    //initialize file upload button
-    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+            //initialize file upload button
+            $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
 
-    var input = $(this).parents('.input-group').find(':text'),
-    log = numFiles > 1 ? numFiles + ' files selected' : label;
+                var input = $(this).parents('.input-group').find(':text'),
+                log = numFiles > 1 ? numFiles + ' files selected' : label;
 
-    console.log(log);
+                console.log(log);
 
-    if( input.length ) {
-    input.val(log);
-    } else {
-    if( log ) alert(log);
-    }
+                if (input.length) {
+                    input.val(log);
+                } else {
+                    if (log) alert(log);
+                }
 
-    });
+            });
 
-    // Initialize colorpalette
-    $('#event-colorpalette').colorPalette({
-    colors:[['#428bca', '#5cb85c', '#5bc0de', '#f0ad4e' ,'#d9534f', '#ff4a43', '#22beef', '#a2d200', '#ffc100', '#cd97eb', '#16a085', '#FF0066', '#A40778', '#1693A5']]
-    }).on('selectColor', function(e) {
-    var data = $(this).data();
+            // Initialize colorpalette
+            $('#event-colorpalette').colorPalette({
+                colors: [['#428bca', '#5cb85c', '#5bc0de', '#f0ad4e', '#d9534f', '#ff4a43', '#22beef', '#a2d200', '#ffc100', '#cd97eb', '#16a085', '#FF0066', '#A40778', '#1693A5']]
+            }).on('selectColor', function (e) {
+                var data = $(this).data();
 
-    $(data.returnColor).val(e.color);
-    $(this).parents(".input-group").css("border-bottom-color", e.color );
-    });
+                $(data.returnColor).val(e.color);
+                $(this).parents(".input-group").css("border-bottom-color", e.color);
+            });
 
-    })
+        })
     </script>
 
+    <script>
+        $('#submitTask').click(function (e) {
+            e.preventDefault();
+            var title = $('#task-name').val();
+            var dueDate = $('#datepicker').val();
+            var description = $('#description').val();
+            var $taskList = $('#taskList');
+            $.ajax({
+                url: '/UserTasks/Create',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ model: { Title: title, DueDate: dueDate, Description: description } }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function () {
+                    window.location.reload();
+                }
+
+            });
+        });
+
+        $('.btn.btn-red.btn-sm.delete').click(function (e) {
+            e.preventDefault();
+            var taskId = $(this).attr('data-id');
+            $.ajax({
+                url: '/UserTasks/Delete',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ id: taskId }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function () {
+                    window.location.reload();
+                }
+            });
+        });
+
+        $('.btn.btn-green.btn-sm.completed').click(function (e) {
+            e.preventDefault();
+            var taskId = $(this).attr('data-id');
+            $.ajax({
+                url: '/UserTasks/Complete',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ id: taskId }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function () {
+                    window.location.reload();
+                }
+            });
+        });
+    </script>
 </body>
-
-
-
