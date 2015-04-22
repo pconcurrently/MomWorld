@@ -182,6 +182,7 @@ h2 {
     text-transform: uppercase;
     font-size: 15px;
     font-family: monospace;
+    line-height: 28px;
 }
 .navbar-fixed-top .navbar-nav > li:not(.search):not(.user) > a:hover {
     color: white;
@@ -437,6 +438,10 @@ h2 {
     }
 }
 @media only screen and (max-width: 992px) {
+
+  .navbar-fixed-top .navbar-nav > li:not(.search):not(.user) > a .icon-nav{
+    display: none;
+  }
     .navbar-fixed-top .container {
         width: 100%;
     }
@@ -461,6 +466,12 @@ h2 {
     }
 }
 @media only screen and (max-width: 768px) {
+
+.navbar-fixed-top .navbar-nav > li:not(.search):not(.user) > a .icon-nav{
+  display:initial;
+}
+
+
     .navbar-fixed-top {
         line-height: normal !important;
         height: auto !important;
@@ -510,7 +521,9 @@ h2 {
         overflow: hidden;
         margin-left: 15px;
         width: 50px;
-    }
+    
+        display: inline-block;
+}
     .navbar-fixed-top .navbar-nav .user .profile-photo img {
         border-radius: 50%;
         border: 5px solid white;
