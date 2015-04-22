@@ -84,6 +84,9 @@ namespace MomWorld
                 var phone = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(reminding.UserName)).PhoneNumber;
                 SMSServices.Send(phone,
                     string.Format("Vao luc: {0},ban co mot cong viec can hoan thanh: {1}", reminding.DueDate, reminding.Description));
+                reminding.IsCompleted = true;
+                subscriberDb.Entry(reminding).State = System.Data.Entity.EntityState.Modified;
+                subscriberDb.SaveChanges();
             }
 
         }
