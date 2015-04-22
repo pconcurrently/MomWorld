@@ -30,6 +30,7 @@ namespace MomWorld.Controllers
         private ApplicationUserManager _userManager;
         private ArticleDb articleDb = new ArticleDb();
         private IdentityDb identityDb = new IdentityDb();
+        private SubscriberDb subscriberDb = new SubscriberDb();
 
         #region SMS
         SerialPort port = new SerialPort();
@@ -129,7 +130,7 @@ namespace MomWorld.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Status = (int)IdentityStatus.Normal, ProfilePicture =  "~/App/uploads/avatar/default.png"};
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Status = (int)IdentityStatus.Normal, ProfilePicture = "~/App/uploads/avatar/default.png" };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 UserManager.AddToRole(user.Id, "Users");
                 if (result.Succeeded)
@@ -143,10 +144,7 @@ namespace MomWorld.Controllers
                     m.Subject = "Mom's World Email confirmation";
                     m.Body = "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>";
                     m.IsBodyHtml = true;
-                    System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");
-                    smtp.Credentials = new System.Net.NetworkCredential("momworld.notreply@gmail.com", "Abcd1234@");
-                    smtp.EnableSsl = true;
-                    smtp.Send(m);
+                    MailServices.Send(m);
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
@@ -693,7 +691,6 @@ namespace MomWorld.Controllers
 
         [Authorize(Roles = "Admins")]
         public ActionResult SMSManager()
-        
         {
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             return View();
@@ -725,9 +722,10 @@ namespace MomWorld.Controllers
         public ActionResult Task()
         {
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+            ViewBag.UserTasks = subscriberDb.UserTasks.ToList().FindAll(uts => uts.UserName.Equals(User.Identity.Name)).OrderByDescending(ut => ut.CreatedDate).ToList();
             return View();
         }
-        
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

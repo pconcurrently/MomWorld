@@ -27,15 +27,60 @@ namespace MomWorld.Controllers
 
         public JsonResult Create(Subscriber model)
         {
-            if (ModelState.IsValid)
+            var subscriber1 = db.Subscribers.FirstOrDefault(s => s.Email.Equals(model.Email));
+            var subscriber2 = db.Subscribers.FirstOrDefault(s => s.PhoneNumber.Equals(model.PhoneNumber));
+            if (subscriber1 == null && subscriber2 == null)
             {
-                db.Entry(model).State = EntityState.Added;
+
+                if (ModelState.IsValid)
+                {
+                    db.Entry(model).State = EntityState.Added;
+                    db.SaveChanges();
+
+                    SMSServices.Send(model.PhoneNumber, "Mom's World: Cam on ban da dang ky dich vu tin nhan cua chung toi!");
+                    if (model.Email != null)
+                    {
+                        System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(
+             new System.Net.Mail.MailAddress("momworld.notreply@gmail.com", "Mom's World"),
+             new System.Net.Mail.MailAddress(model.Email));
+                        m.Subject = "Mom's World Subscription";
+                        m.Body = "Thank you for your subscription!";
+                        m.IsBodyHtml = true;
+                        MailServices.Send(m);
+                    }
+                    return Json("Successfully");
+                }
+            }
+            else if (subscriber1 != null && subscriber2 != null)
+            {
+                return Json("Duplicated");
+            }
+            else if (subscriber1 != null)
+            {
+                subscriber1.PhoneNumber = model.PhoneNumber;
+                subscriber1.DatePregnancy = model.DatePregnancy;
+                db.Entry(subscriber1).State = EntityState.Modified;
+                db.SaveChanges();
+                SMSServices.Send(model.PhoneNumber, "Mom's World: Cam on ban da dang ky dich vu tin nhan cua chung toi!");
+                return Json("PhoneUpdated");
+            }
+            else
+            {
+                subscriber2.Email = model.Email;
+                subscriber2.DatePregnancy = model.DatePregnancy;
+                db.Entry(subscriber2).State = EntityState.Modified;
                 db.SaveChanges();
 
-                SMSServices.Send(model.PhoneNumber, "Mom's World: Cam on ban da dang ky dich vu nhan tin cua chung toi!");
-                return Json("Successfully");
-            }
+                System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(
+            new System.Net.Mail.MailAddress("momworld.notreply@gmail.com", "Mom's World"),
+            new System.Net.Mail.MailAddress(model.Email));
+                m.Subject = "Mom's World Subscription";
+                m.Body = "Thank you for your subscription!";
+                m.IsBodyHtml = true;
+                MailServices.Send(m);
 
+                return Json("EmailUpdated");
+            }
             return Json(null);
         }
 

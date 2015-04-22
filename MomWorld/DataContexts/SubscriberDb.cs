@@ -15,5 +15,8 @@ namespace MomWorld.DataContexts
         }
 
         public DbSet<Subscriber> Subscribers { get; set; }
+
+        public DbSet<UserTask> UserTasks { get; set; }
+
     }
 }

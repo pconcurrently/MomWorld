@@ -337,14 +337,14 @@
                         <!-- tile header -->
                         <div class="tile-header color greensea rounded-top-corners">
                             <h2>
-                                Đăng kí nhận tin
+                                Đăng ký nhận tin
                             </h2>
                         </div>
                         <!-- /tile header -->
                         <!-- tile body -->
                         <div class="tile-body">
 
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" id="subscribeForm">
 
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Số điện thoại" id="phone">
@@ -957,7 +957,7 @@
             var email = $('#email').val();
             var phone = $('#phone').val();
             var date = $('#datepicker').val();
-
+            var $subscribeForm = $('#subscribeForm');
             $.ajax({
                 url: '/Subscribers/Create',
                 dataType: "json",
@@ -968,8 +968,26 @@
                 processData: false,
                 cache: false,
                 success: function (data) {
-                    window.location.reload(true);
+                    if (data == "Successfull") {
+                        $subscribeForm.html("<span style='color:blue'>Cảm ơn bạn đã đăng ký!</span>");
+                    }
+
+                    if (data == "PhoneUpdated") {
+                        $subscribeForm.html("<span style='color:blue'>Đã cập nhật số điện thoại của bạn!</span>");
+                    }
+
+                    if (data == "EmailUpdated") {
+                        $subscribeForm.html("<span style='color:blue'>Đã cập nhật địa chỉ email của bạn!</span>");
+                    }
+
+                    if (data == "Duplicated") {
+                        $subscribeForm.html("<span style='color:blue'>Số điện thoại và email đã được dùng để đăng ký!</span>");
+
+                    }
                 },
+                error: function () {
+                    $subscribeForm.html("<span style='color:red'>Xảy ra lỗi!</span>");
+                }
             });
         });
 

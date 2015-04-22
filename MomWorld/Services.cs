@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Web;
+using System.Net.Mail;
 
 namespace MomWorld
 {
@@ -95,6 +96,17 @@ namespace MomWorld
             {
                 objSMS.ClosePort(port);
             }
+        }
+    }
+
+    public class MailServices
+    {
+        public static void Send(MailMessage m)
+        {
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");
+            smtp.Credentials = new System.Net.NetworkCredential("momworld.notreply@gmail.com", "Abcd1234@");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
         }
     }
 }
