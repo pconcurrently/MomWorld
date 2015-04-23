@@ -1,5 +1,4 @@
 ﻿
-
 /* Style Index * /
 
 #0 Reset
@@ -138,7 +137,7 @@ img.aspect-px {
 	content: '';
 	position: absolute;
 	left: 0px;
-	top: 0px;
+	top: 20px;
 	width: 100%;
 	height: 100%;
 	z-index: 3;
@@ -254,7 +253,7 @@ img.aspect-px {
 
 .menu-content.video-list .img-hover-effect .hoveringel,.video-list.grid .img-hover-effect .hoveringel
 	{
-	line-height: 118px !important;
+	line-height: 168px !important;
 	font-size: 35px !important;
 }
 
@@ -1285,15 +1284,15 @@ img.aspect-px {
 }
 
 .video-list.grid .item {
-	display: block;
-	width: 31.35%;
+	display: inline-block;
+	width: 18%;
 	float: left;
 	background-color: #fff;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	overflow: hidden;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-	margin-right: 2.96%;
+	margin-right: 2.5%;
 	margin-bottom: 3%;
 }
 
@@ -1333,11 +1332,11 @@ img.aspect-px {
 	margin-bottom: 4px;
 }
 
-.video-list.grid .item:nth-child(3n) {
+.video-list.grid .item:nth-child(5n) {
 	margin-right: 0px;
 }
 
-.video-list.grid .item:nth-child(3n+1) {
+.video-list.grid .item:nth-child(5n+1) {
 	clear: both;
 }
 
