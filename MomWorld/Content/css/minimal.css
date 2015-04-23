@@ -5012,7 +5012,7 @@ body.no-bg {
   background: none;
 }
 body.solid-bg-1 {
-  background-color: #00C29B;
+  background-color: #40B84F;
   /* background-image: url(../images/noise.png); */
   background-repeat: repeat;
   background-position: left top;
@@ -5642,7 +5642,7 @@ menu .btn .fa {
 }
 .navbar .navbar-nav.quick-actions .dropdown .dropdown-menu.settings > li #color-schemes > li > a.solid-bg-1,
 .navbar .navbar-nav.quick-actions .dropdown .dropdown-menu.settings > li #videobackgrounds > li > a.solid-bg-1 {
-  background-color: #00C29B;
+  background-color: #16A56F;
 }
 .navbar .navbar-nav.quick-actions .dropdown .dropdown-menu.settings > li #color-schemes > li > a.solid-bg-2,
 .navbar .navbar-nav.quick-actions .dropdown .dropdown-menu.settings > li #videobackgrounds > li > a.solid-bg-2 {
@@ -5670,7 +5670,7 @@ menu .btn .fa {
 
 .navbar-nav.side-nav > li.collapsed-content > ul > li.user > form .settings > li #color-schemes > li > a.solid-bg-1,
 .navbar .navbar-nav.quick-actions .dropdown .dropdown-menu.settings > li #videobackgrounds > li > a.solid-bg-1 {
-  background-color: #00C29B;
+  background-color: #16A56F;
 }
 .navbar-nav.side-nav > li.collapsed-content > ul > li.user > form .settings > li #color-schemes > li > a.solid-bg-2,
 .navbar .navbar-nav.quick-actions .dropdown .dropdown-menu.settings > li #videobackgrounds > li > a.solid-bg-2 {
