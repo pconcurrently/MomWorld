@@ -98,7 +98,7 @@
                                     <li class="group" id="taskList">
                                         <div class="pointer"></div>
                                         <h4><strong>Tất cả các nhắc nhở</strong></h4>
-                                        <h5><i class="fa fa-check-circle-o"></i> <strong>Những nhắc nhở chưa được hoàn thành</strong></h5>
+                                        <h5><i class="fa fa-check-circle-o"></i> <strong>Chưa hoàn thành</strong></h5>
                                         @foreach (var task in userTasks)
                                         {
                                             if (!task.IsCompleted)
@@ -159,7 +159,7 @@
                                     <!-- /today tasks -->
                                     <!-- completed tasks -->
                                     <li class="group completed">
-                                        <h5><i class="fa fa-check-circle-o"></i> <strong>Những nhắc nhở đã được hoàn thành</strong></h5>
+                                        <h5><i class="fa fa-check-circle-o"></i> <strong>Đã hoàn thành</strong></h5>
                                         @foreach (var task in userTasks)
                                         {
                                             if (task.IsCompleted)
