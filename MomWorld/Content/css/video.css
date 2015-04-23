@@ -1,5 +1,4 @@
-@charset
-UTF-8;
+﻿
 
 /* Style Index * /
 
@@ -54,7 +53,7 @@ a:focus {
 	position: relative;
 }
 
-.boxed:not (.active ) {
+.boxed:not(.active ) {
 	background: #f0f0f0 !important;
 }
 
@@ -933,7 +932,7 @@ img.aspect-px {
 	-moz-border-radius: 0 3px 3px 3px;
 }
 
-.header #main-menu .top-menu>li:not (.mega-menu-full ) >ul li {
+.header #main-menu .top-menu>li:not(.mega-menu-full ) >ul li {
 	border-bottom: 1px solid #ccc;
 	position: relative;
 }
@@ -1031,11 +1030,11 @@ img.aspect-px {
 	padding-bottom: 5px;
 }
 
-.header.light #main-menu .top-menu>li:not (.mega-menu-full ) >ul li {
+.header.light #main-menu .top-menu>li:not(.mega-menu-full ) >ul li {
 	border-bottom: 1px solid #585858;
 }
 
-.header.light #main-menu .top-menu>li:not (.mega-menu-full ) >ul li:last-child
+.header.light #main-menu .top-menu>li:not(.mega-menu-full ) >ul li:last-child
 	{
 	border-bottom: 0px;
 }
@@ -1226,6 +1225,7 @@ img.aspect-px {
 	/* font-size: 18px; */
 	font-weight: 600;
 	margin-bottom: 0px;
+	margin-top: 0;
 }
 
 .content-panel .panel-title .right {
@@ -1258,7 +1258,7 @@ img.aspect-px {
 }
 
 .with-sidebar-layout {
-	width: 670px;
+	width: 100%;
 }
 
 .without-sidebar-layout {
@@ -1914,7 +1914,7 @@ img.aspect-px {
 	padding: 0px;
 }
 
-#sidebar>.widget>ul:not (.no-border ),#sidebar>.widget>div:not (.no-border
+#sidebar>.widget>ul:not(.no-border ),#sidebar>.widget>div:not(.no-border
 	) {
 	margin-top: 10px;
 	background-color: #fff;
