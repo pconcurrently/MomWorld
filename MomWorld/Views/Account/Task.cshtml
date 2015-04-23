@@ -8,6 +8,8 @@
 </head>
 <body class="bg-2">
 
+    <hidden id="hasPhone" data-id="@ViewBag.HasPhone"></hidden>
+
     <!-- Modal -->
     <div class="modal fade" id="setPhoneModal" tabindex="-1" role="dialog"
          aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -19,9 +21,10 @@
                             aria-hidden="true">
                         Thoát
                     </button>
-                    <img class="img-responsive" src="@Url.Content("~/Content/images/page-images/2.jpg")" />
+                    <h4>Để sử dụng dịch vụ SMS, trước tiên bạn hãy đăng ký số điện thoại!</h4>
+                    <span><small><i>Hãy cập nhật số điện thoại tại đây hoặc tại trang quản lý tài khoản</i></small></span>
                     <h3 class="modal-title" id="modalConfirmLabel">
-                        <strong>Đặt số điện thoại</strong>
+                        <strong>Cập nhật số điện thoại</strong>
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -36,6 +39,7 @@
                                     </span>
                                     <input type="text" class="form-control" id="phone-number" placeholder="Số điện thoại">
                                 </div>
+                                <div class="required" id="wrongNumber"></div>
                             </div>
                         </div>
 
@@ -56,8 +60,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
-
     <!-- Page content -->
     <div id="content" class="col-md-12">
 
@@ -265,13 +267,10 @@
 
                                     </li>
                                     <!-- /completed tasks -->
-
-
-
                                     @*<li class="more">
-                                        <div class="pointer"></div>
-                                        <button class="btn btn-default">Load More</button>
-                                    </li>*@
+                                            <div class="pointer"></div>
+                                            <button class="btn btn-default">Load More</button>
+                                        </li>*@
 
                                 </ol>
                             </div>
@@ -504,6 +503,37 @@
                     window.location.reload();
                 }
             });
+        });
+
+        $(document).ready(function () {
+            var hasPhone = $('#hasPhone').attr('data-id');
+            if (hasPhone.length < 7) {
+                $('#setPhoneModal').modal('show');
+            }
+        });
+
+        $('#submitPhone').click(function (e) {
+            e.preventDefault();
+            var phoneNumber = $('#phone-number').val();
+            var isNum = /^(0|[1-9][0-9]{0,2}(?:(,[0-9]{3})*|[0-9]*))(\.[0-9]+){0,1}/.test(phoneNumber);
+            if (!isNum) {
+                $('#wrongNumber').html("<h4 style='color:red;text-align:center;'><i>Bạn đã nhập sai định dạng số điện thoại. Hãy thử lại!</i></h4>")
+            }
+            else {
+                    $.ajax({
+                        url: '/Account/UpdatePhone',
+                        dataType: "json",
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify({ PhoneNumber: phoneNumber }),
+                        async: true,
+                        processData: false,
+                        cache: false,
+                        success: function () {
+                            window.location.reload();
+                        }
+                    });
+            }
         });
     </script>
 </body>
