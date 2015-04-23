@@ -723,7 +723,24 @@ namespace MomWorld.Controllers
         {
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             ViewBag.UserTasks = subscriberDb.UserTasks.ToList().FindAll(uts => uts.UserName.Equals(User.Identity.Name)).OrderByDescending(ut => ut.CreatedDate).ToList();
+            ViewBag.HasPhone = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).PhoneNumber;
             return View();
+        }
+
+        public JsonResult UpdatePhone(string PhoneNumber)
+        {
+            try
+            {
+                var currentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+                currentUser.PhoneNumber = PhoneNumber;
+                identityDb.Entry(currentUser).State = EntityState.Modified;
+                identityDb.SaveChanges();
+                return Json("Successfull");
+            }
+            catch (Exception)
+            {
+                return Json(null);
+            }
         }
 
         #region Helpers
