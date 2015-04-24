@@ -123,7 +123,7 @@
                         url: "http://www.videogular.com/styles/themes/default/latest/videogular.css"
                     },
                     plugins: {
-                        poster: "http://www.videogular.com/assets/images/videogular.png"
+                        poster: "http://cdn.sheknows.com/articles/2014/05/Rebekah/AU/mother-and-baby.jpg"
                     }
                 };
 

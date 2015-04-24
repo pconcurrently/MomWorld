@@ -10,7 +10,6 @@ function ($scope, $firebase, $http, $firebaseObject, $firebaseArray, FileUploade
     $scope.currentUsername = $scope.currentUser.Username;
 
     var userStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername);
-    /*  $scope.statusFirebase = $firebaseArray(userStatus); */
     var scrollRef = new Firebase.util.Scroll(userStatus, 'createdDate');
     $scope.statusFirebase = $firebaseArray(scrollRef);
     $scope.statusFirebase.scroll = scrollRef.scroll;
@@ -18,6 +17,7 @@ function ($scope, $firebase, $http, $firebaseObject, $firebaseArray, FileUploade
     $scope.user = {
     }
 
+    // Initial 3 Status
     $scope.statusFirebase.scroll.next(3);
 
     $scope.loadProfile = function () {
@@ -105,7 +105,7 @@ function ($scope, $firebase, $http, $firebaseObject, $firebaseArray, FileUploade
             CreatedDate: Firebase.ServerValue.TIMESTAMP,
             NumLike: {
                 Count: 0,
-                User: []
+                Liker: []
             },
             NumComment: 0
         }
@@ -170,9 +170,11 @@ function ($scope, $firebase, $http, $firebaseObject, $firebaseArray, FileUploade
         //NumComment.once('value', function (snapshot) {
         //    NumComment.set(snapshot.val() + 1);
         //});
+
         var numLike = $firebaseObject(p);
         numLike.$loaded(function (data) {
             data.Count++;
+            data.Liker.push($scope.currentUsername);
             data.$save().then();
         },
             function (err) { });
