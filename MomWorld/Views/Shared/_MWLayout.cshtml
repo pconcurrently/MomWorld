@@ -166,7 +166,7 @@
                                  src="@Url.Content("~/Content/images/icon-nav/home.png")"> Trang chủ
                         </a>
                     </li>
-                    <li class='@Html.IsActive("NineMonthArticles", "Timeline") || @Html.IsActive("Quizzes", "Index") dropdown' data-init="onHover">
+                    <li class='@Html.IsActive("NineMonthArticles", "Timeline") dropdown' data-init="onHover">
                         <a class="dropdown-toggle" data-toggle="dropdown"
                            data-0="padding: 25px 25px 25px;"
                            data-300="padding: 15px 25px 15px;">
@@ -182,16 +182,16 @@
 
                     </li>
 
-                    <li>
-                        <a href="advisory.html" data-0="padding: 25px 25px 25px;"
+                    <li class='@Html.IsActive("Quizzes", "Index") || @Html.IsActive("Quizzes", "DoQuiz")'>
+                        <a href="@Url.Action("Index", "Quizzes")" data-0="padding: 25px 25px 25px;"
                            data-300="padding: 15px 25px 15px;">
                             <img class="icon-nav"
                                  src="@Url.Content("~/Content/images/icon-nav/quizz.png")"> Kiểm tra
                         </a>
                     </li>
 
-                    <li>
-                        <a href="advisory.html" data-0="padding: 25px 25px 25px;"
+                    <li class='@Html.IsActive("Advisory", "Index")'>
+                        <a href="@Url.Action("Index", "Advisory")" data-0="padding: 25px 25px 25px;"
                            data-300="padding: 15px 25px 15px;">
                             <img class="icon-nav"
                                  src="@Url.Content("~/Content/images/icon-nav/advisory.png")"> Tư vấn
