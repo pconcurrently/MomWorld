@@ -495,7 +495,7 @@ h2 {
     }
     .navbar-fixed-top .navbar-header .navbar-toggle {
         height: 40px;
-        line-height: 36px;
+        line-height: 50px;
         margin: 0;
     }
     .navbar-fixed-top .navbar-header .navbar-toggle > a {
@@ -1262,10 +1262,10 @@ section.parallax {
 }
 .highlight:focus,
 .highlight:hover {
-    background-color: #418bca;
+    background-color: #1CCDAA;
     color: white;
-    -webkit-box-shadow: 0 3px 0 0 #91bce0;
-    box-shadow: 0 3px 0 0 #91bce0;
+    -webkit-box-shadow: 0 3px 0 0 #00AE8C;
+    box-shadow: 0 3px 0 0 #00AE8C;
 }
 .highlight:focus p,
 .highlight:hover p {
@@ -1558,7 +1558,7 @@ button.btn-bordered,
 }
 button.btn-bordered:hover,
 .btn.btn-bordered:hover {
-    background-color: #418bca;
+    background-color: #1CCDAA;
     border-color: transparent;
 }
 button.btn-lg,

@@ -1575,9 +1575,9 @@ color: rgba(255, 0, 0, 1);
 }
 #content.full-page.error .inside-block h1.error {
   text-align: center;
-  font-size: 60px;
+  font-size: 40px;
   margin-top: 20px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 #content.full-page.error .inside-block h1.error strong:before {
   top: 2px;
