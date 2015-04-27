@@ -10,32 +10,13 @@
 
 <head>
     <title>@ViewBag.Title.</title>
-    
-    <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/angular-md5.min.js")"></script>
-    <script src="@Url.Content("~/App/scripts/angular-file-upload/angular-file-upload.min.js")"></script>
-    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
-
-    <script src="@Url.Content("~/App/js/otherProfileCtrl.js")"></script>
 
 </head>
 <body class="bg-2" id="yolo" ng-app="otherProfileApp" ng-controller="otherProfileCtrl">
 
 
-
-
             <!-- Page content -->
             <div id="content" class="col-md-12">
-
-
-
-
-
-
-
-
-
                 <!-- page header -->
                 <div class="pageheader">
 
@@ -50,13 +31,8 @@
                 <!-- content main container -->
                 <div class="main">
 
-
-
                     <!-- row -->
                     <div class="row">
-
-
-
 
                         <!-- col 4 -->
                         <div class="col-md-4">
@@ -125,34 +101,9 @@
                                 </div>
                                 <!-- /tile body -->
 
-
-
                             </section>
                             <!-- /tile -->
-                            <!-- tile -->
-                            <section class="tile color transparent-black">
-
-
-
-
-                                <!-- tile header -->
-                                <div class="tile-header">
-                                    <h1>
-                                        Giới thiệu<strong> Bản Thân</strong>
-                                    </h1>
-                                    <div class="controls">
-                                        <a href="personal-page.html#" class="minimize">
-                                            <i class="fa fa-chevron-down"></i>
-                                        </a> <a href="personal-page.html#"
-                                                class="refresh"><i class="fa fa-refresh"></i></a> <a href="personal-page.html#" class="remove">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                               
-
-                            </section>
-                            <!-- /tile -->
+                            
 
                         </div>
                         <!-- /col 4 -->
@@ -194,10 +145,10 @@
                                             <textarea ng-model="Content" class="form-control"
                                                       placeholder="Bạn đang nghĩ gì ?" rows="5"></textarea>
                                             <div class="post-toolbar">
-                                                <a href="personal-page.html#" title="Đính kèm file">
-                                                    <i class="fa fa-paperclip"></i>
-                                                </a> <a href="personal-page.html#"
-                                                        title="Thêm ảnh"><i class="fa fa-camera"></i></a>
+                                                <a href="#" title="Đính kèm file">
+                                                   
+                                                </a> <a href="#"
+                                                        title="Thêm ảnh"></a>
 
                                                 <a href="" ng-click="createStatus()" title="Đăng!" class="pull-right">
                                                     <i class="fa fa-share"></i>
@@ -210,7 +161,7 @@
                                             <article ng-repeat="status in statusFirebase" class="feed-post">
 
                                                 <aside class="profile-photo">
-                                                    <a href="personal-page.html#">
+                                                    <a ng-href="http://localhost:4444/Profile/getProfile/{{status.CreatorUsername}}">
                                                         <img src="{{status.CreatorAvatar}}" alt=""
                                                              class="img-circle">
                                                     </a>
@@ -221,8 +172,8 @@
                                                     <header>
 
                                                         <div class="author">
-                                                            <a href="personal-page.html#">{{status.CreatorName}}</a> đã cập nhật một
-                                                            trạng thái mới <small>{{status.CreatedDate}}</small>
+                                                            <a href="personal-page.html#">{{status.CreatorUsername}}</a> đã cập nhật một
+                                                            trạng thái mới <small><span am-time-ago="status.CreatedDate"></span></small>
                                                         </div>
 
                                                     </header>
@@ -233,13 +184,10 @@
 
                                                     <footer>
                                                         <a href="personal-page.html#" class="liked">
-                                                            <i class="fa fa-heart"></i> Thích <span>(14)</span>
+                                                            <i class="fa fa-heart"></i> Thích <span>({{status.NumLike.Count}})</span>
                                                         </a> <a href="personal-page.html#">
-                                                            <i class="fa fa-comment"></i> Bình luận <span>(26)</span>
-                                                        </a> <a ng-click="removeStatus(status)" href="">
-                                                            <i class="fa fa-close"></i>
-                                                            Xóa
-                                                        </a>
+                                                            <i class="fa fa-comment"></i> Bình luận <span>({{status.NumComment}})</span>
+                                                        </a> 
 
                                                         <ul class="comments">
                                                             <li ng-repeat="comment in status.Comment">
@@ -250,7 +198,7 @@
 
                                                                 <div class="comment-container">
 
-                                                                    <a href="personal-page.html#" class="comment-author">
+                                                                    <a ng-href="http://localhost:4444/Profile/getProfile/{{comment.CreatorUsername}}" class="comment-author">
                                                                         {{comment.CreatorName}}
                                                                     </a> {{comment.Content}}
 
@@ -258,10 +206,8 @@
 
                                                                         <a href="personal-page.html#" class="comment-date">
                                                                             {{comment.CreatedDate}}
-                                                                        </a> <i class="fa fa-circle"></i> <a href="personal-page.html#">
-                                                                            <i class="fa fa-heart"></i> Thích <span>(2)</span>
-                                                                        </a> <i class="fa fa-circle"></i> <a href="personal-page.html#">
-                                                                            <i class="fa fa-reply"></i> Trả lời
+                                                                        </a> <a href="personal-page.html#">
+                                                                            <i class="fa fa-heart"></i> Thích <span>(0)</span>
                                                                         </a>
                                                                     </div>
 
@@ -295,9 +241,6 @@
 
                                             </article>
 
-
-
-
                                             <div class="text-center">
                                                 <a href="personal-page.html#" class="btn btn-default">
                                                     Xem thêm
@@ -326,12 +269,12 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="first-name">Họ</label> <input type="text"
-                                                                                              class="form-control" id="first-name" ng-model="user.FirstName">
+                                                                                              class="form-control" id="first-name" ng-model="user.FirstName" readonly>
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="last-name">Tên</label> <input type="text"
-                                                                                              class="form-control" id="last-name" ng-model="user.LastName">
+                                                                                              class="form-control" id="last-name" ng-model="user.LastName" readonly>
                                                 </div>
 
                                             </div>
@@ -349,10 +292,7 @@
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="phone">Số điện thoại</label> <input type="text"
-                                                                                                    class="form-control" id="phone" ng-model="user.PhoneNumber">
-                                                    <span class="help-block">+(84)1655757445</span>
-
-
+                                                                                                    class="form-control" id="phone" ng-model="user.PhoneNumber" readonly>
                                                 </div>
 
                                             </div>
@@ -388,25 +328,8 @@
 
                                     </div>
 
-                                    <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge()">
-                                        <div class="tile text-center">
-
-                                            <div class="">
-
-                                                <div class="text-center">
-
-                                                    <img alt="" src="Content/images/armorial/1.png"
-                                                         style="height: 200px; width: 200px;">
-                                                    <h1>Number One</h1>
-                                                    <p>Chúc mừng, bạn là một người tuyệt vời</p>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
+                                    <div id="trophies-tab" class="tab-pane fade in">
                                         <div class="">
-
                                             <!-- tile header -->
                                             <div class="tile-header ">
                                                 <h1>
@@ -427,21 +350,16 @@
                                                             </div>
                                                             <div class="col-xs-6 col-md-10">
                                                                 <h4>{{badge.Name}}</h4>
-                                                                Chúc mừng, bạn là một người tuyệt vời
+                                                                {{badge.Message}}
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                             <!-- /tile body -->
 
 
-
-
                                         </div>
-
-
 
                                     </div>
 
@@ -479,19 +397,9 @@
             </div>
             <!-- Page content end -->
 
-
-
-
-
-
     <a hidden id="viewUsername" data-id="@viewUsername"></a>
-
+    <script src="@Url.Content("~/App/js/otherProfileCtrl.js")"></script>
    
-
-
-
-   
-
 
     <script>
         $(document).ready(function () {

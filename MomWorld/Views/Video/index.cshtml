@@ -21,8 +21,9 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/video.css")" />
 
 
-
-
+    <!-- Videos -->
+    <script src="@Url.Content("~/Content/js/video.js")"></script>
+    <script src="@Url.Content("~/Content/js/jwplayer.js")"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
@@ -64,12 +65,7 @@
     <!-- The main application script -->
     
     <script src="@Url.Content("~/App/js/videoApp.js")"></script>
-
     <script src="@Url.Content("~/Content/js/minimal.min.js")"></script>
-
-    <!-- Videos -->
-    <script src="@Url.Content("~/Content/js/video.js")"></script>
-    <script src="@Url.Content("~/Content/js/jwplayer.js")"></script>
 
 </head>
 
@@ -252,15 +248,8 @@
                         </vg-controls>
 
                         <vg-overlay-play></vg-overlay-play>
-                        <vg-buffering></vg-buffering>
                         <vg-poster vg-url='controller.config.plugins.poster'></vg-poster>
                     </videogular>
-                </div>
-                <div class="playlist">
-                    <ul>
-                        <li><a ng-click="controller.setVideo(0)">Pale Blue Dot</a></li>
-                        <li><a ng-click="controller.setVideo(1)">Big Buck Bunny</a></li>
-                    </ul>
                 </div>
             </div>
 
@@ -301,11 +290,9 @@
                                 </h3>
                                 <span class="video-meta">
                                     <a href="#">
-                                        <i class="fa fa-comment"></i>283
-                                    </a> <a href="video-detail.html">
-                                        <i class="fa fa-eye"></i>829
-                                    </a> <a href="index.html#">
-                                        <i class="fa fa-heart"></i>95
+                                        <i class="fa fa-eye"></i>{{video.NumView}}
+                                    </a> <a href="#" ng-click="likeVideo(video.VideoID)">
+                                        <i class="fa fa-heart"></i>{{video.Like.Count}}
                                     </a>
                                 </span>
                                 <p>

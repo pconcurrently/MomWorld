@@ -20,8 +20,6 @@
 </head>
 <body class="bg-2" id="chatYolo" ng-app="chatApp" ng-controller="chatCtrl">
 
-   
-            
             <!-- Page content -->
             <div id="content" class="col-md-12 chat">
 
@@ -77,7 +75,7 @@
                                                    placeholder="Tìm kiếm ...">
                                         </li>
                                         <li ng-repeat="chat in chatFire">
-                                            <a href="" ng-click="getChatFrom(chat.Username)" class="active">
+                                            <a href="#" ng-click="getChatFrom(chat.Username)" class="active">
                                                 <div class="media">
                                                     <div class="pull-left">
                                                         <img class="media-object img-circle"
@@ -91,8 +89,8 @@
                                                             {{chat.Content[0]}}
                                                         </span>
                                                         <div class="chat-actions">
-                                                            <span class="archive"
-                                                                          title="Xóa"><i class="fa fa-times"></i></span>
+                                                            <span class="archive" ng-click="delConversation(chat.Username)"
+                                                                  title="Xóa"><i class="fa fa-times"></i></span>
                                                         </div>
                                                     </div>
                                                 </div>
