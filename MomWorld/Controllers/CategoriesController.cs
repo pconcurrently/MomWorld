@@ -40,8 +40,13 @@ namespace MomWorld.Controllers
             ViewBag.TagsList = articleDb.Tags.ToList();
 
             //Get UserRoutine
+
+            ViewBag.AllArticle = articleDb.Articles.ToList();
             if (User.Identity.IsAuthenticated)
             {
+                string userId = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
+                var isLike = articleDb.ArticleLikes.ToList().FirstOrDefault(al => al.ArticleId.Equals(id) && al.UserId.Equals(userId));
+
                 var userRoutine = identityDb.UserRoutines.FirstOrDefault(ur => ur.UserId.Equals(currentUser.Id) && ur.Phase.Equals(id));
                 if (userRoutine != null)
                 {
@@ -51,12 +56,24 @@ namespace MomWorld.Controllers
                 }
                 else
                 {
-                    userRoutine = new UserRoutine();
-                    userRoutine.Phase = id;
-                    userRoutine.Count = 1;
-                    identityDb.Entry(userRoutine).State = EntityState.Added;
+                    var userRoutine2 = new UserRoutine();
+                    userRoutine2.Phase = id;
+                    userRoutine2.Count = 1;
+                    userRoutine2.UserId = currentUser.Id;
+                    identityDb.Entry(userRoutine2).State = EntityState.Added;
                     identityDb.SaveChanges();
                 }
+                //Suggest categories
+                var userRoutines = identityDb.UserRoutines.ToList().FindAll(ur => ur.UserId.Equals(currentUser.Id));
+                userRoutines = userRoutines.OrderByDescending(u => u.Count).ToList();
+                var mostView = userRoutines.First() as UserRoutine;
+                var categoriesList = db.Categories.ToList().FindAll(c => c.Phase.Equals(mostView.Phase));
+                ViewBag.CategoriesList = categoriesList;
+            }
+            else
+            {
+                var categoriesList = db.Categories.ToList().FindAll(c => c.Phase.Equals("MangThai"));
+                ViewBag.CategoriesList = categoriesList;
             }
 
             return View();
@@ -84,6 +101,42 @@ namespace MomWorld.Controllers
             var currentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             ViewBag.CurrentUser = currentUser;
 
+            //Get UserRoutine
+
+            ViewBag.AllArticle = articleDb.Articles.ToList();
+            if (User.Identity.IsAuthenticated)
+            {
+                string userId = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name)).Id;
+                var isLike = articleDb.ArticleLikes.ToList().FirstOrDefault(al => al.ArticleId.Equals(id) && al.UserId.Equals(userId));
+
+                var userRoutine = identityDb.UserRoutines.FirstOrDefault(ur => ur.UserId.Equals(currentUser.Id) && ur.Phase.Equals(category.Phase));
+                if (userRoutine != null)
+                {
+                    userRoutine.Count += 1;
+                    identityDb.Entry(userRoutine).State = EntityState.Modified;
+                    identityDb.SaveChanges();
+                }
+                else
+                {
+                    var userRoutine2 = new UserRoutine();
+                    userRoutine2.Phase = category.Phase;
+                    userRoutine2.Count = 1;
+                    userRoutine2.UserId = currentUser.Id;
+                    identityDb.Entry(userRoutine2).State = EntityState.Added;
+                    identityDb.SaveChanges();
+                }
+                //Suggest categories
+                var userRoutines = identityDb.UserRoutines.ToList().FindAll(ur => ur.UserId.Equals(currentUser.Id));
+                userRoutines = userRoutines.OrderByDescending(u => u.Count).ToList();
+                var mostView = userRoutines.First() as UserRoutine;
+                var categoriesList = db.Categories.ToList().FindAll(c => c.Phase.Equals(mostView.Phase));
+                ViewBag.CategoriesList = categoriesList;
+            }
+            else
+            {
+                var categoriesList = db.Categories.ToList().FindAll(c => c.Phase.Equals("MangThai"));
+                ViewBag.CategoriesList = categoriesList;
+            }
 
             return View(category);
         }
@@ -195,7 +248,7 @@ namespace MomWorld.Controllers
             return Json(db.Categories.FirstOrDefault(c => c.Id.Equals(id)), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Update([Bind(Include = "Id,Name,Description")]Category model)
+        public JsonResult Update([Bind(Include = "Id,Name,Description,Phase")]Category model)
         {
             if (ModelState.IsValid)
             {

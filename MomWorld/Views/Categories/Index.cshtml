@@ -17,6 +17,8 @@
 
     var phase = ViewBag.Phase as string;
     var tagsList = ViewBag.TagsList as List<MomWorld.Entities.Tag>;
+    var categoriesList = ViewBag.CategoriesList as List<MomWorld.Entities.Category>;
+    var allArticles = ViewBag.AllArticle as List<MomWorld.Entities.Article>;
 }
 
 <head>
@@ -382,31 +384,32 @@
 
                     <!-- CATEGORIES -->
                     <section class="tile color transparent-white">
+
                         <!-- tile header -->
                         <div class="tile-header color redbrown rounded-top-corners">
-                            <h4>
+                            <h1>
                                 <strong>Các mục </strong>nên xem
-                            </h4>
+                            </h1>
                         </div>
                         <!-- /tile header -->
                         <!-- tile body -->
                         <div class="tile-body">
+
                             <form class="form-horizontal" role="form">
                                 <ul class="nav categories sidebar-widget">
-                                    <li><a href="#">Sức khỏe sinh sản <em>(26)</em></a></li>
-                                    <li class="active">
-                                        <a href="#">
-                                            40 tuần mang
-                                            thai <em>(40)</em>
-                                        </a>
-                                    </li>
-                                    <li><a href="#">Sức khỏe trong thai kỳ <em>(15)</em></a></li>
-                                    <li><a href="#">Dinh dưỡng thai kỳ <em>(2)</em></a></li>
-                                    <li><a href="#">Kỹ năng làm mẹ <em>(8)</em></a></li>
+                                    @if (categoriesList != null)
+                                    {
+                                        foreach (var cate in categoriesList)
+                                        {
+                                            <li><a href="@Url.Action("Details", "Categories", routeValues: new { id = cate.Id })">@cate.Name <em>(@allArticles.FindAll(a => a.CategoryId.Equals(cate.Id)).Count)</em></a></li>
+                                        }
+                                    }
                                 </ul>
                             </form>
+
                         </div>
                         <!-- /tile body -->
+
                     </section>
                     <!-- END CATEGORIES -->
                     <!-- TAGS -->
@@ -613,7 +616,7 @@
             var Id = $('#hiddenId').val();
             var description = $("#Description").val();
             var name = $("#Name").val();
-            var phase = $('#phase').val();
+            var phase = $('#phase').attr('data-id');
             $.ajax({
                 url: '/Categories/Update',
                 type: 'POST',

@@ -1,4 +1,5 @@
-﻿@{
+﻿@*//Home/Index*@"
+@{
     Layout = "~/Views/Shared/_MWLayout.cshtml";
     ViewBag.Title = "Home";
 
@@ -504,7 +505,7 @@
                                                     else
                                                     {
                                                         <span class="date-post">
-                                                            @Math.Round((DateTime.Now - mongcon.PostedDate.Value).TotalDays, 0)
+                                                            @Math.Round((DateTime.Now - mongcon.PostedDate.Value).TotalDays, 0) ngày trước
                                                         </span>
                                                     }
                                                 </span>
@@ -575,7 +576,7 @@
                                                     else
                                                     {
                                                         <span class="date-post">
-                                                            @Math.Round((DateTime.Now - mangthai.PostedDate.Value).TotalDays, 0)
+                                                            @Math.Round((DateTime.Now - mangthai.PostedDate.Value).TotalDays, 0) ngày trước
                                                         </span>
                                                     }
                                                 </span>
@@ -646,7 +647,7 @@
                                                     else
                                                     {
                                                         <span class="date-post">
-                                                            @Math.Round((DateTime.Now - tresosinh.PostedDate.Value).TotalDays, 0)
+                                                            @Math.Round((DateTime.Now - tresosinh.PostedDate.Value).TotalDays, 0) ngày trước
                                                         </span>
                                                     }
                                                 </span>
@@ -718,7 +719,7 @@
                                                     else
                                                     {
                                                         <span class="date-post">
-                                                            @Math.Round((DateTime.Now - nuoidaytre.PostedDate.Value).TotalDays, 0)
+                                                            @Math.Round((DateTime.Now - nuoidaytre.PostedDate.Value).TotalDays, 0) ngày trước
                                                         </span>
                                                     }
 
