@@ -3,33 +3,31 @@
 var profileApp = angular.module('profileApp', ['firebase', 'angularFileUpload', 'infinite-scroll', 'angularMoment']);
 
 profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebaseObject', '$firebaseArray', 'FileUploader', '$window', '$scrollArray','amMoment', 
-function ($scope, $firebase, $http, $firebaseObject, $firebaseArray, FileUploader, $window, $scrollArray, amMoment) {
+     function ($scope, $firebase, $http, $firebaseObject, $firebaseArray, FileUploader, $window, $scrollArray, amMoment) {
     amMoment.changeLocale('vn');
     // Get User from Local Storage
-    $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    $scope.currentUsername = $scope.currentUser.Username;
+        $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        $scope.currentUsername = $scope.currentUser.Username;
 
-    var userStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername);
-    /*  $scope.statusFirebase = $firebaseArray(userStatus); */
-    var scrollRef = new Firebase.util.Scroll(userStatus, 'createdDate');
-    $scope.statusFirebase = $firebaseArray(scrollRef);
-    $scope.statusFirebase.scroll = scrollRef.scroll;
-    
-    $scope.user = {
-    }
+        var userStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername);
+        /*  $scope.statusFirebase = $firebaseArray(userStatus); */
+        var scrollRef = new Firebase.util.Scroll(userStatus, 'createdDate');
+        $scope.statusFirebase = $firebaseArray(scrollRef);
+        $scope.statusFirebase.scroll = scrollRef.scroll;
+        $scope.user = {};
 
-    $scope.statusFirebase.scroll.next(3);
+        $scope.statusFirebase.scroll.next(3);
 
-    $scope.loadProfile = function () {
-        /* Get user Profile from User API */
-        $http.get("http://localhost:4444/api/User/Get/" + $scope.currentUsername).
-              success(function (data, status, headers, config) {
-                  $scope.user = data;
-              }).
-              error(function (data, status, headers, config) {
+        $scope.loadProfile = function () {
+            /* Get user Profile from User API */
+            $http.get("http://localhost:4444/api/User/Get/" + $scope.currentUsername).
+                  success(function (data, status, headers, config) {
+                      $scope.user = data;
+                  }).
+                  error(function (data, status, headers, config) {
 
-              });
-    }
+                  });
+        }
 
     /* Update Profile  */
     $scope.updateProfile = function () {
