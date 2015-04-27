@@ -187,7 +187,7 @@
                                 <li class='@Html.IsActive("Chat", "Index")'>
                                     <a href="@Url.Action("Index", "Chat")">
                                         <i class="fa fa-envelope-o"></i>
-                                        Tin nhắn <span class="badge badge-red">{{userFire.NumNoti}}</span>                                        
+                                        Tin nhắn  <span ng-if="userFire.NumNoti !== 0" class="badge badge-red">{{userFire.NumNoti}}</span>                                        
                                     </a>
                                 </li>
                                 @if (User.IsInRole("Admins"))

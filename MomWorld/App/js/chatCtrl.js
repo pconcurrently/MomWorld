@@ -107,6 +107,27 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         }
 
 
+        /* -------- Clear Notification ----------------- */
+        $scope.clearNoti = function () {
+            var numNoti = 0;
+            // Clear User List Notification
+            var r = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername + "/" + $scope.receiverUsername);
+            var numNotiList = r.child('NumNoti');
+            numNotiList.once('value', function (snapshot) {
+                numNoti = snapshot.val();
+                numNotiList.set(0);
+            });
+
+            alert(numNoti);
+
+            // Decrease Side panel Notification
+            var o = new Firebase("https://momworld.firebaseio.com/User/" + currentUsername);
+            var numNotiSide = o.child('NumNoti');
+            numNotiSide.once('value', function (snapshot) {
+                numNotiSide.set(snapshot.val() - numNoti);
+            });
+        }
+
 
 
 
