@@ -266,7 +266,7 @@ namespace MomWorld.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,UserId,CategoryId,Title,Content,PostedDate,LastModifiedDate,ViewNumber,LastSeenUserId,Status,Description,Tags2")] Article article)
+        public ActionResult Edit([Bind(Include = "Id,UserId,CategoryId,Title,Content,PostedDate,LastModifiedDate,ViewNumber,LastSeenUserId,Status,Description,DescriptionImage,Tags2,Phase")] Article article)
         {
             //var article = db.Articles.FirstOrDefault(a => a.Id.Equals(model.Id));
             //article.CategoryId = model.CategoryId;
@@ -299,7 +299,7 @@ namespace MomWorld.Controllers
             ApplicationUser currentUser = identityDb.Users.FirstOrDefault(x => x.UserName.Equals(User.Identity.Name));
             article.LastSeenUserId = currentUser.Id;
             article.LastModifiedUserId = currentUser.Id;
-            article.DescriptionImage = GetDescriptionImage(article.Content);
+
             if (ModelState.IsValid)
             {
                 db.Entry(article).State = EntityState.Modified;

@@ -131,7 +131,7 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="quiz-page.html" data-placement="bottom"
+                                <a href="@Url.Action("Index", "Quizzes")" data-placement="bottom"
                                    title="Kiểm tra kiến thức">
                                     <i class="fa  fa-university hidden-md hidden-lg"></i> <span class="hidden-sm">Kiểm tra kiến thức</span>
                                 </a>
@@ -180,7 +180,7 @@
 
                         <div class="col-md-6 col-sm-4">
                             <h4>
-                                <a href="personal-page.html">@postedUser.UserName</a>
+                                <a href="@Url.Action("GetProfile", "Profile", routeValues: new { id = @postedUser.UserName })">@postedUser.UserName</a>
                             </h4>
                             <ul class="post-details">
                                 <li><i class="fa fa-edit color-cyan"></i> @userArticles Bài viết</li>

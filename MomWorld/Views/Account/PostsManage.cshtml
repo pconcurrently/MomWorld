@@ -666,7 +666,7 @@
                         success: function (data) {
                             if (data != null) {
                                 data.forEach(function (report, index) {
-                                    divText = divText + "<div class='list-group-item'> <h3 class='list-group-item-heading'><a href='#'>" + report.UserName + "</a></h3> <p class='list-group-item-text'>" + report.Content + "</p> </div>";
+                                    divText = divText + "<div class='list-group-item'> <h3 class='list-group-item-heading'><a href='/Profile/GetProfile/"+report.UserName+ "'>" + report.UserName + "</a></h3> <p class='list-group-item-text'>" + report.Content + "</p> </div>";
                                 });
                                 $reportDiv.html(divText);
                                 $('#modalReportContent').modal('show');

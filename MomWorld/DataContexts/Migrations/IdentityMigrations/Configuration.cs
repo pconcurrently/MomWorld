@@ -56,7 +56,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             // Create user Admin
             if (UserManager.FindByName("admin") == null)
             {
-                var adminUser = new ApplicationUser { Email = "admin@momworld.com", UserName = "admin", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+                var adminUser = new ApplicationUser { Email = "admin@momworld.com", UserName = "admin", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2, EmailConfirmed = true };
                 UserManager.Create(adminUser, "12345678");
                 UserManager.AddToRole(adminUser.Id, "Admins");
             }
@@ -64,7 +64,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             // Create normal user
             if (UserManager.FindByName("phoht") == null)
             {
-                var user1 = new ApplicationUser { Email = "phohtse90083@fpt.edu.vn", UserName = "phoht", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+                var user1 = new ApplicationUser { Email = "phohtse90083@fpt.edu.vn", UserName = "phoht", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2, EmailConfirmed = true };
                 UserManager.Create(user1, "12345678");
                 UserManager.AddToRole(user1.Id, "Users");
             }
@@ -72,7 +72,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             // Create normal user
             if (UserManager.FindByName("khoapc") == null)
             {
-                var user2 = new ApplicationUser { Email = "khoapcse90038@fpt.edu.vn", UserName = "khoapc", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+                var user2 = new ApplicationUser { Email = "khoapcse90038@fpt.edu.vn", UserName = "khoapc", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2, EmailConfirmed = true };
                 UserManager.Create(user2, "12345678");
                 UserManager.AddToRole(user2.Id, "Users");
             }
@@ -80,7 +80,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             // Create normal user
             if (UserManager.FindByName("khoahn") == null)
             {
-                var user3 = new ApplicationUser { Email = "khoahnse56@fpt.edu.vn", UserName = "khoahn", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+                var user3 = new ApplicationUser { Email = "khoahnse56@fpt.edu.vn", UserName = "khoahn", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2, EmailConfirmed = true };
                 UserManager.Create(user3, "12345678");
                 UserManager.AddToRole(user3.Id, "Users");
             }
@@ -88,7 +88,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             // Create normal user
             if (UserManager.FindByName("datnt") == null)
             {
-                var user4 = new ApplicationUser { Email = "datntse90012@fpt.edu.vn", UserName = "datnt", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+                var user4 = new ApplicationUser { Email = "datntse90012@fpt.edu.vn", UserName = "datnt", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2, EmailConfirmed = true };
                 UserManager.Create(user4, "12345678");
                 UserManager.AddToRole(user4.Id, "Users");
             }
@@ -96,7 +96,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             // Create normal user
             if (UserManager.FindByName("trungnm") == null)
             {
-                var user5 = new ApplicationUser { Email = "trungnmse90088@fpt.edu.vn", UserName = "trungnm", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+                var user5 = new ApplicationUser { Email = "trungnmse90088@fpt.edu.vn", UserName = "trungnm", ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2, EmailConfirmed = true };
                 UserManager.Create(user5, "12345678");
                 UserManager.AddToRole(user5.Id, "Users");
             }

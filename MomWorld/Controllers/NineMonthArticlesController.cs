@@ -34,6 +34,7 @@ namespace MomWorld.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             NineMonthArticle nineMonthArticle = db.NineMonthArticles.Find(id);
             if (nineMonthArticle == null)
             {
