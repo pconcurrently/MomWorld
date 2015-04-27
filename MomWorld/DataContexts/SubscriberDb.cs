@@ -18,5 +18,10 @@ namespace MomWorld.DataContexts
 
         public DbSet<UserTask> UserTasks { get; set; }
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
+
     }
 }

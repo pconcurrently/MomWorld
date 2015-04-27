@@ -36,7 +36,7 @@ namespace MomWorld
             if (timer == null)
             {
                 var timerCallback = new TimerCallback(AutoSMSReminder);
-                var startTime = 15000;
+                var startTime = 30000;
                 var timerInterval = 24 * 3600 * 1000; //  1 day
                 timer = new Timer(timerCallback, null, startTime, timerInterval);
 
@@ -44,7 +44,7 @@ namespace MomWorld
 
             if (timer2 == null)
             {
-                var startTime = 5000;
+                var startTime = 15000;
                 var timerInterval2 = 3600 * 1000; // 1 hour
                 var timerCallback2 = new TimerCallback(SMSUserTasks);
                 timer2 = new Timer(timerCallback2, null, startTime, timerInterval2);
