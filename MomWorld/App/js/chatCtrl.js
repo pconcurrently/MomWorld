@@ -10,6 +10,9 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         var currentUsername = $scope.currentUser.Username;
 
+        // Get User on Firebase
+        var i = new Firebase("https://momworld.firebaseio.com/User/" + currentUsername);
+        $scope.userFire = $firebaseObject(i);
 
         // Get Chat of User from Firebase
         var userFireTmp = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername);
@@ -92,6 +95,12 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         $scope.chatNoti = function () {
             var r = new Firebase("https://momworld.firebaseio.com/Chat/" + $scope.receiverUsername + "/" + currentUsername);
             var numView = r.child('NumNoti');
+            numView.once('value', function (snapshot) {
+                numView.set(snapshot.val() + 1);
+            });
+
+            var o = new Firebase("https://momworld.firebaseio.com/User/" + $scope.receiverUsername);
+            var numView = o.child('NumNoti');
             numView.once('value', function (snapshot) {
                 numView.set(snapshot.val() + 1);
             });
