@@ -53,7 +53,20 @@
         "name": "Thể thao",
         "quizData": "../../app/js/data/gioitinh.js",
         "quizName": "thethao"
-    }];
+    },
+        {
+        "id": "6",
+        "name": "Làm Đẹp",
+        "quizData": "../../app/js/data/lamdep.js",
+        "quizName": "lamdep"
+    },
+    {
+        "id": "7",
+        "name": "Tình Yêu",
+        "quizData": "../../app/js/data/love.js",
+        "quizName": "love"
+    }
+    ];
 
         /* Init Quiz List Page */
         $scope.initQuizShow = function () {

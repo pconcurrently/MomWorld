@@ -24,13 +24,13 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
             /* Get user Profile from User API */
             $http.get("http://localhost:4444/api/User/Get/" + chatUser).
                   success(function (data, status, headers, config) {
-                      $scope.rUserAPI = data;
+                    $scope.rUserAPI = data;
 
                       // Set Chat conversation with chatUser
-                      $scope.getChatFrom(chatUser);
+                    $scope.getChatFrom(chatUser);
 
                       // Watch change to Scroll down
-                      $scope.chatContent.$watch(function () { $("#chat-content").animate({ scrollTop: 1000000000000000 }, 1000); });
+                    $scope.chatContent.$watch(function () { $("#chat-content").animate({ scrollTop: 1000000000000000 }, 1000); });
 
                   }).
                   error(function (data, status, headers, config) {
@@ -38,8 +38,6 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
                   });
 
         }
-
-
 
 
         /* Get Chat between User with Receiver */
