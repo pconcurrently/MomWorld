@@ -5,11 +5,12 @@
 
 'use strict';
 
-var otherProfileApp = angular.module('otherProfileApp', ['firebase']);
+var otherProfileApp = angular.module('otherProfileApp', ['firebase', 'angularMoment']);
 
-otherProfileApp.controller('otherProfileCtrl', ['$scope', '$http', '$firebaseObject', '$firebaseArray', '$window',
-function ($scope, $http, $firebaseObject, $firebaseArray, $window) {
+otherProfileApp.controller('otherProfileCtrl', ['$scope', '$http', '$firebaseObject', '$firebaseArray', '$window', 'amMoment',
+function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
 
+    amMoment.changeLocale('vn');
     // Get User from Local Storage
     $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     $scope.currentUsername = $scope.currentUser.Username;
@@ -32,18 +33,14 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window) {
         $http.get("http://localhost:4444/api/User/Get/" + username).
               success(function (data, status, headers, config) {
                   $scope.user = data;
+
+                  // Load Badge
+                  $scope.getBadge();
               }).
               error(function (data, status, headers, config) {
 
               });
     }
-
-    // Load Badge From Firebase
-    $scope.getBadge = function () {
-        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.viewUsername + "/Badge/");
-        $scope.badgeFire = $firebaseArray(userFireTmp);
-    }
-
 
     /* ---------------- Functional Method ----------------------- */
 
@@ -111,6 +108,12 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window) {
 
         );
 
+    }
+
+    // Load Badge From Firebase
+    $scope.getBadge = function () {
+        var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.viewUsername + "/Badge/");
+        $scope.badgeFire = $firebaseArray(userFireTmp);
     }
 
 }]);
