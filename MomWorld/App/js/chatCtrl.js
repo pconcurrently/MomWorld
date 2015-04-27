@@ -10,6 +10,9 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         var currentUsername = $scope.currentUser.Username;
 
+        // Get User on Firebase
+        var i = new Firebase("https://momworld.firebaseio.com/User/" + currentUsername);
+        $scope.userFire = $firebaseObject(i);
 
         // Get Chat of User from Firebase
         var userFireTmp = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername);
@@ -95,8 +98,35 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
             numView.once('value', function (snapshot) {
                 numView.set(snapshot.val() + 1);
             });
+
+            var o = new Firebase("https://momworld.firebaseio.com/User/" + $scope.receiverUsername);
+            var numView = o.child('NumNoti');
+            numView.once('value', function (snapshot) {
+                numView.set(snapshot.val() + 1);
+            });
         }
 
+
+        /* -------- Clear Notification ----------------- */
+        $scope.clearNoti = function () {
+            var numNoti = 0;
+            // Clear User List Notification
+            var r = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername + "/" + $scope.receiverUsername);
+            var numNotiList = r.child('NumNoti');
+            numNotiList.once('value', function (snapshot) {
+                numNoti = snapshot.val();
+                numNotiList.set(0);
+            });
+
+            alert(numNoti);
+
+            // Decrease Side panel Notification
+            var o = new Firebase("https://momworld.firebaseio.com/User/" + currentUsername);
+            var numNotiSide = o.child('NumNoti');
+            numNotiSide.once('value', function (snapshot) {
+                numNotiSide.set(snapshot.val() - numNoti);
+            });
+        }
 
 
 

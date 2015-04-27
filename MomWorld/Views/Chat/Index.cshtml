@@ -79,11 +79,12 @@
                                                 <div class="media">
                                                     <div class="pull-left">
                                                         <img class="media-object img-circle"
-                                                             ng-src="{{chat.Avatar}}">
+                                                             ng-src="{{chat.Avatar}}"> <span class="badge badge-red">{{chat.NumNoti}}</span>
                                                     </div>
                                                     <div class="media-body">
                                                         <p class="media-heading">
-                                                            {{chat.Username}} @*<span class="time">12:44</span>*@
+                                                            {{chat.Username}}      
+                                                            @*<span class="time">12:44</span>*@
                                                         </p>
                                                         <span class="message">
                                                             {{chat.Content[0]}}
@@ -173,7 +174,7 @@
                                 <div class="tile-footer transparent nopadding">
 
                                     <div class="chat-reply" id="chat-reply">
-                                        <textarea ng-model="replyMess" placeholder="Nội dung tin nhắn ..." class="form-control"></textarea>
+                                        <textarea ng-model="replyMess" placeholder="Nội dung tin nhắn ..." class="form-control" ng-click="clearNoti()"></textarea>
                                         <div class="btn-group btn-group-sm">
                                             
                                             <button ng-click="sendMessage(currentUser.Username)"
