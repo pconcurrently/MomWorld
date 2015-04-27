@@ -5,17 +5,15 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         amMoment.changeLocale('vn');
 
         /* ------------------- Init variables --------------------- */
-        
+
         // Get User from local storage
         $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         var currentUsername = $scope.currentUser.Username;
 
-        
+
         // Get Chat of User from Firebase
         var userFireTmp = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername);
         $scope.chatFire = $firebaseObject(userFireTmp);
-
-        
 
         /* Init Chat */
         $scope.initChat = function (chatUser) {
@@ -35,7 +33,7 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
                   error(function (data, status, headers, config) {
 
                   });
-           
+
         }
 
 
@@ -51,17 +49,21 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
             var r = new Firebase("https://momworld.firebaseio.com/Chat/" + receiver + "/" + currentUsername);
             $scope.sUser = $firebaseObject(s)
             $scope.rUser = $firebaseObject(r);
-        
+
             // Check if this is 1st chat
-            //$scope.sUser.$loaded().then(checkSUser);
-            //$scope.rUser.$loaded().then(checkRUser);
+            $scope.sUser.$loaded().then(checkSUser);
 
             // Get Chat content from Sender and Receiver
             var senderFire = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername + "/" + receiver + "/Content");
             var receiverFire = new Firebase("https://momworld.firebaseio.com/Chat/" + receiver + "/" + currentUsername + "/Content");
             $scope.chatContent = $firebaseArray(senderFire);
             $scope.receiverContent = $firebaseArray(receiverFire);
-  
+
+        }
+
+        $scope.delConversation = function (receiver) {
+            $scope.sUser.$remove();
+            $scope.rUser.$remove();
         }
 
 
@@ -79,13 +81,28 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
                 // Empty Reply Message Box
                 $scope.replyMess = "";
 
+                // Add Notification
+                $scope.chatNoti();
+
             });
             $scope.receiverContent.$add(sentData);
         }
 
-        
+        /* Increase Chat Notification */
+        $scope.chatNoti = function () {
+            var r = new Firebase("https://momworld.firebaseio.com/Chat/" + $scope.receiverUsername + "/" + currentUsername);
+            var numView = r.child('NumNoti');
+            numView.once('value', function (snapshot) {
+                numView.set(snapshot.val() + 1);
+            });
+        }
 
-        
+
+
+
+
+
+
         /* ---------------------- Helper Methods ------------------------ */
         var checkSUser = function () {
             // If this is 1st time --> Add receiver informationth
@@ -93,11 +110,7 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
                 $scope.sUser.Username = $scope.receiverUsername;
                 $scope.sUser.Avatar = "http://localhost:4444/App/uploads/avatar/" + $scope.receiverUsername + ".png";
                 $scope.sUser.$save();
-            }
-        }
 
-        var checkRUser = function () {
-            if ($scope.rUser.Username !== currentUsername) {
                 $scope.rUser.Username = currentUsername;
                 $scope.rUser.Avatar = "http://localhost:4444/App/uploads/avatar/" + currentUsername + ".png";
                 $scope.rUser.$save();
@@ -107,5 +120,5 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         /* ------------- Panel Methods ---------------------- */
         var o = new Firebase("https://momworld.firebaseio.com/UserList/");
         $scope.listUser = $firebaseArray(o);
-    
-  }]); 
+
+    }]);
