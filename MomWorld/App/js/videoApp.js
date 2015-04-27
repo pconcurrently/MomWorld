@@ -35,15 +35,36 @@
 
                 // ------------- Video Loadmore
                 var tmp = new Firebase("https://momworld.firebaseio.com/Video");
-
-                var baseRef = new Firebase('https://fbutil.firebaseio.com/paginate');
                 var scrollRef = new Firebase.util.Scroll(tmp, 'number');
 
                 $scope.videoFire = $firebaseArray(scrollRef);
                 $scope.videoFire.scroll = scrollRef.scroll;
 
-                $scope.videoFire.scroll.next(3);
+                $scope.videoFire.scroll.next(5);
                 $scope.nVideo = "";
+
+                // ----- Increase View by 1
+                $scope.increaseView = function (videoID) {
+                    // Increase Number of Comment
+                    var p = new Firebase("https://momworld.firebaseio.com/Video/" + videoID);
+                    var numView = p.child('NumView');
+                    numView.once('value', function (snapshot) {
+                        numView.set(snapshot.val() + 1);
+                    });
+                }
+
+                // ----- Increase Like by 1
+                $scope.likeVideo = function (videoID) {
+                    var p = new Firebase("https://momworld.firebaseio.com/Video/" + videoID + "/Like");
+                    var numLike = $firebaseObject(p);
+                    numLike.$loaded(function (data) {
+                        data.Count++;
+                        // data.Liker.push($scope.currentUsername);
+                        data.$save().then();
+                    },
+                        function (err) { });
+                }
+
                 // ------- Video Upload
 
                 $scope.options = {
@@ -75,6 +96,8 @@
                         v.VideoID = $scope.uuid;
                         v.VideoURL = "http://localhost:4444/App/uploads/video/" + $scope.uuid + ".mp4";
                         v.VideoThumbnail = "http://localhost:4444/App/uploads/video/thumbnail/" + $scope.uuid + ".png";
+                        v.Like = { Count : 0, Liker : [] };
+                        v.NumView = 0;
 
                         v.$save().then(function () {
                             $scope.files = "";
@@ -120,21 +143,26 @@
                     autoPlay: false,
                     sources: controller.videos[0].sources,
                     theme: {
-                        url: "http://www.videogular.com/styles/themes/default/latest/videogular.css"
+                        url: "http://localhost:4444/App/bower_components/videogular-themes-default/videogular.css"
                     },
                     plugins: {
                         poster: "http://cdn.sheknows.com/articles/2014/05/Rebekah/AU/mother-and-baby.jpg"
                     }
                 };
 
+                // -------------- Set Selected video to Player
                 controller.setVideo = function (index) {
                     $scope.tmpVideo = index;
+                    // Increase View by 1
+                    $scope.increaseView(index);
+
                     controller.API.stop();
                     controller.currentVideo = index;
-                    controller.config.sources = { src: $sce.trustAsResourceUrl("http://localhost:4444/App/uploads/video/" + index + ".mp4"), type: "video/mp4" };
-                   // controller.config.sources = controller.videos[index].sources;
+                    controller.config.sources = [{ src: $sce.trustAsResourceUrl("http://localhost:4444/App/uploads/video/" + index + ".mp4"), type: "video/mp4" }];
+                    // controller.config.sources = controller.videos[index].sources;
                     
-                    $timeout(controller.API.play.bind(controller.API), 100);
+
+                    $timeout(controller.API.play.bind(controller.API), 500);
                 };
 
 

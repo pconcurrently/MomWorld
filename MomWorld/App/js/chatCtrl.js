@@ -14,9 +14,7 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         // Get Chat of User from Firebase
         var userFireTmp = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername);
         $scope.chatFire = $firebaseObject(userFireTmp);
-
-        
-
+    
         /* Init Chat */
         $scope.initChat = function (chatUser) {
 
@@ -53,8 +51,7 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
             $scope.rUser = $firebaseObject(r);
         
             // Check if this is 1st chat
-            //$scope.sUser.$loaded().then(checkSUser);
-            //$scope.rUser.$loaded().then(checkRUser);
+            $scope.sUser.$loaded().then(checkSUser);
 
             // Get Chat content from Sender and Receiver
             var senderFire = new Firebase("https://momworld.firebaseio.com/Chat/" + currentUsername + "/" + receiver + "/Content");
@@ -62,6 +59,11 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
             $scope.chatContent = $firebaseArray(senderFire);
             $scope.receiverContent = $firebaseArray(receiverFire);
   
+        }
+
+        $scope.delConversation = function (receiver) {
+            $scope.sUser.$remove();
+            $scope.rUser.$remove();
         }
 
 
@@ -79,9 +81,24 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
                 // Empty Reply Message Box
                 $scope.replyMess = "";
 
+                // Add Notification
+                $scope.chatNoti();
+               
             });
             $scope.receiverContent.$add(sentData);
         }
+
+        /* Increase Chat Notification */
+        $scope.chatNoti = function () {
+            var r = new Firebase("https://momworld.firebaseio.com/Chat/" + $scope.receiverUsername + "/" + currentUsername);
+            var numView = r.child('NumNoti');
+            numView.once('value', function (snapshot) {
+                numView.set(snapshot.val() + 1);
+            });
+        }
+
+        
+
 
         
 
@@ -93,11 +110,7 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
                 $scope.sUser.Username = $scope.receiverUsername;
                 $scope.sUser.Avatar = "http://localhost:4444/App/uploads/avatar/" + $scope.receiverUsername + ".png";
                 $scope.sUser.$save();
-            }
-        }
 
-        var checkRUser = function () {
-            if ($scope.rUser.Username !== currentUsername) {
                 $scope.rUser.Username = currentUsername;
                 $scope.rUser.Avatar = "http://localhost:4444/App/uploads/avatar/" + currentUsername + ".png";
                 $scope.rUser.$save();

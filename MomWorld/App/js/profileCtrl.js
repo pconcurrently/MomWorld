@@ -166,10 +166,6 @@ function ($scope, $firebase, $http, $firebaseObject, $firebaseArray, FileUploade
     // ------- Social Function
     $scope.like = function (_status) {
         var p = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername + "/" + _status.$id + "/NumLike");
-        //var NumLike = p.child('NumComment');
-        //NumComment.once('value', function (snapshot) {
-        //    NumComment.set(snapshot.val() + 1);
-        //});
 
         var numLike = $firebaseObject(p);
         numLike.$loaded(function (data) {
