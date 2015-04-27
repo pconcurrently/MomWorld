@@ -72,7 +72,7 @@ namespace MomWorld.DataContexts.Migrations.IdentityMigrations
             // Create normal user
             if (UserManager.FindByName("khoapc") == null)
             {
-                var user2 = new ApplicationUser { Email = "khoapc@momworld.com", UserName = "phoht", DatePregnancy = DateTime.Now, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+                var user2 = new ApplicationUser { Email = "khoapc@momworld.com", UserName = "khoapc", DatePregnancy = DateTime.Now, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
                 UserManager.Create(user2, "12345678");
                 UserManager.AddToRole(user2.Id, "Users");
             }
