@@ -310,9 +310,9 @@ namespace MomWorld.Controllers
             return View(article);
         }
 
-        public JsonResult Delete(string articleId)
+        public JsonResult Delete(string id)
         {
-            Article article = db.Articles.Find(articleId);
+            Article article = db.Articles.Find(id);
             db.Articles.Remove(article);
             db.Entry(article).State = EntityState.Deleted;
             db.SaveChanges();
