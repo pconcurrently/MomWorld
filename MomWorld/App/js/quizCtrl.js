@@ -242,7 +242,7 @@
 	        method: 'feed',
 	        name: 'Chúc mựng bạn đã đạt huân chương ' + $scope.quizNameReal,
 	        link: 'http://momworld.com/Profile/GetProfile/',
-	        picture: 'http://www.hyperarts.com/external-xfbml/share-image.gif',
+	        picture: 'https://momworld.firebaseapp.com/images/badge/' + $scope.quizNameTemp + ".png",
 	        caption: "Huân chương caption",
 	        description: 'This is fucking description',
 	        message: ''
