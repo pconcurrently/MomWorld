@@ -180,10 +180,21 @@
                                             <div class="feed-content">
                                                 <p>{{status.Content}}</p>
                                             </div>
-                                            <footer>
-                                                <a href="#" ng-click="like(status)" class="liked">
-                                                    <i class="fa fa-heart"></i> Thích <span>({{status.NumLike.Count}})</span>
-                                                </a> <a href="personal-page.html#">
+                                            <footer> 
+                                                <a href="#" ng-show="!isInArray(currentUsername, status.NumLike.User)" ng-click="like(status)" >
+                                                    <i class="fa fa-heart color-slategray"></i>
+                                                    Thích <span>
+                                                    ({{status.NumLike.Count}})</span>
+                                                </a>
+
+                                                <a ng-show="isInArray(currentUsername, status.NumLike.User)" class="liked">
+                                                    <i class="fa fa-heart color-red"></i>
+                                                    Thích <span>
+                                                        ({{status.NumLike.Count}})
+                                                    </span>
+                                                </a>  
+                                            
+                                            <a>                                                         
                                                     <i class="fa fa-comment"></i> Bình luận <span>({{status.NumComment}})</span>
                                                 </a> <a ng-click="removeStatus(status)" href="">
                                                     <i class="fa fa-close"></i>

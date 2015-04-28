@@ -110,10 +110,43 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
 
     }
 
+    // ------- Social Function
+    $scope.like = function (_status) {
+        var p = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.viewUsername + "/" + _status.$id + "/NumLike");
+        var numLike = $firebaseObject(p);
+
+        numLike.$loaded(function (data) {
+            console.log("Data:  " + data.User);
+            data.Count++;
+            if (!data.User) {
+                data.User = [];
+                data.User.push($scope.currentUsername);
+            } else {
+                if (!$scope.isInArray($scope.currentUsername, data.User)) {
+                    data.User.push($scope.currentUsername);
+                }
+            }
+
+            data.$save().then();
+        },
+            function (err) { });
+
+    }
+
     // Load Badge From Firebase
     $scope.getBadge = function () {
         var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.viewUsername + "/Badge/");
         $scope.badgeFire = $firebaseArray(userFireTmp);
+    }
+
+    /* ---------------- Helper Method ------------------ */
+    $scope.isInArray = function (value, array) {
+        if (array) {
+            return array.indexOf(value) > -1;
+        } else {
+            return false;
+        }
+
     }
 
 }]);

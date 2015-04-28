@@ -1,10 +1,11 @@
 ﻿@using MomWorld.Models;
 @using Microsoft.AspNet.Identity;
 @{
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
-    ViewBag.Title = "Profile";
-    
     var viewUsername = ViewData["ViewUsername"] as string;
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewBag.Title = viewUsername;
+    
+    
 }
 
 
@@ -183,9 +184,19 @@
                                                     </div>
 
                                                     <footer>
-                                                        <a href="personal-page.html#" class="liked">
-                                                            <i class="fa fa-heart"></i> Thích <span>({{status.NumLike.Count}})</span>
-                                                        </a> <a href="personal-page.html#">
+                                                        <a href="#" ng-show="!isInArray(currentUsername, status.NumLike.User)" ng-click="like(status)">
+                                                            <i class="fa fa-heart color-slategray"></i>
+                                                            Thích <span>
+                                                                ({{status.NumLike.Count}})
+                                                            </span>
+                                                        </a>
+
+                                                        <a ng-show="isInArray(currentUsername, status.NumLike.User)" class="liked">
+                                                            <i class="fa fa-heart color-red"></i>
+                                                            Thích <span>
+                                                                ({{status.NumLike.Count}})
+                                                            </span>
+                                                        </a>  
                                                             <i class="fa fa-comment"></i> Bình luận <span>({{status.NumComment}})</span>
                                                         </a> 
 
@@ -206,9 +217,9 @@
 
                                                                         <a href="personal-page.html#" class="comment-date">
                                                                             {{comment.CreatedDate}}
-                                                                        </a> <a href="personal-page.html#">
-                                                                            <i class="fa fa-heart"></i> Thích <span>(0)</span>
-                                                                        </a>
+                                                                        </a> @*<a href="#" ng-click="like(status)" class="liked">
+                                                                            <i class="fa fa-heart"></i> Thích <span>({{status.NumLike.Count}})</span>
+                                                                        </a>*@
                                                                     </div>
 
                                                                 </div>
