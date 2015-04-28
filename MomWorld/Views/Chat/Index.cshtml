@@ -71,19 +71,19 @@
 
                                     <ul class="chat-inbox" id="chat-inbox">
                                         <li>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" ng-model="search"
                                                    placeholder="Tìm kiếm ...">
                                         </li>
-                                        <li ng-repeat="chat in chatFire">
+                                        <li ng-repeat="chat in chatFire | filter:search">
                                             <a href="#" ng-click="getChatFrom(chat.Username)" class="active">
                                                 <div class="media">
                                                     <div class="pull-left">
                                                         <img class="media-object img-circle"
-                                                             ng-src="{{chat.Avatar}}"> <span class="badge badge-red">{{chat.NumNoti}}</span>
+                                                             ng-src="{{chat.Avatar}}"> <span ng-if="chat.NumNoti !== 0" class="badge badge-red">{{chat.NumNoti}}</span>
                                                     </div>
                                                     <div class="media-body">
                                                         <p class="media-heading">
-                                                            {{chat.Username}}      
+                                                            {{chat.Username}}
                                                             @*<span class="time">12:44</span>*@
                                                         </p>
                                                         <span class="message">

@@ -9,19 +9,26 @@ var otherProfileApp = angular.module('otherProfileApp', ['firebase', 'angularMom
 
 otherProfileApp.controller('otherProfileCtrl', ['$scope', '$http', '$firebaseObject', '$firebaseArray', '$window', 'amMoment',
 function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
-
+    // Set Moment Location to VietNam
     amMoment.changeLocale('vn');
+
     // Get User from Local Storage
     $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     $scope.currentUsername = $scope.currentUser.Username;
     $scope.viewUsername = "";
     $scope.user = {};
 
+    // Get User on Firebase
+    var i = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername);
+    $scope.userFire = $firebaseObject(i);
 
     /* ---------------- Initial Functions ----------------------- */
     // Load Profile
     $scope.loadProfile = function (username) {
 
+        if (username == $scope.currentUsername) {
+            location.href = "../";
+        }
         // Set viewUsername Scope   
         $scope.viewUsername = username;
 
@@ -110,7 +117,7 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
 
     }
 
-    // ------- Social Function
+    /* ---------------------- Additional Function ---------------------------- */ 
     $scope.like = function (_status) {
         var p = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.viewUsername + "/" + _status.$id + "/NumLike");
         var numLike = $firebaseObject(p);
@@ -138,6 +145,10 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
         var userFireTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.viewUsername + "/Badge/");
         $scope.badgeFire = $firebaseArray(userFireTmp);
     }
+
+    /* ------------- Panel Methods ---------------------- */
+    var o = new Firebase("https://momworld.firebaseio.com/UserList/");
+    $scope.listUser = $firebaseArray(o);
 
     /* ---------------- Helper Method ------------------ */
     $scope.isInArray = function (value, array) {

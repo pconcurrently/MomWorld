@@ -9,14 +9,18 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
         $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         $scope.currentUsername = $scope.currentUser.Username;
 
+         // Initial User Status using Firebase
         var userStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername);
         var scrollRef = new Firebase.util.Scroll(userStatus, 'createdDate');
         $scope.statusFirebase = $firebaseArray(scrollRef);
         $scope.statusFirebase.scroll = scrollRef.scroll;
-        $scope.user = {};
-
         $scope.statusFirebase.scroll.next(3);
 
+         // Get User on Firebase
+        var i = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername);
+        $scope.userFire = $firebaseObject(i);
+        
+        $scope.user = {};
         $scope.loadProfile = function () {
             /* Get user Profile from User API */
             $http.get("http://localhost:4444/api/User/Get/" + $scope.currentUsername).

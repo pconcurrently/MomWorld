@@ -258,7 +258,19 @@
                                     </a>
                                     <div class="media-body">
                                         <h6 class="media-heading"><strong>{{userL.Username}}</strong></h6>
-                                        <small><i class="fa fa-map-marker"></i>{{userL.Status}}</small>
+                                        <small><i class="fa fa-map-marker"></i> {{userL.Status}}</small>
+                                        <span class="badge badge-outline status"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li ng-class="online">
+                                <div class="media">
+                                    <a class="pull-left profile-photo" ng-href="http://localhost:4444/Profile/GetProfile/{{userL.Username}}">
+                                        <img class="media-object" ng-src="http://localhost:4444/App/uploads/avatar/{{userL.Username}}.png">
+                                    </a>
+                                    <div class="media-body">
+                                        <h6 class="media-heading"><strong>TEST</strong></h6>
+                                        <small><i class="fa fa-map-marker"></i> {{userL.Status}}</small>
                                         <span class="badge badge-outline status"></span>
                                     </div>
                                 </div>
