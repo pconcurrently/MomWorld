@@ -21,6 +21,8 @@
     <script src="@Url.Content("~/Scripts/angular-resource.min.js")"></script>
     <script src="@Url.Content("~/Scripts/angular-ui/ui-bootstrap-tpls.min.js")"></script>
     <script src="@Url.Content("~/Scripts/angular-md5.min.js")"></script>
+    <script src="@Url.Content("~/App/bower_components/angularjs-socialshare/dist/angular-socialshare.min.js")"></script>
+
     <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
 
@@ -29,6 +31,8 @@
 </head>
 
 <body ng-app="quizApp" ng-controller="quizCtrl" ng-init="initQuizDo(@quizId)">
+    <div id="fb-root"></div>
+
     <!-- Modal thông báo khi đạt huân chương -->
     <div class="modal fade" id="modalCompletedQuizz" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -45,6 +49,7 @@
                     <!-- The file upload form used as target for the file upload widget -->
                     <form class="form-horizontal">
                         <div class="form-group"><span>Bạn đã hoàn thành tốt bài thi của chúng tôi và đạt được huy hiệu <strong class="color-green">{{quizNameReal}}</strong></span></div>
+                        <button ng-click="share()">Chia sẽ</button>
                         <div class="form-group form-footer">
                             <button data-dismiss="modal" class="btn btn-red">Xem Kết Quả</button>
                         </div>

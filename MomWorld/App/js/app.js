@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-var app = angular.module('quizApp', ['ui.router', 'ngResource', 'ui.bootstrap', 'angular-md5', 'firebase'])
+var app = angular.module('quizApp', ['ui.router', 'ngResource', 'ui.bootstrap', 'angular-md5', 'firebase', '720kb.socialshare'])
     // Routing has been added to keep flexibility in mind. This will be used in future.
     
 

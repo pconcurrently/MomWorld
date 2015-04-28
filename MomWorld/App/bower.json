@@ -15,6 +15,7 @@
     "videogular-themes-default": "~1.2.0",
     "videogular": "~1.2.0",
     "videogular-controls": "~1.2.0",
-    "videogular-poster": "~1.2.0"
+    "videogular-poster": "~1.2.0",
+    "angularjs-socialshare": "~0.1.7"
   }
 }
