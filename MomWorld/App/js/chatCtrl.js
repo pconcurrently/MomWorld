@@ -21,21 +21,24 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         /* Init Chat */
         $scope.initChat = function (chatUser) {
 
-            /* Get user Profile from User API */
-            $http.get("http://localhost:4444/api/User/Get/" + chatUser).
-                  success(function (data, status, headers, config) {
-                    $scope.rUserAPI = data;
+            if (chatUser) {
+                /* Get user Profile from User API */
+                $http.get("http://localhost:4444/api/User/Get/" + chatUser).
+                      success(function (data, status, headers, config) {
+                          $scope.rUserAPI = data;
 
-                      // Set Chat conversation with chatUser
-                    $scope.getChatFrom(chatUser);
+                          // Set Chat conversation with chatUser
+                          $scope.getChatFrom(chatUser);
 
-                      // Watch change to Scroll down
-                    $scope.chatContent.$watch(function () { $("#chat-content").animate({ scrollTop: 1000000000000000 }, 1000); });
+                          // Watch change to Scroll down
+                          $scope.chatContent.$watch(function () { $("#chat-content").animate({ scrollTop: 1000000000000000 }, 1000); });
 
-                  }).
-                  error(function (data, status, headers, config) {
+                      }).
+                      error(function (data, status, headers, config) {
 
-                  });
+                      });
+            }
+            
 
         }
 
@@ -63,8 +66,11 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
         }
 
         $scope.delConversation = function (receiver) {
+            $scope.clearNoti();
+
             $scope.sUser.$remove();
             $scope.rUser.$remove();
+
         }
 
 
@@ -106,6 +112,7 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
 
 
         /* -------- Clear Notification ----------------- */
+        //TODO: Clear Noti when User delete conversation
         $scope.clearNoti = function () {
             var numNoti = 0;
             // Clear User List Notification
@@ -115,8 +122,6 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
                 numNoti = snapshot.val();
                 numNotiList.set(0);
             });
-
-            alert(numNoti);
 
             // Decrease Side panel Notification
             var o = new Firebase("https://momworld.firebaseio.com/User/" + currentUsername);

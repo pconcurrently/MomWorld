@@ -5,6 +5,20 @@
         $scope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         $scope.currentUsername = $scope.currentUser.Username;
 
+        // Facebook Sharing function
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '680603725400240', status: true, cookie: true,
+                xfbml: true
+            });
+        };
+        (function () {
+            var e = document.createElement('script'); e.async = true;
+            e.src = document.location.protocol +
+            '//connect.facebook.net/en_US/all.js';
+            document.getElementById('fb-root').appendChild(e);
+        }());
+
         // Create QUiz
         $scope.createQuizInit = function () {
             alert("Yolo");
@@ -149,11 +163,11 @@
         });
 
         var score = correctAns / answers.length * 100;
-        // TODO: Code Huan Chuong
-        if (score >= 75) {
-            var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/" + $scope.quizNameTemp);
-            $scope.badgeFirebase = $firebaseObject(userTmp);
+        var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/" + $scope.quizNameTemp);
+        $scope.badgeFirebase = $firebaseObject(userTmp);
 
+        if (score >= 75) {
+           
             // Prepare Badge Information to save in Firebase
             $scope.badgeFirebase.Id = $scope.quizNameTemp;
             $scope.badgeFirebase.Name = $scope.quizNameReal;
@@ -167,7 +181,12 @@
                   $('#modalCompletedQuizz').modal('show')
             )
         } else {
-            $('#modalCompletedQuizzFail').modal('show')
+            $scope.badgeFirebase.$loaded().then(function () {
+                if ($scope.badgeFirebase.Status != 'done') {
+                    $('#modalCompletedQuizzFail').modal('show');
+                }
+            });
+
         }
         
         // Display Result Mode
@@ -220,4 +239,18 @@
         });
         return result;
     };
+
+    /* ------------ Social Functions ------------- */
+    $scope.share = function () {
+        FB.ui(
+	    {
+	        method: 'feed',
+	        name: 'Chúc mừng bạn đã đạt huân chương ' + $scope.quizNameReal,
+	        link: 'http://momworld.com/Profile/GetProfile/',
+	        picture: 'https://momworld.firebaseapp.com/images/badge/' + $scope.quizNameTemp + ".png",
+	        caption: "Huân chương caption",
+	        description: 'This is fucking description',
+	        message: ''
+	    });
+    }
   }]);

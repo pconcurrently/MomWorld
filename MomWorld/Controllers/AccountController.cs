@@ -97,7 +97,7 @@ namespace MomWorld.Controllers
                         };
                         IFirebaseClient client = new FirebaseClient(config);
 
-                        client.Update("User/" + user.UserName.ToLower(), user);
+                        client.Update("User/" + user.UserName, user);
 
 
                         return RedirectToLocal(returnUrl);

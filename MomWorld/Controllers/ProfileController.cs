@@ -30,6 +30,7 @@ namespace MomWorld.Controllers
             
         }
 
+        // Get Profile of Selected User
         [Authorize]
         public ActionResult GetProfile(string id)
         {
@@ -37,8 +38,15 @@ namespace MomWorld.Controllers
             {
                 ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
                 ApplicationUser GetUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(id));
-                ViewData["ViewUsername"] = GetUser.UserName;
-                return View();
+                // If User is Not exists
+                if (GetUser == null)
+                {
+                    return Redirect("http://localhost:4444/");
+                } else {
+                    ViewData["ViewUsername"] = GetUser.UserName;
+                    return View();
+                }
+                
             }
             else
             {
