@@ -163,11 +163,11 @@
         });
 
         var score = correctAns / answers.length * 100;
-        // TODO: Code Huan Chuong
-        if (score >= 75) {
-            var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/" + $scope.quizNameTemp);
-            $scope.badgeFirebase = $firebaseObject(userTmp);
+        var userTmp = new Firebase("https://momworld.firebaseio.com/User/" + $scope.currentUsername + "/Badge/" + $scope.quizNameTemp);
+        $scope.badgeFirebase = $firebaseObject(userTmp);
 
+        if (score >= 75) {
+           
             // Prepare Badge Information to save in Firebase
             $scope.badgeFirebase.Id = $scope.quizNameTemp;
             $scope.badgeFirebase.Name = $scope.quizNameReal;
@@ -181,7 +181,12 @@
                   $('#modalCompletedQuizz').modal('show')
             )
         } else {
-            $('#modalCompletedQuizzFail').modal('show')
+            $scope.badgeFirebase.$loaded().then(function () {
+                if ($scope.badgeFirebase.Status != 'done') {
+                    $('#modalCompletedQuizzFail').modal('show');
+                }
+            });
+
         }
         
         // Display Result Mode
@@ -240,7 +245,7 @@
         FB.ui(
 	    {
 	        method: 'feed',
-	        name: 'Chúc mựng bạn đã đạt huân chương ' + $scope.quizNameReal,
+	        name: 'Chúc mừng bạn đã đạt huân chương ' + $scope.quizNameReal,
 	        link: 'http://momworld.com/Profile/GetProfile/',
 	        picture: 'https://momworld.firebaseapp.com/images/badge/' + $scope.quizNameTemp + ".png",
 	        caption: "Huân chương caption",

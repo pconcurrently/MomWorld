@@ -39,7 +39,7 @@
 </head>
 
 <body ng-app="quizApp" ng-controller="quizCtrl">
-
+    <div id="fb-root"></div>
 
     <!-- BEGIN BREADCRUMBS -->
     <div id="breadcrumbs" class="breadcrumbs bg-1">
@@ -82,7 +82,7 @@
                                         <a ng-href="/Quizzes/DoQuiz/{{quiz.id}}">
 
                                             <img class="exam-thumbnail" ng-class="{'opacity' : badgeFire.{{quiz.quizName}}.Status != 'done' }"
-                                                 ng-src="http://localhost:4444/Content/images/badge/{{quiz.quizName}}.png"
+                                                 ng-src="@Url.Content("~/App/images/badge/{{quiz.quizName}}.png")"
                                                  alt="...">
                                             <div class="caption">
                                                 <span class="exam-category text-danger">{{quiz.name}}</span>

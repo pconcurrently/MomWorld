@@ -10,11 +10,11 @@
     <title>@ViewBag.Title.</title>
 
     <!--Logic Dependencies -->
-    <script src="http://localhost:4444/App/bower_components/moment/min/moment-with-locales.min.js"></script>
-    <script src="http://localhost:4444/App/bower_components/moment/locale/vi.js"></script>
-    <script src="http://localhost:4444/App/bower_components/angular-moment/angular-moment.min.js"></script>
+    <script src="@Url.Content("~/App/bower_components/moment/min/moment-with-locales.min.js")"></script>
+    <script src="@Url.Content("~/App/bower_components/moment/locale/vi.js")"></script>
+    <script src="@Url.Content("~/App/bower_components/angular-moment/angular-moment.min.js")"></script>
 
-  
+
 
 
 </head>
@@ -60,7 +60,7 @@
                                                 <strong>Hộp thư</strong>
                                             </h3>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                                 <!-- /tile header -->
@@ -79,7 +79,7 @@
                                                 <div class="media">
                                                     <div class="pull-left">
                                                         <img class="media-object img-circle"
-                                                             ng-src="{{chat.Avatar}}"> <span ng-if="chat.NumNoti !== 0" class="badge badge-red">{{chat.NumNoti}}</span>
+                                                             ng-src="@Url.Content("~/App/uploads/avatar/{{chat.Username}}.png")"> <span ng-if="chat.NumNoti !== 0" class="badge badge-red">{{chat.NumNoti}}</span>
                                                     </div>
                                                     <div class="media-body">
                                                         <p class="media-heading">
@@ -97,7 +97,7 @@
                                                 </div>
                                             </a>
                                         </li>
-                                      
+
                                     </ul>
 
                                 </div>
@@ -130,8 +130,8 @@
                                         </li>
                                         <li class="pull-right">
                                             <div class="btn-group btn-group-sm">
-                                                
-                                                
+
+
                                             </div>
                                         </li>
                                     </ul>
@@ -149,9 +149,9 @@
                                                 <div class="media">
                                                     <div class="pull-left user-avatar">
                                                         <img ng-if="message.Sender == currentUser.Username" class="media-object img-circle"
-                                                             ng-src="{{rUser.Avatar}}">
+                                                             ng-src="@Url.Content("~/App/uploads/avatar/{{rUser.Username}}.png")">
                                                         <img ng-if="message.Sender != currentUser.Username" class="media-object img-circle"
-                                                             ng-src="{{sUser.Avatar}}">
+                                                             ng-src="@Url.Content("~/App/uploads/avatar/{{sUser.Username}}.png")">
                                                     </div>
                                                     <div class="media-body">
                                                         <p class="media-heading">
@@ -176,7 +176,7 @@
                                     <div class="chat-reply" id="chat-reply">
                                         <textarea ng-model="replyMess" placeholder="Nội dung tin nhắn ..." class="form-control" ng-click="clearNoti()"></textarea>
                                         <div class="btn-group btn-group-sm">
-                                            
+
                                             <button ng-click="sendMessage(currentUser.Username)"
                                                     class="btn btn-transparent-white last pull-right">
                                                 Trả lời

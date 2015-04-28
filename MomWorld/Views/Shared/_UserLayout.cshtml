@@ -98,9 +98,9 @@
 
     <!-- Logic Dependencies -->
     <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
-    <script src="http://localhost:4444/App/bower_components/moment/min/moment-with-locales.min.js"></script>
-    <script src="http://localhost:4444/App/bower_components/moment/locale/vi.js"></script>
-    <script src="http://localhost:4444/App/bower_components/angular-moment/angular-moment.min.js"></script>
+    <script src="@Url.Content("~/App/bower_components/moment/min/moment-with-locales.min.js")"></script>
+    <script src="@Url.Content("~/App/bower_components/moment/locale/vi.js")"></script>
+    <script src="@Url.Content("~/App/bower_components/angular-moment/angular-moment.min.js")"></script>
     <script src="@Url.Content("~/App/scripts/angular-file-upload/angular-file-upload.min.js")"></script>
     <script src="@Url.Content("~/App/scripts/infinite-scroll/ng-infinite-scroll.min.js")"></script>
     <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
@@ -254,7 +254,7 @@
                             <li ng-class="online" ng-repeat="userL in listUser | filter:searchUser">
                                 <div class="media">
                                     <a class="pull-left profile-photo" ng-href="http://localhost:4444/Profile/GetProfile/{{userL.Username}}">
-                                        <img class="media-object" ng-src="http://localhost:4444/App/uploads/avatar/{{userL.Username}}.png">
+                                        <img class="media-object" ng-src="@Url.Content("~/App/uploads/avatar/{{userL.Username}}.png")">
                                     </a>
                                     <div class="media-body">
                                         <h6 class="media-heading"><strong>{{userL.Username}}</strong></h6>
@@ -263,6 +263,7 @@
                                     </div>
                                 </div>
                             </li>
+
                             <li ng-class="online">
                                 <div class="media">
                                     <a class="pull-left profile-photo" ng-href="http://localhost:4444/Profile/GetProfile/{{userL.Username}}">

@@ -81,7 +81,7 @@
                                 </h3>
                                 <ul class="profile-controls inline">
                                     <li class="avatar">
-                                        <img ng-src="{{user.ProfilePicture}}"
+                                        <img ng-src="@Url.Content("~/App/uploads/avatar/{{currentUsername}}.png")"
                                              class="img-circle profile-photo">
                                     </li>
                                 </ul>
@@ -103,7 +103,7 @@
                         <div class="tile-body color transparent-black textured rounded-bottom-corners">
                             <ul class="inline text-center">
                                 <li ng-repeat="badge in badgeFire">
-                                    <img alt="" ng-src="{{badge.Image}}"
+                                    <img alt="" ng-src="@Url.Content("~/App/images/badge/{{badge.Id}}.png")"
                                          style="height: 50px; width: 50px;">
                                 </li>
                             </ul>
@@ -165,9 +165,9 @@
                                 <div class="feed-list">
                                     <article ng-repeat="status in statusFirebase | reverse" class="feed-post" >
                                         <aside class="profile-photo">
-                                            <a ng-href="http://localhost:4444/Profile/getProfile/{{status.CreatorUsername}}">
-                                                <img src="{{status.CreatorAvatar}}" alt=""
-                                               class="img-circle">
+                                            <a ng-href="../../Profile/getProfile/{{status.CreatorUsername}}">
+                                                <img ng-src="@Url.Content("~/App/uploads/avatar/{{status.CreatorUsername}}.png")" alt=""
+                                                     class="img-circle">
                                             </a>
                                         </aside>
                                         <div class="feed-container">
@@ -203,7 +203,7 @@
                                                 <ul class="comments">
                                                     <li ng-repeat="comment in status.Comment">
                                                         <div class="profile-photo">
-                                                            <img ng-src="{{comment.CreatorAvatar}}" alt=""
+                                                            <img ng-src="@Url.Content("~/App/uploads/avatar/{{comment.CreatorUsername}}.png")" alt=""
                                                                  class="img-circle">
                                                         </div>
                                                         <div class="comment-container">
@@ -388,7 +388,7 @@
                                                  style="border: 3px solid rgba(0, 0, 0, 0.5);">
                                                 <div ng-if="badge.Status == 'done'">
                                                     <div class="col-xs-6 col-md-2">
-                                                        <img alt="" ng-src="{{badge.Image}}"
+                                                        <img alt="" ng-src="@Url.Content("~/App/images/badge/{{badge.Id}}.png")"
                                                              style="height: 80px; width: 80px;">
                                                     </div>
                                                     <div class="col-xs-6 col-md-10">
