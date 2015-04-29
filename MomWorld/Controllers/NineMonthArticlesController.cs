@@ -35,6 +35,17 @@ namespace MomWorld.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+
+            //Suggest categories
+            var userRoutines = identityDb.UserRoutines.ToList().FindAll(ur => ur.UserId.Equals(ViewBag.CurrentUser.Id));
+            userRoutines = userRoutines.OrderByDescending(u => u.Count).ToList();
+            var mostView = userRoutines.First() as UserRoutine;
+            var categoriesList = articleDb.Categories.ToList().FindAll(c => c.Phase.Equals(mostView.Phase));
+            ViewBag.CategoriesList = categoriesList;
+            ViewBag.AllArticles = articleDb.Articles.ToList();
+            ViewBag.CacThe = articleDb.Tags.ToList();
+
+            
             NineMonthArticle nineMonthArticle = db.NineMonthArticles.Find(id);
             if (nineMonthArticle == null)
             {

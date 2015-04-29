@@ -5,6 +5,10 @@
     var articles = ViewBag.Articles as List<MomWorld.Entities.Article>;
     var tagsList = ViewBag.TagsList as Dictionary<string, string>;
     var tagIdList = ViewBag.TagIdList as string[];
+    string allCate = string.Empty;
+    var categoriesList = ViewBag.CategoriesList as List<MomWorld.Entities.Category>;
+    var allArticles = ViewBag.AllArticles as List<MomWorld.Entities.Article>;
+    var cacThe = ViewBag.CacThe as List<MomWorld.Entities.Tag>;
 }
 
 <!DOCTYPE html>
@@ -312,11 +316,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-md-6 text-right">
-                        <a href="@Url.Action("Create","Articles")" class="btn btn-warning">
-                            <i class="fa fa-plus-circle"></i> Thêm bài viết
-                        </a>
-                    </div>
+
 
                 </div>
 
@@ -328,13 +328,17 @@
                         <div class="row mix-grid" id="gallery">
                             @foreach (var article in articles)
                             {
-                                <div class="mix @(article.Tags.Length > 36 ? article.Tags.Remove(',') : article.Tags) mix_all">
+                                allCate += (article.Tags.Length > 36 ? article.Tags.Remove(',') : article.Tags + " ");
+                            }
+                            <div class="mix @allCate mix_all">
+                                @foreach (var art in articles)
+                                {
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            @if (article.DescriptionImage != null)
+                                            @if (art.DescriptionImage != null)
                                             {
                                                 <img class="img-responsive" alt=""
-                                                     src="@Url.Content(article.DescriptionImage)">
+                                                     src="@Url.Content(art.DescriptionImage)">
                                             }
                                             else
                                             {
@@ -346,27 +350,26 @@
 
                                         <div class="col-md-8 col-sm-8">
                                             <h3>
-                                                <a href="@Url.Action("Details", "Articles", routeValues: new { id = article.Id })">
-                                                    @article.Title
+                                                <a href="@Url.Action("Details", "Articles", routeValues: new { id = art.Id })">
+                                                    @art.Title
                                                 </a>
                                             </h3>
                                             <ul class="post-details">
-                                                <li><i class="fa fa-calendar-o"></i> @article.PostedDate</li>
-                                                <li><i class="fa fa-comments"></i> 5</li>
+                                                <li><i class="fa fa-calendar-o"></i> @art.PostedDate</li>
                                             </ul>
                                             <p>
-                                                @Html.Raw(article.Description)
+                                                @Html.Raw(art.Description)
                                             </p>
-                                            <a href="@Url.Action("Details", "Articles", routeValues: new { id = article.Id })" class="read-more">
+                                            <a href="@Url.Action("Details", "Articles", routeValues: new { id = art.Id })" class="read-more">
                                                 <i class="fa fa-angle-right"></i> Xem thêm
                                             </a>
                                         </div>
 
                                     </div>
 
+                                }
+                            </div>
 
-                                </div>
-                            }
 
                         </div>
                     </div>
@@ -389,16 +392,13 @@
 
                                 <form class="form-horizontal" role="form">
                                     <ul class="nav categories sidebar-widget">
-                                        <li><a href="#">Sức khỏe sinh sản <em>(26)</em></a></li>
-                                        <li class="active">
-                                            <a href="#">
-                                                40 tuần mang
-                                                thai <em>(40)</em>
-                                            </a>
-                                        </li>
-                                        <li><a href="#">Sức khỏe trong thai kỳ <em>(15)</em></a></li>
-                                        <li><a href="#">Dinh dưỡng thai kỳ <em>(2)</em></a></li>
-                                        <li><a href="#">Kỹ năng làm mẹ <em>(8)</em></a></li>
+                                        @if (categoriesList != null)
+                                        {
+                                            foreach (var cate in categoriesList)
+                                            {
+                                                <li><a href="@Url.Action("Details", "Categories", routeValues: new { id = cate.Id })">@cate.Name <em>(@allArticles.FindAll(a => a.CategoryId.Equals(cate.Id)).Count)</em></a></li>
+                                            }
+                                        }
                                     </ul>
                                 </form>
 
@@ -408,78 +408,7 @@
                         </section>
                         <!-- END CATEGORIES -->
                         <!-- RECENT POSTS -->
-                        <section class="tile color transparent-white">
 
-                            <!-- tile header -->
-                            <div class="tile-header color greensea rounded-top-corners">
-                                <h1>
-                                    Bài viết<strong> nổi bật</strong>
-                                </h1>
-                            </div>
-                            <!-- /tile header -->
-                            <!-- tile body -->
-                            <div class="tile-body">
-
-                                <form class="form-horizontal" role="form">
-
-                                    <ul class="media-list recent-posts sidebar-widget">
-
-                                        <li class="media">
-                                            <a class="pull-left"
-                                               href="post-item.html">
-                                                <img class="media-object"
-                                                     src="@Url.Content("~/Content/images/post/2.jpg")" alt="">
-                                            </a>
-                                            <div class="media-body">
-                                                <h5 class="media-heading">
-                                                    <a href="post-item.html">40 Tuần mang thai</a>
-                                                </h5>
-                                                <p>
-                                                    Con thân yêu trong bụng mẹ đang phát triển như thế nào
-                                                    nhỉ?
-                                                </p>
-                                            </div>
-                                        </li>
-
-                                        <li class="media">
-                                            <a class="pull-left"
-                                               href="post-item.html">
-                                                <img class="media-object"
-                                                     src="@Url.Content("~/Content/images/post/4.jpg")" alt="">
-                                            </a>
-                                            <div class="media-body">
-                                                <h5 class="media-heading">
-                                                    <a href="post-item.html">Hành trình năm đầu đời</a>
-                                                </h5>
-                                                <p>
-                                                    Con đã chào đời trong niềm yêu thương vô bờ bến của
-                                                    cha mẹ.
-                                                </p>
-                                            </div>
-                                        </li>
-
-                                        <li class="media">
-                                            <a class="pull-left"
-                                               href="post-item.html">
-                                                <img class="media-object"
-                                                     src="@Url.Content("~/Content/images/post/3.jpg")" alt="">
-                                            </a>
-                                            <div class="media-body">
-                                                <h5 class="media-heading">
-                                                    <a href="post-item.html">Nuôi dạy con</a>
-                                                </h5>
-                                                <p>Nếu mang thai, sinh con là một hành trình đáng nhớ</p>
-                                            </div>
-                                        </li>
-
-                                    </ul>
-
-                                </form>
-
-                            </div>
-                            <!-- /tile body -->
-
-                        </section>
                         <!-- END RECENT POSTS -->
                         <!-- TAGS -->
                         <section class="tile color transparent-white">
@@ -489,31 +418,15 @@
                             </div>
                             <div class="tile-body">
                                 <ul class="tags sidebar-widget">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-tags"></i>
-                                            Mong con
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-tags"></i>
-                                            Mang thai
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-tags"></i> Trẻ
-                                            sơ sinh
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-tags"></i>
-                                            Nuôi dạy con
-                                        </a>
-                                    </li>
-
+                                    @foreach (var item in cacThe)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Details", "Tags", routeValues: new { id = item.Id })">
+                                                <i class="fa fa-tags"></i>
+                                                @item.Name
+                                            </a>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </section>
