@@ -150,5 +150,15 @@ namespace MomWorld.Controllers
             }
             return Json(null);
         }
+
+        public ActionResult UnderConstruction()
+        {
+            return View();
+        }
+
+        public ActionResult RulesViolation()
+        {
+            return View();
+        }
     }
 }
