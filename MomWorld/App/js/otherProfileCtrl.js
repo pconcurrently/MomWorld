@@ -123,7 +123,6 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
         var numLike = $firebaseObject(p);
 
         numLike.$loaded(function (data) {
-            console.log("Data:  " + data.User);
             data.Count++;
             if (!data.User) {
                 data.User = [];

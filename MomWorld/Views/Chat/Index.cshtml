@@ -155,7 +155,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <p class="media-heading">
-                                                            <a href="chat.html#">{{message.Sender}}</a> <span class="time"><span am-time-ago="message.CreatedDate"></span></span>
+                                                            <a ng-href="../../Profile/GetProfile/{{message.Sender}}">{{message.Sender}}</a> <span class="time"><span am-time-ago="message.CreatedDate"></span></span>
                                                         </p>
                                                         {{message.Content}}
                                                     </div>
@@ -180,11 +180,7 @@
                                             <button ng-click="sendMessage(currentUser.Username)"
                                                     class="btn btn-transparent-white last pull-right">
                                                 Trả lời
-                                            </button>
-                                            <div class="checkbox check-transparent pull-right">
-                                                <input type="checkbox" value="1" id="send-by-enter">
-                                                <label for="send-by-enter">Nhấn Enter để gửi</label>
-                                            </div>
+                                            </button>                                            
                                         </div>
                                     </div>
 

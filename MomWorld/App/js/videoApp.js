@@ -59,11 +59,32 @@
                     var numLike = $firebaseObject(p);
                     numLike.$loaded(function (data) {
                         data.Count++;
-                        // data.Liker.push($scope.currentUsername);
+                        if (!data.User) {
+                            data.User = [];
+                            data.User.push($scope.currentUsername);
+                        } else {
+                            if (!$scope.isInArray($scope.currentUsername, data.User)) {
+                                data.User.push($scope.currentUsername);
+                            }
+                        }
+
                         data.$save().then();
                     },
                         function (err) { });
                 }
+
+                /*----------------- Helper Methods ---------------- */
+
+                $scope.isInArray = function (value, array) {
+                    if (array) {
+                        return array.indexOf(value) > -1;
+                    } else {
+                        return false;
+                    }
+
+                }
+
+
 
                 // ------- Video Upload
 
@@ -96,7 +117,7 @@
                         v.VideoID = $scope.uuid;
                         v.VideoURL = "http://localhost:4444/App/uploads/video/" + $scope.uuid + ".mp4";
                         v.VideoThumbnail = "http://localhost:4444/App/uploads/video/thumbnail/" + $scope.uuid + ".png";
-                        v.Like = { Count: 0, Liker: [] };
+                        v.Like = { Count: 0, User: [] };
                         v.NumView = 0;
 
                         v.$save().then(function () {
@@ -143,7 +164,7 @@
                     autoPlay: false,
                     sources: controller.videos[0].sources,
                     theme: {
-                        url: "http://localhost:4444/App/bower_components/videogular-themes-default/videogular.css"
+                        url: "/App/bower_components/videogular-themes-default/videogular.css"
                     },
                     plugins: {
                         poster: "http://cdn.sheknows.com/articles/2014/05/Rebekah/AU/mother-and-baby.jpg"
@@ -158,7 +179,7 @@
 
                     controller.API.stop();
                     controller.currentVideo = index;
-                    controller.config.sources = [{ src: $sce.trustAsResourceUrl("http://localhost:4444/App/uploads/video/" + index + ".mp4"), type: "video/mp4" }];
+                    controller.config.sources = [{ src: $sce.trustAsResourceUrl("/App/uploads/video/" + index + ".mp4"), type: "video/mp4" }];
                     // controller.config.sources = controller.videos[index].sources;
 
 
