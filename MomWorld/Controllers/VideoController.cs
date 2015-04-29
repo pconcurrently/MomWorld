@@ -29,7 +29,7 @@ namespace MomWorld.Controllers
             }
             else
             {
-                return Redirect("http://localhost:4444/Video");
+                return Redirect("~/Video");
             }
         }
 

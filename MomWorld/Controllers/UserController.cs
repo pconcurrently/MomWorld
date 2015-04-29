@@ -89,7 +89,7 @@ namespace MomWorld.Controllers
 
                     // Change User ProfilePiture in Database
                     var user = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(name));
-                    user.ProfilePicture = "http://localhost:4444/App/uploads/avatar/" + name + ".png";
+                    user.ProfilePicture = "~/App/uploads/avatar/" + name + ".png";
                     identityDb.SaveChanges();
 
                 }

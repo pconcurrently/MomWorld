@@ -83,7 +83,7 @@
 
                     <!-- The file upload form used as target for the file upload widget -->
                     <form class="form-horizontal" id="fileupload"
-                          action="../../api/User/UploadVideo" method="POST"
+                          action="api/User/UploadVideo" method="POST"
                           enctype="multipart/form-data"
                           data-file-upload="options"
                           data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
@@ -98,12 +98,12 @@
                                 <!-- The fileinput-button span is used to style the file input field as button -->
                                 <span class="btn btn-success fileinput-button"
                                       ng-class="{disabled: disabled}">
-                                    <i class="glyphicon glyphicon-plus"></i> <span>Chọn video</span> <input type="file" name="files[]" ng-disabled="disabled">
+                                    <i class="glyphicon glyphicon-facetime-video"></i> <span>Chọn video</span> <input type="file" name="files[]" ng-disabled="disabled">
                                 </span>
 
                                 <span class="btn btn-success fileinput-button"
                                       ng-class="{disabled: disabled}">
-                                    <i class="glyphicon glyphicon-plus"></i> <span>Chọn Hinh Anh</span> <input type="file" name="files2[]" ng-disabled="disabled">
+                                    <i class="glyphicon glyphicon-picture"></i> <span>Chọn ảnh hiển thị</span> <input type="file" name="files2[]" ng-disabled="disabled">
                                 </span>
 
                                 <!-- The global file processing state -->
@@ -156,25 +156,25 @@
                                     </div>
                                 </td>
                                 @*<td>
-                                        <button type="button" class="btn btn-primary start"
-                                                data-ng-click="file.$submit()"
-                                                data-ng-hide="!file.$submit || options.autoUpload"
-                                                data-ng-disabled="file.$state() == 'pending' || file.$state() == 'rejected'">
-                                            <i class="glyphicon glyphicon-upload"></i> <span>
-                                                Bắt
-                                                đầu
-                                            </span>
-                                        </button>
-                                        <button type="button" class="btn btn-warning cancel"
-                                                data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
-                                            <i class="glyphicon glyphicon-ban-circle"></i> <span>Hủy</span>
-                                        </button>
-                                        <button data-ng-controller="FileDestroyController"
-                                                type="button" class="btn btn-danger destroy"
-                                                data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
-                                            <i class="glyphicon glyphicon-trash"></i> <span>Xóa</span>
-                                        </button>
-                                    </td>*@
+                        <button type="button" class="btn btn-primary start"
+                                data-ng-click="file.$submit()"
+                                data-ng-hide="!file.$submit || options.autoUpload"
+                                data-ng-disabled="file.$state() == 'pending' || file.$state() == 'rejected'">
+                            <i class="glyphicon glyphicon-upload"></i> <span>
+                                Bắt
+                                đầu
+                            </span>
+                        </button>
+                        <button type="button" class="btn btn-warning cancel"
+                                data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
+                            <i class="glyphicon glyphicon-ban-circle"></i> <span>Hủy</span>
+                        </button>
+                        <button data-ng-controller="FileDestroyController"
+                                type="button" class="btn btn-danger destroy"
+                                data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
+                            <i class="glyphicon glyphicon-trash"></i> <span>Xóa</span>
+                        </button>
+                    </td>*@
                             </tr>
                         </table>
 
@@ -252,13 +252,11 @@
                     </videogular>
                 </div>
             </div>
-
+            <hr />
             <div class="row">
-
-
                 <div class="col-md-12 text-right">
                     <a href="ui-elements.html#modalAddNewVideo" role="button"
-                       class="btn btn-lg btn-warning" data-toggle="modal">
+                       class="btn btn-warning" data-toggle="modal">
                         <i class="fa fa-plus-circle"></i> Đăng video
                     </a>
                 </div>

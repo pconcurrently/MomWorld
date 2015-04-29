@@ -171,7 +171,7 @@
             // Prepare Badge Information to save in Firebase
             $scope.badgeFirebase.Id = $scope.quizNameTemp;
             $scope.badgeFirebase.Name = $scope.quizNameReal;
-            $scope.badgeFirebase.Image = 'http://localhost:4444/Content/images/badge/' + $scope.quizNameTemp + '.png';
+            $scope.badgeFirebase.Image = '~/Content/images/badge/' + $scope.quizNameTemp + '.png';
             $scope.badgeFirebase.Score = score;
             $scope.badgeFirebase.Status = 'done';
             $scope.badgeFirebase.Message = $scope.quizMess;

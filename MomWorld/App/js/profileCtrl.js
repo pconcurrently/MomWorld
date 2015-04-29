@@ -23,7 +23,7 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
         $scope.user = {};
         $scope.loadProfile = function () {
             /* Get user Profile from User API */
-            $http.get("http://localhost:4444/api/User/Get/" + $scope.currentUsername).
+            $http.get("~/api/User/Get/" + $scope.currentUsername).
                   success(function (data, status, headers, config) {
                       $scope.user = data;
                   }).
@@ -44,7 +44,7 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
 
         }
 
-        $http.put("http://localhost:4444/api/User/Put/" + $scope.currentUsername, sentData).
+        $http.put("~/api/User/Put/" + $scope.currentUsername, sentData).
               success(function (data, status, headers, config) {
                   // TODO: UPdate Css
                   $('#modalSuccess').modal('show');
@@ -56,7 +56,7 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
     }
 
     var uploader = $scope.uploader = new FileUploader({
-        url: "http://localhost:4444/api/User/UploadAvatar",
+        url: "~/api/User/UploadAvatar",
         formData: [{ Username: $scope.currentUsername }]
     });
 
@@ -100,7 +100,7 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
             Content: $scope.Content,
             CreatorName: $scope.user.FirstName + " " + $scope.user.LastName,
             CreatorUsername: $scope.currentUsername,
-            CreatorAvatar: "http://localhost:4444/App/uploads/avatar/" + $scope.currentUsername + ".png",
+            CreatorAvatar: "~/App/uploads/avatar/" + $scope.currentUsername + ".png",
             CreatedDate: Firebase.ServerValue.TIMESTAMP,
             NumLike: {
                 Count: 0,
@@ -130,7 +130,7 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
             Content: _comment,
             CreatorName: _user.FirstName + " " + _user.LastName,
             CreatorUsername: $scope.currentUsername,
-            CreatorAvatar: "http://localhost:4444/App/uploads/avatar/" + $scope.currentUsername + ".png",
+            CreatorAvatar: "~/App/uploads/avatar/" + $scope.currentUsername + ".png",
             createdDate: Firebase.ServerValue.TIMESTAMP
         }
         var commentStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername + "/" + _status.$id + "/Comment");
