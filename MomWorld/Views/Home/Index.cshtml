@@ -484,10 +484,10 @@
                             <!-- Tab panes -->
 
                             <div id="tab-1" class="tab-pane fade active in">
+                                @foreach (var mongcon in MongCon)
+                                {
+                                    <article class="newsCenter">
 
-                                <article class="newsCenter">
-                                    @foreach (var mongcon in MongCon)
-                                    {
                                         <div class="autNewsCt row">
                                             <div class="top-box-article">
                                                 <span class="avatarNews col-md-2 col-sm-2 col-xs-3 ol-lg-5">
@@ -498,15 +498,15 @@
                                                     <a href="">@postedUsers.FirstOrDefault(u => u.Id.Equals(mongcon.UserId)).UserName</a>
                                                     @if (Math.Round((DateTime.Now - mongcon.PostedDate.Value).TotalDays, 0) == 0)
                                                     {
-                                                        <span class="date-post">
-                                                            Hôm nay
-                                                        </span>
+                                                    <span class="date-post">
+                                                        Hôm nay
+                                                    </span>
                                                     }
                                                     else
                                                     {
-                                                        <span class="date-post">
-                                                            @Math.Round((DateTime.Now - mongcon.PostedDate.Value).TotalDays, 0) ngày trước
-                                                        </span>
+                                                    <span class="date-post">
+                                                        @Math.Round((DateTime.Now - mongcon.PostedDate.Value).TotalDays, 0) ngày trước
+                                                    </span>
                                                     }
                                                 </span>
                                                 <div class="icon-list-btn col-lg-6">
@@ -549,8 +549,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    }
-                                </article>
+
+                                    </article> }
                             </div>
 
 
