@@ -83,7 +83,7 @@
 
                     <!-- The file upload form used as target for the file upload widget -->
                     <form class="form-horizontal" id="fileupload"
-                          action="http://localhost:4444/api/User/UploadVideo" method="POST"
+                          action="../../api/User/UploadVideo" method="POST"
                           enctype="multipart/form-data"
                           data-file-upload="options"
                           data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
@@ -206,7 +206,7 @@
 
             <ol class="breadcrumb">
                 <li>
-                    <a href="index.html">
+                    <a href="~/">
                         <i class="fa fa-home"></i> Trang
                         chủ
                     </a>
@@ -291,9 +291,21 @@
                                 <span class="video-meta">
                                     <a href="#">
                                         <i class="fa fa-eye"></i>{{video.NumView}}
-                                    </a> <a href="#" ng-click="likeVideo(video.VideoID)">
-                                        <i class="fa fa-heart"></i>{{video.Like.Count}}
+                                    </a>                                  
+
+                                    <a href="#" ng-show="!isInArray(currentUsername, video.Like.User)" ng-click="likeVideo(video.VideoID)">
+                                        <i class="fa fa-heart color-slategray"></i>
+                                        <span>
+                                            {{video.Like.Count}}
+                                        </span>
                                     </a>
+
+                                    <a ng-show="isInArray(currentUsername, video.Like.User)" class="liked">
+                                        <i class="fa fa-heart color-red"></i>
+                                        <span>
+                                            {{video.Like.Count}}
+                                        </span>
+                                    </a>  
                                 </span>
                                 <p>
                                     {{video.Content}}

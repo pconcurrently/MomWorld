@@ -62,7 +62,8 @@
 
                                     <div class="user-card">
                                         <h3>
-                                            <strong>{{user.FirstName + " " + user.LastName}}</strong>
+                                            <strong ng-if="user.FirstName">{{user.FirstName}}</strong>
+                                            <strong ng-if="user.LastName">{{user.LastName}}</strong>
                                         </h3>
                                         <ul class="profile-controls inline">
                                             <li class="mailto"><a ng-href="../../Chat/{{viewUsername}}"><i class="fa fa-envelope"></i> Gửi tin nhắn</a></li>
@@ -162,7 +163,7 @@
                                             <article ng-repeat="status in statusFirebase" class="feed-post">
 
                                                 <aside class="profile-photo">
-                                                    <a ng-href="http://localhost:4444/Profile/getProfile/{{status.CreatorUsername}}">
+                                                    <a ng-href="../../Profile/getProfile/{{status.CreatorUsername}}">
                                                         <img src="{{status.CreatorAvatar}}" alt=""
                                                              class="img-circle">
                                                     </a>
@@ -173,7 +174,7 @@
                                                     <header>
 
                                                         <div class="author">
-                                                            <a href="personal-page.html#">{{status.CreatorUsername}}</a> đã cập nhật một
+                                                            <a ng-href="../../Profile/getProfile/{{status.CreatorUsername}}">{{status.CreatorUsername}}</a> đã cập nhật một
                                                             trạng thái mới <small><span am-time-ago="status.CreatedDate"></span></small>
                                                         </div>
 
@@ -209,7 +210,7 @@
 
                                                                 <div class="comment-container">
 
-                                                                    <a ng-href="http://localhost:4444/Profile/getProfile/{{comment.CreatorUsername}}" class="comment-author">
+                                                                    <a ng-href="../../Profile/getProfile/{{comment.CreatorUsername}}" class="comment-author">
                                                                         {{comment.CreatorUsername}}
                                                                     </a> {{comment.Content}}
 

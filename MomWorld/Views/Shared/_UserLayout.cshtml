@@ -253,7 +253,7 @@
                         <ul class="users-list">
                             <li ng-class="online" ng-repeat="userL in listUser | filter:searchUser">
                                 <div class="media">
-                                    <a class="pull-left profile-photo" ng-href="http://localhost:4444/Profile/GetProfile/{{userL.Username}}">
+                                    <a class="pull-left profile-photo" ng-href="../../Profile/GetProfile/{{userL.Username}}">
                                         <img class="media-object" ng-src="@Url.Content("~/App/uploads/avatar/{{userL.Username}}.png")">
                                     </a>
                                     <div class="media-body">

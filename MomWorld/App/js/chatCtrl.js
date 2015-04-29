@@ -23,7 +23,7 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
 
             if (chatUser) {
                 /* Get user Profile from User API */
-                $http.get("http://localhost:4444/api/User/Get/" + chatUser).
+                $http.get("../../api/User/Get/" + chatUser).
                       success(function (data, status, headers, config) {
                           $scope.rUserAPI = data;
 

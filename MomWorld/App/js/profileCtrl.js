@@ -168,7 +168,6 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
         var numLike = $firebaseObject(p);
 
         numLike.$loaded(function (data) {
-            console.log("Data:  " + data.User);
             data.Count++;
             if (!data.User) {
                 data.User = [];

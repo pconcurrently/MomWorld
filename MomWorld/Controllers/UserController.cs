@@ -29,6 +29,7 @@ namespace MomWorld.Controllers
 
         // GET: api/User/user1
         // Retrive User from Database using UserName 
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public object Get(string id)
         {
             // Get user by Uername

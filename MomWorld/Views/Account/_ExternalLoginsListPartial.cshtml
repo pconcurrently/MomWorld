@@ -23,13 +23,13 @@
                 <p>
                     @foreach (AuthenticationDescription p in loginProviders)
                     {
-                        if (p.AuthenticationType.Equals("Google"))
+                        if (p.AuthenticationType.Equals("Facebook"))
                         {
-                            <button type="submit" class="btn btn-red" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><i class="fa fa-facebook-square"></i> @p.AuthenticationType</button>
+                            <button type="submit" class="btn btn-cyan" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><i class="fa fa-facebook-square"></i> @p.AuthenticationType</button>
 
                         }
-                        else if (p.AuthenticationType.Equals("Facebook"))
-                        {<button type="submit" class="btn btn-cyan" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><i class="fa fa-google-plus"></i> @p.AuthenticationType</button> }
+                        else if (p.AuthenticationType.Equals("Google"))
+                        {<button type="submit" class="btn btn-red" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><i class="fa fa-google-plus"></i> @p.AuthenticationType</button> }
 
                     }
                 </p>
