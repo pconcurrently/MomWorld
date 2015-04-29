@@ -5,7 +5,6 @@
     var articles = ViewBag.Articles as List<MomWorld.Entities.Article>;
     var tagsList = ViewBag.TagsList as Dictionary<string, string>;
     var tagIdList = ViewBag.TagIdList as string[];
-    string allCate = string.Empty;
     var categoriesList = ViewBag.CategoriesList as List<MomWorld.Entities.Category>;
     var allArticles = ViewBag.AllArticles as List<MomWorld.Entities.Article>;
     var cacThe = ViewBag.CacThe as List<MomWorld.Entities.Tag>;
@@ -328,17 +327,13 @@
                         <div class="row mix-grid" id="gallery">
                             @foreach (var article in articles)
                             {
-                                allCate += (article.Tags.Length > 36 ? article.Tags.Remove(',') : article.Tags + " ");
-                            }
-                            <div class="mix @allCate mix_all">
-                                @foreach (var art in articles)
-                                {
+                                <div class="mix @(article.Tags.Length > 36 ? article.Tags.Replace(",",string.Empty) : article.Tags) mix_all">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            @if (art.DescriptionImage != null)
+                                            @if (article.DescriptionImage != null)
                                             {
                                                 <img class="img-responsive" alt=""
-                                                     src="@Url.Content(art.DescriptionImage)">
+                                                     src="@Url.Content(article.DescriptionImage)">
                                             }
                                             else
                                             {
@@ -350,26 +345,24 @@
 
                                         <div class="col-md-8 col-sm-8">
                                             <h3>
-                                                <a href="@Url.Action("Details", "Articles", routeValues: new { id = art.Id })">
-                                                    @art.Title
+                                                <a href="@Url.Action("Details", "Articles", routeValues: new { id = article.Id })">
+                                                    @article.Title
                                                 </a>
                                             </h3>
                                             <ul class="post-details">
-                                                <li><i class="fa fa-calendar-o"></i> @art.PostedDate</li>
+                                                <li><i class="fa fa-calendar-o"></i> @article.PostedDate</li>
                                             </ul>
                                             <p>
-                                                @Html.Raw(art.Description)
+                                                @Html.Raw(article.Description)
                                             </p>
-                                            <a href="@Url.Action("Details", "Articles", routeValues: new { id = art.Id })" class="read-more">
+                                            <a href="@Url.Action("Details", "Articles", routeValues: new { id = article.Id })" class="read-more">
                                                 <i class="fa fa-angle-right"></i> Xem thêm
                                             </a>
                                         </div>
 
                                     </div>
-
-                                }
-                            </div>
-
+                                </div>
+                            }
 
                         </div>
                     </div>
@@ -408,7 +401,6 @@
                         </section>
                         <!-- END CATEGORIES -->
                         <!-- RECENT POSTS -->
-
                         <!-- END RECENT POSTS -->
                         <!-- TAGS -->
                         <section class="tile color transparent-white">
