@@ -8,7 +8,7 @@
 </head>
 
 <body>
-
+    <hidden id="searchString" data-id="@ViewBag.SearchString"></hidden>
     <!-- BEGIN BREADCRUMBS -->
     <div id="breadcrumbs" class="breadcrumbs bg-1">
         <div class="container">
@@ -36,7 +36,7 @@
 
                     <form class="form-block">
                         <div class="input-group search-bar">
-                            <input type="text" id="searchBox" class="form-control" name="search" placeholder="Nội dung...">
+                            <input type="text" id="searchBox" class="form-control" name="search" placeholder="Nội dung..." value="@ViewBag.SearchString">
                             <span class="input-group-btn">
                                 <button class="btn btn-green" type="button"><i class="fa fa-search"></i> Tìm kiếm</button>
                             </span>
@@ -111,6 +111,31 @@
                 else
                     $resultDiv.html("");
             });
+
+            var searchString = $('#searchString').attr('data-id');
+            if(searchBox != null)
+            {
+                var divText = "";
+                var $resultDiv = $('.search-result');
+                if (searchString.length > 0) {
+                    $.ajax({
+                        url: "/Search/GetResults/" + searchString,
+                        dataType: "json",
+                        async: true,
+                        success: function (data) {
+
+                            data.forEach(function (article, index) {
+                                divText = divText + "<div class='cover'> <h4><a href='/Articles/Details/" + article.Id + "'>" + article.Title + "</a></h4> <p>" + article.Description + "</p></div>";
+                            });
+                            $resultDiv.html(divText);
+                            data = "";
+                        }
+                    });
+                }
+                else
+                    $resultDiv.html("");
+            }
+
         });
 
     </script>

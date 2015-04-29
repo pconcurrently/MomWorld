@@ -13,9 +13,10 @@ namespace MomWorld.Controllers
         private IdentityDb identityDb = new IdentityDb();
         
         // GET: Search
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
+            ViewBag.SearchString = id;
             return View();
         }
 
