@@ -3,7 +3,7 @@
     'use strict';
 
     var isOnGitHub = window.location.hostname === 'blueimp.github.io',
-        url = isOnGitHub ? '//jquery-file-upload.appspot.com/' : 'http://localhost:4444/api/User/UploadVideo';
+        url = isOnGitHub ? '//jquery-file-upload.appspot.com/' : 'api/User/UploadVideo';
 
     angular.module('demo', [
         'blueimp.fileupload',
@@ -115,8 +115,8 @@
                         v.Username = $scope.currentUsername;
                         v.VideoName = $scope.nVideo;
                         v.VideoID = $scope.uuid;
-                        v.VideoURL = "http://localhost:4444/App/uploads/video/" + $scope.uuid + ".mp4";
-                        v.VideoThumbnail = "http://localhost:4444/App/uploads/video/thumbnail/" + $scope.uuid + ".png";
+                        v.VideoURL = "App/uploads/video/" + $scope.uuid + ".mp4";
+                        v.VideoThumbnail = "App/uploads/video/thumbnail/" + $scope.uuid + ".png";
                         v.Like = { Count: 0, User: [] };
                         v.NumView = 0;
 
@@ -152,7 +152,7 @@
                 controller.videos = [
                 {
                     sources: [
-                        { src: $sce.trustAsResourceUrl("http://localhost:4444/App/uploads/video/" + $scope.tmpVideo + ".mp4"), type: "video/mp4" },
+                        { src: $sce.trustAsResourceUrl("~/App/uploads/video/" + $scope.tmpVideo + ".mp4"), type: "video/mp4" },
                     ]
                 }
                 ];

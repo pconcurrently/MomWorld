@@ -141,11 +141,11 @@ chatApp.controller('chatCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseO
             // If this is 1st time --> Add receiver informationth
             if ($scope.sUser.Username !== $scope.receiverUsername) {
                 $scope.sUser.Username = $scope.receiverUsername;
-                $scope.sUser.Avatar = "http://localhost:4444/App/uploads/avatar/" + $scope.receiverUsername + ".png";
+                $scope.sUser.Avatar = "~/App/uploads/avatar/" + $scope.receiverUsername + ".png";
                 $scope.sUser.$save();
 
                 $scope.rUser.Username = currentUsername;
-                $scope.rUser.Avatar = "http://localhost:4444/App/uploads/avatar/" + currentUsername + ".png";
+                $scope.rUser.Avatar = "~/App/uploads/avatar/" + currentUsername + ".png";
                 $scope.rUser.$save();
             }
         }

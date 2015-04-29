@@ -18,12 +18,12 @@ function ($scope, $http, $window, $firebaseArray, $location, $sce) {
 
     var url = $location.absUrl().substring(35, $location.absUrl().length);
 
-    $scope.videoURL = "http://localhost:4444/App/uploads/video/" + url + ".mp4";
+    $scope.videoURL = "~/App/uploads/video/" + url + ".mp4";
 
     var tmp = new Firebase("https://momworld.firebaseio.com/Video");
     $scope.videoFire = $firebaseArray(tmp);
 
-    $http.get("http://localhost:4444/api/User/Get/" + $scope.currentUsername).
+    $http.get("~/api/User/Get/" + $scope.currentUsername).
         success(function (data, status, headers, config) {
             $scope.user = data;
         }).

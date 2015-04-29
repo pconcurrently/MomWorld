@@ -37,7 +37,7 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
         $scope.statusFirebase = $firebaseArray(userStatus);
 
         // Get user Profile from User API
-        $http.get("http://localhost:4444/api/User/Get/" + username).
+        $http.get("~/api/User/Get/" + username).
               success(function (data, status, headers, config) {
                   $scope.user = data;
 
@@ -59,7 +59,7 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
             Content: $scope.Content,
             CreatorName: $scope.currentUser.FirstName + " " + $scope.currentUser.LastName,
             CreatorUsername: $scope.currentUsername,
-            CreatorAvatar: "http://localhost:4444/App/uploads/avatar/" + $scope.currentUsername + ".png",
+            CreatorAvatar: "~/App/uploads/avatar/" + $scope.currentUsername + ".png",
             createdDate: Firebase.ServerValue.TIMESTAMP
         }
 
@@ -88,7 +88,7 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
             Content: _comment,
             CreatorName: $scope.currentUser.FirstName + " " + $scope.currentUser.LastName,
             CreatorUsername: $scope.currentUsername,
-            CreatorAvatar: "http://localhost:4444/App/uploads/avatar/" + $scope.currentUsername + ".png",
+            CreatorAvatar: "/App/uploads/avatar/" + $scope.currentUsername + ".png",
             createdDate: Firebase.ServerValue.TIMESTAMP
         }
 
