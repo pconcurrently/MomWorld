@@ -380,8 +380,8 @@
 							});
 
             // Append add row button to table
-            var addRowLink = '<a href="@Url.Action("Create", "Articles")" id="addRow" class="btn btn-green btn-xs add-row"><i class="fa fa-pencil-square-o"></i> Thêm mới</a>'
-            $('#inlineEditDataTable_wrapper').append(addRowLink);
+            @*var addRowLink = '<a href="@Url.Action("Create", "Articles")" id="addRow" class="btn btn-green btn-xs add-row"><i class="fa fa-pencil-square-o"></i> Thêm mới</a>'
+            $('#inlineEditDataTable_wrapper').append(addRowLink);*@
 
             var nEditing = null;
 
@@ -617,7 +617,7 @@
 
                 $('.lock').click(function () {
                     var articleId = $(this).attr('data-id');
-                    //alert(articleId);
+                    //alert(articleId);id="delete"
                     $.ajax({
                         url: '/Articles/Lock',
                         dataType: "json",
@@ -641,7 +641,7 @@
                         dataType: "json",
                         type: "POST",
                         contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify({ articleid: articleId }),
+                        data: JSON.stringify({ id: articleId }),
                         async: true,
                         processData: false,
                         cache: false,
