@@ -68,7 +68,7 @@
                                         <ul class="profile-controls inline">
                                             <li class="mailto"><a ng-href="../../Chat/{{viewUsername}}"><i class="fa fa-envelope"></i> Gửi tin nhắn</a></li>
                                             <li class="avatar">
-                                                <img ng-src="{{user.ProfilePicture}}" 
+                                                <img ng-src="@Url.Content("~/App/uploads/avatar/{{viewUsername}}.png")"
                                                      class="img-circle profile-photo">
                                             </li>
                                             <li class="callto" id="make-call">
@@ -95,7 +95,7 @@
                                     <ul class="inline text-center">
 
                                         <li ng-repeat="badge in badgeFire">
-                                            <img alt="" src="{{badge.Image}}"
+                                            <img alt="" ng-src="@Url.Content("~/App/images/badge/{{badge.Id}}.png")"
                                                  style="height: 50px; width: 50px;">
                                         </li>
                                        
@@ -164,7 +164,7 @@
 
                                                 <aside class="profile-photo">
                                                     <a ng-href="../../Profile/getProfile/{{status.CreatorUsername}}">
-                                                        <img src="{{status.CreatorAvatar}}" alt=""
+                                                        <img ng-src="@Url.Content("~/App/uploads/avatar/{{status.CreatorUsername}}.png")" alt=""
                                                              class="img-circle">
                                                     </a>
                                                 </aside>
@@ -204,7 +204,7 @@
                                                         <ul class="comments">
                                                             <li ng-repeat="comment in status.Comment">
                                                                 <div class="profile-photo">
-                                                                    <img ng-src="{{comment.CreatorAvatar}}" alt=""
+                                                                    <img ng-src="@Url.Content("~/App/uploads/avatar/{{comment.CreatorUsername}}.png")" alt=""
                                                                          class="img-circle">
                                                                 </div>
 
@@ -357,7 +357,7 @@
                                                          style="border: 3px solid rgba(0, 0, 0, 0.5);">
                                                         <div ng-if="badge.Status == 'done'">
                                                             <div class="col-xs-6 col-md-2">
-                                                                <img alt="" ng-src="{{badge.Image}}"
+                                                                <img alt="" ng-src="@Url.Content("~/App/images/badge/{{badge.Id}}.png")"
                                                                      style="height: 80px; width: 80px;">
                                                             </div>
                                                             <div class="col-xs-6 col-md-10">

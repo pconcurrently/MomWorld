@@ -23,7 +23,7 @@ function ($scope, $http, $window, $firebaseArray, $location, $sce) {
     var tmp = new Firebase("https://momworld.firebaseio.com/Video");
     $scope.videoFire = $firebaseArray(tmp);
 
-    $http.get("~/api/User/Get/" + $scope.currentUsername).
+    $http.get("../../api/User/Get/" + $scope.currentUsername).
         success(function (data, status, headers, config) {
             $scope.user = data;
         }).
