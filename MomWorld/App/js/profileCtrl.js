@@ -23,7 +23,7 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
         $scope.user = {};
         $scope.loadProfile = function () {
             /* Get user Profile from User API */
-            $http.get("~/api/User/Get/" + $scope.currentUsername).
+            $http.get("../../api/User/Get/" + $scope.currentUsername).
                   success(function (data, status, headers, config) {
                       $scope.user = data;
                   }).
@@ -44,7 +44,7 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
 
         }
 
-        $http.put("~/api/User/Put/" + $scope.currentUsername, sentData).
+        $http.put("../../api/User/Put/" + $scope.currentUsername, sentData).
               success(function (data, status, headers, config) {
                   // TODO: UPdate Css
                   $('#modalSuccess').modal('show');
@@ -56,7 +56,7 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
     }
 
     var uploader = $scope.uploader = new FileUploader({
-        url: "~/api/User/UploadAvatar",
+        url: "../../api/User/UploadAvatar",
         formData: [{ Username: $scope.currentUsername }]
     });
 

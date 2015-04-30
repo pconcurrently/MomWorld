@@ -37,7 +37,7 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
         $scope.statusFirebase = $firebaseArray(userStatus);
 
         // Get user Profile from User API
-        $http.get("~/api/User/Get/" + username).
+        $http.get("../../api/User/Get/" + username).
               success(function (data, status, headers, config) {
                   $scope.user = data;
 
