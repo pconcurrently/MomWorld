@@ -25,13 +25,13 @@ namespace MomWorld.Controllers
             }
             else
             {
-                return Redirect("http://localhost:4444/Account/Manage");
+                return RedirectToAction("Manage","Account");
             }
             
         }
 
         // Get Profile of Selected User
-        [Authorize]
+        [AllowAnonymous]
         public ActionResult GetProfile(string id)
         {
             if (id != null)
@@ -41,7 +41,7 @@ namespace MomWorld.Controllers
                 // If User is Not exists
                 if (GetUser == null)
                 {
-                    return Redirect("http://localhost:4444/");
+                    return RedirectToAction("Index","Home");
                 } else {
                     ViewData["ViewUsername"] = GetUser.UserName;
                     return View();
@@ -50,7 +50,7 @@ namespace MomWorld.Controllers
             }
             else
             {
-                return Redirect("http://localhost:4444/Account/Manage");
+                return RedirectToAction("Manage", "Account"); ;
             }
         }
     }
