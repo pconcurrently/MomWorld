@@ -5,6 +5,8 @@
     var articles = ViewBag.Articles as List<MomWorld.Entities.Article>;
     var comments = ViewBag.Comments as List<MomWorld.Entities.Comment>;
     var tags = ViewBag.Tags as List<MomWorld.Entities.Tag>;
+    var categoriesList = ViewBag.CategoriesList as List<MomWorld.Entities.Category>;
+    var allArticles = ViewBag.AllArticle as List<MomWorld.Entities.Article>;
 }
 
 <!DOCTYPE html>
@@ -333,16 +335,13 @@
 
                             <form class="form-horizontal" role="form">
                                 <ul class="nav categories sidebar-widget">
-                                    <li><a href="#">Sức khỏe sinh sản <em>(26)</em></a></li>
-                                    <li class="active">
-                                        <a href="#">
-                                            40 tuần mang
-                                            thai <em>(40)</em>
-                                        </a>
-                                    </li>
-                                    <li><a href="#">Sức khỏe trong thai kỳ <em>(15)</em></a></li>
-                                    <li><a href="#">Dinh dưỡng thai kỳ <em>(2)</em></a></li>
-                                    <li><a href="#">Kỹ năng làm mẹ <em>(8)</em></a></li>
+                                    @if (categoriesList != null)
+                                    {
+                                        foreach (var cate in categoriesList)
+                                        {
+                                            <li><a href="@Url.Action("Details", "Categories", routeValues: new { id = cate.Id })">@cate.Name <em>(@allArticles.FindAll(a => a.CategoryId.Equals(cate.Id)).Count)</em></a></li>
+                                        }
+                                    }
                                 </ul>
                             </form>
 

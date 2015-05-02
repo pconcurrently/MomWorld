@@ -41,6 +41,15 @@ namespace MomWorld.Controllers
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
             ViewBag.Comments = commentDb.Comments.ToList();
 
+            ViewBag.AllArticle = db.Articles.ToList();
+
+            //Suggest categories
+            var userRoutines = identityDb.UserRoutines.ToList().FindAll(ur => ur.UserId.Equals(ViewBag.CurrentUser.Id));
+            userRoutines = userRoutines.OrderByDescending(u => u.Count).ToList();
+            var mostView = userRoutines.First() as UserRoutine;
+            var categoriesList = db.Categories.ToList().FindAll(c => c.Phase.Equals(mostView.Phase));
+            ViewBag.CategoriesList = categoriesList;
+
             return View(tag);
         }
 
