@@ -463,7 +463,7 @@ namespace MomWorld.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2, EmailConfirmed = true };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
                 IdentityResult result = await UserManager.CreateAsync(user);
                 UserManager.AddToRole(user.Id, "Users");
                 if (result.Succeeded)
@@ -482,7 +482,7 @@ namespace MomWorld.Controllers
                         return RedirectToLocal(returnUrl);
                     }
                 }
-                AddErrors(result);
+                throw new HttpException(403,result.Errors.ToString());
             }
 
             ViewBag.ReturnUrl = returnUrl;
