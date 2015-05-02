@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mom's World - 404 Page</title>
+    <title>Mom's World - Error</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
 
@@ -43,22 +43,19 @@
                     <img src="@Url.Content("~/Content/images/logo-big.png")" class="logo">
 
                     <h1 class="error">
-                        Không tìm thấy trang
+                        Lỗi
                     </h1>
                     <p class="lead">
-                        <span class="overline"></span> Trang web mà bạn đang tìm không thể được tìm thấy
+                        <span class="overline"></span> Có lỗi đã xảy ra với trang web
                     </p>
 
                     <p>Xin lỗi các bạn, hãy thử lại hoặc liên hệ với chúng tôi để được hỗ trợ</p>
 
                     <div class="controls">
-                        <a onclick="reload()" class="btn btn-cyan">
-                            <i class="fa fa-refresh"></i> Thử lại
-                        </a>
                         <a href="@Url.Action("Index", "Home")" class="btn btn-greensea">
                             <i class="fa fa-home"></i> Quay lại trang chủ
                         </a>
-                        <a class="btn btn-red">
+                        <a class="btn btn-red" href="mailto:momworld.noreply@gmail.com">
                             <i class="fa fa-envelope"></i> Liên hệ hỗ trợ
                         </a>
                     </div>
@@ -76,10 +73,5 @@
 
 
 
-    <script>
-        function reload() {
-            location.reload();
-        }
-    </script>
 </body>
 </html>
