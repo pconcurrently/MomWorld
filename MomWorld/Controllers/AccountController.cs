@@ -321,7 +321,6 @@ namespace MomWorld.Controllers
         //
         // POST: /Account/Manage
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Manage(ManageUserViewModel model)
         {
             bool hasPassword = HasPassword();
@@ -336,11 +335,11 @@ namespace MomWorld.Controllers
                     {
                         var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
                         await SignInAsync(user, isPersistent: false);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        return Json("Successful");
                     }
                     else
                     {
-                        AddErrors(result);
+                        return Json(null);
                     }
                 }
             }
@@ -358,11 +357,11 @@ namespace MomWorld.Controllers
                     IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                        return Json("Successful");
                     }
                     else
                     {
-                        AddErrors(result);
+                        return Json(null);
                     }
                 }
             }

@@ -5,14 +5,89 @@
     ViewBag.Title = "Profile";
 
 }
-
 <head>
-    <title>@ViewBag.Title.</title> 
+    <title>@ViewBag.Title.</title>
 </head>
 <body class="bg-2" id="profileBody" ng-app="profileApp" ng-controller="profileCtrl" ng-init="loadProfile()">
     <!-- Page content -->
     <div id="content" class="col-md-12">
+        <!-- Modal change password user  -->
+        <div class="modal fade" id="modalChangePassword" tabindex="-1"
+             role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">
+                            Thoát
+                        </button>
+                        <h3 class="modal-title" id="modalConfirmLabel">
+                            Đổi <strong>mật khẩu</strong>
+                        </h3>
+                    </div>
+                    <div class="modal-body">
 
+                        <!-- tile -->
+                        <section class="tile transparent">
+
+
+
+                            <form class="profile-settings">
+
+                                <div class="row">
+
+                                    <div class="form-group col-sm-6">
+                                        <label for="last-name">Mật khẩu cũ</label> <input type="password"
+                                                                                          class="form-control" id="oldPassword">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="form-group col-sm-6">
+                                        <label for="last-name">Mật khẩu mới</label> <input type="password"
+                                                                                           class="form-control" id="password">
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label for="first-name">Nhập lại mật khẩu mới</label> <input type="password"
+                                                                                                     class="form-control" id="confirmPassword">
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="form-group col-md-12 text-right">
+                                        <button class="btn btn-cyan start btn-md" id="submitSavePassword">
+                                            <i class="fa fa-save"></i> <span> Áp dụng</span>
+                                        </button>
+
+
+                                        <button class="btn btn-red cancel btn-md" type="reset">
+                                            <i class="fa fa-times"></i> <span> Hủy</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+
+
+
+
+                        </section>
+                        <!-- /tile -->
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
         <!--modal Success  -->
         <div class="modal fade" id="modalSuccess" tabindex="-1"
              role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
@@ -35,11 +110,8 @@
             <!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
-
-
         <!-- page header -->
         <div class="pageheader">
-
             <h2>
                 <i class="fa fa-user" style="line-height: 46px; padding-left: 0;"></i>
                 Thông tin cá nhân
@@ -48,17 +120,13 @@
         <!-- /page header -->
         <!-- content main container -->
         <div class="main">
-
             <!-- row -->
             <div class="row">
 
-
                 <!-- col 4 -->
                 <div class="col-md-4">
-
                     <!-- tile -->
                     <section class="tile transparent">
-
 
                         <!-- tile header -->
                         <div class="tile-header nopadding">
@@ -94,7 +162,6 @@
                                     <a ng-href="{{user.social.google}}">
                                         <i class="fa fa-google-plus-square"></i>
                                     </a>
-
                                 </div>
                             </div>
                         </div>
@@ -109,17 +176,14 @@
                             </ul>
                         </div>
                         <!-- /tile body -->
-
                     </section>
                     <!-- /tile -->
                     <!-- tile -->
-                    
                     <!-- /tile -->
                 </div>
                 <!-- /col 4 -->
                 <!-- col 8 -->
                 <div class="col-md-8">
-
                     <!-- tile -->
                     <section class="tile transparent">
                         <!-- tile widget -->
@@ -148,12 +212,10 @@
                             <div id="feed-tab" class="tab-pane fade in active">
                                 <div class="feed-form">
 
-
-
                                     <textarea ng-model="Content" class="form-control"
                                               placeholder="Bạn đang nghĩ gì ?" rows="5"></textarea>
                                     <div class="post-toolbar">
-                                        <a href="personal-page.html#" title="Đính kèm file">                                            
+                                        <a href="personal-page.html#" title="Đính kèm file">
                                         </a> <a href="personal-page.html#"
                                                 title="Thêm ảnh"></a>
                                         <a href="" ng-click="createStatus()" title="Đăng!" class="pull-right">
@@ -161,9 +223,9 @@
                                         </a>
                                     </div>
                                 </div>
-                
+
                                 <div class="feed-list">
-                                    <article ng-repeat="status in statusFirebase | reverse" class="feed-post" >
+                                    <article ng-repeat="status in statusFirebase | reverse" class="feed-post">
                                         <aside class="profile-photo">
                                             <a ng-href="../../Profile/getProfile/{{status.CreatorUsername}}">
                                                 <img ng-src="@Url.Content("~/App/uploads/avatar/{{status.CreatorUsername}}.png")" alt=""
@@ -180,21 +242,21 @@
                                             <div class="feed-content">
                                                 <p>{{status.Content}}</p>
                                             </div>
-                                            <footer> 
-                                                <a href="#" ng-show="!isInArray(currentUsername, status.NumLike.User)" ng-click="like(status)" >
+                                            <footer>
+                                                <a href="#" ng-show="!isInArray(currentUsername, status.NumLike.User)" ng-click="like(status)">
                                                     <i class="fa fa-heart color-slategray"></i>
                                                     Thích <span>
-                                                    ({{status.NumLike.Count}})</span>
+                                                        ({{status.NumLike.Count}})
+                                                    </span>
                                                 </a>
-
                                                 <a ng-show="isInArray(currentUsername, status.NumLike.User)" class="liked">
                                                     <i class="fa fa-heart color-red"></i>
                                                     Thích <span>
                                                         ({{status.NumLike.Count}})
                                                     </span>
-                                                </a>  
-                                            
-                                            <a>                                                         
+                                                </a>
+
+                                                <a>
                                                     <i class="fa fa-comment"></i> Bình luận <span>({{status.NumComment}})</span>
                                                 </a> <a ng-click="removeStatus(status)" href="">
                                                     <i class="fa fa-close"></i>
@@ -236,17 +298,14 @@
                                             </footer>
                                         </div>
                                     </article>
-
                                     <div class="text-center">
                                         <a href="#" ng-click="statusFirebase.scroll.next(3)" class="btn btn-default">
                                             Xem thêm
                                         </a>
                                     </div>
-
                                 </div>
                             </div>
                             <div id="settings-tab" class="tab-pane fade in">
-
                                 <form class="profile-settings">
                                     <div class="row">
                                         <div class="form-group col-md-12 legend">
@@ -266,7 +325,6 @@
                                                                                       class="form-control" id="last-name" ng-model="user.LastName">
                                         </div>
                                     </div>
-
                                     <div class="row">
                                         <div class="form-group col-sm-6">
                                             <label for="email">E-mail</label> <input type="email"
@@ -302,9 +360,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-
                                     </div>
-
                                     <div class="row">
                                         <div class="form-group col-md-12 legend">
                                             <h4>
@@ -323,7 +379,6 @@
                                                                                             class="form-control" id="google-plus">
                                         </div>
                                     </div>
-
                                     <div class="row">
                                         <div class="form-group col-md-12 legend">
                                             <h4>
@@ -337,41 +392,24 @@
                                             <label for="username">Tên đăng nhập</label> <input type="text" class="form-control" id="username"
                                                                                                value="{{user.currentUsername}}" readonly>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group col-sm-6">
-                                            <label for="password">Mật khẩu cũ</label> <input type="password" class="form-control" id="password"
-                                                                                             value="123456" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label for="new-password">Mật khẩu mới</label> <input type="password" ng-model="newPassword" class="form-control" id="new-password">
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <label for="new-password-repeat">
-                                                Nhập lại mật khẩu
-                                                mới
-                                            </label> <input type="password" class="form-control" ng-model="confirmPassword"
-                                                            id="new-password-repeat">
-                                        </div>
-                                    </div>
-                                    
                                     <div class="row">
                                         <div class="form-group col-md-12 text-right">
+                                            <button class="btn btn-blue start btn-md">
+                                                <i class="fa fa-save"></i> <span> Đổi mật khẩu</span>
+                                            </button>
                                             <button class="btn btn-cyan start btn-md" ng-click="updateProfile()">
                                                 <i class="fa fa-refresh"></i> <span> Cập nhật</span>
                                             </button>
-
                                             <button class="btn btn-red cancel btn-md">
                                                 <i class="fa fa-times"></i> <span> Hủy</span>
                                             </button>
                                         </div>
                                     </div>
-
                                 </form>
-
                             </div>
-                            <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge()">                                
+                            <div id="trophies-tab" class="tab-pane fade in" ng-init="getBadge()">
                                 <div class="">
                                     <!-- tile header -->
                                     <div class="tile-header ">
@@ -401,38 +439,28 @@
                                     </div>
                                     <!-- /tile body -->
 
-
                                 </div>
-
                             </div>
                             <!-- / Tab panes -->
                         </div>
                         <!-- /tile body -->
-
                     </section>
                     <!-- /tile -->
-
                 </div>
                 <!-- /col 8 -->
-
             </div>
             <!-- /row -->
 
-
         </div>
         <!-- /content container -->
-
     </div>
     <!-- Page content end -->
-
     <script src="@Url.Content("~/App/js/profileCtrl.js")"></script>
 
 
 
 
-    
-    
-    
+
     <script>
         $(document).on(
                 'change',
@@ -499,5 +527,31 @@
                     });
 
         })
+    </script>
+    <script>
+        $('.btn.btn-blue.start.btn-md').click(function () {
+            $('#modalChangePassword').modal('show');
+        });
+
+        $('#submitSavePassword').click(function (e) {
+            e.preventDefault();
+
+            var oldPassword = $('#oldPassword').val();
+            var password = $('#password').val();
+            var confirmPassword = $('#confirmPassword').val();
+            $.ajax({
+                url: '/Account/Manage',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ model: { OldPassword: oldPassword, NewPassword: password, ConfirmPassword: confirmPassword } }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function () {
+                    window.location.reload();
+                }
+            });
+        });
     </script>
 </body>
