@@ -1,4 +1,5 @@
-﻿app.controller('createCtrl', ['$scope', '$http', function ($scope, $http) {
+﻿app.controller('createCtrl', ['$scope', '$http', '$firebaseArray', '$firebaseObject',
+    function ($scope, $http, $firebaseArray, $firebaseObject) {
     $scope.quizName = '../../App/js/emptyQuiz.js';
     $scope.quizNum = "";
     $scope.goTo = function (index) {

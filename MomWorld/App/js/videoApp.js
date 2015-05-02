@@ -139,15 +139,15 @@
                     controller.API = API;
                 };
 
-                controller.onCompleteVideo = function () {
-                    controller.isCompleted = true;
+                //controller.onCompleteVideo = function () {
+                //    controller.isCompleted = true;
 
-                    controller.currentVideo++;
+                //    controller.currentVideo++;
 
-                    if (controller.currentVideo >= controller.videos.length) controller.currentVideo = 0;
+                //    if (controller.currentVideo >= controller.videos.length) controller.currentVideo = 0;
 
-                    controller.setVideo(controller.currentVideo);
-                };
+                //    controller.setVideo(controller.currentVideo);
+                //};
 
                 controller.videos = [
                 {
@@ -179,7 +179,7 @@
 
                     controller.API.stop();
                     controller.currentVideo = index;
-                    controller.config.sources = [{ src: $sce.trustAsResourceUrl("/App/uploads/video/" + index + ".mp4"), type: "video/mp4" }];
+                    controller.config.sources = [{ src: $sce.trustAsResourceUrl("https://momworld.blob.core.windows.net/video/" + index + ".mp4"), type: "video/mp4" }];
                     // controller.config.sources = controller.videos[index].sources;
 
 
