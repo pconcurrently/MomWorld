@@ -2,7 +2,7 @@
     "quiz": {
         "Id": 0,
         "name": "Dinh Duong",
-        "description": "YOlooooo"
+        "description": "Kiến thức cơ bản về chế độ dinh dưỡng hàng ngày."
     },
     "questions": [{
         "Id": 1010,

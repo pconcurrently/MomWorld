@@ -22,168 +22,7 @@
         </ul>
     }*@
 
-
-    <li class="dropdown divided">
-        <a class="dropdown-toggle button" data-toggle="dropdown"
-           href="#">
-            <i class="fa fa-envelope"></i> <span class="label label-transparent-black">1</span>
-        </a>
-
-        <ul class="dropdown-menu wider arrow nopadding messages">
-            <li>
-                <h1>
-                    Bạn có <strong>2</strong> tin nhắn mới
-                </h1>
-            </li>
-            <li>
-                <a class="cyan" href="#">
-                    <div class="profile-photo">
-                        <img src="@Url.Content("~/Content/images/ici-avatar.jpg")" />
-                    </div>
-                    <div class="message-info">
-                        <span class="sender">Ing. Imrich Kamarel</span> <span class="time">12 mins</span>
-                        <div class="message-content">
-                            Duis aute irure dolor in
-                            reprehenderit in voluptate velit esse cillum
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li>
-                <a class="green" href="#">
-                    <div class="profile-photo">
-                        <img src="@Url.Content("~/Content/images/arnold-avatar.jpg")" />
-                    </div>
-                    <div class="message-info">
-                        <span class="sender">Arnold Karlsberg</span> <span class="time">1 hour</span>
-                        <div class="message-content">
-                            Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <div class="profile-photo">
-                        <img src="@Url.Content("~/Content/images/profile-photo.jpg")" />
-                    </div>
-                    <div class="message-info">
-                        <span class="sender">KhoaHN</span> <span class="time">
-                            3
-                            hours
-                        </span>
-                        <div class="message-content">
-                            Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li>
-                <a class="red" href="#">
-                    <div class="profile-photo">
-                        <img src="@Url.Content("~/Content/images/peter-avatar.jpg")" />
-                    </div>
-                    <div class="message-info">
-                        <span class="sender">Peter Kay</span> <span class="time">
-                            5
-                            hours
-                        </span>
-                        <div class="message-content">
-                            Ut enim ad minim veniam,
-                            quis nostrud exercitation
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li>
-                <a class="orange" href="#">
-                    <div class="profile-photo">
-                        <img src="@Url.Content("~/Content/images/george-avatar.jpg")" />
-                    </div>
-                    <div class="message-info">
-                        <span class="sender">George McCain</span> <span class="time">
-                            6
-                            hours
-                        </span>
-                        <div class="message-content">
-                            Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-
-            <li class="topborder">
-                <a href="#">
-                    Check all
-                    messages <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="dropdown divided">
-        <a class="dropdown-toggle button" data-toggle="dropdown"
-           href="#">
-            <i class="fa fa-bell"></i> <span class="label label-transparent-black">3</span>
-        </a>
-
-        <ul class="dropdown-menu wide arrow nopadding bordered">
-            <li>
-                <h1>
-                    Bạn có <strong>3</strong> thông báo mới
-                </h1>
-            </li>
-
-            <li>
-                <a href="#">
-                    <span class="label label-green"><i class="fa fa-user"></i></span>
-                    New user registered. <span class="small">18 mins</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <span class="label label-red"><i class="fa fa-power-off"></i></span>
-                    Server down. <span class="small">27 mins</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <span class="label label-orange"><i class="fa fa-plus"></i></span>
-                    New order. <span class="small">36 mins</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <span class="label label-cyan"><i class="fa fa-power-off"></i></span>
-                    Server restared. <span class="small">45 mins</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <span class="label label-amethyst"><i class="fa fa-power-off"></i></span>
-                    Server started. <span class="small">50 mins</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    Check all notifications <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        </ul>
-    </li>
+    
 
     <li class="dropdown divided user" id="current-user">
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
@@ -247,8 +86,8 @@
                 </li>
 
                 <li>
-                    <a href="personal-page.html#">
-                        <i class="fa fa-envelope"></i> Tin nhắn <span class="badge badge-red animated bounceIn">3</span>
+                    <a href="~/Chat">
+                        <i class="fa fa-envelope"></i> Tin nhắn <span id="noti" class="badge badge-red animated bounceIn"></span> 
                     </a>
                 </li>
 
@@ -261,6 +100,20 @@
                     </a>
                 </li>
             </ul>
+            <script>
+                // --------------------- Change Chat Notification -----------------------
+                $(document).ready(function () {
+                    var current = JSON.parse(localStorage.getItem('currentUser'));
+                    var usersRef = new Firebase('https://momworld.firebaseio.com/User/' + current.Username);
+                    var countChatNoti = usersRef.child('NumNoti');
+                    countChatNoti.on("value", function (snapshot) {
+                        if (snapshot.val() != 0) {
+                            $("#noti").html(snapshot.val());
+                        }
+                    });
+                });
+            </script>
+
         }
     </li>
 
