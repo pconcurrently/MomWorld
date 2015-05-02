@@ -57,8 +57,8 @@
                         @Html.AntiForgeryToken()
 
 
-
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "color-red" })
+                        @Html.HiddenFor(m=>m.Email)
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "color-red" })
 
                         <p>
                             Bạn đã được xác thực thành công với <strong>@ViewBag.LoginProvider</strong>. Vui lòng nhập một tên người dùng cho trang web này dưới đây và nhấn nút Đăng kí để hoàn tất đăng nhập.
@@ -68,7 +68,7 @@
                         <section class="log-in">
                             <div class="input-group">
 
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", name = "email", placeholder = "Email" })
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", name = "username", placeholder = "Tên người dùng" })
                                 <div class="input-group-addon">
                                     <i class="fa fa-user"></i>
                                 </div>

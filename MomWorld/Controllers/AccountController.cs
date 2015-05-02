@@ -393,6 +393,11 @@ namespace MomWorld.Controllers
                 return RedirectToAction("Login");
             }
 
+            // These next three lines is how I get the email from the stuff that gets returned from the Facebook external provider
+            var externalIdentity = HttpContext.GetOwinContext().Authentication.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
+            var emailClaim = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            var email = emailClaim.Value;
+
             // Sign in the user with this external login provider if the user already has a login
             var user = await UserManager.FindAsync(loginInfo.Login);
             if (user != null)
@@ -405,7 +410,9 @@ namespace MomWorld.Controllers
                 // If the user does not have an account, then prompt the user to create an account
                 ViewBag.ReturnUrl = returnUrl;
                 ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+
+                // Populate the viewmodel with the email
+                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email });
             }
         }
 
@@ -456,8 +463,9 @@ namespace MomWorld.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2, EmailConfirmed = true };
                 IdentityResult result = await UserManager.CreateAsync(user);
+                UserManager.AddToRole(user.Id, "Users");
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);

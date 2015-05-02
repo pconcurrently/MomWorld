@@ -10,6 +10,7 @@ using System;
 using MomWorld.Models;
 using MomWorld.DataContexts;
 using MomWorld.Entities;
+using Microsoft.Owin.Security.Facebook;
 
 namespace MomWorld
 {
@@ -48,9 +49,13 @@ namespace MomWorld
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "777176635730748",
-               appSecret: "d1e4662332ba845f30b8d121595b224f");
+            var facebookAuthenticationOptions = new FacebookAuthenticationOptions()
+            {
+                AppId = "777176635730748",
+                AppSecret = "d1e4662332ba845f30b8d121595b224f"
+            };
+            facebookAuthenticationOptions.Scope.Add("email");
+            app.UseFacebookAuthentication(facebookAuthenticationOptions);
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {

@@ -4,10 +4,9 @@ namespace MomWorld.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
         public string Email { get; set; }
+
+        public string UserName { get; set; }
     }
 
     public class ExternalLoginListViewModel
