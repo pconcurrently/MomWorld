@@ -65,6 +65,12 @@
                             Quản lí bài viết
                         </a>
                     </li>
+                    <li>
+                        <a href="@Url.Action("Dashboard", "Account")">
+                            <i class="fa fa-android"></i>
+                            Thống kê
+                        </a>
+                    </li>
                 }
 
                 <li>
@@ -82,22 +88,22 @@
                     </a>
                 </li>
             </ul>
-            
-    <script>
-        // --------------------- Change Chat Notification -----------------------
-        $(document).ready(function () {
-            var current = JSON.parse(localStorage.getItem('currentUser'));
-            var usersRef = new Firebase('https://momworld.firebaseio.com/User/' + current.Username);
-            var countChatNoti = usersRef.child('NumNoti');
-            countChatNoti.on("value", function (snapshot) {
-                if (snapshot.val() != 0) {
-                    $("#noti").html(snapshot.val());
-                } 
-            });
-        });
-        
-    </script>
-        
+
+            <script>
+                // --------------------- Change Chat Notification -----------------------
+                $(document).ready(function () {
+                    var current = JSON.parse(localStorage.getItem('currentUser'));
+                    var usersRef = new Firebase('https://momworld.firebaseio.com/User/' + current.Username);
+                    var countChatNoti = usersRef.child('NumNoti');
+                    countChatNoti.on("value", function (snapshot) {
+                        if (snapshot.val() != 0) {
+                            $("#noti").html(snapshot.val());
+                        }
+                    });
+                });
+
+            </script>
+
         }
     </li>
 

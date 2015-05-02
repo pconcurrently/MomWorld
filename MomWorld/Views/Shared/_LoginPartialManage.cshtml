@@ -84,6 +84,27 @@
                         Trang cá nhân
                     </a>
                 </li>
+                @if (User.IsInRole("Admins"))
+                {
+                    <li>
+                        <a href="@Url.Action("UsersManage", "Account")">
+                            <i class="fa fa-users"></i>
+                            Quản lí người dùng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("PostsManage", "Account")">
+                            <i class="fa fa-edit"></i>
+                            Quản lí bài viết
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Dashboard", "Account")">
+                            <i class="fa fa-android"></i>
+                            Thống kê
+                        </a>
+                    </li>
+                }
 
                 <li>
                     <a href="~/Chat">
