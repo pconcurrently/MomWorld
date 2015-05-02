@@ -69,7 +69,7 @@
 
                 <li>
                     <a href="@Url.Action("Index","Chat")">
-                        <i class="fa fa-envelope"></i> Tin nhắn <span class="badge badge-red animated bounceIn">3</span>
+                        <i class="fa fa-envelope"></i> Tin nhắn <span id="noti" class="badge badge-red animated bounceIn">3</span>
                     </a>
                 </li>
 
@@ -82,6 +82,20 @@
                     </a>
                 </li>
             </ul>
+            
+    <script>
+        // --------------------- Change Chat Notification -----------------------
+        $(document).ready(function () {
+            var current = JSON.parse(localStorage.getItem('currentUser'));
+            var usersRef = new Firebase('https://momworld.firebaseio.com/User/TrungNM3');
+            var countChatNoti = usersRef.child('NumNoti');
+            countChatNoti.on("value", function (snapshot) {
+                $("#noti").html(snapshot.val());
+            });
+        });
+        
+    </script>
+        
         }
     </li>
 
