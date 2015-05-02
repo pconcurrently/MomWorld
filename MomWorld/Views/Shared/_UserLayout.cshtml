@@ -187,7 +187,7 @@
                                 <li class='@Html.IsActive("Chat", "Index")'>
                                     <a href="@Url.Action("Index", "Chat")">
                                         <i class="fa fa-envelope-o"></i>
-                                        Tin nhắn  <span ng-if="userFire.NumNoti !== 0" class="badge badge-red">{{userFire.NumNoti}}</span>                                        
+                                        Tin nhắn  <span id="noti2" class="badge badge-red animated bounceIn"></span>                                        
                                     </a>
                                 </li>
                                 @if (User.IsInRole("Admins"))
@@ -221,6 +221,22 @@
 
                 </div>
                 <!--/.nav-collapse -->
+                <script>
+                    // --------------------- Change Chat Notification -----------------------
+                    $(document).ready(function () {
+                        var current = JSON.parse(localStorage.getItem('currentUser'));
+                        var usersRef = new Firebase('https://momworld.firebaseio.com/User/' + current.Username);
+                        var countChatNoti = usersRef.child('NumNoti');
+                        countChatNoti.on("value", function (snapshot) {
+                            if (snapshot.val() != 0) {
+                                $("#noti2").html(snapshot.val());
+                            }
+                        });
+                    });
+                </script>
+
+
+
 
 
             </div>

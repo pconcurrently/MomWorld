@@ -18,6 +18,9 @@
 
     $scope.onSave = function () {
         var ques = JSON.stringify($scope.questions, undefined, 2);
+
+        console.log("Ques:  " + ques);
+
         //TODO: Code Pop-up quiz
         modalCreateQuiz
         $('#modalCreateQuiz').modal('show');
