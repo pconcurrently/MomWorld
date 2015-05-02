@@ -53,9 +53,6 @@
                                 Mom's World
                             </h1>
                            
-                            <a href="" target="_blank"
-                               class="btn btn-lg btn-bordered caption"
-                               data-animation="fadeInUp" data-delay="1800">Xem Thêm</a>
                         </div>
 
                         <div class="col-xs-6 text-right">
@@ -201,7 +198,7 @@
                                 data-animation="fadeInLeft" data-delay="1200">
                                 Tổng quát
                             </h1>
-                            <a href="" target="_blank"
+                            <a href="@Url.Action("Index","Quizzes")" target="_blank"
                                class="btn btn-lg btn-bordered caption"
                                data-animation="rotateInDownLeft" data-delay="1800">Xem thêm</a>
                         </div>
@@ -238,7 +235,6 @@
                         </span> là tất cả những gì bạn cần.
                     </p>
 
-                    <p>Chỗ này để điền nội dung vào</p>
                 </div>
 
                 <div class="col-md-2">
@@ -265,10 +261,9 @@
                         <strong>BẠN</strong> CÓ THỂ LÀM ?
                     </h1>
 
-                    <p class="lead text-center less-width">Điền nội dung vào đây</p>
 
                     <div class="row">
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-3 col-sm-6" onclick="timeLine()">
                             <div class="highlight appear-el" data-animation="fadeInDown">
                                 <i class="fa fa-tachometer"></i>
                                 <h5 class="uppercase">
@@ -278,24 +273,24 @@
                         </div>
 
                         <div class="col-md-3 col-sm-6">
-                            <div class="highlight appear-el" data-animation="fadeInLeft">
-                                <i class="fa fa-graduation-cap"></i>
-                                <h5 class="uppercase">
-                                    <strong>Nâng cao kiến thức</strong>
-                                </h5>
-                            </div>
+                            <div class=" highlight appear-el" data-animation="fadeInLeft">
+                            <i class="fa fa-graduation-cap"></i>
+                            <h5 class="uppercase">
+                                <strong>Nâng cao kiến thức</strong>
+                            </h5>
+                        </div>
                         </div>
 
-                        <div class="col-md-3 col-sm-6">
-                            <div class="highlight appear-el" data-animation="fadeInUp">
-                                <i class="fa fa-file-text-o"></i>
-                                <h5 class="uppercase">
-                                    <strong>Kiểm tra kiến thức</strong>
-                                </h5>
-                            </div>
+                    <div class="col-md-3 col-sm-6" onclick="quiz()">
+                            <div class=" highlight appear-el" data-animation="fadeInUp">
+                        <i class="fa fa-file-text-o"></i>
+                        <h5 class="uppercase">
+                            <strong>Kiểm tra kiến thức</strong>
+                        </h5>
+                    </div>
                         </div>
 
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-3 col-sm-6" onclick="advisory()">
                             <div class="highlight appear-el" data-animation="fadeInRight">
                                 <i class="fa fa-comments"></i>
                                 <h5 class="uppercase">
@@ -914,6 +909,19 @@
 
     <script type="text/javascript">
         $('#sidebar').scrollToFixed({ dontSetWidth: true });
+    </script>
+    <script>
+        function timeLine() {
+            window.location.href = "/NineMonthArticles/TimeLine"
+        };
+
+        function quiz() {
+            window.location.href = "/Quizzes/Index"
+        };
+
+        function advisory() {
+            window.location.href = "/Advisory/Index"
+        };
     </script>
 
 </body>
