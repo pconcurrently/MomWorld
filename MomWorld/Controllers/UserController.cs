@@ -1,6 +1,9 @@
 ﻿using FireSharp;
 using FireSharp.Config;
 using FireSharp.Interfaces;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using MomWorld.DataContexts;
 using MomWorld.Models;
 using System;
@@ -74,6 +77,7 @@ namespace MomWorld.Controllers
         [HttpPost]
         public HttpResponseMessage UploadAvatar()
         {
+            
             HttpResponseMessage result = null;
             var httpRequest = HttpContext.Current.Request;
             if (httpRequest.Files.Count > 0)
@@ -109,6 +113,22 @@ namespace MomWorld.Controllers
         [Route("api/User/UploadVideo")]
         public HttpResponseMessage UploadVideo()
         {
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+            CloudConfigurationManager.GetSetting("StorageConnectionString"));
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+            // Retrieve a reference to a container. 
+            CloudBlobContainer container = blobClient.GetContainerReference("video");
+            container.SetPermissions(
+            new BlobContainerPermissions
+            {
+                PublicAccess =
+                    BlobContainerPublicAccessType.Blob
+            });
+
+            // Create the container if it doesn't already exist.
+            container.CreateIfNotExists();
+
             HttpResponseMessage result = null;
             var httpRequest = HttpContext.Current.Request;
 
@@ -133,6 +153,12 @@ namespace MomWorld.Controllers
                         // Save Video to Responsitory
                         var filePath = HttpContext.Current.Server.MapPath("~/App/uploads/video/" + VideoID + ".mp4");
                         postedFile.SaveAs(filePath);
+
+                        CloudBlockBlob blockBlob = container.GetBlockBlobReference(VideoID + ".mp4");
+
+                        // Save to Blog
+                        blockBlob.UploadFromStream(postedFile.InputStream);
+
                     }
                     
                     
