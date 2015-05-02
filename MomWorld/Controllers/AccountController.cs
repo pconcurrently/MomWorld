@@ -100,7 +100,7 @@ namespace MomWorld.Controllers
                         client.Update("User/" + user.UserName, user);
 
 
-                        return RedirectToLocal(returnUrl);
+                        return Redirect(returnUrl);
                     }
                 }
                 else
@@ -402,7 +402,7 @@ namespace MomWorld.Controllers
             if (user != null)
             {
                 await SignInAsync(user, isPersistent: false);
-                return RedirectToLocal(returnUrl);
+                return Redirect(returnUrl);
             }
             else
             {
@@ -478,7 +478,7 @@ namespace MomWorld.Controllers
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // SendEmail(user.Email, callbackUrl, "Confirm your account", "Please confirm your account by clicking this link");
 
-                        return RedirectToLocal(returnUrl);
+                        return Redirect(returnUrl);
                     }
                 }
                 throw new HttpException(403,result.Errors.ToString());
@@ -715,6 +715,13 @@ namespace MomWorld.Controllers
             ViewBag.UsersNumber = identityDb.Users.ToList().FindAll(u=>u.Roles.ToList()[0].RoleId.Equals(identityDb.Roles.FirstOrDefault(r=>r.Name.Equals("Users")).Id)).Count;
             ViewBag.ArticlesNumber = articleDb.Articles.Count();
             ViewBag.ArticleLikesNumber = articleDb.ArticleLikes.Count();
+            int? views = 0;
+            foreach(var a in articleDb.Articles)
+            {
+                views += a.ViewNumber;
+            }
+
+            ViewBag.ViewsNumber = views;
 
             return View();
         }

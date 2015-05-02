@@ -249,7 +249,8 @@
                             </a>
                         </li>
                     </ul>
-
+                    @if (User.Identity.IsAuthenticated) 
+                    { 
                     <h2 class="text-underline">Bình luận</h2>
                     <!-- COMMENTS -->
                     <div class="new-comment-container">
@@ -265,7 +266,11 @@
 
                     </div>
 
-
+                    }
+                    else
+                    {
+                        <h3 class="text-underline">Hãy <a href="@Url.Action("Login", "Account", routeValues: new { returnUrl = ViewContext.HttpContext.Request.Url.AbsoluteUri})">đăng nhập</a> để thảo luận</h3>
+                    }
 
 
                     <div class="comments" id="commentsDiv">
