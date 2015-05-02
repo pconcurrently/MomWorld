@@ -174,59 +174,6 @@
             <hr class="post-divider">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="row title-category">
-                        <h1 class="headline">Mong con</h1>
-
-                        <div class="flexslider">
-                            <ul class="slides">
-                                <li>
-                                    <a href="">
-                                        <img src="@Url.Content("~/Content/images/page-images/1.jpg")" />
-                                        <div class="slide_text">
-                                            <div class="slide_title">
-                                                Sinh con ở tuổi 35: Chuẩn bị
-                                                những điều tiên quyết
-                                            </div>
-                                            <div class="slide_byline">
-                                                Quyết định sinh con ở tuổi
-                                                35, bạn phải chấp nhận khá nhiều rủi ro
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="@Url.Content("~/Content/images/page-images/2.jpg")" />
-                                        <div class="slide_text">
-                                            <div class="slide_title">
-                                                Bí quyết cực hay cho mẹ muốn
-                                                sinh con gái
-                                            </div>
-                                            <div class="slide_byline">
-                                                Quay ngược lại thời gian,
-                                                trường hợp ba mẹ muốn sinh con gái dường như rất ít.
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="@Url.Content("~/Content/images/page-images/3.jpg")" />
-                                        <div class="slide_text">
-                                            <div class="slide_title">
-                                                Tăng cơ hội mang thai cặp sinh
-                                                đôi
-                                            </div>
-                                            <div class="slide_byline">
-                                                Chế độ ăn uống, quốc tịch,
-                                                gen di truyền và lối sống đóng một vai trò nhất định
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                     @foreach (var category in categories)
                     {
                         if (category.Articles.Count != 0 || User.IsInRole("Admins"))
