@@ -23,6 +23,8 @@
 <head>
 
     <title>@ViewBag.Title.</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
 
 </head>
 
@@ -165,7 +167,7 @@
 
             </div>
             <hr class="post-divider">
-            <div class="row">
+            <div class="row" ng-app="homeApp" ng-controller="homeCtrl" ng-init="getBadge()">
 
 
                 <!-- post ITEM -->
@@ -188,9 +190,9 @@
                             </ul>
                         </div>
                         <div class="col-md-4 col-sm-4 text-right">
-                            <img class="img-responsive img-circle armorial-post"
-                                 src="@Url.Content("~/Content/images/armorial/1.png")" data-toggle="tooltip"
-                                 data-placement="top" title="Tên danh hiệu">
+                            <img ng-repeat="badge in badgeFire" class="img-responsive img-circle armorial-post"
+                                 ng-src="@Url.Content("~/App/images/badge/{{badge.Id}}.png")" data-toggle="tooltip"
+                                 data-placement="top" title="{{badge.Name}}">
                         </div>
 
                     </div>
@@ -249,22 +251,22 @@
                             </a>
                         </li>
                     </ul>
-                    @if (User.Identity.IsAuthenticated) 
-                    { 
-                    <h2 class="text-underline">Bình luận</h2>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <h2 class="text-underline">Bình luận</h2>
                     <!-- COMMENTS -->
-                    <div class="new-comment-container">
+                        <div class="new-comment-container">
 
-                        <textarea class="form-control" placeholder="Nội dung ..." rows="5" id="commentContent"></textarea>
-                        <div class="post-toolbar text-right">
-                            <button data-toggle="tooltip" data-placement="top" title="" data-original-title="Đăng!" id="submitComment">
-                                <i class="fa fa-share"></i>
-                            </button>
-                            <input type="hidden" id="articleId" value="@article.Id">
-                            <input type="hidden" id="userName" value="@User.Identity.Name">
+                            <textarea class="form-control" placeholder="Nội dung ..." rows="5" id="commentContent"></textarea>
+                            <div class="post-toolbar text-right">
+                                <button data-toggle="tooltip" data-placement="top" title="" data-original-title="Đăng!" id="submitComment">
+                                    <i class="fa fa-share"></i>
+                                </button>
+                                <input type="hidden" id="articleId" value="@article.Id">
+                                <input type="hidden" id="userName" value="@User.Identity.Name">
+                            </div>
+
                         </div>
-
-                    </div>
 
                     }
                     else
@@ -380,10 +382,12 @@
                 <!-- END post SIDEBAR -->
 
             </div>
+
         </div>
     </section>
     <!-- END post PAGE -->
 
+    <script src="@Url.Content("~/App/js/homeCtrl.js")"></script>
 
     <script type="text/javascript">
         $(function () {

@@ -773,6 +773,7 @@
     <a hidden id="username" data-id="@currentUser.UserName"></a>
     <a hidden id="firstname" data-id="@currentUser.FirstName"></a>
     <a hidden id="lastname" data-id="@currentUser.LastName"></a>
+    <a hidden id="isAdmin" data-id="@User.IsInRole("Admins")"></a>
 
     <script>
         //initialize datepicker
@@ -787,7 +788,8 @@
             Username: $('#username').attr('data-id'),
             ProfileImage: 'http://localhost:4444/App/uploads/avatar/' + $('#username').attr('data-id') + '.png',
             FirstName: $('#firstname').attr('data-id'),
-            LastName: $('#lastname').attr('data-id')
+            LastName: $('#lastname').attr('data-id'),
+            IsAdmin: $('#isAdmin').attr('data-id')
         }
 
         localStorage.setItem('currentUser', JSON.stringify(u));
