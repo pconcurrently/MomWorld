@@ -43,18 +43,7 @@
 
     <!-- BEGIN BREADCRUMBS -->
     <div id="breadcrumbs" class="breadcrumbs bg-2">
-        <div class="container">
-
-            <ol class="breadcrumb">
-                <li><a href="index.html">Trang chủ</a></li>
-                <li class="active">Kiểm tra kiến thức</li>
-            </ol>
-
-            <h2>
-                <strong>Kiểm tra kiến thức</strong>
-            </h2>
-
-        </div>
+        
     </div>
     <!-- END BREADCRUMBS -->
     <!-- QUIZZ -->
@@ -64,12 +53,12 @@
         <div class="container main">
             <div class="row" ng-show="currentUser.IsAdmin == 'True'">
                 <div class="col-md-12 text-right">
-                    <button class="btn btn-cyan">
-                        <a href="Quizzes/Create">Tạo bài kiểm tra</a>
-                    </button>
+                    
+                        <a class="btn btn-cyan" href="@Url.Action("Create", "Quizzes")">Tạo bài kiểm tra</a>
+                    
                 </div>
             </div>
-            <hr>
+            <hr/>
             <!-- row -->
             <div class="row">
                 <!-- col 12 -->

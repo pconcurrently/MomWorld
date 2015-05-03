@@ -22,7 +22,7 @@
 
 
 
-
+    <div class="breadcrumbs bg-2"></div>
 
 
 
@@ -35,7 +35,7 @@
             {
                 <div class="row">
 
-                    <div class="col-md-6 text-left">
+                    <div class="col-md-12 text-left">
                         <ul class="mix-filter">
                             <li data-filter="all" class="filter active">Tất cả</li>
 
@@ -57,7 +57,7 @@
                     <!-- post POSTS -->
                     <div class="col-sm-9 post-posts">
 
-                        <div class="row mix-grid" id="gallery">
+                        <div class="mix-grid" id="gallery">
                             @foreach (var article in articles)
                             {
                                 <div class="mix @(article.Tags.Length > 36 ? article.Tags.Replace(",",string.Empty) : article.Tags) mix_all">
@@ -88,7 +88,7 @@
                                             <p>
                                                 @Html.Raw(article.Description)
                                             </p>
-                                            <a href="@Url.Action("Details", "Articles", routeValues: new { id = article.Id })" class="read-more">
+                                            <a href="@Url.Action("Details", "Articles", routeValues: new { id = article.Id })" class="read-more btn btn-xs btn-green">
                                                 <i class="fa fa-angle-right"></i> Xem thêm
                                             </a>
                                         </div>
