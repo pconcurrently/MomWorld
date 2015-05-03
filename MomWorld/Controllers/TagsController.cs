@@ -44,11 +44,19 @@ namespace MomWorld.Controllers
             ViewBag.AllArticle = db.Articles.ToList();
 
             //Suggest categories
-            var userRoutines = identityDb.UserRoutines.ToList().FindAll(ur => ur.UserId.Equals(ViewBag.CurrentUser.Id));
-            userRoutines = userRoutines.OrderByDescending(u => u.Count).ToList();
-            var mostView = userRoutines.First() as UserRoutine;
-            var categoriesList = db.Categories.ToList().FindAll(c => c.Phase.Equals(mostView.Phase));
-            ViewBag.CategoriesList = categoriesList;
+            if (User.Identity.IsAuthenticated)
+            {
+                var userRoutines = identityDb.UserRoutines.ToList().FindAll(ur => ur.UserId.Equals(ViewBag.CurrentUser.Id));
+                userRoutines = userRoutines.OrderByDescending(u => u.Count).ToList();
+                var mostView = userRoutines.First() as UserRoutine;
+                var categoriesList = db.Categories.ToList().FindAll(c => c.Phase.Equals(mostView.Phase));
+                ViewBag.CategoriesList = categoriesList;
+            }
+            else
+            {
+                var categoriesList = db.Categories.ToList().FindAll(c => c.Phase.Equals("MangThai"));
+                ViewBag.CategoriesList = categoriesList;
+            }
 
             return View(tag);
         }

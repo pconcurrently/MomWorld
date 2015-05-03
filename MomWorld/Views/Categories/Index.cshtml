@@ -194,7 +194,38 @@
     </div>
     <!-- /.modal -->
     <!-- BEGIN BREADCRUMBS -->
-    <div id="breadcrumbs" class="breadcrumbs bg-1">
+    <div id="breadcrumbs" class="breadcrumbs bg-2">
+        <div class="container">
+            <nav class="navbar-category">
+                <div class="container navbar-menu-category">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#myNavbar"
+                                style="float: none; text-align: center; margin: 0;">
+                            <span class="sr-only">Toggle navigation</span> <img class="img-responsive" alt=""
+                                                                                src="@Url.Content("~/Content/images/page-icon/navbar-toggle.png")"
+                                                                                style="width: 50px;">
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li id="MongCon"><a href="@Url.Action("Index", "Categories", routeValues: new { id = "MongCon" })">Mong con</a></li>
+                            <li id="MangThai"><a href="@Url.Action("Index", "Categories", routeValues: new { id = "MangThai" })">Mang thai</a></li>
+                            <li id="TreSoSinh"><a href="@Url.Action("Index", "Categories", routeValues: new { id = "TreSoSinh" })">Trẻ sơ sinh</a></li>
+                            <li id="NuoiDayTre"><a href="@Url.Action("Index", "Categories", routeValues: new { id = "NuoiDayTre" })">Nuôi dạy trẻ</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="@Url.Action("Index", "Quizzes")" data-placement="bottom"
+                                   title="Kiểm tra kiến thức">
+                                    <i class="fa  fa-university hidden-md hidden-lg"></i> <span class="hidden-sm">Kiểm tra kiến thức</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </div>
     <!-- END BREADCRUMBS -->
     <!-- PRE-PREGNANCY PAGE -->
@@ -648,6 +679,9 @@
             window.location.href = "/Articles/Create/" + phase;
         });
 
-
+        var liId = "#" + $('#phase').attr('data-id');
+        //$('.nav.navbar-nav li').siblings("li").removeClass('active');
+        $(liId).addClass('active');
     </script>
+
 </body>
