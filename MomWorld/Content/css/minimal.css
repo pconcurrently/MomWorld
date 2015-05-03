@@ -8076,6 +8076,7 @@ select.form-control.input-lg + .chosen-container .chosen-choices .search-field i
 }
 #mmenu .tab-content .tab-pane ul.users-list > li.online .status, #mmenu .tab-content .tab-pane ul.history-list > li.online .status, #mmenu .tab-content .tab-pane ul.favourite-list > li.online .status {
   border-color: #16a085;
+  background: #16a085;
 }
 #mmenu .tab-content .tab-pane ul.users-list > li.busy .status, #mmenu .tab-content .tab-pane ul.history-list > li.busy .status, #mmenu .tab-content .tab-pane ul.favourite-list > li.busy .status {
   border-color: #ffc100;
@@ -8086,6 +8087,7 @@ select.form-control.input-lg + .chosen-container .chosen-choices .search-field i
 }
 #mmenu .tab-content .tab-pane ul.users-list > li.offline .status, #mmenu .tab-content .tab-pane ul.history-list > li.offline .status, #mmenu .tab-content .tab-pane ul.favourite-list > li.offline .status {
   border-color: #717171;
+  background: transparent;
 }
 #mmenu .tab-content .tab-pane ul.history-list > li .media .media-body small {
   display: inline-block;
@@ -8517,8 +8519,8 @@ li.dropdown ul.dropdown-menu.bordered > li:last-child {
   width: 10px;
   height: 10px;
   padding: 0;
-  border: 1px solid #717171;
-  background: transparent;
+  border: 1px solid #FFE800;
+  background: rgba(255, 252, 0, 1);
 }
 
 /***********************************/

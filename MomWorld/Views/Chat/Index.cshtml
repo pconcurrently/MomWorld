@@ -69,11 +69,7 @@
                                 <!-- tile body -->
                                 <div class="tile-body color transparent-black rounded-bottom-corners nopadding">
 
-                                    <ul class="chat-inbox" id="chat-inbox">
-                                        <li>
-                                            <input type="text" class="form-control" ng-model="search"
-                                                   placeholder="Tìm kiếm ...">
-                                        </li>
+                                    <ul class="chat-inbox" id="chat-inbox">                                        
                                         <li ng-repeat="chat in chatFire | filter:search">
                                             <a href="#" ng-click="getChatFrom(chat.Username)" class="active">
                                                 <div class="media">

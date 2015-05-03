@@ -32,14 +32,14 @@
         "name": "Dinh Dưỡng",
         "quizData": "../../app/js/data/dinhduong.js",
         "quizName": "dinhduong",
-        "message": "Bạn rất giỏi về dinh dưỡng đó, hihi"
+        "message": "Bạn rất giỏi về dinh dưỡng đó."
     },
     {
         "id": "1",
         "name": "Mang thai",
         "quizData": "../../app/js/data/sinhcon.js",
         "quizName": "mangthai",
-        "message": "Bạn rất giỏi về dinh dưỡng đó, hihi"
+        "message": "Mang thai là cả một quá trình."
     },
     {
         "id": "2",
@@ -60,25 +60,28 @@
         "name": "Giới Tính",
         "quizData": "../../app/js/data/gioitinh.js",
         "quizName": "gioitinh",
-        "message": "Message cho giới tính ...."
+        "message": "Giới tính không quan trọng"
     },
     {
         "id": "5",
         "name": "Thể thao",
-        "quizData": "../../app/js/data/gioitinh.js",
-        "quizName": "thethao"
+        "quizData": "../../app/js/data/thethao.js",
+        "quizName": "thethao",
+        "message": "Thể dục thể thao rèn luyện cơ thể"
     },
         {
         "id": "6",
         "name": "Làm Đẹp",
         "quizData": "../../app/js/data/lamdep.js",
-        "quizName": "lamdep"
+        "quizName": "lamdep",
+        "message": "Bầu khỏe bầu đẹp"
     },
     {
         "id": "7",
         "name": "Tình Yêu",
         "quizData": "../../app/js/data/love.js",
-        "quizName": "love"
+        "quizName": "love",
+        "message": "Ôi ! Tình yêu"
     }
     ];
 
