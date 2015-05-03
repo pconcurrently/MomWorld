@@ -285,10 +285,10 @@
                                                                  class="img-circle">
                                                         </div>
                                                         <div class="new-comment-container">
-                                                            <textarea ng-model="comment" class="form-control"
-                                                                      placeholder="Add a comment..." rows="2"></textarea>
+                                                            <textarea id="textComment" ng-model="commentContent" class="form-control"
+                                                                      placeholder="Thêm bình luận ..." rows="2"></textarea>
                                                             <div class="post-toolbar">
-                                                                <a href="" ng-click="addComment(user, status, comment)" title="Add it!">
+                                                                <a href="" ng-click="addComment(status, commentContent)" title="Add it!">
                                                                     <i class="fa fa-share"></i>
                                                                 </a>
                                                             </div>

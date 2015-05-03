@@ -125,15 +125,16 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
     }
 
     /* Create new Commment using Status API */
-    $scope.addComment = function (_user, _status, _comment) {
+    $scope.addComment = function (_status, _comment) {
 
         var sentData = {
             Content: _comment,
-            CreatorName: _user.FirstName + " " + _user.LastName,
+            CreatorName: $scope.currentUser.FirstName + " " + $scope.currentUser.LastName,
             CreatorUsername: $scope.currentUsername,
             CreatorAvatar: "~/App/uploads/avatar/" + $scope.currentUsername + ".png",
             createdDate: Firebase.ServerValue.TIMESTAMP
         }
+
         var commentStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.currentUsername + "/" + _status.$id + "/Comment");
         var commentFirebase = $firebaseArray(commentStatus);
    
@@ -145,8 +146,9 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
         });
 
 
-        commentFirebase.$add(sentData).then(
-             $scope.commentContent = ""
+        commentFirebase.$add(sentData).then(function(){
+            $("#textComment").val("");
+        }, function(){}    
         );
 
     }
