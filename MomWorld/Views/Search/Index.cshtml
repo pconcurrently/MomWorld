@@ -2,38 +2,30 @@
     Layout = "~/Views/Shared/_MWLayout.cshtml";
     ViewBag.Title = "Search";
 }
-
 <head>
     <title>@ViewBag.Title.</title>
 </head>
-
 <body>
     <hidden id="searchString" data-id="@ViewBag.SearchString"></hidden>
     <!-- BEGIN BREADCRUMBS -->
     <div id="breadcrumbs" class="breadcrumbs bg-1">
         <div class="container">
-
             <ol class="breadcrumb">
                 <li><a href="index.html">Trang chủ</a></li>
                 <li class="active">Tìm kiếm</li>
             </ol>
-
             <h2>
                 <strong>Tìm kiếm</strong>
             </h2>
-
         </div>
     </div>
     <!-- END BREADCRUMBS -->
     <!-- SEARCH RESULTS -->
     <section class="section">
         <div class="container">
-
             <div class="row">
 
-
                 <div class="col-sm-12">
-
                     <form class="form-block">
                         <div class="input-group search-bar">
                             <input type="text" id="searchBox" class="form-control" name="search" placeholder="Nội dung..." value="@ViewBag.SearchString">
@@ -42,24 +34,17 @@
                             </span>
                         </div>
                     </form>
-
                     <ul class="search-results">
-
-
 
 
                         <li class="search-result">
                             <div class="cover">
                             </div>
                         </li>
-
                     </ul>
-
                 </div>
 
-
             </div>
-
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4 text-center">
@@ -78,43 +63,58 @@
         </div>
     </section>
     <!-- END SEARCH RESULTS -->
-    
 
 
     <script>
         $(document).ready(function () {
             $(function () {
                 // Instantiate MixItUp:
-               
+
                 $('#gallery').mixItUp();
             });
 
-            $("#searchBox").keyup(function () {                
+            $("#searchBox").keyup(function () {
                 var keyword = $(this).val();
                 var divText = "";
                 var $resultDiv = $('.search-result');
-                if (keyword.length > 0) {
-                    $.ajax({
-                        url: "/Search/GetResults/" + keyword,
-                        dataType: "json",
-                        async: true,
-                        success: function (data) {
+                typewatch(function () {
+                    if (keyword.length > 0) {
+                        $.ajax({
+                            url: "/Search/GetResults/" + keyword,
+                            dataType: "json",
+                            async: true,
+                            success: function (data) {
 
-                            data.forEach(function (article, index) {
-                                divText = divText + "<div class='cover'> <h4><a href='/Articles/Details/" + article.Id + "'>" + article.Title + "</a></h4> <p>" + article.Description + "</p></div>";
-                            });
-                            $resultDiv.html(divText);
-                            data = "";
-                        }
-                    });
-                }
-                else
-                    $resultDiv.html("");
+                                data.forEach(function (article, index) {
+                                    divText = divText + "<div class='cover'> <h4><a href='/Articles/Details/" + article.Id + "'>" + article.Title + "</a></h4> <p>" + article.Description + "</p></div>";
+                                });
+                                $resultDiv.html(divText);
+                                data = "";
+                            }
+                        });
+                    }
+                    else {
+                        $resultDiv.html("");
+                    }
+                }, 500);
+
+
+
+                
+
             });
 
+            var typewatch = (function () {
+                alert("yolo");
+                var timer = 0;
+                return function (callback, ms) {
+                    clearTimeout(timer);
+                    timer = setTimeout(callback, ms);
+                };
+            })();
+
             var searchString = $('#searchString').attr('data-id');
-            if(searchBox != null)
-            {
+            if (searchBox != null) {
                 var divText = "";
                 var $resultDiv = $('.search-result');
                 if (searchString.length > 0) {
@@ -139,6 +139,5 @@
         });
 
     </script>
-
 </body>
 >
