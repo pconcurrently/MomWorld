@@ -230,6 +230,8 @@
                         countChatNoti.on("value", function (snapshot) {
                             if (snapshot.val() != 0) {
                                 $("#noti2").html(snapshot.val());
+                            } else {
+                                $("#noti2").html("");
                             }
                         });
                     });
@@ -267,8 +269,8 @@
                             </li>
                         </ul>
                         <ul class="users-list">
-                            <li class="{{userL.Status | lowercase}}" ng-repeat="userL in listUser | filter:searchUser">
-                                <div class="media">
+                            <li class="{{userL.Status | lowercase}}" ng-repeat="userL in listUser | filter:searchUser" >
+                                <div class="media" ng-show="userL.Username != currentUsername">
                                     <a class="pull-left profile-photo" ng-href="../../Profile/GetProfile/{{userL.Username}}">
                                         <img class="media-object" ng-src="@Url.Content("~/App/uploads/avatar/{{userL.Username}}.png")">
                                     </a>

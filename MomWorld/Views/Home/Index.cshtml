@@ -393,7 +393,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 post-sidebar">
+                <div id="sidebar" class="col-md-3 post-sidebar">
 
                     <!-- CATEGORIES -->
                     <section class="tile color transparent-white">
@@ -795,71 +795,6 @@
     </script>
 
 
-    <script>
-        $(window)
-				.load(
-						function () {
-
-						    //Google Map
-						    var latlng = new google.maps.LatLng(16.075581,
-									108.1696834);
-						    var settings = {
-						        zoom: 17,
-						        center: new google.maps.LatLng(16.075581,
-										108.1696834),
-						        mapTypeId: google.maps.MapTypeId.ROADMAP,
-						        mapTypeControl: false,
-						        scrollwheel: false,
-						        draggable: true,
-						        mapTypeControlOptions: {
-						            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-						        },
-						        navigationControl: false,
-						        navigationControlOptions: {
-						            style: google.maps.NavigationControlStyle.SMALL
-						        },
-						        mapTypeId: google.maps.MapTypeId.ROADMAP
-						    };
-
-						    var map = new google.maps.Map(document
-									.getElementById("map-canvas"), settings);
-
-						    google.maps.event.addDomListener(window, "resize",
-									function () {
-									    var center = map.getCenter();
-									    google.maps.event
-												.trigger(map, "resize");
-									    map.setCenter(center);
-									});
-
-						    var contentString = '<div id="content">'
-									+ '<div id="siteNotice">'
-									+ '</div>'
-									+ '<h3 id="firstHeading" class="no-top-margin"><strong>Office</strong></h3>'
-									+ '<div id="bodyContent">'
-									+ '<p>Here you can find us!</p>' + '</div>'
-									+ '</div>';
-						    var infowindow = new google.maps.InfoWindow({
-						        content: contentString
-						    });
-
-						    var companyPos = new google.maps.LatLng(16.075581,
-									108.1696834);
-
-						    var companyMarker = new google.maps.Marker({
-						        position: companyPos,
-						        map: map,
-						        title: "Our Office",
-						        zIndex: 3
-						    });
-
-						    google.maps.event.addListener(companyMarker,
-									'click', function () {
-									    infowindow.open(map, companyMarker);
-									});
-
-						});
-    </script>
 
 
     <script>
@@ -910,6 +845,12 @@
     <script type="text/javascript">
         $('#sidebar').scrollToFixed({ dontSetWidth: true });
     </script>
+
+    
+
+
+
+
     <script>
         function timeLine() {
             window.location.href = "/NineMonthArticles/TimeLine"

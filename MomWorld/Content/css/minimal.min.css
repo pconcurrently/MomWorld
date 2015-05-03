@@ -439,6 +439,11 @@ h2 {
 }
 @media only screen and (max-width: 992px) {
 
+#sidebar {
+  width: 100% !important;
+  position: relative !important;
+  max-width: 100% !important;
+}
   .navbar-fixed-top .navbar-nav > li:not(.search):not(.user) > a .icon-nav{
     display: none;
   }
@@ -466,6 +471,12 @@ h2 {
     }
 }
 @media only screen and (max-width: 768px) {
+
+    #sidebar{
+    width:100% !important;
+    position:relative !important;
+    max-width: 100% !important;
+}
 
 .navbar-fixed-top .navbar-nav > li:not(.search):not(.user) > a .icon-nav{
   display:initial;

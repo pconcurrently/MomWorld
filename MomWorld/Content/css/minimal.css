@@ -8078,6 +8078,12 @@ select.form-control.input-lg + .chosen-container .chosen-choices .search-field i
   border-color: #16a085;
   background: #16a085;
 }
+
+#mmenu .tab-content .tab-pane ul.users-list > li.away .status, #mmenu .tab-content .tab-pane ul.history-list > li.away .status, #mmenu .tab-content .tab-pane ul.favourite-list > li.away .status {
+  border-color: #FF0101;
+  background: #FF5151;
+}
+
 #mmenu .tab-content .tab-pane ul.users-list > li.busy .status, #mmenu .tab-content .tab-pane ul.history-list > li.busy .status, #mmenu .tab-content .tab-pane ul.favourite-list > li.busy .status {
   border-color: #ffc100;
 }

@@ -33,14 +33,15 @@ profileApp.controller('profileCtrl', ['$scope', '$firebase', '$http', '$firebase
         }
 
     /* Update Profile  */
-    $scope.updateProfile = function () {
-
+        $scope.updateProfile = function () {
+            var o = $("#datepicker").val();
         var sentData = {
             FirstName: $scope.user.FirstName,
             LastName: $scope.user.LastName,
             PhoneNumber: $scope.user.PhoneNumber,
             Facebook: $scope.user.Facebook || "",
-            Google: $scope.user.Google || ""
+            Google: $scope.user.Google || "",
+            DatePregnancy: o
 
         }
 

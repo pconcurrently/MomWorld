@@ -50,6 +50,7 @@ namespace MomWorld.Controllers
             user.FirstName = userPro.FirstName;
             user.LastName = userPro.LastName;
             user.PhoneNumber = userPro.PhoneNumber;
+            user.DatePregnancy = userPro.DatePregnancy;
             //user.Facebook = userPro.Facebook;
             //user.Google = userPro.Google;
 

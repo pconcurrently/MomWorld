@@ -361,6 +361,19 @@
                                             </ul>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="phone">Ngày mang thai</label>
+                                            <div class="input-group">
+                                                <input type="text" id="datepicker" class="form-control" placeholder="Ngày mang thai">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                            </div> 
+                                        </div>                                        
+                                    </div>
+
                                     <div class="row">
                                         <div class="form-group col-md-12 legend">
                                             <h4>
@@ -456,6 +469,14 @@
     </div>
     <!-- Page content end -->
     <script src="@Url.Content("~/App/js/profileCtrl.js")"></script>
+
+
+    <script>
+    //initialize datepicker
+    $('#datepicker').datetimepicker({
+        pickTime: false
+    });
+    </script>
 
 
 
