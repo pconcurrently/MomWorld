@@ -106,7 +106,7 @@ img.aspect-px {
 	background-size: cover;
 	background-position: center;
 	width: 100%;
-	height: auto;
+	height: 120px;
 }
 
 .slider-image {
@@ -1309,6 +1309,8 @@ img.aspect-px {
 	font-size: 15px;
 	line-height: 100%;
 	margin-bottom: 10px;
+	display: -webkit-box;    
+	-webkit-line-clamp: 1;    -webkit-box-orient: vertical;    overflow: hidden;    text-overflow: ellipsis;    line-height: 18px;
 }
 
 .widget .widget-videos .item-content .video-meta,.video-list .item .item-content>.video-meta
@@ -3389,7 +3391,7 @@ div.bbp-breadcrumb {
 	}
 
 	.with-sidebar-layout {
-		width: 67%;
+		/* width: 67%; */
 	}
 
 	#sidebar {
@@ -3497,6 +3499,10 @@ div.bbp-breadcrumb {
 
 
 @media only screen and (max-width: 700px) {
+
+	img.aspect-px {
+  height: 350px;
+}
 
 	body {
 		/*display: none;*/

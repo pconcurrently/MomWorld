@@ -84,7 +84,7 @@ videogular, [videogular] {
     z-index: 1;
     top: 0; }
   videogular vg-poster img, [videogular] vg-poster img {
-    width: auto;
+    width: 100%;
     height: auto;
     max-width: 100%;
     max-height: 100%;
