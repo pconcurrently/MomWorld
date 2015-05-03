@@ -363,12 +363,13 @@
                                     </div>
 
                                     <div class="row">
+                                        
                                         <div class="form-group col-sm-6">
                                             <label for="phone">Ngày mang thai</label>
                                             <div class="input-group">
-                                                <input type="text" id="datepicker" class="form-control" placeholder="Ngày mang thai">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
+                                                <input type="text" class="form-control" placeholder="Ngày mang thai" value="{{user.DatePregnancy | date:'MM/dd/yyyy' }}"> 
+                                                <div class="input-group-addon" id="datepicker2">
+                                                    <i class="fa fa-calendar"><input type="text" id="datepicker" hidden /></i>
                                                 </div>
                                             </div> 
                                         </div>                                        
@@ -392,20 +393,7 @@
                                                                                             class="form-control" id="google-plus">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-12 legend">
-                                            <h4>
-                                                Thiết lập <strong>Bảo mật</strong>
-                                            </h4>
-                                            <p>Bảo vệ tài khoản của bạn</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label for="username">Tên đăng nhập</label> <input type="text" class="form-control" id="username"
-                                                                                               value="{{user.currentUsername}}" readonly>
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="row">
                                         <div class="form-group col-md-12 text-right">
@@ -473,7 +461,7 @@
 
     <script>
     //initialize datepicker
-    $('#datepicker').datetimepicker({
+    $('#datepicker2').datetimepicker({
         pickTime: false
     });
     </script>
