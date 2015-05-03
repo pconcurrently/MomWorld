@@ -468,7 +468,15 @@ namespace MomWorld.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, ProfilePicture = "~/App/uploads/avatar/default.png", Status = 2 };
+
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Status = (int)IdentityStatus.Normal, ProfilePicture = "~/App/uploads/avatar/" + model.UserName + ".png" };
+
+                string sourceDir = Server.MapPath(Url.Content("~/App/uploads/avatar"));
+                string backupDir = Server.MapPath(Url.Content("~/App/uploads/avatar"));
+                //--------- Copy Default Avatar --------
+                System.IO.File.Copy(Path.Combine(sourceDir, "default.png"), Path.Combine(backupDir, user.UserName + ".png"), true);
+
+
                 IdentityResult result = await UserManager.CreateAsync(user);
                 UserManager.AddToRole(user.Id, "Users");
                 if (result.Succeeded)
