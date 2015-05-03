@@ -60,7 +60,12 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
             CreatorName: $scope.currentUser.FirstName + " " + $scope.currentUser.LastName,
             CreatorUsername: $scope.currentUsername,
             CreatorAvatar: "~/App/uploads/avatar/" + $scope.currentUsername + ".png",
-            createdDate: Firebase.ServerValue.TIMESTAMP
+            createdDate: Firebase.ServerValue.TIMESTAMP,
+            NumLike: {
+                Count: 0,
+                User: []
+            },
+            NumComment: 0
         }
 
         // Add new Status to Firebase
@@ -92,14 +97,26 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
             createdDate: Firebase.ServerValue.TIMESTAMP
         }
 
+        alert("1:  " + $scope.viewUsername);
+        alert("2:  " + _status.$id);
+
+
         // Get Status's comments from Firebase API 
         var commentStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.viewUsername + "/" +_status.$id + "/Comment");
         var commentFirebase = $firebaseArray(commentStatus);
 
+        // Increase Number of Comment
+        var p = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.viewUsername + "/" + _status.$id);
+        var NumComment = p.child('NumComment');
+        NumComment.once('value', function (snapshot) {
+            NumComment.set(snapshot.val() + 1);
+        });
+
         // Add comment to Firebase
         commentFirebase.$add(sentData).then(
-             $scope.commentContent = ""
+            $scope.commentContent = ""
         );
+
 
     }
 
@@ -160,3 +177,9 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
     }
 
 }]);
+
+otherProfileApp.filter('reverse', function () {
+    return function (items) {
+        return items.slice().reverse();
+    };
+});

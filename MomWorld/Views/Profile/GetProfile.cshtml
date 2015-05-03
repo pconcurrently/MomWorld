@@ -160,30 +160,23 @@
 
                                         <div class="feed-list">
 
-                                            <article ng-repeat="status in statusFirebase" class="feed-post">
-
+                                            <article ng-repeat="status in statusFirebase | reverse" class="feed-post">
                                                 <aside class="profile-photo">
                                                     <a ng-href="../../Profile/getProfile/{{status.CreatorUsername}}">
                                                         <img ng-src="@Url.Content("~/App/uploads/avatar/{{status.CreatorUsername}}.png")" alt=""
                                                              class="img-circle">
                                                     </a>
                                                 </aside>
-
                                                 <div class="feed-container">
-
                                                     <header>
-
                                                         <div class="author">
                                                             <a ng-href="../../Profile/getProfile/{{status.CreatorUsername}}">{{status.CreatorUsername}}</a> đã cập nhật một
                                                             trạng thái mới <small><span am-time-ago="status.CreatedDate"></span></small>
                                                         </div>
-
                                                     </header>
-
                                                     <div class="feed-content">
                                                         <p>{{status.Content}}</p>
                                                     </div>
-
                                                     <footer>
                                                         <a href="#" ng-show="!isInArray(currentUsername, status.NumLike.User)" ng-click="like(status)">
                                                             <i class="fa fa-heart color-slategray"></i>
@@ -191,15 +184,14 @@
                                                                 ({{status.NumLike.Count}})
                                                             </span>
                                                         </a>
-
                                                         <a ng-show="isInArray(currentUsername, status.NumLike.User)" class="liked">
                                                             <i class="fa fa-heart color-red"></i>
                                                             Thích <span>
                                                                 ({{status.NumLike.Count}})
                                                             </span>
-                                                        </a>  
-                                                            <i class="fa fa-comment"></i> Bình luận <span>({{status.NumComment}})</span>
-                                                        </a> 
+                                                        </a>
+                                                        <i class="fa fa-comment"></i> Bình luận <span>({{status.NumComment}})</span>
+                                                        </a>
 
                                                         <ul class="comments">
                                                             <li ng-repeat="comment in status.Comment">
@@ -207,50 +199,37 @@
                                                                     <img ng-src="@Url.Content("~/App/uploads/avatar/{{comment.CreatorUsername}}.png")" alt=""
                                                                          class="img-circle">
                                                                 </div>
-
                                                                 <div class="comment-container">
-
                                                                     <a ng-href="../../Profile/getProfile/{{comment.CreatorUsername}}" class="comment-author">
                                                                         {{comment.CreatorUsername}}
                                                                     </a> {{comment.Content}}
-
                                                                     <div class="comment-meta">
-
                                                                         <a href="personal-page.html#" class="comment-date">
                                                                             {{comment.CreatedDate}}
                                                                         </a> @*<a href="#" ng-click="like(status)" class="liked">
-                                                                            <i class="fa fa-heart"></i> Thích <span>({{status.NumLike.Count}})</span>
-                                                                        </a>*@
+                                        <i class="fa fa-heart"></i> Thích <span>({{status.NumLike.Count}})</span>
+                                    </a>*@
                                                                     </div>
-
                                                                 </div>
                                                             </li>
-
                                                             <li class="comment-form">
                                                                 <div class="profile-photo">
                                                                     <img ng-src="{{comment.CreatorAvatar}}" alt=""
                                                                          class="img-circle">
                                                                 </div>
-
                                                                 <div class="new-comment-container">
-
-                                                                    <textarea ng-model="comment" class="form-control"
-                                                                              placeholder="Add a comment..." rows="2"></textarea>
+                                                                    <textarea ng-model="commentContent" class="form-control"
+                                                                              placeholder="Thêm bình luận ..." rows="2"></textarea>
                                                                     <div class="post-toolbar">
                                                                         <a href="" ng-click="addComment(status, comment)" title="Add it!">
                                                                             <i class="fa fa-share"></i>
                                                                         </a>
                                                                     </div>
-
                                                                 </div>
                                                             </li>
-
                                                         </ul>
-
                                                     </footer>
-
                                                 </div>
-
                                             </article>
 
                                             <div class="text-center">
