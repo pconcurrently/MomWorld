@@ -21,6 +21,7 @@ using FireSharp;
 using FireSharp.Response;
 using System.Data.Entity;
 using System.IO.Ports;
+using System.IO;
 
 namespace MomWorld.Controllers
 {
@@ -130,11 +131,16 @@ namespace MomWorld.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Status = (int)IdentityStatus.Normal, ProfilePicture = "~/App/uploads/avatar/default.png" };
+                var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, Status = (int)IdentityStatus.Normal, ProfilePicture = "~/App/uploads/avatar/" + model.UserName + ".png" };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 UserManager.AddToRole(user.Id, "Users");
                 if (result.Succeeded)
                 {
+                    string sourceDir = Server.MapPath(Url.Content("~/App/uploads/avatar"));
+                    string backupDir = Server.MapPath(Url.Content("~/App/uploads/avatar"));
+                    //--------- Copy Default Avatar --------
+                    System.IO.File.Copy(Path.Combine(sourceDir, "default.png"), Path.Combine(backupDir, user.UserName + ".png"), true);
+
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
 
@@ -481,7 +487,7 @@ namespace MomWorld.Controllers
                         return Redirect(returnUrl);
                     }
                 }
-                throw new HttpException(403,result.Errors.ToString());
+                throw new HttpException(403, result.Errors.ToString());
             }
 
             ViewBag.ReturnUrl = returnUrl;
@@ -712,11 +718,11 @@ namespace MomWorld.Controllers
         public ActionResult Dashboard()
         {
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
-            ViewBag.UsersNumber = identityDb.Users.ToList().FindAll(u=>u.Roles.ToList()[0].RoleId.Equals(identityDb.Roles.FirstOrDefault(r=>r.Name.Equals("Users")).Id)).Count;
+            ViewBag.UsersNumber = identityDb.Users.ToList().FindAll(u => u.Roles.ToList()[0].RoleId.Equals(identityDb.Roles.FirstOrDefault(r => r.Name.Equals("Users")).Id)).Count;
             ViewBag.ArticlesNumber = articleDb.Articles.Count();
             ViewBag.ArticleLikesNumber = articleDb.ArticleLikes.Count();
             int? views = 0;
-            foreach(var a in articleDb.Articles)
+            foreach (var a in articleDb.Articles)
             {
                 views += a.ViewNumber;
             }
