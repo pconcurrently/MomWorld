@@ -52,7 +52,7 @@
                                 data-animation="bounceInLeft" data-delay="1200">
                                 Mom's World
                             </h1>
-                           
+
                         </div>
 
                         <div class="col-xs-6 text-right">
@@ -81,7 +81,7 @@
                                 Chuẩn bị mang
                                 thai
                             </h1>
-                            
+
                             <a href="@Url.Action("Index", "Categories", routeValues: new {id="MongCon" })" target="_blank"
                                class="btn btn-lg btn-bordered caption"
                                data-animation="rubberBand" data-delay="1800">Xem thêm</a>
@@ -111,7 +111,7 @@
                                 data-animation="fadeInLeft" data-delay="1200">
                                 Mang thai
                             </h1>
-                            
+
                             <a href="@Url.Action("Index", "Categories", routeValues: new { id = "MangThai" })" target="_blank"
                                class="btn btn-lg btn-bordered caption"
                                data-animation="rotateInDownLeft" data-delay="1800">Xem thêm</a>
@@ -140,7 +140,7 @@
                                 data-animation="fadeInLeft" data-delay="1200">
                                 Trẻ sơ sinh
                             </h1>
-                            
+
                             <a href="@Url.Action("Index", "Categories", routeValues: new { id = "TreSoSinh" })" target="_blank"
                                class="btn btn-lg btn-bordered caption"
                                data-animation="rotateInDownLeft" data-delay="1800">Xem thêm</a>
@@ -169,7 +169,7 @@
                                 data-animation="fadeInLeft" data-delay="1200">
                                 Nuôi dạy trẻ
                             </h1>
-                            
+
                             <a href="@Url.Action("Index", "Categories", routeValues: new { id = "NuoiDayTre" })" target="_blank"
                                class="btn btn-lg btn-bordered caption"
                                data-animation="rotateInDownLeft" data-delay="1800">Xem thêm</a>
@@ -274,20 +274,20 @@
 
                         <div class="col-md-3 col-sm-6">
                             <div class=" highlight appear-el" data-animation="fadeInLeft">
-                            <i class="fa fa-graduation-cap"></i>
-                            <h5 class="uppercase">
-                                <strong>Nâng cao kiến thức</strong>
-                            </h5>
-                        </div>
+                                <i class="fa fa-graduation-cap"></i>
+                                <h5 class="uppercase">
+                                    <strong>Nâng cao kiến thức</strong>
+                                </h5>
+                            </div>
                         </div>
 
-                    <div class="col-md-3 col-sm-6" onclick="quiz()">
+                        <div class="col-md-3 col-sm-6" onclick="quiz()">
                             <div class=" highlight appear-el" data-animation="fadeInUp">
-                        <i class="fa fa-file-text-o"></i>
-                        <h5 class="uppercase">
-                            <strong>Kiểm tra kiến thức</strong>
-                        </h5>
-                    </div>
+                                <i class="fa fa-file-text-o"></i>
+                                <h5 class="uppercase">
+                                    <strong>Kiểm tra kiến thức</strong>
+                                </h5>
+                            </div>
                         </div>
 
                         <div class="col-md-3 col-sm-6" onclick="advisory()">
@@ -481,15 +481,15 @@
                                                     <a href="">@postedUsers.FirstOrDefault(u => u.Id.Equals(mongcon.UserId)).UserName</a>
                                                     @if (Math.Round((DateTime.Now - mongcon.PostedDate.Value).TotalDays, 0) == 0)
                                                     {
-                                                    <span class="date-post">
-                                                        Hôm nay
-                                                    </span>
+                                                        <span class="date-post">
+                                                            Hôm nay
+                                                        </span>
                                                     }
                                                     else
                                                     {
-                                                    <span class="date-post">
-                                                        @Math.Round((DateTime.Now - mongcon.PostedDate.Value).TotalDays, 0) ngày trước
-                                                    </span>
+                                                        <span class="date-post">
+                                                            @Math.Round((DateTime.Now - mongcon.PostedDate.Value).TotalDays, 0) ngày trước
+                                                        </span>
                                                     }
                                                 </span>
                                                 <div class="icon-list-btn col-lg-6">
@@ -521,12 +521,19 @@
                                                     </a>
                                                 </h3>
                                                 <span>
-                                                    @mongcon.Description
+                                                    @(mongcon.Description != null ? mongcon.Description : "");
                                                 </span>
                                                 <div class="imgArtCt">
 
                                                     <a href="">
-                                                        <img class="img-responsive" src="@Url.Content(mongcon.DescriptionImage)">
+                                                        @if (mongcon.DescriptionImage != null)
+                                                        {
+                                                            <img class="img-responsive" src="@Url.Content(mongcon.DescriptionImage)">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img class="img-responsive" src="@Url.Content("~/Content/images/post/default.jpg")">
+                                                        }
                                                     </a>
 
                                                 </div>
@@ -592,12 +599,19 @@
                                                     </a>
                                                 </h3>
                                                 <span>
-                                                    @mangthai.Description
+                                                    @(mangthai.Description != null ? mangthai.Description : "");
                                                 </span>
                                                 <div class="imgArtCt">
 
                                                     <a href="">
-                                                        <img class="img-responsive" src="@Url.Content(mangthai.DescriptionImage)">
+                                                        @if (mangthai.DescriptionImage != null)
+                                                        {
+                                                            <img class="img-responsive" src="@Url.Content(mangthai.DescriptionImage)">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img class="img-responsive" src="@Url.Content("~/Content/images/post/default.jpg")">
+                                                        }
                                                     </a>
 
                                                 </div>
@@ -663,12 +677,19 @@
                                                     </a>
                                                 </h3>
                                                 <span>
-                                                    @tresosinh.Description
+                                                    @(tresosinh.Description != null ? tresosinh.Description : "");
                                                 </span>
                                                 <div class="imgArtCt">
 
                                                     <a href="">
-                                                        <img class="img-responsive" src="@Url.Content(tresosinh.DescriptionImage)">
+                                                        @if (tresosinh.DescriptionImage != null)
+                                                        {
+                                                            <img class="img-responsive" src="@Url.Content(tresosinh.DescriptionImage)">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img class="img-responsive" src="@Url.Content("~/Content/images/post/default.jpg")">
+                                                        }
                                                     </a>
 
                                                 </div>
@@ -736,12 +757,19 @@
                                                     </a>
                                                 </h3>
                                                 <span>
-                                                    @nuoidaytre.Description
+                                                    @(nuoidaytre.Description != null ? nuoidaytre.Description : "");
                                                 </span>
                                                 <div class="imgArtCt">
 
                                                     <a href="">
-                                                        <img class="img-responsive" src="@Url.Content(nuoidaytre.DescriptionImage)">
+                                                        @if (nuoidaytre.DescriptionImage != null)
+                                                        {
+                                                            <img class="img-responsive" src="@Url.Content(nuoidaytre.DescriptionImage)">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img class="img-responsive" src="@Url.Content("~/Content/images/post/default.jpg")">
+                                                        }
                                                     </a>
 
                                                 </div>
@@ -848,7 +876,7 @@
         $('#sidebar').scrollToFixed({ dontSetWidth: true });
     </script>
 
-    
+
 
 
 

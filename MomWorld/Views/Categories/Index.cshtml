@@ -301,7 +301,7 @@
                                                                     }
                                                                     <div class="overlay">
                                                                         <div class="overlay-controls">
-                                                                            @if (@article.DescriptionImage != null)
+                                                                            @if (article.DescriptionImage != null)
                                                                             {
                                                                                 <a href="@Url.Content(article.DescriptionImage)" data-nivobox="true"
                                                                                    data-lightbox-gallery="gallery1">
@@ -321,7 +321,7 @@
                                                                 </div>
                                                                 <figcaption>
                                                                     <h5><a href="@Url.Action("Details", "Articles", routeValues: new { id = article.Id })">@article.Title </a></h5>
-                                                                    <span>@Html.Raw(article.Description)</span>
+                                                                    <span>@(article.Description != null ? article.Description : "")</span>
                                                                 </figcaption>
                                                             </figure>
                                                         </div>
