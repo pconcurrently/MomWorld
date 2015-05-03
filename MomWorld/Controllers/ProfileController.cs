@@ -8,12 +8,12 @@ using System.Web.Mvc;
 
 namespace MomWorld.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private IdentityDb identityDb = new IdentityDb();
 
         // GET: Profile
-        [Authorize]
         public ActionResult Index(string id)
         {
             if (id != null)
@@ -31,7 +31,6 @@ namespace MomWorld.Controllers
         }
 
         // Get Profile of Selected User
-        [AllowAnonymous]
         public ActionResult GetProfile(string id)
         {
             if (id != null)
