@@ -96,11 +96,7 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
             CreatorAvatar: "/App/uploads/avatar/" + $scope.currentUsername + ".png",
             createdDate: Firebase.ServerValue.TIMESTAMP
         }
-
-        alert("1:  " + $scope.viewUsername);
-        alert("2:  " + _status.$id);
-
-
+         
         // Get Status's comments from Firebase API 
         var commentStatus = new Firebase("https://momworld.firebaseio.com/Status/" + $scope.viewUsername + "/" +_status.$id + "/Comment");
         var commentFirebase = $firebaseArray(commentStatus);
@@ -113,8 +109,9 @@ function ($scope, $http, $firebaseObject, $firebaseArray, $window, amMoment) {
         });
 
         // Add comment to Firebase
-        commentFirebase.$add(sentData).then(
-            $scope.commentContent = ""
+        commentFirebase.$add(sentData).then(function () {
+            $("#textComment").val("");
+        }, function () { }
         );
 
 
