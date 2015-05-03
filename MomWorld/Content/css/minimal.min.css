@@ -424,7 +424,13 @@ h2 {
     background-color: transparent;
     color: #FFFFFF;
 }
+
+#gallery img {
+  height: 155px;
+}
+
 @media only screen and (max-width: 1200px) {
+
     .navbar-fixed-top .container {
         width: 100%;
     }
@@ -438,6 +444,10 @@ h2 {
     }
 }
 @media only screen and (max-width: 992px) {
+
+  #gallery img {
+  height: 155px;
+}
 
 #sidebar {
   width: 100% !important;
@@ -471,6 +481,10 @@ h2 {
     }
 }
 @media only screen and (max-width: 768px) {
+
+  #gallery img{
+    height: 400px;
+  }
 
     #sidebar{
     width:100% !important;
@@ -2355,9 +2369,15 @@ section.error .controls .btn {
 .post-posts h3 {
     margin-top: 0;
     margin-bottom: 5px;
+    display: -webkit-box;    
+    -webkit-line-clamp: 1;    
+    -webkit-box-orient: vertical;    overflow: hidden;    text-overflow: ellipsis;
 }
 .post-posts p {
     color: #717171;
+    display: -webkit-box;    
+    -webkit-line-clamp: 3;    -webkit-box-orient: vertical;    overflow: hidden;    text-overflow: ellipsis;
+    height: 57px;
 }
 .post-posts a.read-more {
     float: right;
