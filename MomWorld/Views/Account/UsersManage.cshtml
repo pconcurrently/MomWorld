@@ -20,6 +20,45 @@
 
 <body class="bg-2">
 
+    <!--modal confirm xóa -->
+    <div class="modal fade" id="modalDeleteUser" tabindex="-1"
+         role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
+         style="background: rgba(0, 0, 0, 0.75); top: 0px;">
+        <div class="modal-dialog" style="margin-top: 100px;">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        Thoát
+                    </button>
+                    <h3 class="modal-title" id="modalConfirmLabel">
+                        <strong>Xác nhận xóa?</strong>
+                    </h3>
+                    <h4>
+                        Bạn có chắc chắn xóa người dùng này không?
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <!-- The file upload form used as target for the file upload widget -->
+                    <form class="form-horizontal">
+                        <div class="form-group">
+
+                        </div>
+                        <div class="form-group form-footer">
+                            <div class="text-center">
+
+                                <button class="btn btn-greensea" id="deleteUser">Đồng ý</button>
+                                <button class="btn btn-red" data-dismiss="modal">Quay lại</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
     <!-- Modal create user  -->
     <div class="modal fade" id="modalCreateUser" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true">
@@ -363,26 +402,26 @@
                                     </thead>
                                     <tbody>
                                         @foreach (var user in users)
-                                                {
-                                                    if (!user.UserName.Equals("admin"))
-                                                    {
-                                        <tr class="odd ">
-                                            <td>@user.UserName</td>
-                                            <td>@user.Email</td>
-                                            <td>@roles[user.Id]</td>
-                                            <td class="" id="@user.Id">@(user.Status == 1 ? "Bị khóa" : "Bình thường")</td>
-                                            <td class="actions text-center">
-                                                @if (!user.Roles.ToList()[0].RoleId.Equals(adminRole))
-                                                                {
-                                                        <a class="ban" href="#" data-id="@user.Id">Khóa</a>
-                                                        <a href="#" class="unlock" data-id="@user.Id">Mở khóa</a>
-                                                                }
-                                                <a href="#" class="editUser" data-id="@user.Id">Sửa</a>
-                                                <a class="delete" href="#" data-id="@user.Id">Xóa</a>
-                                            </td>
-                                        </tr>
-                                                    }
-                                                }
+                                        {
+                                            if (!user.UserName.Equals("admin"))
+                                            {
+                                                <tr class="odd ">
+                                                    <td>@user.UserName</td>
+                                                    <td>@user.Email</td>
+                                                    <td>@roles[user.Id]</td>
+                                                    <td class="" id="@user.Id">@(user.Status == 1 ? "Bị khóa" : "Bình thường")</td>
+                                                    <td class="actions text-center">
+                                                        @if (!user.Roles.ToList()[0].RoleId.Equals(adminRole))
+                                                        {
+                                                            <a class="ban" href="#" data-id="@user.Id">Khóa</a>
+                                                            <a href="#" class="unlock" data-id="@user.Id">Mở khóa</a>
+                                                        }
+                                                        <a href="#" class="editUser" data-id="@user.Id">Sửa</a>
+                                                        <a class="deleteNe" href="#" data-id="@user.Id">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
                                     </tbody>
                                 </table>
                             </div>
@@ -486,6 +525,31 @@
                 return oTable01Local.$('tr.row_selected');
             }
             ;
+
+            $('.deleteNe').click(function (u) {
+                u.preventDefault();
+                var nRow = $(this).parents('tr')[0];
+                var id = $(this).attr('data-id');
+                $('#modalDeleteUser').modal('show');
+                $('#deleteUser').click(function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: '/Account/Delete',
+                        dataType: "json",
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify({ id: id }),
+                        async: true,
+                        processData: false,
+                        cache: false,
+                        success: function () {
+                            window.location.reload();
+                        }
+                    });
+                });
+                //alert(articleId);
+
+            });
 
             /*******************************************************/
             /**************** INLINE EDIT DATATABLE ****************/
@@ -860,22 +924,6 @@
                 });
             });
 
-            $('.delete').click(function () {
-                var id = $(this).attr('data-id');
-                //alert(articleId);
-                $.ajax({
-                    url: '/Account/Delete',
-                    dataType: "json",
-                    type: "POST",
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify({ id: id }),
-                    async: true,
-                    processData: false,
-                    cache: false,
-                    success: function () {
-                    }
-                });
-            });
 
             $('#addUser').click(function () {
                 $('#modalCreateUser').modal('show');

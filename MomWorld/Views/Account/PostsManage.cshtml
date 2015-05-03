@@ -19,6 +19,47 @@
 </head>
 <body class="bg-2">
 
+
+    <!--modal confirm xóa -->
+    <div class="modal fade" id="modalDeletePost" tabindex="-1"
+         role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true"
+         style="background: rgba(0, 0, 0, 0.75); top: 0px;">
+        <div class="modal-dialog" style="margin-top: 100px;">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        Thoát
+                    </button>
+                    <h3 class="modal-title" id="modalConfirmLabel">
+                        <strong>Xác nhận xóa?</strong>
+                    </h3>
+                    <h4>
+                        Bạn có chắc chắn xóa người dùng này không?
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <!-- The file upload form used as target for the file upload widget -->
+                    <form class="form-horizontal">
+                        <div class="form-group">
+
+                        </div>
+                        <div class="form-group form-footer">
+                            <div class="text-center">
+
+                                <button class="btn btn-greensea" id="deletePost">Đồng ý</button>
+                                <button class="btn btn-red" data-dismiss="modal">Quay lại</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
     <!--modal ReportContent -->
     <div class="modal fade" id="modalReportContent" tabindex="-1"
          role="dialog" aria-labelledby="modalConfirmLabel" aria-hidden="true" style="  overflow-y: hidden;">
@@ -185,7 +226,7 @@
                                                                 Sửa
                                                             </a>
 
-                                                            <a class="delete" href="#" data-id="@article.Id">
+                                                            <a class="deleteNe" href="#" data-id="@article.Id">
                                                                 Xóa
                                                             </a>
                                                         </td>
@@ -535,6 +576,30 @@
             }
             ;
 
+            $('.deleteNe').click(function () {
+                var nRow = $(this).parents('tr')[0];
+                var articleId = $(this).attr('data-id');
+                $('#modalDeletePost').modal('show');
+                $('#deletePost').click(function (e) {
+                    e.preventDefault();
+                    //alert(articleId);
+                    $.ajax({
+                        url: '/Articles/Delete',
+                        dataType: "json",
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify({ id: articleId }),
+                        async: true,
+                        processData: false,
+                        cache: false,
+                        success: function () {
+                            window.location.reload();
+                        }
+                    });
+                })
+                
+            });
+
             /****************************************************/
             /**************** ADVANCED DATATABLE ****************/
             /****************************************************/
@@ -633,22 +698,7 @@
                     });
                 });
 
-                $('.delete').click(function () {
-                    var articleId = $(this).attr('data-id');
-                    //alert(articleId);
-                    $.ajax({
-                        url: '/Articles/Delete',
-                        dataType: "json",
-                        type: "POST",
-                        contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify({ id: articleId }),
-                        async: true,
-                        processData: false,
-                        cache: false,
-                        success: function () {
-                        }
-                    });
-                });
+
 
                 $('.editArticle').click(function () {
                     var articleId = $(this).attr("data-id");
