@@ -718,7 +718,7 @@ namespace MomWorld.Controllers
         public ActionResult Dashboard()
         {
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
-            ViewBag.UsersNumber = identityDb.Users.ToList().FindAll(u => u.Roles.ToList()[0].RoleId.Equals(identityDb.Roles.FirstOrDefault(r => r.Name.Equals("Users")).Id)).Count;
+            ViewBag.UsersNumber = identityDb.Users.ToList().Count;
             ViewBag.ArticlesNumber = articleDb.Articles.Count();
             ViewBag.ArticleLikesNumber = articleDb.ArticleLikes.Count();
             int? views = 0;
