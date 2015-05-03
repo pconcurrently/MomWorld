@@ -290,7 +290,7 @@
                                                         <div class="item appear-el" data-animation="fadeIn">
                                                             <figure>
                                                                 <div class="img-view">
-                                                                    @if (@article.DescriptionImage != string.Empty)
+                                                                    @if (@article.DescriptionImage != null)
                                                                     {
                                                                         <img src="@Url.Content(article.DescriptionImage)"
                                                                              alt="Place description here"> }
@@ -301,7 +301,7 @@
                                                                     }
                                                                     <div class="overlay">
                                                                         <div class="overlay-controls">
-                                                                            @if (@article.DescriptionImage != string.Empty)
+                                                                            @if (@article.DescriptionImage != null)
                                                                             {
                                                                                 <a href="@Url.Content(article.DescriptionImage)" data-nivobox="true"
                                                                                    data-lightbox-gallery="gallery1">
