@@ -23,6 +23,7 @@ namespace MomWorld.Controllers
             ViewBag.CurrentUser = identityDb.Users.FirstOrDefault(u => u.UserName.Equals(User.Identity.Name));
 
             var users = identityDb.Users.ToList();
+            users.Remove(identityDb.Users.FirstOrDefault(u=>u.UserName.Equals("admin")));
             Dictionary<string, int> listUsers = new Dictionary<string, int>();
             int artsCount = 0;
             int likesCount = 0;
